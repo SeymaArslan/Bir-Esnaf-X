@@ -1,5 +1,5 @@
 //
-//  CompanyDetailTableViewController.swift
+//  AddCompanyBankTableViewController.swift
 //  Bir Esnaf
 //
 //  Created by Seyma on 21.11.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CompanyDetailTableViewController: UITableViewController {
+class AddCompanyBankTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

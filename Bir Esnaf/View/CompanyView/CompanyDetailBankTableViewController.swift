@@ -1,13 +1,13 @@
 //
-//  CompanyTableViewController.swift
+//  CompanyDetailBankTableViewController.swift
 //  Bir Esnaf
 //
-//  Created by Seyma on 17.11.2023.
+//  Created by Seyma on 21.11.2023.
 //
 
 import UIKit
 
-class CompanyTableViewController: UITableViewController {
+class CompanyDetailBankTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
