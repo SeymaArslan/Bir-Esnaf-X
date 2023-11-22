@@ -7,23 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1207F5A82B074265008307A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1207F5A72B074265008307A4 /* GoogleService-Info.plist */; };
+		1207F5AA2B075306008307A4 /* FirebaseUserListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5A92B075306008307A4 /* FirebaseUserListener.swift */; };
+		1207F5AC2B075350008307A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5AB2B075350008307A4 /* User.swift */; };
+		1207F5AE2B075377008307A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5AD2B075377008307A4 /* Constants.swift */; };
+		1207F5B02B075398008307A4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5AF2B075398008307A4 /* Extensions.swift */; };
+		1207F5B22B0753DC008307A4 /* FCollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5B12B0753DC008307A4 /* FCollectionReference.swift */; };
+		1207F5B82B07587C008307A4 /* CompanyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5B72B07587C008307A4 /* CompanyVM.swift */; };
+		1207F5BB2B078730008307A4 /* CompanyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5BA2B078730008307A4 /* CompanyTableViewController.swift */; };
+		1207F5BD2B078754008307A4 /* CompanyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5BC2B078754008307A4 /* CompanyTableViewCell.swift */; };
+		1207F5C02B07877D008307A4 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5BF2B07877D008307A4 /* SettingsTableViewController.swift */; };
+		1207F5C22B078BAC008307A4 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5C12B078BAC008307A4 /* Company.swift */; };
+		1207F5C62B0790E6008307A4 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5C52B0790E6008307A4 /* WebService.swift */; };
+		1213B3C02B0D2C2C00E8E0D8 /* CompanyDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1213B3BF2B0D2C2C00E8E0D8 /* CompanyDetailTableViewController.swift */; };
+		1213B3C22B0D3DCB00E8E0D8 /* AddCompanyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1213B3C12B0D3DCB00E8E0D8 /* AddCompanyTableViewController.swift */; };
+		1213B3C52B0D415900E8E0D8 /* CompanyDetailBankTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1213B3C42B0D415900E8E0D8 /* CompanyDetailBankTableViewController.swift */; };
+		1213B3C72B0D416B00E8E0D8 /* AddCompanyBankTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1213B3C62B0D416B00E8E0D8 /* AddCompanyBankTableViewController.swift */; };
+		12C8F2412B0E25510089BA92 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8F2402B0E25510089BA92 /* Bank.swift */; };
 		12CF38062B069B660051F2D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF38052B069B660051F2D5 /* AppDelegate.swift */; };
 		12CF38082B069B660051F2D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF38072B069B660051F2D5 /* SceneDelegate.swift */; };
-		12CF380A2B069B660051F2D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF38092B069B660051F2D5 /* ViewController.swift */; };
+		12CF380A2B069B660051F2D5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF38092B069B660051F2D5 /* LoginViewController.swift */; };
 		12CF380D2B069B660051F2D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12CF380B2B069B660051F2D5 /* Main.storyboard */; };
 		12CF380F2B069B680051F2D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12CF380E2B069B680051F2D5 /* Assets.xcassets */; };
 		12CF38122B069B680051F2D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12CF38102B069B680051F2D5 /* LaunchScreen.storyboard */; };
+		B570762B3C1AE8FBCDCE2B29 /* Pods_Bir_Esnaf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14A5110BF5CEC5C7F20525A /* Pods_Bir_Esnaf.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A8119663DE4F174ECB59791 /* Pods-Bir Esnaf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bir Esnaf.debug.xcconfig"; path = "Target Support Files/Pods-Bir Esnaf/Pods-Bir Esnaf.debug.xcconfig"; sourceTree = "<group>"; };
+		1207F5A72B074265008307A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1207F5A92B075306008307A4 /* FirebaseUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserListener.swift; sourceTree = "<group>"; };
+		1207F5AB2B075350008307A4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1207F5AD2B075377008307A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1207F5AF2B075398008307A4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1207F5B12B0753DC008307A4 /* FCollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCollectionReference.swift; sourceTree = "<group>"; };
+		1207F5B72B07587C008307A4 /* CompanyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyVM.swift; sourceTree = "<group>"; };
+		1207F5BA2B078730008307A4 /* CompanyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyTableViewController.swift; sourceTree = "<group>"; };
+		1207F5BC2B078754008307A4 /* CompanyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyTableViewCell.swift; sourceTree = "<group>"; };
+		1207F5BF2B07877D008307A4 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		1207F5C12B078BAC008307A4 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		1207F5C52B0790E6008307A4 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		1213B3BF2B0D2C2C00E8E0D8 /* CompanyDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDetailTableViewController.swift; sourceTree = "<group>"; };
+		1213B3C12B0D3DCB00E8E0D8 /* AddCompanyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyTableViewController.swift; sourceTree = "<group>"; };
+		1213B3C42B0D415900E8E0D8 /* CompanyDetailBankTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDetailBankTableViewController.swift; sourceTree = "<group>"; };
+		1213B3C62B0D416B00E8E0D8 /* AddCompanyBankTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyBankTableViewController.swift; sourceTree = "<group>"; };
+		12C8F2402B0E25510089BA92 /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
 		12CF38022B069B660051F2D5 /* Bir Esnaf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bir Esnaf.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CF38052B069B660051F2D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12CF38072B069B660051F2D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		12CF38092B069B660051F2D5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		12CF38092B069B660051F2D5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		12CF380C2B069B660051F2D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		12CF380E2B069B680051F2D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12CF38112B069B680051F2D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		12CF38132B069B680051F2D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24C5F1567A84BECA2AB0D599 /* Pods-Bir Esnaf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bir Esnaf.release.xcconfig"; path = "Target Support Files/Pods-Bir Esnaf/Pods-Bir Esnaf.release.xcconfig"; sourceTree = "<group>"; };
+		C14A5110BF5CEC5C7F20525A /* Pods_Bir_Esnaf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bir_Esnaf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +69,89 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B570762B3C1AE8FBCDCE2B29 /* Pods_Bir_Esnaf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1207F5B32B075801008307A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				12CF38092B069B660051F2D5 /* LoginViewController.swift */,
+				1207F5BF2B07877D008307A4 /* SettingsTableViewController.swift */,
+				1213B3C32B0D410600E8E0D8 /* CompanyView */,
+				1207F5BE2B078760008307A4 /* Cells */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1207F5B42B07580C008307A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1207F5AB2B075350008307A4 /* User.swift */,
+				1207F5C12B078BAC008307A4 /* Company.swift */,
+				12C8F2402B0E25510089BA92 /* Bank.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1207F5B52B075818008307A4 /* FirebaseHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				1207F5A92B075306008307A4 /* FirebaseUserListener.swift */,
+				1207F5B12B0753DC008307A4 /* FCollectionReference.swift */,
+			);
+			path = FirebaseHelpers;
+			sourceTree = "<group>";
+		};
+		1207F5B62B075826008307A4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1207F5B52B075818008307A4 /* FirebaseHelpers */,
+				1207F5AD2B075377008307A4 /* Constants.swift */,
+				1207F5C52B0790E6008307A4 /* WebService.swift */,
+				1207F5AF2B075398008307A4 /* Extensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1207F5B92B075881008307A4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1207F5B72B07587C008307A4 /* CompanyVM.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1207F5BE2B078760008307A4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1207F5BC2B078754008307A4 /* CompanyTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		1213B3C32B0D410600E8E0D8 /* CompanyView */ = {
+			isa = PBXGroup;
+			children = (
+				1207F5BA2B078730008307A4 /* CompanyTableViewController.swift */,
+				1213B3BF2B0D2C2C00E8E0D8 /* CompanyDetailTableViewController.swift */,
+				1213B3C42B0D415900E8E0D8 /* CompanyDetailBankTableViewController.swift */,
+				1213B3C12B0D3DCB00E8E0D8 /* AddCompanyTableViewController.swift */,
+				1213B3C62B0D416B00E8E0D8 /* AddCompanyBankTableViewController.swift */,
+			);
+			path = CompanyView;
+			sourceTree = "<group>";
+		};
 		12CF37F92B069B660051F2D5 = {
 			isa = PBXGroup;
 			children = (
 				12CF38042B069B660051F2D5 /* Bir Esnaf */,
 				12CF38032B069B660051F2D5 /* Products */,
+				E32193234D3D4AAF3435E474 /* Pods */,
+				7E03979171E16FA39CA331EF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +168,34 @@
 			children = (
 				12CF38052B069B660051F2D5 /* AppDelegate.swift */,
 				12CF38072B069B660051F2D5 /* SceneDelegate.swift */,
-				12CF38092B069B660051F2D5 /* ViewController.swift */,
+				1207F5B42B07580C008307A4 /* Model */,
+				1207F5B92B075881008307A4 /* ViewModel */,
+				1207F5B32B075801008307A4 /* View */,
+				1207F5B62B075826008307A4 /* Helpers */,
 				12CF380B2B069B660051F2D5 /* Main.storyboard */,
 				12CF380E2B069B680051F2D5 /* Assets.xcassets */,
 				12CF38102B069B680051F2D5 /* LaunchScreen.storyboard */,
 				12CF38132B069B680051F2D5 /* Info.plist */,
+				1207F5A72B074265008307A4 /* GoogleService-Info.plist */,
 			);
 			path = "Bir Esnaf";
+			sourceTree = "<group>";
+		};
+		7E03979171E16FA39CA331EF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C14A5110BF5CEC5C7F20525A /* Pods_Bir_Esnaf.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E32193234D3D4AAF3435E474 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0A8119663DE4F174ECB59791 /* Pods-Bir Esnaf.debug.xcconfig */,
+				24C5F1567A84BECA2AB0D599 /* Pods-Bir Esnaf.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +205,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 12CF38162B069B680051F2D5 /* Build configuration list for PBXNativeTarget "Bir Esnaf" */;
 			buildPhases = (
+				96F8FD249AD8C3BA90FBA5CE /* [CP] Check Pods Manifest.lock */,
 				12CF37FE2B069B660051F2D5 /* Sources */,
 				12CF37FF2B069B660051F2D5 /* Frameworks */,
 				12CF38002B069B660051F2D5 /* Resources */,
+				A878A82E9718754C62BD6312 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12CF38122B069B680051F2D5 /* LaunchScreen.storyboard in Resources */,
+				1207F5A82B074265008307A4 /* GoogleService-Info.plist in Resources */,
 				12CF380F2B069B680051F2D5 /* Assets.xcassets in Resources */,
 				12CF380D2B069B660051F2D5 /* Main.storyboard in Resources */,
 			);
@@ -133,14 +267,72 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		96F8FD249AD8C3BA90FBA5CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Bir Esnaf-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A878A82E9718754C62BD6312 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Bir Esnaf/Pods-Bir Esnaf-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Bir Esnaf/Pods-Bir Esnaf-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bir Esnaf/Pods-Bir Esnaf-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		12CF37FE2B069B660051F2D5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12CF380A2B069B660051F2D5 /* ViewController.swift in Sources */,
+				12CF380A2B069B660051F2D5 /* LoginViewController.swift in Sources */,
+				1213B3C52B0D415900E8E0D8 /* CompanyDetailBankTableViewController.swift in Sources */,
 				12CF38062B069B660051F2D5 /* AppDelegate.swift in Sources */,
 				12CF38082B069B660051F2D5 /* SceneDelegate.swift in Sources */,
+				1207F5C62B0790E6008307A4 /* WebService.swift in Sources */,
+				1207F5AC2B075350008307A4 /* User.swift in Sources */,
+				1207F5BD2B078754008307A4 /* CompanyTableViewCell.swift in Sources */,
+				1207F5B82B07587C008307A4 /* CompanyVM.swift in Sources */,
+				1207F5AA2B075306008307A4 /* FirebaseUserListener.swift in Sources */,
+				12C8F2412B0E25510089BA92 /* Bank.swift in Sources */,
+				1213B3C72B0D416B00E8E0D8 /* AddCompanyBankTableViewController.swift in Sources */,
+				1207F5AE2B075377008307A4 /* Constants.swift in Sources */,
+				1207F5C02B07877D008307A4 /* SettingsTableViewController.swift in Sources */,
+				1213B3C02B0D2C2C00E8E0D8 /* CompanyDetailTableViewController.swift in Sources */,
+				1207F5B22B0753DC008307A4 /* FCollectionReference.swift in Sources */,
+				1207F5BB2B078730008307A4 /* CompanyTableViewController.swift in Sources */,
+				1213B3C22B0D3DCB00E8E0D8 /* AddCompanyTableViewController.swift in Sources */,
+				1207F5C22B078BAC008307A4 /* Company.swift in Sources */,
+				1207F5B02B075398008307A4 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +395,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -266,7 +458,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -287,6 +479,7 @@
 		};
 		12CF38172B069B680051F2D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A8119663DE4F174ECB59791 /* Pods-Bir Esnaf.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -315,6 +508,7 @@
 		};
 		12CF38182B069B680051F2D5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24C5F1567A84BECA2AB0D599 /* Pods-Bir Esnaf.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

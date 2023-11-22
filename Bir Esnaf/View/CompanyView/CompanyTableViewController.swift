@@ -3,7 +3,7 @@
 //  Bir Esnaf
 //
 //  Created by Seyma on 17.11.2023.
-//   https://srv972-files.hstgr.io/47340aed6050cf16/files/public_html/birEsnafImages/
+//
 
 import UIKit
 
@@ -11,7 +11,6 @@ class CompanyTableViewController: UITableViewController {
 
     var compList = [Company]()
     let compVM = CompanyVM()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

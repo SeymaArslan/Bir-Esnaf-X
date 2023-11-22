@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+class Bank: Codable {
+    let bankId: String?
+    let compId: String?
+    let bankName: String?
+    let bankBranchName: String?
+    let bankBranchCode: String?
+    let bankAccountType: String?
+    let bankAccountName: String?
+    let bankAccountNum: String?
+    let bankIban: String?
+}

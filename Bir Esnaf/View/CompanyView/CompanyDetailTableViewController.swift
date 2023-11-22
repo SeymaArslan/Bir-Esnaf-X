@@ -11,22 +11,46 @@ class CompanyDetailTableViewController: UITableViewController {
 
     var company: Company?
     
+//    var picker: YPImagePicker?
+    
+    @IBOutlet weak var compName: UITextField!
+    @IBOutlet weak var compLogo: UIImageView!
+    @IBOutlet weak var compAddress: UITextView!
+    @IBOutlet weak var compPhone: UITextField!
+    @IBOutlet weak var compMail: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
  
+        compName.text = company?.compName
+        if let url = URL(string: "https://lionelo.tech/birEsnafImages/\(company?.compLogoURL ?? "default.png")") {
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    self.compLogo.image = UIImage(data: data!)
+                }
+            }
+        }
+        compAddress.text = company?.compAddress
+        compPhone.text = company?.compPhone
+        compMail.text = company?.compMail
+        
+//        setupPicker()
+        
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-
-        return 0
+    @IBAction func compLogoEditButton(_ sender: Any) {
+        // burası için kütüphaneti incele sadece adını alacağız ve company.compId ve o adla güncelleme yapacağız. kullanacağımız dosya compLogoUpdate
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return 0
+    
+    @IBAction func bankInfoButton(_ sender: Any) {
+        // burada bankId gönderip CompanyDetailBankTableViewController a yönlendireceğiz.
     }
+    
+    @IBAction func compUpdateButton(_ sender: Any) {
+        // burada textlerin vs değişiklikleri olursa güncelleme yapacağız kullanacağımız dosya compUpdate.php
+    }
+    
 
 
 }

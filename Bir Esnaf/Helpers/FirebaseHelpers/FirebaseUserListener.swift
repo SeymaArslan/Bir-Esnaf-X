@@ -79,7 +79,6 @@ class FirebaseUserListener {
     
     //MARK: - Delete Account
     func deleteAccountCurrentUser(completion: @escaping(_ error: Error?) -> Void) {
-//        Auth.auth().currentUser?.delete()  // dene bakalım olacak mı bu 1
         Auth.auth().currentUser?.delete { error in  // bu func 2
             if let error = error {
                 // hata atarsa
