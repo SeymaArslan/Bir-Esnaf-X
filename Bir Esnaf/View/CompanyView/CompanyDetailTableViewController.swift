@@ -10,6 +10,7 @@ import UIKit
 class CompanyDetailTableViewController: UITableViewController {
 
     var company: Company?
+    let compVM = CompanyVM()
     
 //    var picker: YPImagePicker?
     
@@ -34,7 +35,7 @@ class CompanyDetailTableViewController: UITableViewController {
         compAddress.text = company?.compAddress
         compPhone.text = company?.compPhone
         compMail.text = company?.compMail
-        
+
 //        setupPicker()
         
     }
@@ -45,12 +46,19 @@ class CompanyDetailTableViewController: UITableViewController {
     
     @IBAction func bankInfoButton(_ sender: Any) {
         // burada bankId gönderip CompanyDetailBankTableViewController a yönlendireceğiz.
+        self.performSegue(withIdentifier: "goToBankDetail", sender: self)
     }
     
     @IBAction func compUpdateButton(_ sender: Any) {
         // burada textlerin vs değişiklikleri olursa güncelleme yapacağız kullanacağımız dosya compUpdate.php
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "goToBankDetail") {
+            let bankDetVC = segue.destination as! CompanyDetailBankTableViewController
+            bankDetVC.comp = company
+        }
+    }
 
 
 }

@@ -25,6 +25,25 @@ class CompanyVM {
         }.resume()
     }
     
+    func bankParse(compId: String, comp: @escaping ([Bank]) -> ()) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/allCompanies.php")!)
+        request.httpMethod = "POST"
+        let postString = "compId=\(compId)"
+        request.httpBody = postString.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, respone, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(BankData.self, from: data!)
+                comp(result.bank ?? [])
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func compUpdate(compId: String, compName: String, compAddress: String, compPhone: String, compMail: String, comp: @escaping ([Company]) -> ()) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compUpdate.php")!)
         request.httpMethod = "POST"
@@ -49,24 +68,3 @@ class CompanyVM {
 }
 
 
-/*
- var compList: [Company] = []
- let error: String = ""
- 
- func requestData() {
-     let url = URL(string: "https://lionelo.tech/birEsnaf/allCompanies.php")!
-     WebService().downloadCompanies(url: url) { result in
-         switch result {
-         case .success(let list):
-             self.compList = list
-         case .failure(let error):
-             switch error {
-             case .parsingError:
-                 print(error.localizedDescription ?? "")
-             case .serverError:
-                 print(error.localizedDescription ?? "")
-             }
-         }
-     }
- }
- */

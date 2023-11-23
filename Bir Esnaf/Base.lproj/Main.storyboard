@@ -778,7 +778,7 @@
                                                     <buttonConfiguration key="configuration" style="plain" title="Banka Bilgileri"/>
                                                     <connections>
                                                         <action selector="bankInfoButton:" destination="lID-Dg-hUS" eventType="touchUpInside" id="k7w-ae-gzK"/>
-                                                        <segue destination="Qvo-tA-afX" kind="show" id="zqc-7f-1Bl"/>
+                                                        <segue destination="Qvo-tA-afX" kind="show" identifier="goToBankDetail" id="zqc-7f-1Bl"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1153,7 +1153,7 @@
                     <tabBarItem key="tabBarItem" title="Ayarlar" image="gearshape" catalog="system" id="BNz-Gp-UCG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="fcn-fO-pE3">
-                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1172,7 +1172,7 @@
                     <tabBarItem key="tabBarItem" title="Firmalar" image="person.line.dotted.person" catalog="system" id="n26-ex-scY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="ga0-AG-Jq3">
-                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

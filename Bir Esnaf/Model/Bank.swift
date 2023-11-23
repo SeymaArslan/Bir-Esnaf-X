@@ -7,6 +7,10 @@
 
 import Foundation
 
+class BankData: Codable {
+    let bank: [Bank]?
+}
+
 class Bank: Codable {
     let bankId: String?
     let compId: String?
