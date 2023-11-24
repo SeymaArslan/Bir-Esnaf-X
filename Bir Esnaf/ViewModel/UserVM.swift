@@ -6,3 +6,46 @@
 //
 
 import Foundation
+
+class UserVM {
+    
+    func userAdd(userMail: String) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/allCompanies.php")!)
+        request.httpMethod = "POST"
+        let postString = "userMail=\(userMail)"
+        request.httpBody = postString.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, respone, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(UserData.self, from: data!).user
+
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
+    func getUserId(userMail: String, completion: @escaping ([UserMysql]) -> ()) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/allCompanies.php")!)
+        request.httpMethod = "POST"
+        let postString = "userMail=\(userMail)"
+        request.httpBody = postString.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, respone, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(UserData.self, from: data!)
+                completion(result.user ?? [])
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+
+    }
+    
+}

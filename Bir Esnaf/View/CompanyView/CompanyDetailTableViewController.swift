@@ -3,7 +3,7 @@
 //  Bir Esnaf
 //
 //  Created by Seyma on 21.11.2023.
-//
+//      *** servis url lerini düzenle sonra dene!!!
 
 import UIKit
 
@@ -45,12 +45,11 @@ class CompanyDetailTableViewController: UITableViewController {
     }
     
     @IBAction func bankInfoButton(_ sender: Any) {
-        // burada bankId gönderip CompanyDetailBankTableViewController a yönlendireceğiz.
         self.performSegue(withIdentifier: "goToBankDetail", sender: self)
     }
     
     @IBAction func compUpdateButton(_ sender: Any) {
-        // burada textlerin vs değişiklikleri olursa güncelleme yapacağız kullanacağımız dosya compUpdate.php
+        compVM.compUpdate(compId: (company?.compId!)!, compName: compName.text!, compAddress: compAddress.text!, compPhone: compPhone.text!, compMail: compMail.text!)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

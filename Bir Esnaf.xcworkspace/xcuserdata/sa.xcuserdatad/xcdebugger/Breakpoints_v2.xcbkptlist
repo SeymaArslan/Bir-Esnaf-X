@@ -30,9 +30,9 @@
             filePath = "Bir Esnaf/ViewModel/CompanyVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "compUpdate(compId:compName:compAddress:compPhone:compMail:comp:)"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "compUpdate(compId:compName:compAddress:compPhone:compMail:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

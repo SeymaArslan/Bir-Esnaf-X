@@ -48,3 +48,12 @@ func saveUserLocally(_ user: User) {
         print("error saving user locally ", error.localizedDescription)
     }
 }
+
+struct UserData: Codable {
+    let user: [UserMysql]?
+}
+
+struct UserMysql: Codable {
+    var userId: String?
+    var userMail: String?
+}

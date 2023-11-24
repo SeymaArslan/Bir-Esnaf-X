@@ -43,8 +43,9 @@ class CompanyDetailBankTableViewController: UITableViewController {
     }
     
     @IBAction func updateButton(_ sender: Any) {
-        
+        compVM.bankUpdate(bankId: bankList[0].bankId!, bankName: bankName.text!, bankBranchName: bankBranchName.text!, bankBranchCode: bankBranchCode.text!, bankAccountType: accountType.text!, bankAccountName: accountName.text!, bankAccountNum: accountNumber.text!, bankIban: iban.text!)
     }
+
 
 
 }

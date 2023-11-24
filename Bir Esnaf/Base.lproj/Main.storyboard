@@ -625,7 +625,8 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wMk-13-riW">
                             <color key="tintColor" name="customColor2"/>
                             <connections>
-                                <segue destination="scf-qd-xsn" kind="show" id="74T-KZ-hd2"/>
+                                <action selector="goToCompAdd:" destination="RsG-KA-ynu" id="cA5-h7-9hA"/>
+                                <segue destination="scf-qd-xsn" kind="show" identifier="goToCompAdd" id="74T-KZ-hd2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

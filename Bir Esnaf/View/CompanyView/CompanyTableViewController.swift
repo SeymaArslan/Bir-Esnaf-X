@@ -11,17 +11,29 @@ class CompanyTableViewController: UITableViewController {
 
     var compList = [Company]()
     let compVM = CompanyVM()
+    var compUserMail: UserMysql? // içerisinde mail var
+    let userVM = UserVM()
+    var userMysql = [UserMysql]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        
         
         tableView.delegate = self
         tableView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        compVM.compParse { data in
+//        userVM.getUserId(userMail: compUserMail?.email ?? "") { userMysqlData in
+//            self.userMysql = userMysqlData
+//        }
+  
+        userVM.getUserId(userMail: compUserMail?.userMail ?? "") { usermysqlData in
+            self.userMysql = usermysqlData
+        }  // buradaki userMysql listesinde id yi çekeceğiz ki liste dönmüyor tek veri geliyor gerçi 
+        
+        compVM.compParse(userId: userMysql[0].userId ?? "") { data in
             self.compList = data
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -29,10 +41,18 @@ class CompanyTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func goToCompAdd(_ sender: Any) {
+        self.performSegue(withIdentifier: "goToCompAdd", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let indeks = sender as? Int
         let goToVC = segue.destination as! CompanyDetailTableViewController
         goToVC.company = compList[indeks!]
+        
+        if(segue.identifier == "goToCompAdd") {
+            let bankDetVC = segue.destination as! CompanyDetailBankTableViewController
+        }
     }
     
     // MARK: - Table view data source
@@ -60,6 +80,7 @@ class CompanyTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "goToCompDet", sender: indexPath.row)
     }
+    
     
 }
 

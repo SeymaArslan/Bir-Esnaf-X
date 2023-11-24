@@ -30,6 +30,7 @@
 		12CF380D2B069B660051F2D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12CF380B2B069B660051F2D5 /* Main.storyboard */; };
 		12CF380F2B069B680051F2D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12CF380E2B069B680051F2D5 /* Assets.xcassets */; };
 		12CF38122B069B680051F2D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12CF38102B069B680051F2D5 /* LaunchScreen.storyboard */; };
+		12D5F54F2B10C8A200B4F7D9 /* UserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D5F54E2B10C8A200B4F7D9 /* UserVM.swift */; };
 		B570762B3C1AE8FBCDCE2B29 /* Pods_Bir_Esnaf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14A5110BF5CEC5C7F20525A /* Pods_Bir_Esnaf.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		12CF380E2B069B680051F2D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12CF38112B069B680051F2D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		12CF38132B069B680051F2D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12D5F54E2B10C8A200B4F7D9 /* UserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVM.swift; sourceTree = "<group>"; };
 		24C5F1567A84BECA2AB0D599 /* Pods-Bir Esnaf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bir Esnaf.release.xcconfig"; path = "Target Support Files/Pods-Bir Esnaf/Pods-Bir Esnaf.release.xcconfig"; sourceTree = "<group>"; };
 		C14A5110BF5CEC5C7F20525A /* Pods_Bir_Esnaf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bir_Esnaf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				1207F5B72B07587C008307A4 /* CompanyVM.swift */,
+				12D5F54E2B10C8A200B4F7D9 /* UserVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12CF380A2B069B660051F2D5 /* LoginViewController.swift in Sources */,
+				12D5F54F2B10C8A200B4F7D9 /* UserVM.swift in Sources */,
 				1213B3C52B0D415900E8E0D8 /* CompanyDetailBankTableViewController.swift in Sources */,
 				12CF38062B069B660051F2D5 /* AppDelegate.swift in Sources */,
 				12CF38082B069B660051F2D5 /* SceneDelegate.swift in Sources */,

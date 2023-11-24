@@ -10,6 +10,10 @@ import FirebaseFirestore
 import ProgressHUD
 
 class LoginViewController: UIViewController {
+    
+//    var userMysql: UserMysql?
+    var compTableVC = CompanyTableViewController()
+    let userVM = UserVM()
 
     //MARK: - Outlets
     // Labels
@@ -144,9 +148,15 @@ class LoginViewController: UIViewController {
             if error == nil {
                 if isEmailVerified {
                     // go to app
-                    //self.goToApp()
-                    print("User has logged in with email ", User.currentUser?.email)
-                    // table view a giderken buradan bir true gönder.
+                    self.goToApp()
+                   // print("User has logged in with email ", User.currentUser?.email)
+                    
+                   // self.compTVC?.compUserMail?.email = User.currentUser?.email ?? ""
+                    if let currentMail =  User.currentUser?.email {
+                        self.userVM.userAdd(userMail: currentMail) // mysql e kayıt yaptık
+                        self.compTableVC.compUserMail?.userMail = currentMail // comptableView a maili gönderdik
+                    }
+                    
                 } else {
                     ProgressHUD.showError("Lütfen emailinizi doğrulayın.")
                     self.resendEmailButtonOutlet.isHidden = false

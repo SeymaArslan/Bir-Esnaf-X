@@ -9,9 +9,12 @@ import Foundation
 
 class CompanyVM {
     
-    func compParse(comp: @escaping ([Company]) -> ()) {
-        let api = URL(string: "https://lionelo.tech/birEsnaf/allCompanies.php")!
-        URLSession.shared.dataTask(with: api) { data, response, error in
+    func compParse(userId: String, comp: @escaping ([Company]) -> ()) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/allCompanies.php")!)
+        request.httpMethod = "POST"
+        let postString = "userId=\(userId)"
+        request.httpBody = postString.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
                 print(error?.localizedDescription ?? "")
                 return
@@ -44,7 +47,7 @@ class CompanyVM {
         }
     }
     
-    func compUpdate(compId: String, compName: String, compAddress: String, compPhone: String, compMail: String, comp: @escaping ([Company]) -> ()) {
+    func compUpdate(compId: String, compName: String, compAddress: String, compPhone: String, compMail: String) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compUpdate.php")!)
         request.httpMethod = "POST"
         let postString = "compId=\(compId)&compName=\(compName)&compAddress=\(compAddress)&compPhone=\(compPhone)&compMail=\(compMail)"
@@ -64,6 +67,25 @@ class CompanyVM {
         }.resume()
     }
     
+    func bankUpdate(bankId: String, bankName: String, bankBranchName: String, bankBranchCode: String, bankAccountType: String, bankAccountName: String, bankAccountNum: String, bankIban:String) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compUpdate.php")!)
+        request.httpMethod = "POST"
+        let postString = "bankId=\(bankId)&bankName=\(bankName)&bankBranchName=\(bankBranchName)&bankBranchCode=\(bankBranchCode)&bankAccountType=\(bankAccountType)%bankAccountName=\(bankAccountName)&bankAccountNum=\(bankAccountNum)&bankIban=\(bankIban)"
+        request.httpBody = postString.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any] {
+                    print(json)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
     
 }
 
