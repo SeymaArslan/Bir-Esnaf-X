@@ -6,13 +6,13 @@
 //      *** servis url lerini düzenle sonra dene!!!
 
 import UIKit
+import YPImagePicker
 
 class CompanyDetailTableViewController: UITableViewController {
 
     var company: Company?
     let compVM = CompanyVM()
-    
-//    var picker: YPImagePicker?
+
     
     @IBOutlet weak var compName: UITextField!
     @IBOutlet weak var compLogo: UIImageView!
@@ -20,9 +20,13 @@ class CompanyDetailTableViewController: UITableViewController {
     @IBOutlet weak var compPhone: UITextField!
     @IBOutlet weak var compMail: UITextField!
     
+    var picker: YPImagePicker?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
  
+        setupPicker()
+        
         compName.text = company?.compName
         if let url = URL(string: "https://lionelo.tech/birEsnafImages/\(company?.compLogoURL ?? "default.png")") {
             DispatchQueue.global().async {
@@ -42,6 +46,7 @@ class CompanyDetailTableViewController: UITableViewController {
 
     @IBAction func compLogoEditButton(_ sender: Any) {
         // burası için kütüphaneti incele sadece adını alacağız ve company.compId ve o adla güncelleme yapacağız. kullanacağımız dosya compLogoUpdate
+        showPicker()
     }
     
     @IBAction func bankInfoButton(_ sender: Any) {
@@ -57,6 +62,38 @@ class CompanyDetailTableViewController: UITableViewController {
             let bankDetVC = segue.destination as! CompanyDetailBankTableViewController
             bankDetVC.comp = company
         }
+    }
+    
+    //MARK: - Helpers
+    func setupPicker() {
+        var config = YPImagePickerConfiguration()
+        config.showsPhotoFilters = false
+        config.screens = [.library]
+        
+        config.library.maxNumberOfItems = 3
+        
+        picker = YPImagePicker(configuration: config)
+    }
+    
+    func showPicker() {
+        guard let picker = picker else { return }
+        picker.didFinishPicking { [unowned picker] items, cancelled in
+            if cancelled {
+                print("Picker was canceled")
+            }
+            for item in items {
+                switch item {
+                case .photo(p: let photo):
+                    DispatchQueue.main.async {
+                        self.compLogo.image = photo.image
+                    }
+                case .video(v: let video):
+                    print(video)  // video koyulamayacağı ile ilgili uyarı göster.
+                }
+            }
+            picker.dismiss(animated: true, completion: nil)
+        }
+        present(picker, animated: true, completion: nil)
     }
 
 

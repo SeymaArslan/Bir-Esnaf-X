@@ -666,7 +666,6 @@ PODS:
     - FirebaseCore (~> 10.0)
     - FirebaseCoreExtension (~> 10.0)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
-  - Gallery (2.4.0)
   - GoogleAppMeasurement (10.13.0):
     - GoogleAppMeasurement/AdIdSupport (= 10.13.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
@@ -772,7 +771,12 @@ PODS:
   - nanopb/encode (2.30909.0)
   - ProgressHUD (2.70)
   - PromisesObjC (2.1.1)
+  - PryntTrimmerView (4.0.2)
   - SKPhotoBrowser (7.1.0)
+  - SteviaLayout (5.1.2)
+  - YPImagePicker (5.2.2):
+    - PryntTrimmerView (= 4.0.2)
+    - SteviaLayout (= 5.1.2)
 
 DEPENDENCIES:
   - FirebaseAnalytics
@@ -780,9 +784,9 @@ DEPENDENCIES:
   - FirebaseFirestore
   - FirebaseFirestoreSwift
   - FirebaseStorage
-  - Gallery
   - ProgressHUD
   - SKPhotoBrowser
+  - YPImagePicker
 
 SPEC REPOS:
   trunk:
@@ -800,7 +804,6 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseSharedSwift
     - FirebaseStorage
-    - Gallery
     - GoogleAppMeasurement
     - GoogleUtilities
     - "gRPC-C++"
@@ -811,7 +814,10 @@ SPEC REPOS:
     - nanopb
     - ProgressHUD
     - PromisesObjC
+    - PryntTrimmerView
     - SKPhotoBrowser
+    - SteviaLayout
+    - YPImagePicker
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
@@ -828,7 +834,6 @@ SPEC CHECKSUMS:
   FirebaseInstallations: b28af1b9f997f1a799efe818c94695a3728c352f
   FirebaseSharedSwift: 5c4906ecf0441ed23efff399454dc791eff8ad54
   FirebaseStorage: f2d1a84d78a7226d97bc76d85cf1092cab5f2b7d
-  Gallery: b7fc1aeb68a39ad6d2c423574750196bf9b25e5c
   GoogleAppMeasurement: 3ae505b44174bcc0775f5c86cecc5826259fbb1e
   GoogleUtilities: c2bdc4cf2ce786c4d2e6b3bcfd599a25ca78f06f
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
@@ -839,8 +844,11 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   ProgressHUD: e603e8b8622c47d8818b9fb38b3cfe9d3e7ca421
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
+  PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
   SKPhotoBrowser: cd95b95a6f352fc2a50992721299f75ead77f9ab
+  SteviaLayout: 05424e528d643657d39ce72c786e4adf13cfc5f2
+  YPImagePicker: afc81b3cffab05a6e7261c5daf80dc31b4e917b4
 
-PODFILE CHECKSUM: 4cb89424c4b61d594d304a367fc9791d76ca09c3
+PODFILE CHECKSUM: d89305ac29f89898142300ef4d14f8942734b853
 
 COCOAPODS: 1.13.0
