@@ -150,13 +150,18 @@ class LoginViewController: UIViewController {
                     // go to app
                     self.goToApp()
                    // print("User has logged in with email ", User.currentUser?.email)
-                    
-                   // self.compTVC?.compUserMail?.email = User.currentUser?.email ?? ""
+
                     if let currentMail =  User.currentUser?.email {
-                        self.userVM.userAdd(userMail: currentMail) // mysql e kayıt yaptık
-                        self.compTableVC.compUserMail?.userMail = currentMail // comptableView a maili gönderdik
+                        self.userVM.userControl(userMail: currentMail) { userInfo in  // userInfo artık user ın id ve maili
+                            if userInfo[0].userMail == currentMail { // mail adresi kayıtlıysa
+                               // self.compTableVC.compUserMail?.userMail = currentMail
+                                self.compTableVC.userId?.userId = userInfo[0].userId
+                            } else {
+                                self.userVM.userAdd(userMail: currentMail) // mysql e kayıt yaptık
+                                self.compTableVC.userId?.userId = userInfo[0].userId // comptableView a id gönderdik
+                            }
+                        }
                     }
-                    
                 } else {
                     ProgressHUD.showError("Lütfen emailinizi doğrulayın.")
                     self.resendEmailButtonOutlet.isHidden = false

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import YPImagePicker
 
 class AddCompanyTableViewController: UITableViewController {
 
@@ -16,14 +17,17 @@ class AddCompanyTableViewController: UITableViewController {
     @IBOutlet weak var compPhone: UITextField!
     @IBOutlet weak var compMail: UITextView!
     
+    var picker: YPImagePicker?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        setupPicker()
     }
 
     @IBAction func compLogoEditButton(_ sender: Any) {
-        
+        showPicker()
     }
     
     @IBAction func goToBankButton(_ sender: Any) {
@@ -31,16 +35,36 @@ class AddCompanyTableViewController: UITableViewController {
     }
     
     
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    //MARK: - Helpers
+    func setupPicker() {
+        var config = YPImagePickerConfiguration()
+        config.showsPhotoFilters = false
+        config.screens = [.library]
+        
+        config.library.maxNumberOfItems = 3  // or 1? search the library
+        
+        picker = YPImagePicker(configuration: config)
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+    func showPicker() {
+        guard let picker = picker else { return }
+        picker.didFinishPicking { [unowned picker] items, cancelled in
+            if cancelled {
+                print("Picker was canceled")
+            }
+            for item in items {
+                switch item {
+                case .photo(p: let photo):
+                    DispatchQueue.main.async {
+                        self.compLogo.image = photo.image
+                    }
+                case .video(v: let video):
+                    print(video)  // video koyulamayacağı ile ilgili uyarı göster.
+                }
+            }
+            picker.dismiss(animated: true, completion: nil)
+        }
+        present(picker, animated: true, completion: nil)
     }
-
-
+    
 }

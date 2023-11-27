@@ -25,7 +25,7 @@ class CompanyDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
  
-        setupPicker()
+        
         
         compName.text = company?.compName
         if let url = URL(string: "https://lionelo.tech/birEsnafImages/\(company?.compLogoURL ?? "default.png")") {
@@ -40,12 +40,11 @@ class CompanyDetailTableViewController: UITableViewController {
         compPhone.text = company?.compPhone
         compMail.text = company?.compMail
 
-//        setupPicker()
+        setupPicker()
         
     }
 
     @IBAction func compLogoEditButton(_ sender: Any) {
-        // burası için kütüphaneti incele sadece adını alacağız ve company.compId ve o adla güncelleme yapacağız. kullanacağımız dosya compLogoUpdate
         showPicker()
     }
     

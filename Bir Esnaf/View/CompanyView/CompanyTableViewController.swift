@@ -11,7 +11,7 @@ class CompanyTableViewController: UITableViewController {
 
     var compList = [Company]()
     let compVM = CompanyVM()
-    var compUserMail: UserMysql? // içerisinde mail var
+    var userId: UserMysql? // içerisinde mail var
     let userVM = UserVM()
     var userMysql = [UserMysql]()
     
@@ -29,9 +29,9 @@ class CompanyTableViewController: UITableViewController {
 //            self.userMysql = userMysqlData
 //        }
   
-        userVM.getUserId(userMail: compUserMail?.userMail ?? "") { usermysqlData in
-            self.userMysql = usermysqlData
-        }  // buradaki userMysql listesinde id yi çekeceğiz ki liste dönmüyor tek veri geliyor gerçi 
+//        userVM.getUserId(userMail: compUserMail?.userMail ?? "") { usermysqlData in
+//            self.userMysql = usermysqlData
+//        }  // buradaki userMysql listesinde id yi çekeceğiz ki liste dönmüyor tek veri geliyor gerçi 
         
         compVM.compParse(userId: userMysql[0].userId ?? "") { data in
             self.compList = data

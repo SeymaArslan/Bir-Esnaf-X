@@ -28,8 +28,8 @@ class UserVM {
         }.resume()
     }
     
-    func getUserId(userMail: String, completion: @escaping ([UserMysql]) -> ()) {
-        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/allCompanies.php")!)
+    func userControl(userMail: String, completion: @escaping ([UserMysql]) -> ()) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/selectUser.php")!)
         request.httpMethod = "POST"
         let postString = "userMail=\(userMail)"
         request.httpBody = postString.data(using: .utf8)
