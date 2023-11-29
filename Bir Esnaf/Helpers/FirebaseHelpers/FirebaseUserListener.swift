@@ -12,6 +12,7 @@ import FirebaseFirestore
 
 class FirebaseUserListener {
     static let shared = FirebaseUserListener()
+    let userVM = UserVM()
     
     private init() {  }
     
@@ -40,12 +41,14 @@ class FirebaseUserListener {
                 
                 // create user and save it
                 if authResult?.user != nil {
-                    let user = User(id: authResult!.user.uid, userName: email, email: email)
+                    let user = User(id: authResult!.user.uid, email: email)
                     saveUserLocally(user)
                     self.saveUserToFirestore(user)
                 }
             }
         }
+        
+        userVM.userAdd(userMail: email)  // add mysql?
     }
     
     //MARK: - Resend Link Methods

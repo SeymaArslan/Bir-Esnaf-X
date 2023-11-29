@@ -10,18 +10,19 @@ import Foundation
 class UserVM {
     
     func userAdd(userMail: String) {
-        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/allCompanies.php")!)
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/insertUser.php")!)
         request.httpMethod = "POST"
         let postString = "userMail=\(userMail)"
         request.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, respone, error in
-            if error != nil {
+            if error != nil || data == nil {
                 print(error?.localizedDescription ?? "")
                 return
             }
             do {
-                let result = try JSONDecoder().decode(UserData.self, from: data!).user
-
+                if let result = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                    print(result) // get message
+                }
             } catch {
                 print(error.localizedDescription)
             }

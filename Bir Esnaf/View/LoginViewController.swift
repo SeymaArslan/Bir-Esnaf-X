@@ -52,8 +52,8 @@ class LoginViewController: UIViewController {
         if isDataInputedFor(type: isLogin ? "login" : "register") {
             isLogin ? loginUser() : registerUser()   // login or register func
         } else {
-            // PogressHUD.showFiled("All fields are required")
-            print("Tüm alanları doldurun.")
+            ProgressHUD.showError("All fields are required")
+            //print("Tüm alanları doldurun.")
         }
     }
     
@@ -150,18 +150,6 @@ class LoginViewController: UIViewController {
                     // go to app
                     self.goToApp()
                    // print("User has logged in with email ", User.currentUser?.email)
-
-                    if let currentMail =  User.currentUser?.email {
-                        self.userVM.userControl(userMail: currentMail) { userInfo in  // userInfo artık user ın id ve maili
-                            if userInfo[0].userMail == currentMail { // mail adresi kayıtlıysa
-                               // self.compTableVC.compUserMail?.userMail = currentMail
-                                self.compTableVC.userId?.userId = userInfo[0].userId
-                            } else {
-                                self.userVM.userAdd(userMail: currentMail) // mysql e kayıt yaptık
-                                self.compTableVC.userId?.userId = userInfo[0].userId // comptableView a id gönderdik
-                            }
-                        }
-                    }
                 } else {
                     ProgressHUD.showError("Lütfen emailinizi doğrulayın.")
                     self.resendEmailButtonOutlet.isHidden = false

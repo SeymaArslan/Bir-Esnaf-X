@@ -3,7 +3,7 @@
 //  Bir Esnaf
 //
 //  Created by Seyma on 17.11.2023.
-//
+//  3 numara 3. dk firebase database a tablo olarak kayıt yapmıyor en iyisi yeni baştan kur?
 
 import Foundation
 import FirebaseCore
@@ -12,7 +12,7 @@ import FirebaseAuth
 
 struct User: Codable, Equatable {
     var id = ""
-    var userName: String
+//    var userName: String
     var email: String
     
     static var currentId: String {

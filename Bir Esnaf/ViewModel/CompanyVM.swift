@@ -9,6 +9,8 @@ import Foundation
 
 class CompanyVM {
     
+    let compList = [Company]()
+    
     func compInsert(userId: String, compName: String, compLogoURL: String, compAddress: String, compPhone: String, compMail: String ) {
         var api = URLRequest(url: URL(string: "")!)
         api.httpMethod = "POST"

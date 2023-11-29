@@ -11,7 +11,7 @@ class CompanyTableViewController: UITableViewController {
 
     var compList = [Company]()
     let compVM = CompanyVM()
-    var userId: UserMysql? // içerisinde mail var
+    var userId: UserMysql?
     let userVM = UserVM()
     var userMysql = [UserMysql]()
     
@@ -33,12 +33,12 @@ class CompanyTableViewController: UITableViewController {
 //            self.userMysql = usermysqlData
 //        }  // buradaki userMysql listesinde id yi çekeceğiz ki liste dönmüyor tek veri geliyor gerçi 
         
-        compVM.compParse(userId: userMysql[0].userId ?? "") { data in
-            self.compList = data
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+//        compVM.compParse(userId: userMysql[0].userId ?? "") { data in
+//            self.compList = data
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
     }
     
     @IBAction func goToCompAdd(_ sender: Any) {
@@ -64,7 +64,6 @@ class CompanyTableViewController: UITableViewController {
         let comp = compList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CompanyTableViewCell
         cell.companyNameLabel.text = comp.compName
-       // cell.companyLogo.image = UIImage(named: comp.compLogoURL!)
         if let url = URL(string: "https://lionelo.tech/birEsnafImages/\(comp.compLogoURL ?? "default.png")") {
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url)
