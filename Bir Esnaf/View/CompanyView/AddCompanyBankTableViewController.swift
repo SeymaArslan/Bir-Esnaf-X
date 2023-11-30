@@ -3,12 +3,14 @@
 //  Bir Esnaf
 //
 //  Created by Seyma on 21.11.2023.
-//
+//  add için comp id alacağız servisi yazarken unutma
 
 import UIKit
 
 class AddCompanyBankTableViewController: UITableViewController {
 
+    var comp = ""
+    
     @IBOutlet weak var bankName: UITextField!
     @IBOutlet weak var bankBranchName: UITextField!
     @IBOutlet weak var bankBranchCode: UITextField!

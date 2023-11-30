@@ -7,11 +7,12 @@ target 'Bir Esnaf' do
 
   # Pods for Bir Esnaf
 
-pod 'FirebaseAuth'
-pod 'FirebaseFirestore'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Firestore'
+pod 'Firebase/Storage'
+pod 'Firebase/Analytics'
 pod 'FirebaseFirestoreSwift'
-pod 'FirebaseAnalytics'
-pod 'FirebaseStorage'
 
 pod 'YPImagePicker'
 

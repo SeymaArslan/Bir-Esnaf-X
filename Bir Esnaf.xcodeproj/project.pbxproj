@@ -31,11 +31,10 @@
 		12CF380F2B069B680051F2D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12CF380E2B069B680051F2D5 /* Assets.xcassets */; };
 		12CF38122B069B680051F2D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12CF38102B069B680051F2D5 /* LaunchScreen.storyboard */; };
 		12D5F54F2B10C8A200B4F7D9 /* UserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D5F54E2B10C8A200B4F7D9 /* UserVM.swift */; };
-		B570762B3C1AE8FBCDCE2B29 /* Pods_Bir_Esnaf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14A5110BF5CEC5C7F20525A /* Pods_Bir_Esnaf.framework */; };
+		6824B00EFD1E9F669E06D484 /* Pods_Bir_Esnaf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277CE7752B09B8830B96E19F /* Pods_Bir_Esnaf.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A8119663DE4F174ECB59791 /* Pods-Bir Esnaf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bir Esnaf.debug.xcconfig"; path = "Target Support Files/Pods-Bir Esnaf/Pods-Bir Esnaf.debug.xcconfig"; sourceTree = "<group>"; };
 		1207F5A72B074265008307A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1207F5A92B075306008307A4 /* FirebaseUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserListener.swift; sourceTree = "<group>"; };
 		1207F5AB2B075350008307A4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -62,8 +61,9 @@
 		12CF38112B069B680051F2D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		12CF38132B069B680051F2D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12D5F54E2B10C8A200B4F7D9 /* UserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVM.swift; sourceTree = "<group>"; };
-		24C5F1567A84BECA2AB0D599 /* Pods-Bir Esnaf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bir Esnaf.release.xcconfig"; path = "Target Support Files/Pods-Bir Esnaf/Pods-Bir Esnaf.release.xcconfig"; sourceTree = "<group>"; };
-		C14A5110BF5CEC5C7F20525A /* Pods_Bir_Esnaf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bir_Esnaf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FD3481522FE8132C9F0B803 /* Pods-Bir Esnaf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bir Esnaf.release.xcconfig"; path = "Target Support Files/Pods-Bir Esnaf/Pods-Bir Esnaf.release.xcconfig"; sourceTree = "<group>"; };
+		277CE7752B09B8830B96E19F /* Pods_Bir_Esnaf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bir_Esnaf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFCF94232C1DDBED1B4231A2 /* Pods-Bir Esnaf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bir Esnaf.debug.xcconfig"; path = "Target Support Files/Pods-Bir Esnaf/Pods-Bir Esnaf.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B570762B3C1AE8FBCDCE2B29 /* Pods_Bir_Esnaf.framework in Frameworks */,
+				6824B00EFD1E9F669E06D484 /* Pods_Bir_Esnaf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,7 +154,7 @@
 				12CF38042B069B660051F2D5 /* Bir Esnaf */,
 				12CF38032B069B660051F2D5 /* Products */,
 				E32193234D3D4AAF3435E474 /* Pods */,
-				7E03979171E16FA39CA331EF /* Frameworks */,
+				4283E03EFD292ADDE8E430F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -184,10 +184,10 @@
 			path = "Bir Esnaf";
 			sourceTree = "<group>";
 		};
-		7E03979171E16FA39CA331EF /* Frameworks */ = {
+		4283E03EFD292ADDE8E430F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C14A5110BF5CEC5C7F20525A /* Pods_Bir_Esnaf.framework */,
+				277CE7752B09B8830B96E19F /* Pods_Bir_Esnaf.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -195,8 +195,8 @@
 		E32193234D3D4AAF3435E474 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0A8119663DE4F174ECB59791 /* Pods-Bir Esnaf.debug.xcconfig */,
-				24C5F1567A84BECA2AB0D599 /* Pods-Bir Esnaf.release.xcconfig */,
+				EFCF94232C1DDBED1B4231A2 /* Pods-Bir Esnaf.debug.xcconfig */,
+				1FD3481522FE8132C9F0B803 /* Pods-Bir Esnaf.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -208,11 +208,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 12CF38162B069B680051F2D5 /* Build configuration list for PBXNativeTarget "Bir Esnaf" */;
 			buildPhases = (
-				96F8FD249AD8C3BA90FBA5CE /* [CP] Check Pods Manifest.lock */,
+				54F7402507A344DF8B9A8F2D /* [CP] Check Pods Manifest.lock */,
 				12CF37FE2B069B660051F2D5 /* Sources */,
 				12CF37FF2B069B660051F2D5 /* Frameworks */,
 				12CF38002B069B660051F2D5 /* Resources */,
-				A878A82E9718754C62BD6312 /* [CP] Embed Pods Frameworks */,
+				F3D93F29D0A2417125BC5EE0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -271,7 +271,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		96F8FD249AD8C3BA90FBA5CE /* [CP] Check Pods Manifest.lock */ = {
+		54F7402507A344DF8B9A8F2D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -293,7 +293,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A878A82E9718754C62BD6312 /* [CP] Embed Pods Frameworks */ = {
+		F3D93F29D0A2417125BC5EE0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -483,7 +483,7 @@
 		};
 		12CF38172B069B680051F2D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A8119663DE4F174ECB59791 /* Pods-Bir Esnaf.debug.xcconfig */;
+			baseConfigurationReference = EFCF94232C1DDBED1B4231A2 /* Pods-Bir Esnaf.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -512,7 +512,7 @@
 		};
 		12CF38182B069B680051F2D5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24C5F1567A84BECA2AB0D599 /* Pods-Bir Esnaf.release.xcconfig */;
+			baseConfigurationReference = 1FD3481522FE8132C9F0B803 /* Pods-Bir Esnaf.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -31,9 +31,13 @@ class AddCompanyTableViewController: UITableViewController {
     }
     
     @IBAction func goToBankButton(_ sender: Any) {
-        
+        performSegue(withIdentifier: "addBankInfo", sender: self)
+
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        <#code#>
+    }
     
     //MARK: - Helpers
     func setupPicker() {

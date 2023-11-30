@@ -42,16 +42,16 @@ class CompanyTableViewController: UITableViewController {
     }
     
     @IBAction func goToCompAdd(_ sender: Any) {
-        self.performSegue(withIdentifier: "goToCompAdd", sender: self)
+        performSegue(withIdentifier: "goToCompAdd", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let indeks = sender as? Int
-        let goToVC = segue.destination as! CompanyDetailTableViewController
-        goToVC.company = compList[indeks!]
+//        let indeks = sender as? Int
+//        let goToVC = segue.destination as! CompanyDetailTableViewController
+//        goToVC.company = compList[indeks!]
         
         if(segue.identifier == "goToCompAdd") {
-            let bankDetVC = segue.destination as! CompanyDetailBankTableViewController
+            let addComp = segue.destination as! AddCompanyTableViewController
         }
     }
     
@@ -77,7 +77,8 @@ class CompanyTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "goToCompDet", sender: indexPath.row)
+        performSegue(withIdentifier: "goToCompDet", sender: indexPath.row)
+       
     }
     
     

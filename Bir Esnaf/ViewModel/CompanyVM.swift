@@ -12,7 +12,7 @@ class CompanyVM {
     let compList = [Company]()
     
     func compInsert(userId: String, compName: String, compLogoURL: String, compAddress: String, compPhone: String, compMail: String ) {
-        var api = URLRequest(url: URL(string: "")!)
+        var api = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/insertComp.php")!)
         api.httpMethod = "POST"
         let postString = "userId=\(userId)&compName=\(compName)&compLogoURL=\(compLogoURL)&compAddress=\(compAddress)&compPhone=\(compPhone)&compMail=\(compMail)"
         api.httpBody = postString.data(using: .utf8)
@@ -72,7 +72,7 @@ class CompanyVM {
     }
     
     func bankParse(compId: String, comp: @escaping ([Bank]) -> ()) {
-        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/allCompanies.php")!)
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compDetailBank.php")!)
         request.httpMethod = "POST"
         let postString = "compId=\(compId)"
         request.httpBody = postString.data(using: .utf8)
@@ -92,7 +92,7 @@ class CompanyVM {
     
     
     func bankUpdate(bankId: String, bankName: String, bankBranchName: String, bankBranchCode: String, bankAccountType: String, bankAccountName: String, bankAccountNum: String, bankIban:String) {
-        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compUpdate.php")!)
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compBankUpdate.php")!)
         request.httpMethod = "POST"
         let postString = "bankId=\(bankId)&bankName=\(bankName)&bankBranchName=\(bankBranchName)&bankBranchCode=\(bankBranchCode)&bankAccountType=\(bankAccountType)%bankAccountName=\(bankAccountName)&bankAccountNum=\(bankAccountNum)&bankIban=\(bankIban)"
         request.httpBody = postString.data(using: .utf8)

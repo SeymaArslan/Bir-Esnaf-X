@@ -392,8 +392,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Banka Bilgileri"/>
                                                     <connections>
-                                                        <action selector="bankInfoButton:" destination="lID-Dg-hUS" eventType="touchUpInside" id="JGf-oe-xrL"/>
-                                                        <segue destination="VZc-No-pWY" kind="show" id="0P1-jz-kCe"/>
+                                                        <segue destination="VZc-No-pWY" kind="show" identifier="addBankToComp" id="QkQ-aR-rpG"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -428,7 +427,7 @@
         <!--Add Company Bank Table View Controller-->
         <scene sceneID="02E-JP-SPQ">
             <objects>
-                <tableViewController id="VZc-No-pWY" customClass="AddCompanyBankTableViewController" customModule="Bir_Esnaf" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="addBankInfo" id="VZc-No-pWY" customClass="AddCompanyBankTableViewController" customModule="Bir_Esnaf" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="K1M-d1-IWc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -625,8 +624,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wMk-13-riW">
                             <color key="tintColor" name="customColor2"/>
                             <connections>
-                                <action selector="goToCompAdd:" destination="RsG-KA-ynu" id="cA5-h7-9hA"/>
-                                <segue destination="scf-qd-xsn" kind="show" identifier="goToCompAdd" id="74T-KZ-hd2"/>
+                                <segue destination="scf-qd-xsn" kind="show" identifier="goToCompDet" id="TBE-Xa-Crn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1154,7 +1152,7 @@
                     <tabBarItem key="tabBarItem" title="Ayarlar" image="gearshape" catalog="system" id="BNz-Gp-UCG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="fcn-fO-pE3">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1173,7 +1171,7 @@
                     <tabBarItem key="tabBarItem" title="Firmalar" image="person.line.dotted.person" catalog="system" id="n26-ex-scY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="ga0-AG-Jq3">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1251,10 +1249,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

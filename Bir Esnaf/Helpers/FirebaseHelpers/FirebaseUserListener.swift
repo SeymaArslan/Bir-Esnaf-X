@@ -48,7 +48,7 @@ class FirebaseUserListener {
             }
         }
         
-        userVM.userAdd(userMail: email)  // add mysql?
+        userVM.userAdd(userMail: email)  
     }
     
     //MARK: - Resend Link Methods
