@@ -355,6 +355,9 @@
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Kaydet"/>
+                                                    <connections>
+                                                        <action selector="saveCompButton:" destination="scf-qd-xsn" eventType="touchUpInside" id="n5I-18-EMI"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -384,7 +387,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T21-cK-z51">
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T21-cK-z51">
                                                     <rect key="frame" x="20" y="10" width="353" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="ciO-lh-hJo"/>
@@ -392,7 +395,8 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Banka Bilgileri"/>
                                                     <connections>
-                                                        <segue destination="VZc-No-pWY" kind="show" identifier="addBankToComp" id="QkQ-aR-rpG"/>
+                                                        <action selector="goToBankButton:" destination="scf-qd-xsn" eventType="touchUpInside" id="OGN-aa-bYZ"/>
+                                                        <segue destination="VZc-No-pWY" kind="show" identifier="addBankInfo" id="QkQ-aR-rpG"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -418,6 +422,7 @@
                         <outlet property="compMail" destination="coc-Xl-AsW" id="lRZ-sB-zlg"/>
                         <outlet property="compName" destination="x7k-wK-UAB" id="aPH-Pb-WK9"/>
                         <outlet property="compPhone" destination="l5k-hE-bDB" id="Ttp-2L-cUF"/>
+                        <outlet property="goToSaveBankButtonOutlet" destination="T21-cK-z51" id="AQR-1o-PUc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zTN-Ll-rAS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1152,7 +1157,7 @@
                     <tabBarItem key="tabBarItem" title="Ayarlar" image="gearshape" catalog="system" id="BNz-Gp-UCG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="fcn-fO-pE3">
-                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1171,7 +1176,7 @@
                     <tabBarItem key="tabBarItem" title="Firmalar" image="person.line.dotted.person" catalog="system" id="n26-ex-scY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="ga0-AG-Jq3">
-                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

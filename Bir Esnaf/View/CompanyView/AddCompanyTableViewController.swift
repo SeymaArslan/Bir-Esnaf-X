@@ -17,6 +17,9 @@ class AddCompanyTableViewController: UITableViewController {
     @IBOutlet weak var compPhone: UITextField!
     @IBOutlet weak var compMail: UITextView!
     
+    @IBOutlet weak var goToSaveBankButtonOutlet: UIButton!
+    
+    
     var picker: YPImagePicker?
     
     override func viewDidLoad() {
@@ -30,13 +33,22 @@ class AddCompanyTableViewController: UITableViewController {
         showPicker()
     }
     
+    
+    @IBAction func saveCompButton(_ sender: Any) {
+        self.goToSaveBankButtonOutlet.isHidden = false
+    }
+    
     @IBAction func goToBankButton(_ sender: Any) {
+        
+        
         performSegue(withIdentifier: "addBankInfo", sender: self)
 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        <#code#>
+        if segue.identifier == "addBankInfo" {
+            
+        }
     }
     
     //MARK: - Helpers

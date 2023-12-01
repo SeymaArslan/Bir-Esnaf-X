@@ -49,6 +49,10 @@ func saveUserLocally(_ user: User) {
     }
 }
 
+func saveUserMailLocally(_ userMail: String) {
+    userDefaults.set(userMail, forKey: "userMail")
+}
+
 struct UserData: Codable {
     let user: [UserMysql]?
 }

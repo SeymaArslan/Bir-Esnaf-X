@@ -9,7 +9,8 @@ import UIKit
 
 class AddCompanyBankTableViewController: UITableViewController {
 
-    var comp = ""
+    var userId: Int?
+    var compId: Int?
     
     @IBOutlet weak var bankName: UITextField!
     @IBOutlet weak var bankBranchName: UITextField!

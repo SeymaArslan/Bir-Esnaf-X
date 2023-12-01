@@ -49,4 +49,24 @@ class UserVM {
 
     }
     
+    func getUser(userMail: String, comp: @escaping ([UserMysql]) -> ()) { 
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/selectUser.php")!)
+        request.httpMethod = "POST"
+        let postString = "userMail=\(userMail)"
+        request.httpBody = postString.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            do {
+               let result = try JSONDecoder().decode(UserData.self, from: data!)
+                comp(result.user ?? [])
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
+    
 }

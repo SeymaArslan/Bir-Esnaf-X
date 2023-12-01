@@ -9,15 +9,19 @@ import UIKit
 
 class CompanyTableViewController: UITableViewController {
 
+    var userData: [String]?
+
     var compList = [Company]()
-    let compVM = CompanyVM()
-    var userId: UserMysql?
-    let userVM = UserVM()
+    var userIdData: Int?
+//    let compVM = CompanyVM()
+//    var userId: UserMysql?
+//    let userVM = UserVM()
     var userMysql = [UserMysql]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         
         
         tableView.delegate = self
@@ -28,6 +32,10 @@ class CompanyTableViewController: UITableViewController {
 //        userVM.getUserId(userMail: compUserMail?.email ?? "") { userMysqlData in
 //            self.userMysql = userMysqlData
 //        }
+        
+        
+        let userMail = userDefaults.string(forKey: "userMail")
+        print("------------------->>>> \(userMail ?? "")" )
   
 //        userVM.getUserId(userMail: compUserMail?.userMail ?? "") { usermysqlData in
 //            self.userMysql = usermysqlData
@@ -80,7 +88,7 @@ class CompanyTableViewController: UITableViewController {
         performSegue(withIdentifier: "goToCompDet", sender: indexPath.row)
        
     }
-    
+
     
 }
 

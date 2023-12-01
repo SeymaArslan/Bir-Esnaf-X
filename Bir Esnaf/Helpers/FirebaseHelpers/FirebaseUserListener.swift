@@ -44,11 +44,13 @@ class FirebaseUserListener {
                     let user = User(id: authResult!.user.uid, email: email)
                     saveUserLocally(user)
                     self.saveUserToFirestore(user)
+                    saveUserMailLocally(user.email)
                 }
             }
         }
         
-        userVM.userAdd(userMail: email)  
+        userVM.userAdd(userMail: email)
+        
     }
     
     //MARK: - Resend Link Methods

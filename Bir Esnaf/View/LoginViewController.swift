@@ -51,6 +51,7 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonPressed(_ sender: Any) {
         if isDataInputedFor(type: isLogin ? "login" : "register") {
             isLogin ? loginUser() : registerUser()   // login or register func
+            
         } else {
             ProgressHUD.showError("All fields are required")
             //print("Tüm alanları doldurun.")
@@ -150,10 +151,12 @@ class LoginViewController: UIViewController {
                     // go to app
                     self.goToApp()
                    // print("User has logged in with email ", User.currentUser?.email)
+                    
                 } else {
                     ProgressHUD.showError("Lütfen emailinizi doğrulayın.")
                     self.resendEmailButtonOutlet.isHidden = false
                 }
+                
             } else {
                 ProgressHUD.showError(error!.localizedDescription)
             }
