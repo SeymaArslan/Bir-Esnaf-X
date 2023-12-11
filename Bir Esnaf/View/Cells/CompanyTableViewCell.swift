@@ -10,7 +10,6 @@ import UIKit
 class CompanyTableViewCell: UITableViewCell {
 
     @IBOutlet weak var companyNameLabel: UILabel!
-    @IBOutlet weak var companyLogo: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -13,9 +13,6 @@ class CompanyTableViewController: UITableViewController {
 
     var compList = [Company]()
     var userIdData: Int?
-//    let compVM = CompanyVM()
-//    var userId: UserMysql?
-//    let userVM = UserVM()
     var userMysql = [UserMysql]()
 
     

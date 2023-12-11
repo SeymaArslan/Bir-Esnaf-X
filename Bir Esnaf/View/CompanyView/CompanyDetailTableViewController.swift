@@ -6,7 +6,6 @@
 //      *** servis url lerini düzenle sonra dene!!!
 
 import UIKit
-import YPImagePicker
 
 class CompanyDetailTableViewController: UITableViewController {
 
@@ -15,12 +14,10 @@ class CompanyDetailTableViewController: UITableViewController {
 
     
     @IBOutlet weak var compName: UITextField!
-    @IBOutlet weak var compLogo: UIImageView!
     @IBOutlet weak var compAddress: UITextView!
     @IBOutlet weak var compPhone: UITextField!
     @IBOutlet weak var compMail: UITextField!
     
-    var picker: YPImagePicker?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,25 +25,21 @@ class CompanyDetailTableViewController: UITableViewController {
         
         
         compName.text = company?.compName
-        if let url = URL(string: "https://lionelo.tech/birEsnafImages/\(company?.compLogoURL ?? "default.png")") {
-            DispatchQueue.global().async {
-                let data = try? Data(contentsOf: url)
-                DispatchQueue.main.async {
-                    self.compLogo.image = UIImage(data: data!)
-                }
-            }
-        }
+//        if let url = URL(string: "https://lionelo.tech/birEsnafImages/\(company?.compLogoURL ?? "default.png")") {
+//            DispatchQueue.global().async {
+//                let data = try? Data(contentsOf: url)
+//                DispatchQueue.main.async {
+//                    self.compLogo.image = UIImage(data: data!)
+//                }
+//            }
+//        }
         compAddress.text = company?.compAddress
         compPhone.text = company?.compPhone
         compMail.text = company?.compMail
 
-        setupPicker()
         
     }
 
-    @IBAction func compLogoEditButton(_ sender: Any) {
-        showPicker()
-    }
     
     @IBAction func bankInfoButton(_ sender: Any) {
         self.performSegue(withIdentifier: "goToBankDetail", sender: self)
@@ -64,36 +57,7 @@ class CompanyDetailTableViewController: UITableViewController {
     }
     
     //MARK: - Helpers
-    func setupPicker() {
-        var config = YPImagePickerConfiguration()
-        config.showsPhotoFilters = false
-        config.screens = [.library]
-        
-        config.library.maxNumberOfItems = 3
-        
-        picker = YPImagePicker(configuration: config)
-    }
-    
-    func showPicker() {
-        guard let picker = picker else { return }
-        picker.didFinishPicking { [unowned picker] items, cancelled in
-            if cancelled {
-                print("Picker was canceled")
-            }
-            for item in items {
-                switch item {
-                case .photo(p: let photo):
-                    DispatchQueue.main.async {
-                        self.compLogo.image = photo.image
-                    }
-                case .video(v: let video):
-                    print(video)  // video koyulamayacağı ile ilgili uyarı göster.
-                }
-            }
-            picker.dismiss(animated: true, completion: nil)
-        }
-        present(picker, animated: true, completion: nil)
-    }
+
 
 
 }

@@ -15,6 +15,7 @@ class AddCompanyBankTableViewController: UITableViewController {
     @IBOutlet weak var bankName: UITextField!
     @IBOutlet weak var bankBranchName: UITextField!
     @IBOutlet weak var bankBranchCode: UITextField!
+    @IBOutlet weak var accountType: UITextField!
     @IBOutlet weak var accountName: UITextField!
     @IBOutlet weak var accountNumber: UITextField!
     
