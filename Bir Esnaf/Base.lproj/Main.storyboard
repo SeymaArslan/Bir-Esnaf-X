@@ -142,7 +142,7 @@
                                     <color key="baseBackgroundColor" name="customColor2"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="loginButtonPressed:" destination="gkZ-5O-M9o" eventType="touchUpInside" id="Qzz-iG-Eid"/>
+                                    <action selector="loginButtonPressed:" destination="gkZ-5O-M9o" eventType="touchUpInside" id="Qbu-jE-0Qt"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wN9-sW-rll">
@@ -559,7 +559,7 @@
                             <color key="tintColor" name="customColor2"/>
                             <connections>
                                 <action selector="goToCompAdd:" destination="RsG-KA-ynu" id="JTg-kc-y6q"/>
-                                <segue destination="scf-qd-xsn" kind="show" identifier="goToCompDet" id="TBE-Xa-Crn"/>
+                                <segue destination="scf-qd-xsn" kind="show" identifier="goToCompAdd" id="TBE-Xa-Crn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

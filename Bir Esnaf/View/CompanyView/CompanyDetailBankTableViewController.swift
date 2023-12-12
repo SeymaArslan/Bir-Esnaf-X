@@ -36,14 +36,14 @@ class CompanyDetailBankTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        compVM.bankParse(compId: comp?.compId ?? "") { data in
-            self.bankList = data
-        }
+//        compVM.bankParse(compId: comp?.compId ?? "") { data in
+//            self.bankList = data
+//        }
         
     }
     
     @IBAction func updateButton(_ sender: Any) {
-        compVM.bankUpdate(bankId: bankList[0].bankId!, bankName: bankName.text!, bankBranchName: bankBranchName.text!, bankBranchCode: bankBranchCode.text!, bankAccountType: accountType.text!, bankAccountName: accountName.text!, bankAccountNum: accountNumber.text!, bankIban: iban.text!)
+//        compVM.bankUpdate(bankId: bankList[0].bankId!, bankName: bankName.text!, bankBranchName: bankBranchName.text!, bankBranchCode: bankBranchCode.text!, bankAccountType: accountType.text!, bankAccountName: accountName.text!, bankAccountNum: accountNumber.text!, bankIban: iban.text!)
     }
 
 

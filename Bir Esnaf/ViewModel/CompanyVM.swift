@@ -8,13 +8,11 @@
 import Foundation
 
 class CompanyVM {
-    
-//    let compList = [Company]()
-    
-    func compInsert(userId: String, compName: String, compLogoURL: String, compAddress: String, compPhone: String, compMail: String ) {
+
+    func compInsert(userMail: String, compName: String, compLogoURL: String, compAddress: String, compPhone: String, compMail: String ) {
         var api = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/insertComp.php")!)
         api.httpMethod = "POST"
-        let postString = "userId=\(userId)&compName=\(compName)&compLogoURL=\(compLogoURL)&compAddress=\(compAddress)&compPhone=\(compPhone)&compMail=\(compMail)"
+        let postString = "userMail=\(userMail)&compName=\(compName)&compLogoURL=\(compLogoURL)&compAddress=\(compAddress)&compPhone=\(compPhone)&compMail=\(compMail)"
         api.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: api) { data, response, error in
             if error != nil {
@@ -32,10 +30,10 @@ class CompanyVM {
     }
     
     
-    func compParse(userId: String, comp: @escaping ([Company]) -> ()) {
-        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/allCompanies.php")!)
+    func compParse(userMail: String, comp: @escaping ([Company]) -> ()) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/allCompaniesWithUser.php")!)
         request.httpMethod = "POST"
-        let postString = "userId=\(userId)"
+        let postString = "userMail=\(userMail)"
         request.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
@@ -71,47 +69,6 @@ class CompanyVM {
         }.resume()
     }
     
-    func bankParse(compId: String, comp: @escaping ([Bank]) -> ()) {
-        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compDetailBank.php")!)
-        request.httpMethod = "POST"
-        let postString = "compId=\(compId)"
-        request.httpBody = postString.data(using: .utf8)
-        URLSession.shared.dataTask(with: request) { data, respone, error in
-            if error != nil {
-                print(error?.localizedDescription ?? "")
-                return
-            }
-            do {
-                let result = try JSONDecoder().decode(BankData.self, from: data!)
-                comp(result.bank ?? [])
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    
-    func bankUpdate(bankId: String, bankName: String, bankBranchName: String, bankBranchCode: String, bankAccountType: String, bankAccountName: String, bankAccountNum: String, bankIban:String) {
-        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compBankUpdate.php")!)
-        request.httpMethod = "POST"
-        let postString = "bankId=\(bankId)&bankName=\(bankName)&bankBranchName=\(bankBranchName)&bankBranchCode=\(bankBranchCode)&bankAccountType=\(bankAccountType)%bankAccountName=\(bankAccountName)&bankAccountNum=\(bankAccountNum)&bankIban=\(bankIban)"
-        request.httpBody = postString.data(using: .utf8)
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if error != nil {
-                print(error?.localizedDescription ?? "")
-                return
-            }
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any] {
-                    print(json)
-                }
-            } catch {
-                print(error.localizedDescription)
-            }
-        }.resume()
-    }
-    
-
 }
 
 

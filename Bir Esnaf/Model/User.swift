@@ -58,6 +58,6 @@ struct UserData: Codable {
 }
 
 struct UserMysql: Codable {
-    var userId: String?
-    var userMail: String?
+    let userId: String?
+    let userMail: String?
 }
