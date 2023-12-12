@@ -42,7 +42,7 @@ class CompanyVM {
             }
             do {
                let result = try JSONDecoder().decode(CompanyData.self, from: data!)
-                comp(result.company ?? [])
+                comp(result.company ?? [Company]())
             } catch {
                 print(error.localizedDescription)
             }

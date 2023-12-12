@@ -559,7 +559,7 @@
                             <color key="tintColor" name="customColor2"/>
                             <connections>
                                 <action selector="goToCompAdd:" destination="RsG-KA-ynu" id="JTg-kc-y6q"/>
-                                <segue destination="scf-qd-xsn" kind="show" identifier="goToCompAdd" id="TBE-Xa-Crn"/>
+                                <segue destination="scf-qd-xsn" kind="show" identifier="" id="TBE-Xa-Crn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

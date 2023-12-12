@@ -18,14 +18,15 @@ class CompanyTableViewController: UITableViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         getComp()
     }
     
 
     @IBAction func goToCompAdd(_ sender: Any) {
-//        let deneme = "---- oldu mu? -----"
-        performSegue(withIdentifier: "goToCompAdd", sender: self)
     }
     
     
@@ -39,13 +40,10 @@ class CompanyTableViewController: UITableViewController {
         })
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let indeks = sender as? Int
-//        let goToVC = segue.destination as! CompanyDetailTableViewController
-//        goToVC.company = compList[indeks!]
-        
-        if(segue.identifier == "goToCompDet") {
-            print("geçiş olduuuuuu mu ")  // olmadı :/
-            //let addComp = segue.destination as! AddCompanyTableViewController
+        if segue.identifier == "goToCompDet" {
+            guard let indeks = sender as? Int else { return }
+            let goToVC = segue.destination as! CompanyDetailTableViewController
+            goToVC.company = compList[indeks]
         }
     }
     
@@ -58,25 +56,11 @@ class CompanyTableViewController: UITableViewController {
         let comp = compList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CompanyTableViewCell
         cell.companyNameLabel.text = comp.compName
-//        if let url = URL(string: "https://lionelo.tech/birEsnafImages/\(comp.compLogoURL ?? "default.png")") {
-//            DispatchQueue.global().async {
-//                let data = try? Data(contentsOf: url)
-//                DispatchQueue.main.async {
-//                    cell.companyLogo.image = UIImage(data: data!)
-//                }
-//            }
-//        }
-
         return cell
     }
-
-    
-    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // performSegue(withIdentifier: "goToCompDet", sender: indexPath.row)
-        print("bastımmmmmm")
-       
+        self.performSegue(withIdentifier: "goToCompDet", sender: indexPath.row)  // indexPath.row?
     }
 
     

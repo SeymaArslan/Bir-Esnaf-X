@@ -142,13 +142,21 @@
 		1213B3C32B0D410600E8E0D8 /* CompanyView */ = {
 			isa = PBXGroup;
 			children = (
+				12AD06392B28E266008674CE /* BankView */,
 				1207F5BA2B078730008307A4 /* CompanyTableViewController.swift */,
 				1213B3BF2B0D2C2C00E8E0D8 /* CompanyDetailTableViewController.swift */,
-				1213B3C42B0D415900E8E0D8 /* CompanyDetailBankTableViewController.swift */,
 				1213B3C12B0D3DCB00E8E0D8 /* AddCompanyTableViewController.swift */,
-				1213B3C62B0D416B00E8E0D8 /* AddCompanyBankTableViewController.swift */,
 			);
 			path = CompanyView;
+			sourceTree = "<group>";
+		};
+		12AD06392B28E266008674CE /* BankView */ = {
+			isa = PBXGroup;
+			children = (
+				1213B3C42B0D415900E8E0D8 /* CompanyDetailBankTableViewController.swift */,
+				1213B3C62B0D416B00E8E0D8 /* AddCompanyBankTableViewController.swift */,
+			);
+			path = BankView;
 			sourceTree = "<group>";
 		};
 		12CF37F92B069B660051F2D5 = {

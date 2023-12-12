@@ -12,34 +12,23 @@ class CompanyDetailTableViewController: UITableViewController {
     var company: Company?
     let compVM = CompanyVM()
 
-    
     @IBOutlet weak var compName: UITextField!
     @IBOutlet weak var compAddress: UITextView!
     @IBOutlet weak var compPhone: UITextField!
     @IBOutlet weak var compMail: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
- 
-        
-        
-        compName.text = company?.compName
-//        if let url = URL(string: "https://lionelo.tech/birEsnafImages/\(company?.compLogoURL ?? "default.png")") {
-//            DispatchQueue.global().async {
-//                let data = try? Data(contentsOf: url)
-//                DispatchQueue.main.async {
-//                    self.compLogo.image = UIImage(data: data!)
-//                }
-//            }
-//        }
-        compAddress.text = company?.compAddress
-        compPhone.text = company?.compPhone
-        compMail.text = company?.compMail
 
+        if let n = company {
+            compName.text = company?.compName
+            compAddress.text = company?.compAddress
+            compPhone.text = company?.compPhone
+            compMail.text = company?.compMail
+        }
         
     }
-
+    
     
     @IBAction func bankInfoButton(_ sender: Any) {
         self.performSegue(withIdentifier: "goToBankDetail", sender: self)
