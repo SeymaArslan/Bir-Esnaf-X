@@ -9,7 +9,7 @@ import UIKit
 
 class CompanyDetailBankTableViewController: UITableViewController {
 
-    var comp: Company?
+    var company: Company?
     
     var bankList = [Bank]()
     let compVM = CompanyVM()
@@ -26,12 +26,12 @@ class CompanyDetailBankTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        bankName.text = bankList[0].bankName
-        bankBranchName.text = bankList[0].bankBranchName
-        bankBranchCode.text = bankList[0].bankBranchCode
-        accountType.text = bankList[0].bankAccountType
-        accountNumber.text = bankList[0].bankAccountNum
-        accountName.text = bankList[0].bankAccountName
+//        bankName.text = bankList[0].bankName
+//        bankBranchName.text = bankList[0].bankBranchName
+//        bankBranchCode.text = bankList[0].bankBranchCode
+//        accountType.text = bankList[0].bankAccountType
+//        accountNumber.text = bankList[0].bankAccountNum
+//        accountName.text = bankList[0].bankAccountName
 
     }
 

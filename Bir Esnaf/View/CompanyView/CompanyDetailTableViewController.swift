@@ -3,7 +3,7 @@
 //  Bir Esnaf
 //
 //  Created by Seyma on 21.11.2023.
-//      *** servis url lerini düzenle sonra dene!!!
+//  
 
 import UIKit
 
@@ -11,7 +11,8 @@ class CompanyDetailTableViewController: UITableViewController {
 
     var company: Company?
     let compVM = CompanyVM()
-
+    var compId: String?
+    
     @IBOutlet weak var compName: UITextField!
     @IBOutlet weak var compAddress: UITextView!
     @IBOutlet weak var compPhone: UITextField!
@@ -20,12 +21,7 @@ class CompanyDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let n = company {
-            compName.text = company?.compName
-            compAddress.text = company?.compAddress
-            compPhone.text = company?.compPhone
-            compMail.text = company?.compMail
-        }
+        getCompanyDatas()
         
     }
     
@@ -34,19 +30,35 @@ class CompanyDetailTableViewController: UITableViewController {
         self.performSegue(withIdentifier: "goToBankDetail", sender: self)
     }
     
+    
     @IBAction func compUpdateButton(_ sender: Any) {
-        compVM.compUpdate(compId: (company?.compId!)!, compName: compName.text!, compAddress: compAddress.text!, compPhone: compPhone.text!, compMail: compMail.text!)
+        compUpdate()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "goToBankDetail") {
+        if segue.identifier == "goToBankDetail" {
             let bankDetVC = segue.destination as! CompanyDetailBankTableViewController
-            bankDetVC.comp = company
+            bankDetVC.bankList = bankId
+//            bankDetVC.company = company?.compId
         }
     }
     
     //MARK: - Helpers
-
+    func getCompanyDatas(){
+        if let comp = company {
+            compName.text = comp.compName
+            compAddress.text = comp.compAddress
+            compPhone.text = comp.compPhone
+            compMail.text = comp.compMail
+            compId = comp.compId
+        }
+    }
+    
+    func compUpdate() {
+        if let cId = compId, let cName = compName.text, let cAdd = compAddress.text, let cPho = compPhone.text, let cMail = compMail.text {
+            compVM.compUpdate(compId: cId, compName: cName, compAddress: cAdd, compPhone: cPho, compMail: cMail)
+        }
+    }
 
 
 }
