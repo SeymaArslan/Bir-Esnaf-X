@@ -3,15 +3,15 @@
 //  Bir Esnaf
 //
 //  Created by Seyma on 21.11.2023.
-//  
+//
 
 import UIKit
 
 class CompanyDetailTableViewController: UITableViewController {
-
+    
     var company: Company?
     let compVM = CompanyVM()
-    var compId: String?
+    var bankId, compId : String?
     let bankVM = BankVM()
     var bankList = [Bank]()
     
@@ -22,14 +22,19 @@ class CompanyDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         getCompanyDatas()
         
     }
     
     
     @IBAction func bankInfoButton(_ sender: Any) {
-        
+        if let id = bankId {
+            bankVM.bankParse(bankId: id) { bankDatas in
+                self.bankList = bankDatas
+                self.performSegue(withIdentifier: "goToBankDetail", sender: self.bankList)
+            }
+        }
     }
     
     
@@ -38,28 +43,28 @@ class CompanyDetailTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToBankDetail" {
-            let goToBankDetVC = segue.destination as! CompanyDetailBankTableViewController
-//            goToBankDetVC.company = company  // comp değil bank
-            goToBankDetVC.bank = bankList[0]
-        }
+        //        if segue.identifier == "goToBankDetail" {
+        //            let goToBankDetVC = segue.destination as! CompanyDetailBankTableViewController
+        //            goToBankDetVC.bankId = bankId
+        //        }
         
+        if segue.identifier == "goToBankDetail"{
+            if let data = sender as? Bank{
+                let goToBankDetVC = segue.destination as! CompanyDetailBankTableViewController
+                goToBankDetVC.bank = data
+            }
+            
+        }
     }
-
     
     //MARK: - Helpers
-    func getBankDetailWithCompId() {
-        bankVM.bankParse(compId: compId ?? "") { bankDatas in
-            self.bankList = bankDatas
-        }
-    }
-    
     func getCompanyDatas(){
         if let comp = company {
             compName.text = comp.compName
             compAddress.text = comp.compAddress
             compPhone.text = comp.compPhone
             compMail.text = comp.compMail
+            bankId = comp.bankId
             compId = comp.compId
         }
     }
@@ -70,6 +75,7 @@ class CompanyDetailTableViewController: UITableViewController {
         }
     }
     
-
+    
     
 }
+

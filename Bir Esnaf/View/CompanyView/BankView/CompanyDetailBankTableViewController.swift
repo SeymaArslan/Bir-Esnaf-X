@@ -9,8 +9,12 @@ import UIKit
 
 class CompanyDetailBankTableViewController: UITableViewController {
 
-    var company: Company?
-    var compId: String?
+//    var company: Company?
+//    var compId: String?
+//    var bank: Bank?
+    var bankId: String? 
+    let bankVM = BankVM()
+    let index = 0
     var bank: Bank?
     
     @IBOutlet weak var bankName: UITextField!
@@ -34,16 +38,23 @@ class CompanyDetailBankTableViewController: UITableViewController {
 
     //MARK: - Helpers
     func getBankInfo() {
-        for b in bank ?? [] {
-            bankName.text = bank.bankName
-            bankBranchName.text = bank.bankBranchName
-            bankBranchCode.text = bank.bankBranchCode
-            accountType.text = bank.bankAccountType
-            accountNumber.text = bank.bankAccountNum
-            accountName.text = bank.bankAccountName
-        }
+        bankName.text = bank?.bankName
+        bankBranchName.text = bank?.bankBranchName
+        bankBranchCode.text = bank?.bankBranchCode
+        accountType.text = bank?.bankAccountType
+        accountNumber.text = bank?.bankAccountNum
+        accountName.text = bank?.bankAccountName
+    
     }
     
-
+    func getBank() {
+        if let id = bankId {
+            bankVM.bankParse(bankId: id) { bankDatas in
+                DispatchQueue.main.async {
+                    self.bankName.text = bankDatas[0].bankName
+                }
+            }
+        }
+    }
     
 }

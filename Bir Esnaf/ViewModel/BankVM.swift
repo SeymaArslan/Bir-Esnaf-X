@@ -29,10 +29,10 @@ class BankVM {
         }.resume()
     }
     
-    func bankParse(compId: String, comp: @escaping ([Bank]) -> ()) {
+    func bankParse(bankId: String, comp: @escaping ([Bank]) -> ()) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compDetailBank.php")!)
         request.httpMethod = "POST"
-        let postString = "compId=\(compId)"
+        let postString = "bankId=\(bankId)"
         request.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, respone, error in
             if error != nil {
@@ -41,10 +41,13 @@ class BankVM {
             }
             do {
                 let result = try JSONDecoder().decode(BankData.self, from: data!)
-                comp(result.bank ?? [])
+                comp(result.bank ?? [Bank]())
             } catch {
                 print(error.localizedDescription)
             }
-        }
+        }.resume()
     }
+    
+    
+    
 }
