@@ -10,9 +10,8 @@ import UIKit
 class CompanyDetailBankTableViewController: UITableViewController {
 
     var company: Company?
-    
-    var bankList = [Bank]()
-    let compVM = CompanyVM()
+    var compId: String?
+    var bank: Bank?
     
     @IBOutlet weak var bankName: UITextField!
     @IBOutlet weak var bankBranchName: UITextField!
@@ -25,27 +24,26 @@ class CompanyDetailBankTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        bankName.text = bankList[0].bankName
-//        bankBranchName.text = bankList[0].bankBranchName
-//        bankBranchCode.text = bankList[0].bankBranchCode
-//        accountType.text = bankList[0].bankAccountType
-//        accountNumber.text = bankList[0].bankAccountNum
-//        accountName.text = bankList[0].bankAccountName
-
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-//        compVM.bankParse(compId: comp?.compId ?? "") { data in
-//            self.bankList = data
-//        }
         
+        getBankInfo()
     }
     
     @IBAction func updateButton(_ sender: Any) {
 //        compVM.bankUpdate(bankId: bankList[0].bankId!, bankName: bankName.text!, bankBranchName: bankBranchName.text!, bankBranchCode: bankBranchCode.text!, bankAccountType: accountType.text!, bankAccountName: accountName.text!, bankAccountNum: accountNumber.text!, bankIban: iban.text!)
     }
 
+    //MARK: - Helpers
+    func getBankInfo() {
+        for b in bank ?? [] {
+            bankName.text = bank.bankName
+            bankBranchName.text = bank.bankBranchName
+            bankBranchCode.text = bank.bankBranchCode
+            accountType.text = bank.bankAccountType
+            accountNumber.text = bank.bankAccountNum
+            accountName.text = bank.bankAccountName
+        }
+    }
+    
 
-
+    
 }

@@ -27,8 +27,8 @@ class CompanyTableViewController: UITableViewController {
     
 
     @IBAction func goToCompAdd(_ sender: Any) {
+        print("Add Company")
     }
-    
     
     //MARK: - Helpers
     func getComp() {
@@ -39,6 +39,8 @@ class CompanyTableViewController: UITableViewController {
             }
         })
     }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToCompDet" {
             guard let indeks = sender as? Int else { return }

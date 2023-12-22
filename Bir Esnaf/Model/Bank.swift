@@ -14,6 +14,7 @@ class BankData: Codable {
 class Bank: Codable {
     let bankId: String?
     let compId: String?
+    let userMail: String?
     let bankName: String?
     let bankBranchName: String?
     let bankBranchCode: String?

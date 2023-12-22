@@ -12,6 +12,8 @@ class CompanyDetailTableViewController: UITableViewController {
     var company: Company?
     let compVM = CompanyVM()
     var compId: String?
+    let bankVM = BankVM()
+    var bankList = [Bank]()
     
     @IBOutlet weak var compName: UITextField!
     @IBOutlet weak var compAddress: UITextView!
@@ -27,7 +29,7 @@ class CompanyDetailTableViewController: UITableViewController {
     
     
     @IBAction func bankInfoButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "goToBankDetail", sender: self)
+        
     }
     
     
@@ -37,13 +39,21 @@ class CompanyDetailTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToBankDetail" {
-            let bankDetVC = segue.destination as! CompanyDetailBankTableViewController
-            bankDetVC.bankList = bankId
-//            bankDetVC.company = company?.compId
+            let goToBankDetVC = segue.destination as! CompanyDetailBankTableViewController
+//            goToBankDetVC.company = company  // comp değil bank
+            goToBankDetVC.bank = bankList[0]
+        }
+        
+    }
+
+    
+    //MARK: - Helpers
+    func getBankDetailWithCompId() {
+        bankVM.bankParse(compId: compId ?? "") { bankDatas in
+            self.bankList = bankDatas
         }
     }
     
-    //MARK: - Helpers
     func getCompanyDatas(){
         if let comp = company {
             compName.text = comp.compName
@@ -59,6 +69,7 @@ class CompanyDetailTableViewController: UITableViewController {
             compVM.compUpdate(compId: cId, compName: cName, compAddress: cAdd, compPhone: cPho, compMail: cMail)
         }
     }
+    
 
-
+    
 }
