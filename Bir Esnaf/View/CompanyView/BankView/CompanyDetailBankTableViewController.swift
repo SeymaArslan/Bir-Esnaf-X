@@ -3,19 +3,16 @@
 //  Bir Esnaf
 //
 //  Created by Seyma on 21.11.2023.
-//
+// bumu
 
 import UIKit
 
 class CompanyDetailBankTableViewController: UITableViewController {
-
-//    var company: Company?
-//    var compId: String?
-//    var bank: Bank?
-    var bankId: String? 
+    
+    var bankId: String?
     let bankVM = BankVM()
-    let index = 0
     var bank: Bank?
+    var bankList = [Bank]()
     
     @IBOutlet weak var bankName: UITextField!
     @IBOutlet weak var bankBranchName: UITextField!
@@ -29,31 +26,31 @@ class CompanyDetailBankTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getBankInfo()
+        getBank()
     }
+    
     
     @IBAction func updateButton(_ sender: Any) {
-//        compVM.bankUpdate(bankId: bankList[0].bankId!, bankName: bankName.text!, bankBranchName: bankBranchName.text!, bankBranchCode: bankBranchCode.text!, bankAccountType: accountType.text!, bankAccountName: accountName.text!, bankAccountNum: accountNumber.text!, bankIban: iban.text!)
+        bankUpdate()
     }
-
+    
     //MARK: - Helpers
-    func getBankInfo() {
-        bankName.text = bank?.bankName
-        bankBranchName.text = bank?.bankBranchName
-        bankBranchCode.text = bank?.bankBranchCode
-        accountType.text = bank?.bankAccountType
-        accountNumber.text = bank?.bankAccountNum
-        accountName.text = bank?.bankAccountName
-    
+    func getBank() {
+        for bL in bankList {
+            bankName.text = bL.bankName
+            bankBranchName.text = bL.bankBranchName
+            bankBranchCode.text = bL.bankBranchCode
+            accountType.text = bL.bankAccountType
+            accountNumber.text = bL.bankAccountNum
+            accountName.text = bL.bankAccountName
+            iban.text = bL.bankIban
+        }
     }
     
-    func getBank() {
-        if let id = bankId {
-            bankVM.bankParse(bankId: id) { bankDatas in
-                DispatchQueue.main.async {
-                    self.bankName.text = bankDatas[0].bankName
-                }
-            }
+    func bankUpdate() {
+        if let bId = bankId, let bName = bankName.text, let bBranchName = bankBranchName.text, let bBCode = bankBranchCode.text, let aType = accountType.text, let aNum = accountNumber.text, let aName = accountName.text, let ibanBank = iban.text {
+            print(bId)
+            bankVM.bankUpdate(bankId: bId, bankName: bName, bankBranchName: bBranchName, bankBranchCode: bBCode, bankAccountType: aType, bankAccountName: aName, bankAccountNum: aNum, bankIban: ibanBank)
         }
     }
     

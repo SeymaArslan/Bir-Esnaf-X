@@ -12,7 +12,7 @@ class BankVM {
     func bankUpdate(bankId: String, bankName: String, bankBranchName: String, bankBranchCode: String, bankAccountType: String, bankAccountName: String, bankAccountNum: String, bankIban:String) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compBankUpdate.php")!)
         request.httpMethod = "POST"
-        let postString = "bankId=\(bankId)&bankName=\(bankName)&bankBranchName=\(bankBranchName)&bankBranchCode=\(bankBranchCode)&bankAccountType=\(bankAccountType)%bankAccountName=\(bankAccountName)&bankAccountNum=\(bankAccountNum)&bankIban=\(bankIban)"
+        let postString = "bankId=\(bankId)&bankName=\(bankName)&bankBranchName=\(bankBranchName)&bankBranchCode=\(bankBranchCode)&bankAccountType=\(bankAccountType)&bankAccountName=\(bankAccountName)&bankAccountNum=\(bankAccountNum)&bankIban=\(bankIban)"
         request.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
@@ -29,7 +29,7 @@ class BankVM {
         }.resume()
     }
     
-    func bankParse(bankId: String, comp: @escaping ([Bank]) -> ()) {
+    func bankParse(bankId: Int, comp: @escaping ([Bank]) -> ()) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compDetailBank.php")!)
         request.httpMethod = "POST"
         let postString = "bankId=\(bankId)"
@@ -47,7 +47,5 @@ class BankVM {
             }
         }.resume()
     }
-    
-    
     
 }

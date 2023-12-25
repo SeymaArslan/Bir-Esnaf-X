@@ -13,7 +13,7 @@ class CompanyDetailTableViewController: UITableViewController {
     let compVM = CompanyVM()
     var bankId, compId : String?
     let bankVM = BankVM()
-    var bankList = [Bank]()
+    var bankDatas = [Bank]()
     
     @IBOutlet weak var compName: UITextField!
     @IBOutlet weak var compAddress: UITextView!
@@ -24,17 +24,11 @@ class CompanyDetailTableViewController: UITableViewController {
         super.viewDidLoad()
         
         getCompanyDatas()
-        
+        getBank()
     }
     
     
     @IBAction func bankInfoButton(_ sender: Any) {
-        if let id = bankId {
-            bankVM.bankParse(bankId: id) { bankDatas in
-                self.bankList = bankDatas
-                self.performSegue(withIdentifier: "goToBankDetail", sender: self.bankList)
-            }
-        }
     }
     
     
@@ -43,17 +37,10 @@ class CompanyDetailTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //        if segue.identifier == "goToBankDetail" {
-        //            let goToBankDetVC = segue.destination as! CompanyDetailBankTableViewController
-        //            goToBankDetVC.bankId = bankId
-        //        }
-        
-        if segue.identifier == "goToBankDetail"{
-            if let data = sender as? Bank{
-                let goToBankDetVC = segue.destination as! CompanyDetailBankTableViewController
-                goToBankDetVC.bank = data
-            }
-            
+        if segue.identifier == "goToBankDetail" {
+            let goToBankDetVC = segue.destination as! CompanyDetailBankTableViewController
+            goToBankDetVC.bankList = bankDatas
+            goToBankDetVC.bankId = bankId
         }
     }
     
@@ -75,6 +62,13 @@ class CompanyDetailTableViewController: UITableViewController {
         }
     }
     
+    func getBank() {
+        if let id = bankId {
+            bankVM.bankParse(bankId: Int(id)!) { bankDatas in
+                self.bankDatas = bankDatas
+            }
+        }
+    }
     
     
 }
