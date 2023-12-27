@@ -63,9 +63,9 @@ class CompanyTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "goToCompDet", sender: indexPath.row)  // indexPath.row?
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    
 }
 
 
