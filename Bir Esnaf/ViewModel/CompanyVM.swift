@@ -9,10 +9,10 @@ import Foundation
 
 class CompanyVM {
 
-    func compInsert(userMail: String, compName: String, compLogoURL: String, compAddress: String, compPhone: String, compMail: String ) {
+    func compInsert(userMail: String, compName: String, compAddress: String, compPhone: String, compMail: String ) {
         var api = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/insertComp.php")!)
         api.httpMethod = "POST"
-        let postString = "userMail=\(userMail)&compName=\(compName)&compLogoURL=\(compLogoURL)&compAddress=\(compAddress)&compPhone=\(compPhone)&compMail=\(compMail)"
+        let postString = "userMail=\(userMail)&compName=\(compName)&compAddress=\(compAddress)&compPhone=\(compPhone)&compMail=\(compMail)"
         api.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: api) { data, response, error in
             if error != nil {

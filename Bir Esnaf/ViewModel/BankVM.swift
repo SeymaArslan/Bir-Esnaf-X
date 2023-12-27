@@ -9,6 +9,7 @@ import Foundation
 
 class BankVM {
     
+    
     func bankUpdate(bankId: String, bankName: String, bankBranchName: String, bankBranchCode: String, bankAccountType: String, bankAccountName: String, bankAccountNum: String, bankIban:String) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compBankUpdate.php")!)
         request.httpMethod = "POST"
