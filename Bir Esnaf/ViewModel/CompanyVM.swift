@@ -8,7 +8,27 @@
 import Foundation
 
 class CompanyVM {
+    func getLastCompId(comp: @escaping ([Company]) -> ()) {
+        let api = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getCompId.php")!)
+        URLSession.shared.dataTask(with: api) { data, response, error in
+            if error != nil || data == nil {
+                if let err = error?.localizedDescription {
+                    print(err)
+                }
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(CompanyData.self, from: data!)
+                if let getId = result.company {
+                    comp(getId)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
 
+    
     func compInsert(userMail: String, compName: String, compAddress: String, compPhone: String, compMail: String ) {
         var api = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/insertComp.php")!)
         api.httpMethod = "POST"

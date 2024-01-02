@@ -8,7 +8,8 @@
 import UIKit
 
 class AddCompanyBankTableViewController: UITableViewController {
-
+    
+    let bankVm = BankVM()
     var userMail: String?
     var compId: Int?
 
@@ -26,6 +27,7 @@ class AddCompanyBankTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("userMailBank = \(userMail!) - compIdBank = \(compId!)")
     }
 
     @IBAction func saveBankButton(_ sender: Any) {
@@ -33,17 +35,15 @@ class AddCompanyBankTableViewController: UITableViewController {
     }
     
     
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    //MARK: - Helpers
+    
+    func addBank() {
+        if let mail = userMail, let cId = compId, let bName = bankName.text, let bBranchName = bankBranchName.text, let bBranchCode = bankBranchCode.text, let aType = accountType.text, let aName = accountName.text, let aNumber = accountNumber.text {
+            
+        }
     }
     
+    // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }

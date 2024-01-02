@@ -9,6 +9,8 @@ import UIKit
 import ProgressHUD
 
 class AddCompanyTableViewController: UITableViewController {
+    var cId = String()
+    var compListId = [Company]()
     var compList = [Company]()
     let mail = userDefaults.string(forKey: "userMail")
     let compVM = CompanyVM()
@@ -22,15 +24,15 @@ class AddCompanyTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getComp()
+//        print(compListId)
+        getIdWithVM()
+        
     }
-    
     
     @IBAction func saveCompButton(_ sender: Any) {
         goToSaveBankButtonOutlet.isEnabled = true
         addCompany()
-        
-        
+
     }
     
     @IBAction func goToBankButton(_ sender: Any) {
@@ -39,8 +41,8 @@ class AddCompanyTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addBankInfo" {
             let goToAddBankVC = segue.destination as! AddCompanyBankTableViewController
-            goToAddBankVC.userMail = mail
-            goToAddBankVC.compId = Int((compList.first?.compId)!) // çalışacak mı test et
+            goToAddBankVC.userMail = mail  // Int(cId)! + 1
+            goToAddBankVC.compId = Int(cId)! + 1 // çalışacak mı test et
         }
 
     }
@@ -51,6 +53,41 @@ class AddCompanyTableViewController: UITableViewController {
     
     
     //MARK: - Helpers
+    func getIdWithVM() {
+        compVM.getLastCompId { getId in
+            self.compListId = getId
+            DispatchQueue.main.async {
+                if let id = self.compListId.first?.compId {
+                    self.cId = id
+                }
+            }
+        }
+    }
+    
+    func getId() {
+        let api = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getCompId.php")!)
+        URLSession.shared.dataTask(with: api) { data, response, error in
+            if error != nil || data == nil {
+                if let err = error?.localizedDescription {
+                    print(err)
+                }
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(CompanyData.self, from: data!)
+                if let getId = result.company {
+                    self.compListId = getId
+                    DispatchQueue.main.async {
+                        if let id = self.compListId.first?.compId {
+                            print(id)
+                        }
+                    }
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
     
     func addCompany() {
         if let uMail = mail, let cName = compName.text, let cAddress = compAddress.text, let cPhone = compPhone.text, let cMail = compMail.text {
@@ -58,11 +95,6 @@ class AddCompanyTableViewController: UITableViewController {
         }
         ProgressHUD.showSuccess("Firma başarılı bir şekilde kaydedildi.")
     }
-    
-    func getComp() {
-        compVM.compParse(userMail: mail!, comp: { compData in
-            self.compList = compData
-        })
-    }
+
     
 }
