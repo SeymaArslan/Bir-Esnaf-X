@@ -6,13 +6,13 @@
 //  add için comp id alacağız servisi yazarken unutma
 
 import UIKit
+import ProgressHUD
 
 class AddCompanyBankTableViewController: UITableViewController {
     
     let bankVm = BankVM()
     var userMail: String?
     var compId: Int?
-
     
     @IBOutlet weak var bankName: UITextField!
     @IBOutlet weak var bankBranchName: UITextField!
@@ -20,26 +20,23 @@ class AddCompanyBankTableViewController: UITableViewController {
     @IBOutlet weak var accountType: UITextField!
     @IBOutlet weak var accountName: UITextField!
     @IBOutlet weak var accountNumber: UITextField!
-    
     @IBOutlet weak var iban: UITextField!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("userMailBank = \(userMail!) - compIdBank = \(compId!)")
     }
 
     @IBAction func saveBankButton(_ sender: Any) {
-        
+        addBank()
     }
     
     
     //MARK: - Helpers
-    
     func addBank() {
-        if let mail = userMail, let cId = compId, let bName = bankName.text, let bBranchName = bankBranchName.text, let bBranchCode = bankBranchCode.text, let aType = accountType.text, let aName = accountName.text, let aNumber = accountNumber.text {
-            
+        if let mail = userMail, let cId = compId, let bName = bankName.text, let bBranchName = bankBranchName.text, let bBranchCode = bankBranchCode.text, let aType = accountType.text, let aName = accountName.text, let aNumber = accountNumber.text, let iban = iban.text {
+            bankVm.bankInsert(uMAil: mail, cId: cId, bName: bName, bBranchName: bBranchName, bBranchCode: bBranchCode, bAccType: aType, bAccName: aName, bAccNum: aNumber, bIban: iban)
+            ProgressHUD.showSuccess("Banka bilgileri kayıt edildi.")
         }
     }
     
