@@ -8,6 +8,27 @@
 import Foundation
 
 class CompanyVM {
+    func bankIdUpdate(compId: Int, bankId: Int) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compBankIdUpdate.php")!)
+        request.httpMethod = "POST"
+        let postString = "compId=\(compId)&bankId=\(bankId)"
+        request.httpBody = postString.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any] {
+                    print(json)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+
+    
     func getLastCompId(comp: @escaping ([Company]) -> ()) {
         let api = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getCompId.php")!)
         URLSession.shared.dataTask(with: api) { data, response, error in

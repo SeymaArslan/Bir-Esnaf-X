@@ -9,6 +9,7 @@ import UIKit
 import ProgressHUD
 
 class AddCompanyTableViewController: UITableViewController {
+    
     var cId = String()
     var compListId = [Company]()
     var compList = [Company]()
@@ -25,24 +26,24 @@ class AddCompanyTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        print(compListId)
-        getIdWithVM()
-        
+        getCompId()
     }
     
     @IBAction func saveCompButton(_ sender: Any) {
         goToSaveBankButtonOutlet.isEnabled = true
         addCompany()
-
+        
     }
     
     @IBAction func goToBankButton(_ sender: Any) {
+       
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addBankInfo" {
             let goToAddBankVC = segue.destination as! AddCompanyBankTableViewController
-            goToAddBankVC.userMail = mail  // Int(cId)! + 1
-            goToAddBankVC.compId = Int(cId)! + 1 // çalışacak mı test et
+            goToAddBankVC.userMail = mail
+            goToAddBankVC.compId = Int(cId)! + 1
         }
 
     }
@@ -53,7 +54,8 @@ class AddCompanyTableViewController: UITableViewController {
     
     
     //MARK: - Helpers
-    func getIdWithVM() {
+    
+    func getCompId() {
         compVM.getLastCompId { getId in
             self.compListId = getId
             DispatchQueue.main.async {
@@ -62,31 +64,6 @@ class AddCompanyTableViewController: UITableViewController {
                 }
             }
         }
-    }
-    
-    func getId() {
-        let api = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getCompId.php")!)
-        URLSession.shared.dataTask(with: api) { data, response, error in
-            if error != nil || data == nil {
-                if let err = error?.localizedDescription {
-                    print(err)
-                }
-                return
-            }
-            do {
-                let result = try JSONDecoder().decode(CompanyData.self, from: data!)
-                if let getId = result.company {
-                    self.compListId = getId
-                    DispatchQueue.main.async {
-                        if let id = self.compListId.first?.compId {
-                            print(id)
-                        }
-                    }
-                }
-            } catch {
-                print(error.localizedDescription)
-            }
-        }.resume()
     }
     
     func addCompany() {

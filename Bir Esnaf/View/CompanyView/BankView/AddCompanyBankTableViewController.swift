@@ -9,10 +9,12 @@ import UIKit
 import ProgressHUD
 
 class AddCompanyBankTableViewController: UITableViewController {
-    
-    let bankVm = BankVM()
+    var bankListId = [Bank]()
+    let bankVM = BankVM()
+    let compVM = CompanyVM()
     var userMail: String?
     var compId: Int?
+    var bId: Int?
     
     @IBOutlet weak var bankName: UITextField!
     @IBOutlet weak var bankBranchName: UITextField!
@@ -24,20 +26,45 @@ class AddCompanyBankTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
+    
     @IBAction func saveBankButton(_ sender: Any) {
         addBank()
+        getBankId()
+        
     }
     
     
     //MARK: - Helpers
+    func updateBankId() {
+        if let cId = compId, let bankId = bId {
+            compVM.bankIdUpdate(compId: cId, bankId: bankId)
+        }
+    }
+    
+    func getBankId() {
+        bankVM.getLastBankId { getId in
+            self.bankListId = getId
+            DispatchQueue.main.async {
+                if let id = self.bankListId.first?.bankId {
+                    self.bId = Int(id)! + 1
+                    if let bankId = self.bId, let cId = self.compId {
+                        print("Oldu mu \(bankId)")
+                        self.compVM.bankIdUpdate(compId: cId, bankId: bankId)
+                    }
+                }
+                
+            }
+        }
+    }
+    
     func addBank() {
         if let mail = userMail, let cId = compId, let bName = bankName.text, let bBranchName = bankBranchName.text, let bBranchCode = bankBranchCode.text, let aType = accountType.text, let aName = accountName.text, let aNumber = accountNumber.text, let iban = iban.text {
-            bankVm.bankInsert(uMAil: mail, cId: cId, bName: bName, bBranchName: bBranchName, bBranchCode: bBranchCode, bAccType: aType, bAccName: aName, bAccNum: aNumber, bIban: iban)
+            bankVM.bankInsert(uMAil: mail, cId: cId, bName: bName, bBranchName: bBranchName, bBranchCode: bBranchCode, bAccType: aType, bAccName: aName, bAccNum: aNumber, bIban: iban)
             ProgressHUD.showSuccess("Banka bilgileri kayıt edildi.")
         }
+        
     }
     
     // MARK: - Table view data source

@@ -8,6 +8,26 @@
 import Foundation
 
 class BankVM {
+    func getLastBankId(comp: @escaping ([Bank]) -> ()) {
+        let api = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getLastBankId.php")!)
+        URLSession.shared.dataTask(with: api) { data, response, error in
+            if error != nil || data == nil {
+                if let err = error?.localizedDescription {
+                    print(err)
+                }
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(BankData.self, from: data!)
+                if let getId = result.bank {
+                    comp(getId)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func bankInsert(uMAil: String, cId: Int, bName: String, bBranchName: String, bBranchCode: String, bAccType: String, bAccName: String, bAccNum: String, bIban: String) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/insertBank.php")!)
         request.httpMethod = "POST"

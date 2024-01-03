@@ -392,7 +392,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="backgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Section-" id="gHe-kv-sxa">
+                            <tableViewSection headerTitle="Firma Bilgileri" id="gHe-kv-sxa">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="280" id="VH2-Jy-og1">
                                         <rect key="frame" x="0.0" y="50" width="393" height="280"/>
@@ -522,7 +522,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="backgroundColor"/>
                         <sections>
-                            <tableViewSection id="wOK-1B-6S7">
+                            <tableViewSection headerTitle="Banka Hesap Bigileri" id="wOK-1B-6S7">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="235" id="vSl-qz-Oai">
                                         <rect key="frame" x="0.0" y="50" width="393" height="235"/>
@@ -585,7 +585,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="dxc-iF-GPh">
+                            <tableViewSection headerTitle="IBAN Bilgisi" id="dxc-iF-GPh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="55" id="Sld-vg-PKX">
                                         <rect key="frame" x="0.0" y="363" width="393" height="55"/>
@@ -725,7 +725,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="backgroundColor"/>
                         <sections>
-                            <tableViewSection id="gvW-SZ-Qx1">
+                            <tableViewSection headerTitle="Firma Bilgileri" id="gvW-SZ-Qx1">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="280" id="K9h-lA-H1L">
                                         <rect key="frame" x="0.0" y="50" width="393" height="280"/>
@@ -852,7 +852,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="backgroundColor"/>
                         <sections>
-                            <tableViewSection id="sI4-Yn-SlS">
+                            <tableViewSection headerTitle="Banka Hesap Bilgileri" id="sI4-Yn-SlS">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="235" id="KQY-mJ-VBH">
                                         <rect key="frame" x="0.0" y="50" width="393" height="235"/>
@@ -915,7 +915,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="Ue6-IP-eC0">
+                            <tableViewSection headerTitle="IBAN Bilgisi" id="Ue6-IP-eC0">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="55" id="A1D-ck-gKU">
                                         <rect key="frame" x="0.0" y="363" width="393" height="55"/>
@@ -1212,7 +1212,7 @@
                     <tabBarItem key="tabBarItem" title="Firmalar" image="person.line.dotted.person" catalog="system" id="n26-ex-scY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="ga0-AG-Jq3">
-                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="customColor2"/>
@@ -1256,7 +1256,7 @@
                     <tabBarItem key="tabBarItem" title="Alışveriş" image="cart.fill" catalog="system" id="zDz-Es-R01"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="kxt-UL-IQ0">
-                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="customColor2"/>
@@ -1283,7 +1283,7 @@
             <color red="0.88200002908706665" green="0.88200002908706665" blue="0.88200002908706665" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="cellColor">
-            <color red="1" green="1" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="1" blue="0.99199998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="customColor">
             <color red="0.8320000171661377" green="0.61400002241134644" blue="0.30500000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
