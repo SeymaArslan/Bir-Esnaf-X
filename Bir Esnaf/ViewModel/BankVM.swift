@@ -35,7 +35,7 @@ class BankVM {
         request.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
-                print(error?.localizedDescription ?? "Hata")
+                print(error?.localizedDescription ?? "Error")
                 return
             }
             do {
@@ -48,7 +48,7 @@ class BankVM {
         }.resume()
     }
     
-    func bankUpdate(bankId: String, bankName: String, bankBranchName: String, bankBranchCode: String, bankAccountType: String, bankAccountName: String, bankAccountNum: String, bankIban:String) {
+    func bankUpdate(bankId: Int, bankName: String, bankBranchName: String, bankBranchCode: String, bankAccountType: String, bankAccountName: String, bankAccountNum: String, bankIban:String) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compBankUpdate.php")!)
         request.httpMethod = "POST"
         let postString = "bankId=\(bankId)&bankName=\(bankName)&bankBranchName=\(bankBranchName)&bankBranchCode=\(bankBranchCode)&bankAccountType=\(bankAccountType)&bankAccountName=\(bankAccountName)&bankAccountNum=\(bankAccountNum)&bankIban=\(bankIban)"
@@ -68,10 +68,10 @@ class BankVM {
         }.resume()
     }
     
-    func bankParse(bankId: Int, comp: @escaping ([Bank]) -> ()) {
+    func bankParse(compId: Int, comp: @escaping ([Bank]) -> ()) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compDetailBank.php")!)
         request.httpMethod = "POST"
-        let postString = "bankId=\(bankId)"
+        let postString = "compId=\(compId)"
         request.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, respone, error in
             if error != nil {

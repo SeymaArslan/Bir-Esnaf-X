@@ -8,8 +8,8 @@
 import Foundation
 
 class CompanyVM {
-    func bankIdUpdate(compId: Int, bankId: Int) {
-        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compBankIdUpdate.php")!)
+    func updateBankId(compId: Int, bankId: Int) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/updateCompBankId.php")!)
         request.httpMethod = "POST"
         let postString = "compId=\(compId)&bankId=\(bankId)"
         request.httpBody = postString.data(using: .utf8)
@@ -90,7 +90,7 @@ class CompanyVM {
         }.resume()
     }
     
-    func compUpdate(compId: String, compName: String, compAddress: String, compPhone: String, compMail: String) {
+    func compUpdate(compId: Int, compName: String, compAddress: String, compPhone: String, compMail: String) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compUpdate.php")!)
         request.httpMethod = "POST"
         let postString = "compId=\(compId)&compName=\(compName)&compAddress=\(compAddress)&compPhone=\(compPhone)&compMail=\(compMail)"

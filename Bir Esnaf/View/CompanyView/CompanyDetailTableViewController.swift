@@ -11,7 +11,7 @@ class CompanyDetailTableViewController: UITableViewController {
     
     var company: Company?
     let compVM = CompanyVM()
-    var bankId, compId : String?
+    var compId: Int?
     let bankVM = BankVM()
     var bankDatas = [Bank]()
     
@@ -24,11 +24,12 @@ class CompanyDetailTableViewController: UITableViewController {
         super.viewDidLoad()
         
         getCompanyDatas()
-        getBank()
+
     }
     
     
     @IBAction func bankInfoButton(_ sender: Any) {
+    
     }
     
     
@@ -39,34 +40,37 @@ class CompanyDetailTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToBankDetail" {
             let goToBankDetVC = segue.destination as! CompanyDetailBankTableViewController
-            goToBankDetVC.bankList = bankDatas
-            goToBankDetVC.bankId = bankId
+            if let cId = compId {
+                bankVM.bankParse(compId: cId) { bankList in
+                    self.bankDatas = bankList
+                    DispatchQueue.main.async {
+                        goToBankDetVC.bank = self.bankDatas.first
+                    }
+//                    print("prepare de geldi mi = \(self.bankDatas.first?.bankName ?? "")")  geliyor
+                }
+                
+                
+            }
+            
         }
     }
     
     //MARK: - Helpers
+    
     func getCompanyDatas(){
         if let comp = company {
             compName.text = comp.compName
             compAddress.text = comp.compAddress
             compPhone.text = comp.compPhone
             compMail.text = comp.compMail
-            bankId = comp.bankId
-            compId = comp.compId
+            //bankId = Int(comp.bankId!)
+            compId = Int(comp.compId!)
         }
     }
     
     func compUpdate() {
         if let cId = compId, let cName = compName.text, let cAdd = compAddress.text, let cPho = compPhone.text, let cMail = compMail.text {
             compVM.compUpdate(compId: cId, compName: cName, compAddress: cAdd, compPhone: cPho, compMail: cMail)
-        }
-    }
-    
-    func getBank() {
-        if let id = bankId {
-            bankVM.bankParse(bankId: Int(id)!) { bankDatas in
-                self.bankDatas = bankDatas
-            }
         }
     }
     

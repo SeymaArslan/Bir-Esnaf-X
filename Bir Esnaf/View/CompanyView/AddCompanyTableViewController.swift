@@ -25,7 +25,6 @@ class AddCompanyTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print(compListId)
         getCompId()
     }
     
@@ -40,11 +39,16 @@ class AddCompanyTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addBankInfo" {
-            let goToAddBankVC = segue.destination as! AddCompanyBankTableViewController
-            goToAddBankVC.userMail = mail
-            goToAddBankVC.compId = Int(cId)! + 1
-        }
+            if segue.identifier == "addBankInfo" {
+                let goToAddBankVC = segue.destination as! AddCompanyBankTableViewController
+                goToAddBankVC.userMail = mail
+                if let compId = Int(cId) {
+                    goToAddBankVC.compId = compId + 1
+                } else {
+                    goToAddBankVC.compId = 1
+                }
+            }
+
 
     }
     
@@ -54,7 +58,6 @@ class AddCompanyTableViewController: UITableViewController {
     
     
     //MARK: - Helpers
-    
     func getCompId() {
         compVM.getLastCompId { getId in
             self.compListId = getId

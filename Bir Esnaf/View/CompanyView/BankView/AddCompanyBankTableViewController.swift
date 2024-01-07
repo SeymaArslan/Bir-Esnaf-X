@@ -14,7 +14,7 @@ class AddCompanyBankTableViewController: UITableViewController {
     let compVM = CompanyVM()
     var userMail: String?
     var compId: Int?
-    var bId: Int?
+    var bankId: Int?
     
     @IBOutlet weak var bankName: UITextField!
     @IBOutlet weak var bankBranchName: UITextField!
@@ -26,36 +26,37 @@ class AddCompanyBankTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getLastBankId()
     }
 
     
     @IBAction func saveBankButton(_ sender: Any) {
         addBank()
-        getBankId()
-        
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     
     //MARK: - Helpers
-    func updateBankId() {
-        if let cId = compId, let bankId = bId {
-            compVM.bankIdUpdate(compId: cId, bankId: bankId)
+    func getLastBankId() {
+        bankVM.getLastBankId { getLastId in
+            self.bankListId = getLastId
+            DispatchQueue.main.async {
+                if let id = self.bankListId.first?.bankId {
+                    self.bankId = Int(id)
+                    if let b = self.bankId {
+                        print("getLastBankId de bank Id = \(b)")
+                    }
+                }
+            }
         }
     }
     
-    func getBankId() {
-        bankVM.getLastBankId { getId in
-            self.bankListId = getId
-            DispatchQueue.main.async {
-                if let id = self.bankListId.first?.bankId {
-                    self.bId = Int(id)! + 1
-                    if let bankId = self.bId, let cId = self.compId {
-                        print("Oldu mu \(bankId)")
-                        self.compVM.bankIdUpdate(compId: cId, bankId: bankId)
-                    }
-                }
-                
-            }
+    func updateBankId() {
+        if let cId = self.compId, let bId = self.bankId {
+            self.compVM.updateBankId(compId: cId, bankId: bId + 1)
+            print("bankId = \(bId) compId = \(cId)")
+        } else {
+            self.compVM.updateBankId(compId: 1, bankId: 1)
         }
     }
     
@@ -64,7 +65,7 @@ class AddCompanyBankTableViewController: UITableViewController {
             bankVM.bankInsert(uMAil: mail, cId: cId, bName: bName, bBranchName: bBranchName, bBranchCode: bBranchCode, bAccType: aType, bAccName: aName, bAccNum: aNumber, bIban: iban)
             ProgressHUD.showSuccess("Banka bilgileri kayıt edildi.")
         }
-        
+        updateBankId()
     }
     
     // MARK: - Table view data source

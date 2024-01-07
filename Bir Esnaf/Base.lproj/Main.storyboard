@@ -383,7 +383,7 @@
             </objects>
             <point key="canvasLocation" x="4003.8167938931297" y="-385.21126760563385"/>
         </scene>
-        <!--Firma-->
+        <!--Firma Ekle-->
         <scene sceneID="2z7-Qa-JFS">
             <objects>
                 <tableViewController id="scf-qd-xsn" customClass="AddCompanyTableViewController" customModule="Bir_Esnaf" customModuleProvider="target" sceneMemberID="viewController">
@@ -500,7 +500,7 @@
                             <outlet property="delegate" destination="scf-qd-xsn" id="BiN-yl-4pq"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Firma" largeTitleDisplayMode="never" id="4pe-cw-l8c"/>
+                    <navigationItem key="navigationItem" title="Firma Ekle" largeTitleDisplayMode="never" id="4pe-cw-l8c"/>
                     <connections>
                         <outlet property="compAddress" destination="a9S-wf-ddC" id="Jui-5j-kGP"/>
                         <outlet property="compMail" destination="uJg-CR-PEe" id="2iJ-pu-csZ"/>
@@ -513,7 +513,7 @@
             </objects>
             <point key="canvasLocation" x="4700" y="183"/>
         </scene>
-        <!--Banka Bilgileri-->
+        <!--Banka Ekle-->
         <scene sceneID="02E-JP-SPQ">
             <objects>
                 <tableViewController storyboardIdentifier="addBankInfo" id="VZc-No-pWY" customClass="AddCompanyBankTableViewController" customModule="Bir_Esnaf" customModuleProvider="target" sceneMemberID="viewController">
@@ -642,7 +642,7 @@
                             <outlet property="delegate" destination="VZc-No-pWY" id="hRy-EX-jA1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Banka Bilgileri" id="OVs-DW-dxU"/>
+                    <navigationItem key="navigationItem" title="Banka Ekle" id="OVs-DW-dxU"/>
                     <connections>
                         <outlet property="accountName" destination="xQx-38-B5L" id="xrH-wM-MXD"/>
                         <outlet property="accountNumber" destination="HxJ-dg-Cle" id="8N4-aT-NKi"/>
@@ -716,7 +716,7 @@
             </objects>
             <point key="canvasLocation" x="3217.5572519083967" y="295.77464788732397"/>
         </scene>
-        <!--Firma Ekle-->
+        <!--Firma-->
         <scene sceneID="lLT-IE-RVy">
             <objects>
                 <tableViewController id="lID-Dg-hUS" customClass="CompanyDetailTableViewController" customModule="Bir_Esnaf" customModuleProvider="target" sceneMemberID="viewController">
@@ -831,7 +831,7 @@
                             <outlet property="delegate" destination="lID-Dg-hUS" id="7Or-yr-EYo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Firma Ekle" largeTitleDisplayMode="never" id="Ze5-98-c2Y"/>
+                    <navigationItem key="navigationItem" title="Firma" largeTitleDisplayMode="never" id="Ze5-98-c2Y"/>
                     <connections>
                         <outlet property="compAddress" destination="ARs-p1-dF7" id="Syr-4S-FX2"/>
                         <outlet property="compMail" destination="dYF-rc-biJ" id="HeP-pa-4GZ"/>
@@ -843,7 +843,7 @@
             </objects>
             <point key="canvasLocation" x="4700" y="849"/>
         </scene>
-        <!--Banka Ekle-->
+        <!--Banka-->
         <scene sceneID="vFz-vB-DwE">
             <objects>
                 <tableViewController id="Qvo-tA-afX" customClass="CompanyDetailBankTableViewController" customModule="Bir_Esnaf" customModuleProvider="target" sceneMemberID="viewController">
@@ -975,7 +975,7 @@
                             <outlet property="delegate" destination="Qvo-tA-afX" id="767-RC-t8Z"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Banka Ekle" largeTitleDisplayMode="never" id="Hfb-t8-G1f"/>
+                    <navigationItem key="navigationItem" title="Banka" largeTitleDisplayMode="never" id="Hfb-t8-G1f"/>
                     <connections>
                         <outlet property="accountName" destination="czy-IS-zkB" id="kA8-cQ-gBY"/>
                         <outlet property="accountNumber" destination="HWq-j6-yDw" id="OjI-MX-Hcl"/>
@@ -1212,7 +1212,7 @@
                     <tabBarItem key="tabBarItem" title="Firmalar" image="person.line.dotted.person" catalog="system" id="n26-ex-scY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="ga0-AG-Jq3">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="customColor2"/>
@@ -1256,7 +1256,7 @@
                     <tabBarItem key="tabBarItem" title="Alışveriş" image="cart.fill" catalog="system" id="zDz-Es-R01"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="kxt-UL-IQ0">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="customColor2"/>

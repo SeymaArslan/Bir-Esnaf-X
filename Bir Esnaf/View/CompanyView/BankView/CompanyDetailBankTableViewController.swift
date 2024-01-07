@@ -9,10 +9,9 @@ import UIKit
 
 class CompanyDetailBankTableViewController: UITableViewController {
     
-    var bankId: String?
+    var bankId: Int?
     let bankVM = BankVM()
     var bank: Bank?
-    var bankList = [Bank]()
     
     @IBOutlet weak var bankName: UITextField!
     @IBOutlet weak var bankBranchName: UITextField!
@@ -25,6 +24,8 @@ class CompanyDetailBankTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
         
         getBank()
     }
@@ -36,15 +37,19 @@ class CompanyDetailBankTableViewController: UITableViewController {
     
     //MARK: - Helpers
     func getBank() {
-        for bL in bankList {
-            bankName.text = bL.bankName
-            bankBranchName.text = bL.bankBranchName
-            bankBranchCode.text = bL.bankBranchCode
-            accountType.text = bL.bankAccountType
-            accountNumber.text = bL.bankAccountNum
-            accountName.text = bL.bankAccountName
-            iban.text = bL.bankIban
+        if let bankData = bank { // compName.text = comp.compName
+            bankName.text = bankData.bankName 
+            bankBranchName.text = bankData.bankBranchName
+            bankBranchCode.text = bankData.bankBranchCode
+            accountType.text = bankData.bankAccountType
+            accountNumber.text = bankData.bankAccountNum
+            accountName.text = bankData.bankAccountName
+            iban.text = bankData.bankIban
         }
+    }
+    
+    func getBankData() {
+        
     }
     
     func bankUpdate() {
