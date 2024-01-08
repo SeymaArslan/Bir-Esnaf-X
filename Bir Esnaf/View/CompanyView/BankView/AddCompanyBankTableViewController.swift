@@ -32,7 +32,7 @@ class AddCompanyBankTableViewController: UITableViewController {
     
     @IBAction func saveBankButton(_ sender: Any) {
         addBank()
-        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+//        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)     ********* burayı hallet kayıttan sonra anasayfaya dönsün  
     }
     
     
@@ -62,8 +62,10 @@ class AddCompanyBankTableViewController: UITableViewController {
     
     func addBank() {
         if let mail = userMail, let cId = compId, let bName = bankName.text, let bBranchName = bankBranchName.text, let bBranchCode = bankBranchCode.text, let aType = accountType.text, let aName = accountName.text, let aNumber = accountNumber.text, let iban = iban.text {
-            bankVM.bankInsert(uMAil: mail, cId: cId, bName: bName, bBranchName: bBranchName, bBranchCode: bBranchCode, bAccType: aType, bAccName: aName, bAccNum: aNumber, bIban: iban)
-            ProgressHUD.showSuccess("Banka bilgileri kayıt edildi.")
+            if let accountNumber = Int(aNumber) {
+                bankVM.bankInsert(uMAil: mail, cId: cId, bName: bName, bBranchName: bBranchName, bBranchCode: bBranchCode, bAccType: aType, bAccName: aName, bAccNum: accountNumber, bIban: iban)
+                ProgressHUD.showSuccess("Banka bilgileri kayıt edildi.")
+            }
         }
         updateBankId()
     }

@@ -41,6 +41,9 @@ class CompanyDetailTableViewController: UITableViewController {
         if segue.identifier == "goToBankDetail" {
             let goToBankDetVC = segue.destination as! CompanyDetailBankTableViewController
             if let cId = compId {
+                goToBankDetVC.compId = cId
+            }
+           /* if let cId = compId {
                 bankVM.bankParse(compId: cId) { bankList in
                     self.bankDatas = bankList
                     DispatchQueue.main.async {
@@ -50,7 +53,7 @@ class CompanyDetailTableViewController: UITableViewController {
                 }
                 
                 
-            }
+            } */
             
         }
     }

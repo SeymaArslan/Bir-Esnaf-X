@@ -28,7 +28,7 @@ class BankVM {
         }.resume()
     }
     
-    func bankInsert(uMAil: String, cId: Int, bName: String, bBranchName: String, bBranchCode: String, bAccType: String, bAccName: String, bAccNum: String, bIban: String) {
+    func bankInsert(uMAil: String, cId: Int, bName: String, bBranchName: String, bBranchCode: String, bAccType: String, bAccName: String, bAccNum: Int, bIban: String) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/insertBank.php")!)
         request.httpMethod = "POST"
         let postString = "userMail=\(uMAil)&compId=\(cId)&bankName=\(bName)&bankBranchName=\(bBranchName)&bankBranchCode=\(bBranchCode)&bankAccountType=\(bAccType)&bankAccountName=\(bAccName)&bankAccountNum=\(bAccNum)&bankIban=\(bIban)"
@@ -48,7 +48,7 @@ class BankVM {
         }.resume()
     }
     
-    func bankUpdate(bankId: Int, bankName: String, bankBranchName: String, bankBranchCode: String, bankAccountType: String, bankAccountName: String, bankAccountNum: String, bankIban:String) {
+    func bankUpdate(bankId: Int, bankName: String, bankBranchName: String, bankBranchCode: String, bankAccountType: String, bankAccountName: String, bankAccountNum: Int, bankIban:String) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/compBankUpdate.php")!)
         request.httpMethod = "POST"
         let postString = "bankId=\(bankId)&bankName=\(bankName)&bankBranchName=\(bankBranchName)&bankBranchCode=\(bankBranchCode)&bankAccountType=\(bankAccountType)&bankAccountName=\(bankAccountName)&bankAccountNum=\(bankAccountNum)&bankIban=\(bankIban)"
