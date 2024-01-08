@@ -32,7 +32,6 @@ class AddCompanyBankTableViewController: UITableViewController {
     
     @IBAction func saveBankButton(_ sender: Any) {
         addBank()
-//        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)     ********* burayı hallet kayıttan sonra anasayfaya dönsün  
     }
     
     
@@ -43,9 +42,6 @@ class AddCompanyBankTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 if let id = self.bankListId.first?.bankId {
                     self.bankId = Int(id)
-                    if let b = self.bankId {
-                        print("getLastBankId de bank Id = \(b)")
-                    }
                 }
             }
         }
@@ -54,7 +50,6 @@ class AddCompanyBankTableViewController: UITableViewController {
     func updateBankId() {
         if let cId = self.compId, let bId = self.bankId {
             self.compVM.updateBankId(compId: cId, bankId: bId + 1)
-            print("bankId = \(bId) compId = \(cId)")
         } else {
             self.compVM.updateBankId(compId: 1, bankId: 1)
         }
@@ -65,6 +60,9 @@ class AddCompanyBankTableViewController: UITableViewController {
             if let accountNumber = Int(aNumber) {
                 bankVM.bankInsert(uMAil: mail, cId: cId, bName: bName, bBranchName: bBranchName, bBranchCode: bBranchCode, bAccType: aType, bAccName: aName, bAccNum: accountNumber, bIban: iban)
                 ProgressHUD.showSuccess("Banka bilgileri kayıt edildi.")
+                self.navigationController?.popToRootViewController(animated: true)
+            } else {
+                ProgressHUD.showError("Hesap numarası sadece rakamlardan oluşmalıdır!")
             }
         }
         updateBankId()

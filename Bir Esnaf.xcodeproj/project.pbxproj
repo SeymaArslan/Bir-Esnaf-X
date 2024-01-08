@@ -32,6 +32,9 @@
 		12CF380F2B069B680051F2D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12CF380E2B069B680051F2D5 /* Assets.xcassets */; };
 		12CF38122B069B680051F2D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12CF38102B069B680051F2D5 /* LaunchScreen.storyboard */; };
 		12D5F54F2B10C8A200B4F7D9 /* UserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D5F54E2B10C8A200B4F7D9 /* UserVM.swift */; };
+		12E4772D2B4C2368002889F0 /* ProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E4772C2B4C2368002889F0 /* ProductTableViewController.swift */; };
+		12E477312B4C2422002889F0 /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E477302B4C2422002889F0 /* AddProductViewController.swift */; };
+		12E477332B4C244D002889F0 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E477322B4C244D002889F0 /* ProductTableViewCell.swift */; };
 		6824B00EFD1E9F669E06D484 /* Pods_Bir_Esnaf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277CE7752B09B8830B96E19F /* Pods_Bir_Esnaf.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +66,9 @@
 		12CF38112B069B680051F2D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		12CF38132B069B680051F2D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12D5F54E2B10C8A200B4F7D9 /* UserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVM.swift; sourceTree = "<group>"; };
+		12E4772C2B4C2368002889F0 /* ProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewController.swift; sourceTree = "<group>"; };
+		12E477302B4C2422002889F0 /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
+		12E477322B4C244D002889F0 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		1FD3481522FE8132C9F0B803 /* Pods-Bir Esnaf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bir Esnaf.release.xcconfig"; path = "Target Support Files/Pods-Bir Esnaf/Pods-Bir Esnaf.release.xcconfig"; sourceTree = "<group>"; };
 		277CE7752B09B8830B96E19F /* Pods_Bir_Esnaf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bir_Esnaf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFCF94232C1DDBED1B4231A2 /* Pods-Bir Esnaf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bir Esnaf.debug.xcconfig"; path = "Target Support Files/Pods-Bir Esnaf/Pods-Bir Esnaf.debug.xcconfig"; sourceTree = "<group>"; };
@@ -85,8 +91,10 @@
 			children = (
 				12CF38092B069B660051F2D5 /* LoginViewController.swift */,
 				1207F5BF2B07877D008307A4 /* SettingsTableViewController.swift */,
+				12E4772C2B4C2368002889F0 /* ProductTableViewController.swift */,
 				1213B3C32B0D410600E8E0D8 /* CompanyView */,
 				1207F5BE2B078760008307A4 /* Cells */,
+				12E477302B4C2422002889F0 /* AddProductViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -134,6 +142,7 @@
 		1207F5BE2B078760008307A4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				12E477322B4C244D002889F0 /* ProductTableViewCell.swift */,
 				1207F5BC2B078754008307A4 /* CompanyTableViewCell.swift */,
 			);
 			path = Cells;
@@ -344,6 +353,9 @@
 				1207F5C02B07877D008307A4 /* SettingsTableViewController.swift in Sources */,
 				1213B3C02B0D2C2C00E8E0D8 /* CompanyDetailTableViewController.swift in Sources */,
 				129E03AE2B2888F80054D63C /* BankVM.swift in Sources */,
+				12E477312B4C2422002889F0 /* AddProductViewController.swift in Sources */,
+				12E477332B4C244D002889F0 /* ProductTableViewCell.swift in Sources */,
+				12E4772D2B4C2368002889F0 /* ProductTableViewController.swift in Sources */,
 				1207F5B22B0753DC008307A4 /* FCollectionReference.swift in Sources */,
 				1207F5BB2B078730008307A4 /* CompanyTableViewController.swift in Sources */,
 				1213B3C22B0D3DCB00E8E0D8 /* AddCompanyTableViewController.swift in Sources */,

@@ -6,6 +6,7 @@
 // gelmiyoreee bi bak compId üzerinden çek veriyi bide sorgu da eşitle..
 
 import UIKit
+import ProgressHUD
 
 class CompanyDetailBankTableViewController: UITableViewController {
     
@@ -26,9 +27,7 @@ class CompanyDetailBankTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         getBankData()
-//        getBank()
     }
     
     
@@ -37,21 +36,31 @@ class CompanyDetailBankTableViewController: UITableViewController {
     }
     
     //MARK: - Helpers
+    func getBank() {
+        if let b = self.bank {
+            DispatchQueue.main.async {
+                self.bankName.text = b.bankName
+                self.bankBranchName.text = b.bankBranchName
+                self.bankBranchCode.text = b.bankBranchCode
+                self.accountType.text = b.bankAccountType
+                self.accountNumber.text = b.bankAccountNum
+                self.accountName.text = b.bankAccountName
+                self.iban.text = b.bankIban
+                if let bId = b.bankId {
+                    if let intBId = Int(bId) {
+                        self.bankId = intBId
+                    }
+                }
+            }
+        }
+    }
+    
+    
     func getBankData() {
         if let cId = compId {
             bankVM.bankParse(compId: cId) { bankList in
                 self.bank = bankList.first
-                if let b = self.bank {
-                    DispatchQueue.main.async {
-                        self.bankName.text = b.bankName
-                        self.bankBranchName.text = b.bankBranchName
-                        self.bankBranchCode.text = b.bankBranchCode
-                        self.accountType.text = b.bankAccountType
-                        self.accountNumber.text = b.bankAccountNum
-                        self.accountName.text = b.bankAccountName
-                        self.iban.text = b.bankIban
-                    }
-                }
+                self.getBank()
             }
         }
     }
@@ -61,6 +70,10 @@ class CompanyDetailBankTableViewController: UITableViewController {
             print(bId)
             if let accountNumber = Int(aNum) {
                 bankVM.bankUpdate(bankId: bId, bankName: bName, bankBranchName: bBranchName, bankBranchCode: bBCode, bankAccountType: aType, bankAccountName: aName, bankAccountNum: accountNumber, bankIban: ibanBank)
+                ProgressHUD.showSuccess("Banka bilgileri güncellendi.")
+                self.navigationController?.popToRootViewController(animated: true)
+            } else {
+                ProgressHUD.showError("Hesap numarası sadece rakamlardan oluşmalıdır!")
             }
         }
     }
