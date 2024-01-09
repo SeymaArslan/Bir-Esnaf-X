@@ -46,8 +46,8 @@
             filePath = "Bir Esnaf/View/CompanyView/CompanyTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "getComp()"
             landmarkType = "7">
          </BreakpointContent>
@@ -56,7 +56,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "7853CBD7-1B31-4337-812C-4FA9D121092D"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bir Esnaf/View/CompanyView/BankView/CompanyDetailBankTableViewController.swift"
@@ -64,6 +64,54 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
             endingLineNumber = "68"
+            landmarkName = "bankUpdate()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7853CBD7-1B31-4337-812C-4FA9D121092D - 2f40a7a15f1cc210"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bir_Esnaf.CompanyDetailBankTableViewController.bankUpdate() -&gt; ()"
+                  moduleName = "Bir Esnaf"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sa/Desktop/SwiftDers/Bir-Esnaf-X/Bir%20Esnaf/View/CompanyView/BankView/CompanyDetailBankTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "172">
+               </Location>
+               <Location
+                  uuid = "7853CBD7-1B31-4337-812C-4FA9D121092D - 2f40a7a15f1cc210"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bir_Esnaf.CompanyDetailBankTableViewController.bankUpdate() -&gt; ()"
+                  moduleName = "Bir Esnaf"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sa/Desktop/SwiftDers/Bir-Esnaf-X/Bir%20Esnaf/View/CompanyView/BankView/CompanyDetailBankTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "144">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5CE0986D-B61C-4F12-A246-AC29D74AC575"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bir Esnaf/View/CompanyView/BankView/CompanyDetailBankTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "bankUpdate()"
             landmarkType = "7">
          </BreakpointContent>

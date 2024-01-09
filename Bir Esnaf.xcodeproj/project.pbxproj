@@ -35,6 +35,7 @@
 		12E4772D2B4C2368002889F0 /* ProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E4772C2B4C2368002889F0 /* ProductTableViewController.swift */; };
 		12E477312B4C2422002889F0 /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E477302B4C2422002889F0 /* AddProductViewController.swift */; };
 		12E477332B4C244D002889F0 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E477322B4C244D002889F0 /* ProductTableViewCell.swift */; };
+		12E643652B4DD0C0003FADC3 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E643642B4DD0C0003FADC3 /* Product.swift */; };
 		6824B00EFD1E9F669E06D484 /* Pods_Bir_Esnaf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277CE7752B09B8830B96E19F /* Pods_Bir_Esnaf.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		12E4772C2B4C2368002889F0 /* ProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewController.swift; sourceTree = "<group>"; };
 		12E477302B4C2422002889F0 /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 		12E477322B4C244D002889F0 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		12E643642B4DD0C0003FADC3 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		1FD3481522FE8132C9F0B803 /* Pods-Bir Esnaf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bir Esnaf.release.xcconfig"; path = "Target Support Files/Pods-Bir Esnaf/Pods-Bir Esnaf.release.xcconfig"; sourceTree = "<group>"; };
 		277CE7752B09B8830B96E19F /* Pods_Bir_Esnaf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bir_Esnaf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFCF94232C1DDBED1B4231A2 /* Pods-Bir Esnaf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bir Esnaf.debug.xcconfig"; path = "Target Support Files/Pods-Bir Esnaf/Pods-Bir Esnaf.debug.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				1207F5AB2B075350008307A4 /* User.swift */,
 				1207F5C12B078BAC008307A4 /* Company.swift */,
 				12C8F2402B0E25510089BA92 /* Bank.swift */,
+				12E643642B4DD0C0003FADC3 /* Product.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				12CF38082B069B660051F2D5 /* SceneDelegate.swift in Sources */,
 				1207F5C62B0790E6008307A4 /* WebService.swift in Sources */,
 				1207F5AC2B075350008307A4 /* User.swift in Sources */,
+				12E643652B4DD0C0003FADC3 /* Product.swift in Sources */,
 				1207F5BD2B078754008307A4 /* CompanyTableViewCell.swift in Sources */,
 				1207F5B82B07587C008307A4 /* CompanyVM.swift in Sources */,
 				1207F5AA2B075306008307A4 /* FirebaseUserListener.swift in Sources */,

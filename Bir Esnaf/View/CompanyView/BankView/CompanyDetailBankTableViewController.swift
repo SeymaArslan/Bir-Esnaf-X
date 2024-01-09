@@ -67,7 +67,6 @@ class CompanyDetailBankTableViewController: UITableViewController {
     
     func bankUpdate() {
         if let bId = bankId, let bName = bankName.text, let bBranchName = bankBranchName.text, let bBCode = bankBranchCode.text, let aType = accountType.text, let aNum = accountNumber.text, let aName = accountName.text, let ibanBank = iban.text {
-            print(bId)
             if let accountNumber = Int(aNum) {
                 bankVM.bankUpdate(bankId: bId, bankName: bName, bankBranchName: bBranchName, bankBranchCode: bBCode, bankAccountType: aType, bankAccountName: aName, bankAccountNum: accountNumber, bankIban: ibanBank)
                 ProgressHUD.showSuccess("Banka bilgileri güncellendi.")

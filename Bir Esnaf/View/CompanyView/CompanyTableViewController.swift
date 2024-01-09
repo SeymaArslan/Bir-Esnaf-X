@@ -27,7 +27,6 @@ class CompanyTableViewController: UITableViewController {
     
 
     @IBAction func goToCompAdd(_ sender: Any) {
-        print("Add Company")
     }
     
     //MARK: - Helpers
