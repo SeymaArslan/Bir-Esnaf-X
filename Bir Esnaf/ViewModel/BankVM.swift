@@ -8,6 +8,26 @@
 import Foundation
 
 class BankVM {
+    func deleteBank(compId: Int) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteBank.php")!)
+        request.httpMethod = "POST"
+        let postString = "compId=\(compId)"
+        request.httpBody = postString.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, respone, error in
+            if error != nil || data == nil {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            do {
+                if let result = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                    print(result) // get message
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func getLastBankId(comp: @escaping ([Bank]) -> ()) {
         let api = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getLastBankId.php")!)
         URLSession.shared.dataTask(with: api) { data, response, error in

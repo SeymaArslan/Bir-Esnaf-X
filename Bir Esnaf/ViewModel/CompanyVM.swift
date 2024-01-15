@@ -8,6 +8,28 @@
 import Foundation
 
 class CompanyVM {
+    
+    func deleteComp(compId: Int) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteCompany.php")!)
+        request.httpMethod = "POST"
+        let postString = "compId=\(compId)"
+        request.httpBody = postString.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, respone, error in
+            if error != nil || data == nil {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            do {
+                if let result = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                    print(result) // get message
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+
+    
     func updateBankId(compId: Int, bankId: Int) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/updateCompBankId.php")!)
         request.httpMethod = "POST"
