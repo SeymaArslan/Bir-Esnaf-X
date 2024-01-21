@@ -44,6 +44,7 @@ class AddCompanyTableViewController: UITableViewController {
                 goToAddBankVC.userMail = mail
                 if let compId = Int(cId) {
                     goToAddBankVC.compId = compId + 1
+                    print("AddCompany Prepare de compId = \(compId) ")
                 } else {
                     goToAddBankVC.compId = 1
                 }
@@ -64,6 +65,7 @@ class AddCompanyTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 if let id = self.compListId.first?.compId {
                     self.cId = id
+                    print("addComp ta compId = \(self.cId)")
                 }
             }
         }

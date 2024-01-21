@@ -9,11 +9,12 @@ import UIKit
 
 class CompanyTableViewController: UITableViewController {
     
-    var compList = [Company]()
+    var compList = [CompanyBank]()
     let mail = userDefaults.string(forKey: "userMail")
     let compVM = CompanyVM()
     let bankVM = BankVM()
-    
+    var company: Company?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,18 +27,19 @@ class CompanyTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         getComp()
     }
-    
 
     @IBAction func goToCompAdd(_ sender: Any) {
+//        present(AddBankViewController(), animated: true, completion: nil)  // **
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToCompDet" {
             guard let indeks = sender as? Int else { return }
-            let goToVC = segue.destination as! CompanyDetailTableViewController
+            let goToVC = segue.destination as! CompanyDetailViewController
             goToVC.company = compList[indeks]
         }
+        
     }
     
     // MARK: - Table view data source
@@ -67,25 +69,23 @@ class CompanyTableViewController: UITableViewController {
         }
         return UISwipeActionsConfiguration(actions: [deleteAct])
     }
-    
 
   
     //MARK: - Helpers
     func getComp() {
-        compVM.compParse(userMail: mail!, comp: { compData in
+        compVM.getAllCompanies(userMail: mail!) { compData in
             self.compList = compData
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-        })
+        }
     }
     
     func deleteComp(at indexPath: IndexPath) {
         let comp = self.compList[indexPath.row]
-        if let cId = comp.compId {
+        if let cId = comp.cbId {
             if let intCId = Int(cId) {
-                self.compVM.deleteComp(compId: intCId)
-                self.bankVM.deleteBank(compId: intCId)
+                self.compVM.deleteCompany(cbId: intCId)
                 self.getComp()
             }
         }
@@ -93,4 +93,3 @@ class CompanyTableViewController: UITableViewController {
 
     
 }
-

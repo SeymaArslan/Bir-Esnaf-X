@@ -36,11 +36,12 @@ class AddCompanyBankTableViewController: UITableViewController {
     
     
     //MARK: - Helpers
-    func getLastBankId() {
+    func getLastBankId() {  // bankId gelmiyor.. ondan sıkıntı
         bankVM.getLastBankId { getLastId in
             self.bankListId = getLastId
             DispatchQueue.main.async {
                 if let id = self.bankListId.first?.bankId {
+                    print("AddCompanyBank getLastBankId de bankId = \(id) ")
                     self.bankId = Int(id)
                 }
             }
@@ -50,6 +51,7 @@ class AddCompanyBankTableViewController: UITableViewController {
     func updateBankId() {
         if let cId = self.compId, let bId = self.bankId {
             self.compVM.updateBankId(compId: cId, bankId: bId + 1)
+            print("AddCompanyBank updateBankId de compId = \(cId) ve bankId = \(bId) ")
         } else {
             self.compVM.updateBankId(compId: 1, bankId: 1)
         }
@@ -57,6 +59,8 @@ class AddCompanyBankTableViewController: UITableViewController {
     
     func addBank() {
         if let mail = userMail, let cId = compId, let bName = bankName.text, let bBranchName = bankBranchName.text, let bBranchCode = bankBranchCode.text, let aType = accountType.text, let aName = accountName.text, let aNumber = accountNumber.text, let iban = iban.text {
+            updateBankId()
+            print("AddCompBank te addBank te ki compId = \(cId)")
             if let accountNumber = Int(aNumber) {
                 bankVM.bankInsert(uMAil: mail, cId: cId, bName: bName, bBranchName: bBranchName, bBranchCode: bBranchCode, bAccType: aType, bAccName: aName, bAccNum: accountNumber, bIban: iban)
                 ProgressHUD.showSuccess("Banka bilgileri kayıt edildi.")
@@ -65,7 +69,7 @@ class AddCompanyBankTableViewController: UITableViewController {
                 ProgressHUD.showError("Hesap numarası sadece rakamlardan oluşmalıdır!")
             }
         }
-        updateBankId()
+       
     }
     
     // MARK: - Table view data source
