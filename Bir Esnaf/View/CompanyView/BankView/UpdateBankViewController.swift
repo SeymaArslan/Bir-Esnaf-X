@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class UpdateBankViewController: UIViewController {
+    
+    public var completionHandler:(()->Void)?
     
     let compVM = CompanyVM()
     
@@ -29,29 +32,39 @@ class UpdateBankViewController: UIViewController {
     @IBOutlet weak var accountName: UITextField!
     @IBOutlet weak var accountNumber: UITextField!
     @IBOutlet weak var ibanNumber: UITextField!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         getCompData()
     }
     
+    
     @IBAction func bankUpdateButton(_ sender: Any) {
-        if let bName = bankName.text, let branchName = branchName.text, let branchCode = branchCode.text, let aType = accountType.text, let aName = accountName.text, let aNum = accountNumber.text, let iban = ibanNumber.text {
-            if let intANum = Int(aNum) {
-                compVM.compUpdate(cbId: compId, compName: cName, compPhone: cPhone, compMail: cMail, province: province, district: district, quarter: quarter, asbn: asbn, bankName: bName, bankBranchName: branchName, bankBranchCode: branchCode, bankAccountType: aType, bankAccountName: aName, bankAccountNum: intANum, bankIban: iban)
-            }
-        }
+        updateComp()
     }
     
-   
+    
     @IBAction func cancelButton(_ sender: Any) {
         self.view.window?.rootViewController?.dismiss(animated: true)
     }
     
     
     //MARK: - Helpers
+    func updateComp() {
+        self.completionHandler?()
+        if let bName = bankName.text, let branchName = branchName.text, let branchCode = branchCode.text, let aType = accountType.text, let aName = accountName.text, let aNum = accountNumber.text, let iban = ibanNumber.text {
+            if let intANum = Int(aNum) {
+                compVM.compUpdate(cbId: compId, compName: cName, compPhone: cPhone, compMail: cMail, province: province, district: district, quarter: quarter, asbn: asbn, bankName: bName, bankBranchName: branchName, bankBranchCode: branchCode, bankAccountType: aType, bankAccountName: aName, bankAccountNum: intANum, bankIban: iban)
+                
+                ProgressHUD.showSuccess("Firma bilgileri güncellendi.")
+                self.view.window?.rootViewController?.dismiss(animated: true)
+            }
+        }
+    }
+    
+    
     func getCompData() {
         if let comp = company {
             bankName.text = comp.bankName
@@ -68,6 +81,5 @@ class UpdateBankViewController: UIViewController {
             }
         }
     }
-    
     
 }

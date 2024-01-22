@@ -97,6 +97,18 @@ class FirebaseUserListener {
         }
     }
     
+    func deleteUserToFirestore(_ user: User, completion: @escaping (Bool) -> ()) {
+        FirebaseReference(.User).document(user.id).delete { error in
+            if let error = error {
+                print("Error: deleting review user \(user.id) -- \(error.localizedDescription) ")
+                completion(false)
+            } else {
+                print("Successfully deleted \(user.id).")
+                completion(true)
+            }
+        }
+    }
+    
     //MARK: - Save Users
     func saveUserToFirestore(_ user: User) {
         do {

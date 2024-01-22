@@ -22,17 +22,27 @@ class CompanyDetailViewController: UIViewController {
     @IBOutlet weak var branchCode: UILabel!
     @IBOutlet weak var branchName: UILabel!
     
-    
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         getCompanyDatas()
     }
     
     
+    //MARK: - IBActions
     @IBAction func updateButton(_ sender: Any) {
     }
     
-   
+    @IBAction func cancelButton(_ sender: Any) {
+        self.view.window?.rootViewController?.dismiss(animated: true)
+    }
+    
     //MARK: - Helpers
     func getCompanyDatas(){
         if let comp = company {
@@ -40,7 +50,7 @@ class CompanyDetailViewController: UIViewController {
             compPhone.text = comp.compPhone
             compEmail.text = comp.compMail
             if let asbn = comp.asbn, let quarter = comp.quarter, let district = comp.district, let province = comp.province {
-                compTotalAddress.text = asbn + " " + quarter + " " + district + " " + province
+                compTotalAddress.text = quarter + " " + asbn + " " + district + " " + province
             }
             bankName.text = comp.bankName
             bankIban.text = comp.bankIban

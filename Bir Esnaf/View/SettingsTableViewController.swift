@@ -80,16 +80,38 @@ class SettingsTableViewController: UITableViewController {
     
     
     @IBAction func deleteAccountButton(_ sender: Any) {
-        FirebaseUserListener.shared.deleteAccountCurrentUser { error in
-            if error == nil {
-                ProgressHUD.showSuccess("Hesabınız Silindi.")
-                let loginView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "loginView")
-                DispatchQueue.main.async {
-                    loginView.modalPresentationStyle = .fullScreen
-                    self.present(loginView, animated: true, completion: nil)
+        let alertController = UIAlertController(title: "Hesabınızı Silmek Üzeresiniz", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
+        let cancelAct = UIAlertAction(title: "İptal", style: .cancel)
+        alertController.addAction(cancelAct)
+        let okAct = UIAlertAction(title: "Tamam", style: .destructive) { action in
+            FirebaseUserListener.shared.deleteAccountCurrentUser { error in
+                if error == nil {
+                    ProgressHUD.showSuccess("Hesabınız Silindi.")
+                    let loginView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "loginView")
+                    DispatchQueue.main.async {
+                        loginView.modalPresentationStyle = .fullScreen
+                        self.present(loginView, animated: true, completion: nil)
+                    }
+                }
+            }
+            if var user = User.currentUser {
+                FirebaseUserListener.shared.deleteUserToFirestore(user) { success in
+                    if success {
+                        let loginView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "loginView")
+                        DispatchQueue.main.async {
+                            loginView.modalPresentationStyle = .fullScreen
+                            self.present(loginView, animated: true, completion: nil)
+                        }
+                    } else {
+                        ProgressHUD.showSuccess("Silme işlemi gerçekleşemedi.")
+                    }
+                    
                 }
             }
         }
+        alertController.addAction(okAct)
+        self.present(alertController, animated: true)
+        
     }
     
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1204CA632B5EF60000EF2629 /* ProductVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1204CA622B5EF60000EF2629 /* ProductVM.swift */; };
 		1207F5A82B074265008307A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1207F5A72B074265008307A4 /* GoogleService-Info.plist */; };
 		1207F5AA2B075306008307A4 /* FirebaseUserListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5A92B075306008307A4 /* FirebaseUserListener.swift */; };
 		1207F5AC2B075350008307A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5AB2B075350008307A4 /* User.swift */; };
@@ -19,10 +20,6 @@
 		1207F5C02B07877D008307A4 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5BF2B07877D008307A4 /* SettingsTableViewController.swift */; };
 		1207F5C22B078BAC008307A4 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5C12B078BAC008307A4 /* Company.swift */; };
 		1207F5C62B0790E6008307A4 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5C52B0790E6008307A4 /* WebService.swift */; };
-		1213B3C02B0D2C2C00E8E0D8 /* CompanyDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1213B3BF2B0D2C2C00E8E0D8 /* CompanyDetailTableViewController.swift */; };
-		1213B3C22B0D3DCB00E8E0D8 /* AddCompanyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1213B3C12B0D3DCB00E8E0D8 /* AddCompanyTableViewController.swift */; };
-		1213B3C52B0D415900E8E0D8 /* CompanyDetailBankTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1213B3C42B0D415900E8E0D8 /* CompanyDetailBankTableViewController.swift */; };
-		1213B3C72B0D416B00E8E0D8 /* AddCompanyBankTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1213B3C62B0D416B00E8E0D8 /* AddCompanyBankTableViewController.swift */; };
 		12514A552B56B6D8005406D8 /* AddCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12514A542B56B6D8005406D8 /* AddCompanyViewController.swift */; };
 		12514A572B56B701005406D8 /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12514A562B56B701005406D8 /* AddAddressViewController.swift */; };
 		12514A592B56B727005406D8 /* AddBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12514A582B56B727005406D8 /* AddBankViewController.swift */; };
@@ -33,6 +30,7 @@
 		12514A632B57D3E7005406D8 /* CompanyBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12514A622B57D3E7005406D8 /* CompanyBank.swift */; };
 		12514A652B57DF20005406D8 /* Province.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12514A642B57DF20005406D8 /* Province.swift */; };
 		12514A672B57DFA1005406D8 /* ProvinceVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12514A662B57DFA1005406D8 /* ProvinceVM.swift */; };
+		125839E72B5EA36500C33BD2 /* UpdateProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125839E62B5EA36500C33BD2 /* UpdateProductViewController.swift */; };
 		129E03AE2B2888F80054D63C /* BankVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129E03AD2B2888F80054D63C /* BankVM.swift */; };
 		12C8F2412B0E25510089BA92 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8F2402B0E25510089BA92 /* Bank.swift */; };
 		12CF38062B069B660051F2D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF38052B069B660051F2D5 /* AppDelegate.swift */; };
@@ -50,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1204CA622B5EF60000EF2629 /* ProductVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVM.swift; sourceTree = "<group>"; };
 		1207F5A72B074265008307A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1207F5A92B075306008307A4 /* FirebaseUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserListener.swift; sourceTree = "<group>"; };
 		1207F5AB2B075350008307A4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -62,10 +61,6 @@
 		1207F5BF2B07877D008307A4 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		1207F5C12B078BAC008307A4 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		1207F5C52B0790E6008307A4 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
-		1213B3BF2B0D2C2C00E8E0D8 /* CompanyDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDetailTableViewController.swift; sourceTree = "<group>"; };
-		1213B3C12B0D3DCB00E8E0D8 /* AddCompanyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyTableViewController.swift; sourceTree = "<group>"; };
-		1213B3C42B0D415900E8E0D8 /* CompanyDetailBankTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDetailBankTableViewController.swift; sourceTree = "<group>"; };
-		1213B3C62B0D416B00E8E0D8 /* AddCompanyBankTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyBankTableViewController.swift; sourceTree = "<group>"; };
 		12514A542B56B6D8005406D8 /* AddCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyViewController.swift; sourceTree = "<group>"; };
 		12514A562B56B701005406D8 /* AddAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewController.swift; sourceTree = "<group>"; };
 		12514A582B56B727005406D8 /* AddBankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBankViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +71,7 @@
 		12514A622B57D3E7005406D8 /* CompanyBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyBank.swift; sourceTree = "<group>"; };
 		12514A642B57DF20005406D8 /* Province.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Province.swift; sourceTree = "<group>"; };
 		12514A662B57DFA1005406D8 /* ProvinceVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceVM.swift; sourceTree = "<group>"; };
+		125839E62B5EA36500C33BD2 /* UpdateProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProductViewController.swift; sourceTree = "<group>"; };
 		129E03AD2B2888F80054D63C /* BankVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankVM.swift; sourceTree = "<group>"; };
 		12C8F2402B0E25510089BA92 /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
 		12CF38022B069B660051F2D5 /* Bir Esnaf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bir Esnaf.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,10 +109,9 @@
 			children = (
 				12CF38092B069B660051F2D5 /* LoginViewController.swift */,
 				1207F5BF2B07877D008307A4 /* SettingsTableViewController.swift */,
-				12E4772C2B4C2368002889F0 /* ProductTableViewController.swift */,
 				1213B3C32B0D410600E8E0D8 /* CompanyView */,
+				125839E52B5EA33100C33BD2 /* ProductView */,
 				1207F5BE2B078760008307A4 /* Cells */,
-				12E477302B4C2422002889F0 /* AddProductViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -161,6 +156,7 @@
 				12D5F54E2B10C8A200B4F7D9 /* UserVM.swift */,
 				129E03AD2B2888F80054D63C /* BankVM.swift */,
 				12514A662B57DFA1005406D8 /* ProvinceVM.swift */,
+				1204CA622B5EF60000EF2629 /* ProductVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -178,23 +174,29 @@
 			isa = PBXGroup;
 			children = (
 				1207F5BA2B078730008307A4 /* CompanyTableViewController.swift */,
-				1213B3BF2B0D2C2C00E8E0D8 /* CompanyDetailTableViewController.swift */,
-				1213B3C12B0D3DCB00E8E0D8 /* AddCompanyTableViewController.swift */,
-				12AD06392B28E266008674CE /* BankView */,
 				12514A542B56B6D8005406D8 /* AddCompanyViewController.swift */,
 				12514A562B56B701005406D8 /* AddAddressViewController.swift */,
 				12514A5A2B570BA3005406D8 /* CompanyDetailViewController.swift */,
 				12514A5C2B570BD4005406D8 /* UpdateCompanyViewController.swift */,
 				12514A5E2B570BF7005406D8 /* UpdateAddressViewController.swift */,
+				12AD06392B28E266008674CE /* BankView */,
 			);
 			path = CompanyView;
+			sourceTree = "<group>";
+		};
+		125839E52B5EA33100C33BD2 /* ProductView */ = {
+			isa = PBXGroup;
+			children = (
+				12E4772C2B4C2368002889F0 /* ProductTableViewController.swift */,
+				12E477302B4C2422002889F0 /* AddProductViewController.swift */,
+				125839E62B5EA36500C33BD2 /* UpdateProductViewController.swift */,
+			);
+			path = ProductView;
 			sourceTree = "<group>";
 		};
 		12AD06392B28E266008674CE /* BankView */ = {
 			isa = PBXGroup;
 			children = (
-				1213B3C42B0D415900E8E0D8 /* CompanyDetailBankTableViewController.swift */,
-				1213B3C62B0D416B00E8E0D8 /* AddCompanyBankTableViewController.swift */,
 				12514A582B56B727005406D8 /* AddBankViewController.swift */,
 				12514A602B570C03005406D8 /* UpdateBankViewController.swift */,
 			);
@@ -372,7 +374,6 @@
 			files = (
 				12CF380A2B069B660051F2D5 /* LoginViewController.swift in Sources */,
 				12D5F54F2B10C8A200B4F7D9 /* UserVM.swift in Sources */,
-				1213B3C52B0D415900E8E0D8 /* CompanyDetailBankTableViewController.swift in Sources */,
 				12CF38062B069B660051F2D5 /* AppDelegate.swift in Sources */,
 				12CF38082B069B660051F2D5 /* SceneDelegate.swift in Sources */,
 				1207F5C62B0790E6008307A4 /* WebService.swift in Sources */,
@@ -386,12 +387,11 @@
 				12514A632B57D3E7005406D8 /* CompanyBank.swift in Sources */,
 				12514A5B2B570BA3005406D8 /* CompanyDetailViewController.swift in Sources */,
 				12C8F2412B0E25510089BA92 /* Bank.swift in Sources */,
-				1213B3C72B0D416B00E8E0D8 /* AddCompanyBankTableViewController.swift in Sources */,
 				1207F5AE2B075377008307A4 /* Constants.swift in Sources */,
 				1207F5C02B07877D008307A4 /* SettingsTableViewController.swift in Sources */,
-				1213B3C02B0D2C2C00E8E0D8 /* CompanyDetailTableViewController.swift in Sources */,
 				12514A552B56B6D8005406D8 /* AddCompanyViewController.swift in Sources */,
 				12514A5D2B570BD4005406D8 /* UpdateCompanyViewController.swift in Sources */,
+				1204CA632B5EF60000EF2629 /* ProductVM.swift in Sources */,
 				129E03AE2B2888F80054D63C /* BankVM.swift in Sources */,
 				12E477312B4C2422002889F0 /* AddProductViewController.swift in Sources */,
 				12514A612B570C03005406D8 /* UpdateBankViewController.swift in Sources */,
@@ -400,9 +400,9 @@
 				12E4772D2B4C2368002889F0 /* ProductTableViewController.swift in Sources */,
 				1207F5B22B0753DC008307A4 /* FCollectionReference.swift in Sources */,
 				1207F5BB2B078730008307A4 /* CompanyTableViewController.swift in Sources */,
-				1213B3C22B0D3DCB00E8E0D8 /* AddCompanyTableViewController.swift in Sources */,
 				12514A652B57DF20005406D8 /* Province.swift in Sources */,
 				1207F5C22B078BAC008307A4 /* Company.swift in Sources */,
+				125839E72B5EA36500C33BD2 /* UpdateProductViewController.swift in Sources */,
 				1207F5B02B075398008307A4 /* Extensions.swift in Sources */,
 				12514A672B57DFA1005406D8 /* ProvinceVM.swift in Sources */,
 			);

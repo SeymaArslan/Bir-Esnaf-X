@@ -3,8 +3,7 @@
 //  Bir Esnaf
 //
 //  Created by Seyma on 16.01.2024.
-//  https://stackoverflow.com/questions/28706877/how-can-you-reload-a-viewcontroller-after-dismissing-a-modally-presented-view-co reload data için
-// NOT Güncelleme işlemini de hallettikten sonra company bitiyor.. 
+//
 
 import UIKit
 import ProgressHUD
