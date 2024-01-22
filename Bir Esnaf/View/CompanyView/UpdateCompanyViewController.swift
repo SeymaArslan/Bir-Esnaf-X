@@ -10,7 +10,6 @@ import UIKit
 class UpdateCompanyViewController: UIViewController {
 
     var company: CompanyBank?
-    var compId: String? // id ile veri çekeceğiz
     
     @IBOutlet weak var compNameUpdate: UITextField!
     @IBOutlet weak var compPhoneUpdate: UITextField!
@@ -48,6 +47,7 @@ class UpdateCompanyViewController: UIViewController {
                 goToVc.cName = cName
                 goToVc.cPhone = cPhone
                 goToVc.cMail = cEmail
+                goToVc.company = company
             }
         }
     }

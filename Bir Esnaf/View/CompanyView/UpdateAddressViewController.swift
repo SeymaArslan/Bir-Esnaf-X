@@ -3,11 +3,13 @@
 //  Bir Esnaf
 //
 //  Created by Seyma on 16.01.2024.
-//
+//  yarına verileri bankaya gönder ardından tüm textleri update ile işle
 
 import UIKit
 
 class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    var company: CompanyBank?
     
     var cName = String()
     var cPhone = String()
@@ -16,6 +18,9 @@ class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
     var provinceList = [Province]()
     var provinceSelect = String()
     let pm = ProvinceVM()
+//    var provinceId = String()
+    var getProvList = [Province]()
+    var provinceComponent = String()
 
     @IBOutlet weak var cityPicker: UIPickerView!
     @IBOutlet weak var districtUpdate: UITextField!
@@ -28,20 +33,29 @@ class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
         cityPicker.delegate = self
         cityPicker.dataSource = self
         
-        print("update adress compName = \(cName) ")
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getCompany()
         getProvince()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if !provinceList.isEmpty {
-            if let provString = provinceList[0].province {
-                provinceSelect = provString
+        
+        if let pID = getProvList.first?.pId {
+            DispatchQueue.main.async {
+                self.provinceComponent = pID
+                if let intPId = Int(self.provinceComponent) {
+                    let intLastPId = intPId - 1
+                    if let provString = self.provinceList[intLastPId].province {
+                        self.provinceSelect = provString
+                    }
+                    self.cityPicker.selectRow(intLastPId, inComponent: 0, animated: true)
+                }
             }
         }
     }
@@ -77,8 +91,37 @@ class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     
-    
     //MARK: - Helpers
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "bankUpdate" {
+            let goToBank = segue.destination as! UpdateBankViewController
+            goToBank.cName = cName
+            goToBank.cPhone = cPhone
+            goToBank.cMail = cMail
+            goToBank.province = provinceSelect
+            if let dist = districtUpdate.text, let quart = quarterUpdate.text, let asbn = fullAddressUpdate.text {
+                goToBank.district = dist
+                goToBank.quarter = quart
+                goToBank.asbn = asbn
+            }
+            goToBank.company = company
+        }
+    }
+    
+    func getCompany() {
+        if let comp = company {
+            districtUpdate.text = comp.district
+            quarterUpdate.text = comp.quarter
+            fullAddressUpdate.text = comp.asbn
+            if let getProv = comp.province {
+                pm.getSelectedProvince(province: getProv) { [self] provData in
+                    self.getProvList = provData
+
+                }
+            }
+        }
+    }
+    
     func getProvince() {
         pm.getProvince { provDatas in
             self.provinceList = provDatas

@@ -10,8 +10,7 @@ import UIKit
 class CompanyDetailViewController: UIViewController {
 
     var company: CompanyBank?
-    var compId: String?
-    
+
     @IBOutlet weak var compName: UILabel!
     @IBOutlet weak var compPhone: UILabel!
     @IBOutlet weak var compEmail: UILabel!
