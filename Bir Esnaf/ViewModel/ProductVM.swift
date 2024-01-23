@@ -8,6 +8,46 @@
 import Foundation
 
 class ProductVM {
+    
+    func deleteProd(prodId: Int) {
+        var api = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteProduct.php")!)
+        api.httpMethod = "POST"
+        let postStr = "prodId=\(prodId)"
+        api.httpBody = postStr.data(using: .utf8)
+        URLSession.shared.dataTask(with: api) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "Delete Error")
+                return
+            }
+            do {
+                if let result = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any] {
+                    print(result)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
+    func updateProd(prodId: Int, prodName: String, prodTotal: Int, prodPrice: Double) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/updateProduct.php")!)
+        request.httpMethod = "POST"
+        let post = "prodId=\(prodId)&prodName=\(prodName)&prodTotal=\(prodTotal)&prodPrice=\(prodPrice)"
+        request.httpBody = post.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "Update Error")
+                return
+            }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any] {
+                    print(json)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
 
     func getAllProd(userMail: String, completion: @escaping ([Product]) -> () ) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getAllProduct.php")!)

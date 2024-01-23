@@ -19,8 +19,13 @@ class AddProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        self.view.window?.rootViewController?.dismiss(animated: true)
+    }
+    
+    
     
 
     @IBAction func saveProd(_ sender: Any) {

@@ -10,7 +10,7 @@ import ProgressHUD
 
 class UpdateBankViewController: UIViewController {
     
-    public var completionHandler:(()->Void)?
+//    public var completionHandler:(()->Void)?
     
     let compVM = CompanyVM()
     
@@ -53,7 +53,7 @@ class UpdateBankViewController: UIViewController {
     
     //MARK: - Helpers
     func updateComp() {
-        self.completionHandler?()
+//        self.completionHandler?()
         if let bName = bankName.text, let branchName = branchName.text, let branchCode = branchCode.text, let aType = accountType.text, let aName = accountName.text, let aNum = accountNumber.text, let iban = ibanNumber.text {
             if let intANum = Int(aNum) {
                 compVM.compUpdate(cbId: compId, compName: cName, compPhone: cPhone, compMail: cMail, province: province, district: district, quarter: quarter, asbn: asbn, bankName: bName, bankBranchName: branchName, bankBranchCode: branchCode, bankAccountType: aType, bankAccountName: aName, bankAccountNum: intANum, bankIban: iban)

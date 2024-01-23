@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class UpdateProductViewController: UIViewController {
-
+    
+    let prodVM = ProductVM()
+    var prodId = Int()
     var product: Product?
     
     @IBOutlet weak var prodNameUp: UITextField!
@@ -18,13 +21,42 @@ class UpdateProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        getProd()
     }
     
-
-
     @IBAction func updateProduction(_ sender: Any) {
+        updateProd()
+        
+    }
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        self.view.window?.rootViewController?.dismiss(animated: true)
+    }
+    
+    
+    //MARK: - Helpers
+    func getProd() {
+        if let prod = product {
+            prodNameUp.text = prod.prodName
+            prodPriceUp.text = prod.prodPrice
+            prodTotalUp.text = prod.prodTotal
+            if let id = prod.prodId {
+                if let intId = Int(id) {
+                    prodId = intId
+                }
+            }
+        }
+    }
+    
+    func updateProd() {
+        if let pName = prodNameUp.text, let pPrice = prodPriceUp.text, let pTotal = prodTotalUp.text {
+            if let doublePrice = Double(pPrice), let intTotal = Int(pTotal) {
+                prodVM.updateProd(prodId: prodId, prodName: pName, prodTotal: intTotal, prodPrice: doublePrice)
+                ProgressHUD.showSuccess("Ürün güncellendi.")
+                self.view.window?.rootViewController?.dismiss(animated: true)
+            }
+        }
     }
     
 }
