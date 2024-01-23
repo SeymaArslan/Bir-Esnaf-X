@@ -217,15 +217,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="backgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ProdCell" rowHeight="108" id="wLV-YD-lho" customClass="ProductTableViewCell" customModule="Bir_Esnaf" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="393" height="108"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ProdCell" rowHeight="115" id="wLV-YD-lho" customClass="ProductTableViewCell" customModule="Bir_Esnaf" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="115"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wLV-YD-lho" id="Oql-ne-7ZY">
-                                    <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="108"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="115"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adet:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CNy-Wx-9y4">
-                                            <rect key="frame" x="15" y="78" width="38" height="20"/>
+                                            <rect key="frame" x="20" y="81" width="38" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="38" id="Lzp-Sj-uLH"/>
                                                 <constraint firstAttribute="height" constant="20" id="ifw-jD-ZWx"/>
@@ -235,7 +235,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fiyat:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gI7-bU-Pea">
-                                            <rect key="frame" x="15" y="50" width="39" height="20"/>
+                                            <rect key="frame" x="20" y="53" width="39" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="39" id="Mpk-V6-h4U"/>
                                                 <constraint firstAttribute="height" constant="20" id="dQz-sm-0Fh"/>
@@ -245,7 +245,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVT-Lz-f86">
-                                            <rect key="frame" x="15" y="40" width="325.66666666666669" height="2"/>
+                                            <rect key="frame" x="20" y="43" width="325.66666666666669" height="2"/>
                                             <color key="backgroundColor" name="customColor2"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="325.67000000000002" id="J2p-HR-RTu"/>
@@ -253,7 +253,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="50000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPi-mc-w20">
-                                            <rect key="frame" x="61" y="76" width="120" height="21"/>
+                                            <rect key="frame" x="66" y="79" width="120" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="5YT-Oa-BZs"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="RU4-SP-Fy8"/>
@@ -263,7 +263,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUE-wu-OUm">
-                                            <rect key="frame" x="61" y="50" width="120" height="21"/>
+                                            <rect key="frame" x="66" y="53" width="120" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="An0-nj-Fma"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="zge-i3-Bgl"/>
@@ -273,7 +273,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ürün Adı" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIm-8B-Evo">
-                                            <rect key="frame" x="15" y="11" width="347.66666666666669" height="21"/>
+                                            <rect key="frame" x="20" y="14" width="347.66666666666669" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="0J5-I4-85a"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="347.67000000000002" id="rd1-0D-vtr"/>
@@ -286,20 +286,20 @@
                                     <constraints>
                                         <constraint firstItem="IPi-mc-w20" firstAttribute="leading" secondItem="CNy-Wx-9y4" secondAttribute="trailing" constant="8" symbolic="YES" id="0e1-bx-Wo5"/>
                                         <constraint firstItem="CNy-Wx-9y4" firstAttribute="top" secondItem="gI7-bU-Pea" secondAttribute="bottom" constant="8" symbolic="YES" id="32C-z9-YNO"/>
-                                        <constraint firstAttribute="trailing" secondItem="QIm-8B-Evo" secondAttribute="trailing" id="9Ng-Af-qOm"/>
+                                        <constraint firstAttribute="trailing" secondItem="QIm-8B-Evo" secondAttribute="trailing" constant="-5" id="9Ng-Af-qOm"/>
                                         <constraint firstItem="IPi-mc-w20" firstAttribute="top" secondItem="WUE-wu-OUm" secondAttribute="bottom" constant="5" id="Lyy-7e-8jX"/>
                                         <constraint firstItem="WUE-wu-OUm" firstAttribute="top" secondItem="pVT-Lz-f86" secondAttribute="bottom" constant="8" symbolic="YES" id="Pju-Hw-OtL"/>
                                         <constraint firstItem="pVT-Lz-f86" firstAttribute="top" secondItem="QIm-8B-Evo" secondAttribute="bottom" constant="8" symbolic="YES" id="Pz6-Wx-F2H"/>
                                         <constraint firstItem="WUE-wu-OUm" firstAttribute="leading" secondItem="gI7-bU-Pea" secondAttribute="trailing" constant="7" id="Rj2-vl-BAb"/>
-                                        <constraint firstItem="QIm-8B-Evo" firstAttribute="leading" secondItem="Oql-ne-7ZY" secondAttribute="leading" constant="15" id="RzT-nr-YO8"/>
-                                        <constraint firstItem="pVT-Lz-f86" firstAttribute="leading" secondItem="Oql-ne-7ZY" secondAttribute="leading" constant="15" id="UWm-bd-R7V"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="WUE-wu-OUm" secondAttribute="trailing" constant="173.66999999999999" id="XsE-1t-o51"/>
-                                        <constraint firstItem="CNy-Wx-9y4" firstAttribute="leading" secondItem="Oql-ne-7ZY" secondAttribute="leading" constant="15" id="Xya-Yo-Uuv"/>
-                                        <constraint firstAttribute="trailing" secondItem="pVT-Lz-f86" secondAttribute="trailing" constant="22" id="cuR-L5-e9R"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="IPi-mc-w20" secondAttribute="trailing" constant="173.66999999999999" id="d4K-Oh-O45"/>
-                                        <constraint firstItem="QIm-8B-Evo" firstAttribute="top" secondItem="Oql-ne-7ZY" secondAttribute="top" constant="11" id="hC9-hX-ChT"/>
+                                        <constraint firstItem="QIm-8B-Evo" firstAttribute="leading" secondItem="Oql-ne-7ZY" secondAttribute="leading" constant="20" id="RzT-nr-YO8"/>
+                                        <constraint firstItem="pVT-Lz-f86" firstAttribute="leading" secondItem="Oql-ne-7ZY" secondAttribute="leading" constant="20" id="UWm-bd-R7V"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="WUE-wu-OUm" secondAttribute="trailing" constant="168.66666666666669" id="XsE-1t-o51"/>
+                                        <constraint firstItem="CNy-Wx-9y4" firstAttribute="leading" secondItem="Oql-ne-7ZY" secondAttribute="leading" constant="20" id="Xya-Yo-Uuv"/>
+                                        <constraint firstAttribute="trailing" secondItem="pVT-Lz-f86" secondAttribute="trailing" constant="17" id="cuR-L5-e9R"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="IPi-mc-w20" secondAttribute="trailing" constant="168.66666666666669" id="d4K-Oh-O45"/>
+                                        <constraint firstItem="QIm-8B-Evo" firstAttribute="top" secondItem="Oql-ne-7ZY" secondAttribute="top" constant="14" id="hC9-hX-ChT"/>
                                         <constraint firstItem="gI7-bU-Pea" firstAttribute="top" secondItem="pVT-Lz-f86" secondAttribute="bottom" constant="8" symbolic="YES" id="sEC-Vt-v7Q"/>
-                                        <constraint firstItem="gI7-bU-Pea" firstAttribute="leading" secondItem="Oql-ne-7ZY" secondAttribute="leading" constant="15" id="z1F-RI-j2B"/>
+                                        <constraint firstItem="gI7-bU-Pea" firstAttribute="leading" secondItem="Oql-ne-7ZY" secondAttribute="leading" constant="20" id="z1F-RI-j2B"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1768,7 +1768,7 @@
                     <tabBarItem key="tabBarItem" title="Ayarlar" image="gearshape" catalog="system" id="BNz-Gp-UCG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="fcn-fO-pE3">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="customColor2"/>
@@ -1790,7 +1790,7 @@
                     <tabBarItem key="tabBarItem" title="Firmalar" image="person.line.dotted.person" catalog="system" id="n26-ex-scY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="ga0-AG-Jq3">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="customColor2"/>
@@ -1812,7 +1812,7 @@
                     <tabBarItem key="tabBarItem" title="Ürünler" image="square.3.layers.3d.down.left" catalog="system" id="Foq-Ft-Qp9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="8pA-iZ-3Ak">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="customColor2"/>
@@ -1834,7 +1834,7 @@
                     <tabBarItem key="tabBarItem" title="Alışveriş" image="cart.fill" catalog="system" id="zDz-Es-R01"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="kxt-UL-IQ0">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="customColor2"/>

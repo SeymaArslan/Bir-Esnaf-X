@@ -9,10 +9,10 @@ import UIKit
 
 class UpdateProductViewController: UIViewController {
 
+    var product: Product?
+    
     @IBOutlet weak var prodNameUp: UITextField!
-    
     @IBOutlet weak var prodPriceUp: UITextField!
-    
     @IBOutlet weak var prodTotalUp: UITextField!
     
     

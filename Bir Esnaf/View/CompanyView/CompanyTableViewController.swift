@@ -12,8 +12,6 @@ class CompanyTableViewController: UITableViewController {
     var compList = [CompanyBank]()
     let mail = userDefaults.string(forKey: "userMail")
     let compVM = CompanyVM()
-    let bankVM = BankVM()
-    var company: Company?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +19,8 @@ class CompanyTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
+        self.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl = self.refreshControl
         
     }
     
@@ -62,8 +62,15 @@ class CompanyTableViewController: UITableViewController {
         }
         return UISwipeActionsConfiguration(actions: [deleteAct])
     }
-
   
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if self.refreshControl!.isRefreshing {
+            self.getComp()
+            self.refreshControl!.endRefreshing()
+        }
+    }
+    
+    
     //MARK: - Helpers
     func showDeleteWarning(for indexPath: IndexPath) {
         let alertController = UIAlertController(title: "Firmayı Silmek Üzeresiniz", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)

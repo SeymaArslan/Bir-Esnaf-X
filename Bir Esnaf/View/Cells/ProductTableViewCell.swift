@@ -9,12 +9,12 @@ import UIKit
 
 class ProductTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var productName: UILabel! // ürün adı
     @IBOutlet weak var total: UILabel!
-    @IBOutlet weak var totalNumber: UILabel!
+    @IBOutlet weak var totalNumber: UILabel!  // adet sayı
     @IBOutlet weak var price: UILabel!
-    @IBOutlet weak var priceNumber: UILabel!
-    @IBOutlet weak var viewChange: UIView!
+    @IBOutlet weak var priceNumber: UILabel!  // adet fiyat
+    @IBOutlet weak var viewChange: UIView!  // her üründe bir renk değiştirecek? 
     
     override func awakeFromNib() {
         super.awakeFromNib()

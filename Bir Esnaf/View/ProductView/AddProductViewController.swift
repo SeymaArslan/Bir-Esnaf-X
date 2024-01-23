@@ -27,6 +27,7 @@ class AddProductViewController: UIViewController {
         if let userMail = mail ,let pName = prodName.text, let pPrice = prodPrice.text, let pTotal = prodTotal.text {
             if let doublePrice = Double(pPrice), let intTotal = Int(pTotal) {
                 prodVM.insertProd(userMail: userMail, prodName: pName, prodTotal: intTotal, prodPrice: doublePrice)
+                self.view.window?.rootViewController?.dismiss(animated: true)
             }
         }
     }
