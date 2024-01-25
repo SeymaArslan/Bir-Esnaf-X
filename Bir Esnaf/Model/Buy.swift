@@ -7,8 +7,8 @@
 
 import Foundation
 
-class BuyDate: Codable {
-    let buy: [Buy]
+class BuyData: Codable {
+    let buy: [Buy]?
 }
 
 class Buy: Codable {
