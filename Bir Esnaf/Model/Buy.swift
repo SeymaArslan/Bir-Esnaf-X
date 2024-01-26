@@ -12,11 +12,12 @@ class BuyData: Codable {
 }
 
 class Buy: Codable {
-    let buyId: String
-    let userMail: String
-    let compName: String
-    let price: String
-    let total: String
-    let totalPrice: String
-    let buyDate: String
+    let buyId: String?
+    let userMail: String?
+    let compName: String?
+    let productName: String?
+    let price: String?
+    let total: String?
+    let totalPrice: String?
+    let buyDate: String?
 }

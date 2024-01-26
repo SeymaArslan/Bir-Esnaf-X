@@ -61,24 +61,10 @@ class AddBankViewController: UIViewController {
                 compVM.companyInsert(userMail: email, compName: cName, compPhone: cPhone, compMail: cMail, province: province, district: district, quarter: quarter, asbn: asbn, bankName: bName, bankBranchName: bBranchName, bankBranchCode: bCode, bankAccountType: aType, bankAccountName: aName, bankAccountNum: intAccNum, bankIban: iban)
                 
                 ProgressHUD.showSuccess("Firma kayıt edildi.")
-//                self.view.window!.rootViewController?.dismiss(animated: true, completion: {
-//                    if let mainVC = self.presentingViewController as? CompanyTableViewController {
-//                        DispatchQueue.global(qos: .userInitiated).async {
-//                            mainVC.tableView.reloadData()
-//                        }
-//                    }
-//                })
-//                self.view.window!.rootViewController?.dismiss(animated: true, completion: {
-//                    let compVC = CompanyTableViewController()
-//                    compVC.getComp()
-//                })
-//                
                 self.view.window?.rootViewController?.dismiss(animated: true)
 
             }
         }
-        
-        
     }
 
     

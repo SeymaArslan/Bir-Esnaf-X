@@ -16,10 +16,23 @@ class BuyTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        tableView.rowHeight = 234.0
+        
+        self.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl = self.refreshControl
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getBuyList()
+    }
+    
+    
+    
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -41,6 +54,14 @@ class BuyTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "goToBuyUpdate", sender: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
+    
+    
     //MARK: - Helpers
     func getBuyList() {
         buyVM.getBuyList(userMail: mail!) { fetchBuyList in
@@ -51,6 +72,13 @@ class BuyTableViewController: UITableViewController {
         }
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToBuyUpdate" {
+            guard let index = sender as? Int else { return }
+            let goToVC = segue.destination as! UpdateBuyViewController
+            goToVC.buy = buyList[index]
+        }
+        
+    }
 
 }
