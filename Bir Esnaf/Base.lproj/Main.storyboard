@@ -1928,7 +1928,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="compName" destination="b0N-1Q-ohO" id="cRf-vC-vKd"/>
+                                    <outlet property="compName" destination="99H-tc-yM6" id="K0e-yU-jlv"/>
                                     <outlet property="dateLabel" destination="PBw-kh-mvg" id="exs-au-S94"/>
                                     <outlet property="priceLabel" destination="xiy-fb-baV" id="Zr4-if-QDN"/>
                                     <outlet property="productName" destination="b0N-1Q-ohO" id="k2t-93-dBX"/>
@@ -1951,7 +1951,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="2N0-1H-afz" kind="presentation" identifier="goToBuyUpdate" id="tGp-mU-PRT"/>
+                        <segue destination="2N0-1H-afz" kind="presentation" identifier="goToBuyUpdate" modalPresentationStyle="fullScreen" id="tGp-mU-PRT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxV-pH-1Vg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3273,7 +3273,7 @@
             <objects>
                 <viewController id="2N0-1H-afz" customClass="UpdateBuyViewController" customModule="Bir_Esnaf" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UVf-th-dX3">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="O4g-vw-zIb">
@@ -3471,7 +3471,6 @@
                         <outlet property="buyDateUp" destination="Rl0-oq-Mey" id="RzV-Ib-wJb"/>
                         <outlet property="compPickerUp" destination="AFM-tz-GG2" id="Xsr-lw-2ph"/>
                         <outlet property="priceUp" destination="8o9-8c-dqk" id="AVz-uW-Lsl"/>
-                        <outlet property="product" destination="Joa-73-vlt" id="f5I-Qb-GqA"/>
                         <outlet property="productName" destination="Joa-73-vlt" id="fWH-1f-qyP"/>
                         <outlet property="totalPriceUp" destination="sqc-Er-ZIE" id="7yf-G3-Ef8"/>
                         <outlet property="totalUp" destination="9Xp-Ys-gVC" id="e2U-fU-0eD"/>
@@ -3479,7 +3478,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7sH-6Q-cEb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5960" y="-1937"/>
+            <point key="canvasLocation" x="6176" y="-1849"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="oYZ-mE-e2h">

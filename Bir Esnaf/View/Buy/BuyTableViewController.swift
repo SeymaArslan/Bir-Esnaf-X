@@ -47,6 +47,7 @@ class BuyTableViewController: UITableViewController {
         let buy = buyList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "buyCell", for: indexPath) as! BuyTableViewCell
         cell.compName.text = buy.compName
+        cell.productName.text = buy.productName
         cell.priceLabel.text = buy.price
         cell.totalLabel.text = buy.total
         cell.totalPriceLabel.text = buy.totalPrice
@@ -59,7 +60,12 @@ class BuyTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if self.refreshControl!.isRefreshing {
+            self.getBuyList()
+            self.refreshControl!.endRefreshing()
+        }
+    }
     
     
     //MARK: - Helpers

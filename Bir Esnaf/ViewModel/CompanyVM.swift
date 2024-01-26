@@ -9,6 +9,25 @@ import Foundation
 
 class CompanyVM {
     
+    func getSelectedCompPicker(compName: String, completion: @escaping ([CompanyBank]) -> () ) {
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getSelectedCompPicker.php")!)
+        req.httpMethod = "POST"
+        let post = "compName=\(compName)"
+        req.httpBody = post.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "Get selected company picker error")
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(CompanyBankData.self, from: data!)
+                completion(result.companyBank ?? [CompanyBank]())
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func compUpdate(cbId: Int, compName: String, compPhone: String, compMail: String, province: String, district: String, quarter: String, asbn: String, bankName: String, bankBranchName: String, bankBranchCode: String, bankAccountType: String, bankAccountName: String, bankAccountNum: Int, bankIban: String) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/updateComp.php")!)
         request.httpMethod = "POST"

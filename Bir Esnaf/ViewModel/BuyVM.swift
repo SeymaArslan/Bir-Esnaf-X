@@ -9,10 +9,10 @@ import Foundation
 
 class BuyVM {
     
-    func updateBuy(buyId: Int, compName: String, productName: String, price: Float, total: Float, totalPrice: Float, date: String) {
-        var request = URLRequest(url: URL(string: "")!)
+    func updateBuy(buyId: Int, compName: String, productName: String, price: Double, total: Double, totalPrice: Double, buyDate: String) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/updateBuy.php")!)
         request.httpMethod = "POST"
-        let post = "buyId=\(buyId)&compName=\(compName)&productName=\(productName)&price=\(price)&total=\(total)&totalPrice=\(totalPrice)&date=\(date)"
+        let post = "buyId=\(buyId)&compName=\(compName)&productName=\(productName)&price=\(price)&total=\(total)&totalPrice=\(totalPrice)&buyDate=\(buyDate)"
         request.httpBody = post.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
@@ -36,15 +36,14 @@ class BuyVM {
         req.httpBody = post.data(using: .utf8)
         URLSession.shared.dataTask(with: req) { data, response, error in
             if error != nil {
-//                print(error?.localizedDescription ?? "Get buy list error")
-                print(error!)
+                print(error?.localizedDescription ?? "Get buy list error")
                 return
             }
             do {
                 let jsonData = try JSONDecoder().decode(BuyData.self, from: data!)
                 completion(jsonData.buy ?? [Buy]())
             } catch {
-                print(error)
+                print(error.localizedDescription)
             }
         }.resume()
     }

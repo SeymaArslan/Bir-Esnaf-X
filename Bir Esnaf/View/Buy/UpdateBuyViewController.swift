@@ -12,19 +12,20 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     //MARK: - Variable
     var buy: Buy?
     let buyVM = BuyVM()
+    var buyId = Int()
     
     var compList = [CompanyBank]()
     var compSelect = String()
-    
+    var compComponent = String()
+    let compVM = CompanyVM()
+    var getPickerCompList = [CompanyBank]()
     
     //MARK: - IBOutlets
     @IBOutlet weak var compPickerUp: UIPickerView!
     @IBOutlet weak var productName: UITextField!
-    @IBOutlet weak var product: UITextField!
     @IBOutlet weak var priceUp: UITextField!
     @IBOutlet weak var totalUp: UITextField!
     @IBOutlet weak var totalPriceUp: UITextField!
-
     @IBOutlet weak var buyDateUp: UITextField!
     
     //MARK: - Life Cycle
@@ -34,18 +35,28 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         compPickerUp.delegate = self
         compPickerUp.dataSource = self
         
+//        getBuy()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getCompList()
+        getBuy()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if !compList.isEmpty {
-            if let selectPicker = compList[0].compName {
-                compSelect = selectPicker
+        
+        if let compId = getPickerCompList.first?.cbId {
+            DispatchQueue.main.async {
+                self.compComponent = compId
+                if let intCId = Int(self.compComponent) {
+                    let intLastCId = intCId - 1
+                    if let compString = self.compList[intLastCId].compName {
+                        self.compSelect = compString
+                    }
+                    self.compPickerUp.selectRow(intLastCId, inComponent: 0, animated: true)
+                }
             }
         }
     }
@@ -97,11 +108,27 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             priceUp.text = buyData.price
             totalUp.text = buyData.total
             totalPriceUp.text = buyData.totalPrice
+            buyDateUp.text = buyData.buyDate
+            if let id = buyData.buyId {
+                if let intId = Int(id) {
+                    buyId = intId
+                }
+            }
+            if let getComp = buyData.compName {
+                compVM.getSelectedCompPicker(compName: getComp) { [self] compData in
+                    self.getPickerCompList = compData
+                }
+            }
         }
     }
     
     func update() {
-        
+        if let pName = productName.text, let price = priceUp.text, let total = totalUp.text, let tPrice = totalPriceUp.text, let date = buyDateUp.text {
+            if let doublePrice = Double(price), let doubleTotal = Double(total), let doubleTPrice = Double(tPrice) {
+                buyVM.updateBuy(buyId: buyId, compName: compSelect, productName: pName, price: doublePrice, total: doubleTotal, totalPrice: doubleTPrice, buyDate: date)
+                self.view.window?.rootViewController?.dismiss(animated: true)
+            }
+        }
     }
 
     

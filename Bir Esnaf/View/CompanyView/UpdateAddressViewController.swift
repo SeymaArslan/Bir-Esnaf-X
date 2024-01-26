@@ -86,7 +86,6 @@ class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if let provString = provinceList[row].province {
             provinceSelect = provString
-            print(provinceSelect)
         }
     }
     
