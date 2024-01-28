@@ -30,6 +30,11 @@
 		12514A652B57DF20005406D8 /* Province.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12514A642B57DF20005406D8 /* Province.swift */; };
 		12514A672B57DFA1005406D8 /* ProvinceVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12514A662B57DFA1005406D8 /* ProvinceVM.swift */; };
 		125839E72B5EA36500C33BD2 /* UpdateProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125839E62B5EA36500C33BD2 /* UpdateProductViewController.swift */; };
+		126209782B66DE0900B4C5CA /* Sale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126209772B66DE0900B4C5CA /* Sale.swift */; };
+		1262097A2B66E0EA00B4C5CA /* SalesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126209792B66E0EA00B4C5CA /* SalesTableViewCell.swift */; };
+		1262097C2B66E12B00B4C5CA /* SalesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262097B2B66E12B00B4C5CA /* SalesTableViewController.swift */; };
+		1262097E2B66E18800B4C5CA /* AddSalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262097D2B66E18800B4C5CA /* AddSalesViewController.swift */; };
+		126209802B66E19B00B4C5CA /* UpdateSalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262097F2B66E19B00B4C5CA /* UpdateSalesViewController.swift */; };
 		12C04CD42B617EC800003515 /* Buy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C04CD32B617EC800003515 /* Buy.swift */; };
 		12C04CD62B617F7100003515 /* BuyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C04CD52B617F7100003515 /* BuyVM.swift */; };
 		12C04CD82B6180F900003515 /* AddBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C04CD72B6180F900003515 /* AddBuyViewController.swift */; };
@@ -74,6 +79,11 @@
 		12514A642B57DF20005406D8 /* Province.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Province.swift; sourceTree = "<group>"; };
 		12514A662B57DFA1005406D8 /* ProvinceVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceVM.swift; sourceTree = "<group>"; };
 		125839E62B5EA36500C33BD2 /* UpdateProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProductViewController.swift; sourceTree = "<group>"; };
+		126209772B66DE0900B4C5CA /* Sale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sale.swift; sourceTree = "<group>"; };
+		126209792B66E0EA00B4C5CA /* SalesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesTableViewCell.swift; sourceTree = "<group>"; };
+		1262097B2B66E12B00B4C5CA /* SalesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesTableViewController.swift; sourceTree = "<group>"; };
+		1262097D2B66E18800B4C5CA /* AddSalesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSalesViewController.swift; sourceTree = "<group>"; };
+		1262097F2B66E19B00B4C5CA /* UpdateSalesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSalesViewController.swift; sourceTree = "<group>"; };
 		12C04CD32B617EC800003515 /* Buy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buy.swift; sourceTree = "<group>"; };
 		12C04CD52B617F7100003515 /* BuyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyVM.swift; sourceTree = "<group>"; };
 		12C04CD72B6180F900003515 /* AddBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBuyViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +128,7 @@
 				1213B3C32B0D410600E8E0D8 /* CompanyView */,
 				125839E52B5EA33100C33BD2 /* ProductView */,
 				12C04CDF2B61813C00003515 /* Buy */,
+				126209812B66E26500B4C5CA /* Sale */,
 				1207F5BE2B078760008307A4 /* Cells */,
 			);
 			path = View;
@@ -131,6 +142,7 @@
 				12514A622B57D3E7005406D8 /* CompanyBank.swift */,
 				12514A642B57DF20005406D8 /* Province.swift */,
 				12C04CD32B617EC800003515 /* Buy.swift */,
+				126209772B66DE0900B4C5CA /* Sale.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,6 +185,7 @@
 				12E477322B4C244D002889F0 /* ProductTableViewCell.swift */,
 				1207F5BC2B078754008307A4 /* CompanyTableViewCell.swift */,
 				12C04CDB2B61811D00003515 /* BuyTableViewCell.swift */,
+				126209792B66E0EA00B4C5CA /* SalesTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -199,6 +212,16 @@
 				125839E62B5EA36500C33BD2 /* UpdateProductViewController.swift */,
 			);
 			path = ProductView;
+			sourceTree = "<group>";
+		};
+		126209812B66E26500B4C5CA /* Sale */ = {
+			isa = PBXGroup;
+			children = (
+				1262097B2B66E12B00B4C5CA /* SalesTableViewController.swift */,
+				1262097D2B66E18800B4C5CA /* AddSalesViewController.swift */,
+				1262097F2B66E19B00B4C5CA /* UpdateSalesViewController.swift */,
+			);
+			path = Sale;
 			sourceTree = "<group>";
 		};
 		12AD06392B28E266008674CE /* BankView */ = {
@@ -398,11 +421,13 @@
 				12514A592B56B727005406D8 /* AddBankViewController.swift in Sources */,
 				12C04CDC2B61811D00003515 /* BuyTableViewCell.swift in Sources */,
 				1207F5AC2B075350008307A4 /* User.swift in Sources */,
+				1262097A2B66E0EA00B4C5CA /* SalesTableViewCell.swift in Sources */,
 				12E643652B4DD0C0003FADC3 /* Product.swift in Sources */,
 				12514A5F2B570BF7005406D8 /* UpdateAddressViewController.swift in Sources */,
 				1207F5BD2B078754008307A4 /* CompanyTableViewCell.swift in Sources */,
 				1207F5B82B07587C008307A4 /* CompanyVM.swift in Sources */,
 				1207F5AA2B075306008307A4 /* FirebaseUserListener.swift in Sources */,
+				1262097C2B66E12B00B4C5CA /* SalesTableViewController.swift in Sources */,
 				12514A632B57D3E7005406D8 /* CompanyBank.swift in Sources */,
 				12514A5B2B570BA3005406D8 /* CompanyDetailViewController.swift in Sources */,
 				12C04CDA2B61810800003515 /* UpdateBuyViewController.swift in Sources */,
@@ -410,8 +435,10 @@
 				1207F5AE2B075377008307A4 /* Constants.swift in Sources */,
 				1207F5C02B07877D008307A4 /* SettingsTableViewController.swift in Sources */,
 				12514A552B56B6D8005406D8 /* AddCompanyViewController.swift in Sources */,
+				1262097E2B66E18800B4C5CA /* AddSalesViewController.swift in Sources */,
 				12514A5D2B570BD4005406D8 /* UpdateCompanyViewController.swift in Sources */,
 				1204CA632B5EF60000EF2629 /* ProductVM.swift in Sources */,
+				126209782B66DE0900B4C5CA /* Sale.swift in Sources */,
 				12E477312B4C2422002889F0 /* AddProductViewController.swift in Sources */,
 				12514A612B570C03005406D8 /* UpdateBankViewController.swift in Sources */,
 				12C04CD82B6180F900003515 /* AddBuyViewController.swift in Sources */,
@@ -422,6 +449,7 @@
 				1207F5B22B0753DC008307A4 /* FCollectionReference.swift in Sources */,
 				1207F5BB2B078730008307A4 /* CompanyTableViewController.swift in Sources */,
 				12514A652B57DF20005406D8 /* Province.swift in Sources */,
+				126209802B66E19B00B4C5CA /* UpdateSalesViewController.swift in Sources */,
 				125839E72B5EA36500C33BD2 /* UpdateProductViewController.swift in Sources */,
 				1207F5B02B075398008307A4 /* Extensions.swift in Sources */,
 				12514A672B57DFA1005406D8 /* ProvinceVM.swift in Sources */,

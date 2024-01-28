@@ -2169,16 +2169,16 @@
             </objects>
             <point key="canvasLocation" x="5250" y="-2149"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Sales Table View Controller-->
         <scene sceneID="hmX-bE-oIB">
             <objects>
-                <tableViewController id="K5H-R0-ifC" sceneMemberID="viewController">
+                <tableViewController id="K5H-R0-ifC" customClass="SalesTableViewController" customModule="Bir_Esnaf" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="rcV-20-moV">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="199" id="sCo-8G-QiN">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="199" id="sCo-8G-QiN" customClass="SalesTableViewCell" customModule="Bir_Esnaf" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="199"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sCo-8G-QiN" id="6cO-J1-IDU">
@@ -2281,7 +2281,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Satış Fiyatı:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Pc-Xc-twV">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30/12/2024" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Pc-Xc-twV">
                                             <rect key="frame" x="123.99999999999999" y="164" width="230.66666666666663" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230.66666666666663" id="mZe-IL-SDc"/>
@@ -2324,6 +2324,13 @@
                                         <constraint firstItem="TQE-PT-FEj" firstAttribute="trailing" secondItem="6cO-J1-IDU" secondAttribute="trailingMargin" id="yre-he-pyB"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="prodName" destination="CZg-6T-B7U" id="UnD-a7-jLn"/>
+                                    <outlet property="saleDate" destination="5Pc-Xc-twV" id="cE2-h8-dFq"/>
+                                    <outlet property="salePrice" destination="hvT-or-8zK" id="ayL-it-tz4"/>
+                                    <outlet property="total" destination="86M-qB-cXg" id="X83-sq-j30"/>
+                                    <outlet property="totalPrice" destination="TQE-PT-FEj" id="Nou-G6-y9Z"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -2347,10 +2354,10 @@
             </objects>
             <point key="canvasLocation" x="4284.7328244274804" y="-1077.4647887323945"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Sales View Controller-->
         <scene sceneID="VCT-dA-bpN">
             <objects>
-                <viewController id="bzY-lp-xGF" sceneMemberID="viewController">
+                <viewController id="bzY-lp-xGF" customClass="AddSalesViewController" customModule="Bir_Esnaf" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yfk-bW-9i5">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2410,22 +2417,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tpt-rE-rvd">
-                                <rect key="frame" x="327" y="31" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Az7-wf-IEp"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="OqM-u8-KkD"/>
-                                </constraints>
-                                <color key="tintColor" name="customColor2"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="xmark.app" catalog="system"/>
-                                <connections>
-                                    <action selector="cancelButton:" destination="Ger-8c-uNR" eventType="touchUpInside" id="GYC-VW-ZIs"/>
-                                    <action selector="cancelButton:" destination="2N0-1H-afz" eventType="touchUpInside" id="IDW-0i-XcK"/>
-                                    <action selector="cancelButton:" destination="bvM-yX-bBu" eventType="touchUpInside" id="JwC-nw-GBF"/>
-                                    <action selector="compCancelButton:" destination="oJF-z1-xYc" eventType="touchUpInside" id="FkH-T3-TnB"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ürünler" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPp-XA-c9t">
                                 <rect key="frame" x="16" y="15" width="62" height="22"/>
                                 <constraints>
@@ -2437,9 +2428,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tmR-lG-dZI">
-                                <rect key="frame" x="0.0" y="37" width="393" height="162"/>
+                                <rect key="frame" x="0.0" y="45" width="393" height="154"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="162" id="TEM-AW-dQI"/>
+                                    <constraint firstAttribute="height" constant="154" id="TEM-AW-dQI"/>
                                     <constraint firstAttribute="width" constant="393" id="Uu1-sD-cbK"/>
                                 </constraints>
                             </pickerView>
@@ -2478,7 +2469,25 @@
                                     <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="20"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="saveSaleButton:" destination="bzY-lp-xGF" eventType="touchUpInside" id="ETg-Sp-TjN"/>
                                     <action selector="updateButton:" destination="2N0-1H-afz" eventType="touchUpInside" id="ybj-tw-UmY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tpt-rE-rvd">
+                                <rect key="frame" x="327" y="-13" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Az7-wf-IEp"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="OqM-u8-KkD"/>
+                                </constraints>
+                                <color key="tintColor" name="customColor2"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="xmark.app" catalog="system"/>
+                                <connections>
+                                    <action selector="cancelButton:" destination="Ger-8c-uNR" eventType="touchUpInside" id="GYC-VW-ZIs"/>
+                                    <action selector="cancelButton:" destination="2N0-1H-afz" eventType="touchUpInside" id="IDW-0i-XcK"/>
+                                    <action selector="cancelButton:" destination="bvM-yX-bBu" eventType="touchUpInside" id="JwC-nw-GBF"/>
+                                    <action selector="compCancelButton:" destination="oJF-z1-xYc" eventType="touchUpInside" id="FkH-T3-TnB"/>
+                                    <action selector="dismissButton:" destination="bzY-lp-xGF" eventType="touchUpInside" id="EZj-yN-YDw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2493,7 +2502,7 @@
                             <constraint firstItem="U6L-Uz-P9f" firstAttribute="leading" secondItem="CO8-ag-lhG" secondAttribute="leading" id="Aok-kl-rEH"/>
                             <constraint firstItem="JX7-gQ-Fl4" firstAttribute="top" secondItem="WSe-D0-dkt" secondAttribute="bottom" constant="30" id="CHj-aK-5dT"/>
                             <constraint firstItem="tmR-lG-dZI" firstAttribute="trailing" secondItem="CO8-ag-lhG" secondAttribute="trailing" id="CJb-5e-5Jz"/>
-                            <constraint firstItem="tmR-lG-dZI" firstAttribute="top" secondItem="dPp-XA-c9t" secondAttribute="bottom" id="Dlo-gH-4ff"/>
+                            <constraint firstItem="tmR-lG-dZI" firstAttribute="top" secondItem="dPp-XA-c9t" secondAttribute="bottom" constant="8" id="Dlo-gH-4ff"/>
                             <constraint firstItem="CO8-ag-lhG" firstAttribute="trailing" secondItem="yDA-Jm-bCP" secondAttribute="trailing" constant="58" id="G0l-3N-YoI"/>
                             <constraint firstAttribute="bottom" secondItem="U6L-Uz-P9f" secondAttribute="bottom" id="I7l-9Q-1UU"/>
                             <constraint firstItem="CO8-ag-lhG" firstAttribute="trailing" secondItem="GnM-de-Yn8" secondAttribute="trailing" constant="29" id="Isr-Rg-O8F"/>
@@ -2505,7 +2514,7 @@
                             <constraint firstItem="4dl-YL-NpW" firstAttribute="leading" secondItem="CO8-ag-lhG" secondAttribute="leading" constant="16" id="RER-UB-G7P"/>
                             <constraint firstItem="4dl-YL-NpW" firstAttribute="top" secondItem="tmR-lG-dZI" secondAttribute="bottom" constant="16" id="XhC-cY-ZIZ"/>
                             <constraint firstItem="2Om-Gg-roe" firstAttribute="leading" secondItem="CO8-ag-lhG" secondAttribute="leading" constant="16" id="Yt4-7X-Dcj"/>
-                            <constraint firstItem="Tpt-rE-rvd" firstAttribute="top" secondItem="yfk-bW-9i5" secondAttribute="top" constant="31" id="brf-C4-XpV"/>
+                            <constraint firstItem="Tpt-rE-rvd" firstAttribute="top" secondItem="yfk-bW-9i5" secondAttribute="top" constant="-13" id="brf-C4-XpV"/>
                             <constraint firstItem="cq5-Yw-CB4" firstAttribute="top" secondItem="4dl-YL-NpW" secondAttribute="bottom" constant="42" id="eRP-0y-jAI"/>
                             <constraint firstItem="U6L-Uz-P9f" firstAttribute="trailing" secondItem="CO8-ag-lhG" secondAttribute="trailing" id="fHq-l2-5pt"/>
                             <constraint firstItem="Bd4-de-atT" firstAttribute="trailing" secondItem="CO8-ag-lhG" secondAttribute="trailing" id="g4C-j4-flw"/>
@@ -2522,6 +2531,13 @@
                             <constraint firstItem="JX7-gQ-Fl4" firstAttribute="leading" secondItem="2Om-Gg-roe" secondAttribute="trailing" constant="8" symbolic="YES" id="wlh-C4-FUg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="prodPicker" destination="tmR-lG-dZI" id="hD0-m4-9Hd"/>
+                        <outlet property="salePrice" destination="GnM-de-Yn8" id="YAh-IW-10P"/>
+                        <outlet property="stepper" destination="yDA-Jm-bCP" id="xOw-pk-Q4g"/>
+                        <outlet property="totalPrice" destination="JX7-gQ-Fl4" id="g3k-Ny-w0C"/>
+                        <outlet property="totalStepper" destination="WSe-D0-dkt" id="oqn-y8-gDH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ENh-tT-mWd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3480,10 +3496,10 @@
             </objects>
             <point key="canvasLocation" x="6176" y="-1849"/>
         </scene>
-        <!--View Controller-->
+        <!--Update Sales View Controller-->
         <scene sceneID="oYZ-mE-e2h">
             <objects>
-                <viewController id="gq5-Ed-4JX" sceneMemberID="viewController">
+                <viewController id="gq5-Ed-4JX" customClass="UpdateSalesViewController" customModule="Bir_Esnaf" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="twR-zm-JJF">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3550,22 +3566,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRg-2D-H25">
-                                <rect key="frame" x="327" y="31" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="4bX-T7-5vV"/>
-                                    <constraint firstAttribute="height" constant="50" id="Xdr-T7-8gk"/>
-                                </constraints>
-                                <color key="tintColor" name="customColor2"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="xmark.app" catalog="system"/>
-                                <connections>
-                                    <action selector="cancelButton:" destination="bvM-yX-bBu" eventType="touchUpInside" id="jFr-nr-BAo"/>
-                                    <action selector="cancelButton:" destination="2N0-1H-afz" eventType="touchUpInside" id="q9e-G2-Lc0"/>
-                                    <action selector="cancelButton:" destination="Ger-8c-uNR" eventType="touchUpInside" id="qlp-Na-vrK"/>
-                                    <action selector="compCancelButton:" destination="oJF-z1-xYc" eventType="touchUpInside" id="xRT-Yl-D9j"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ürünler" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POq-z8-O2i">
                                 <rect key="frame" x="16" y="15" width="62" height="22"/>
                                 <constraints>
@@ -3577,10 +3577,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GxL-fb-vlx">
-                                <rect key="frame" x="0.0" y="37" width="393" height="162"/>
+                                <rect key="frame" x="0.0" y="45" width="393" height="154"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="393" id="4OT-by-9o1"/>
-                                    <constraint firstAttribute="height" constant="162" id="Ro1-17-55B"/>
+                                    <constraint firstAttribute="height" constant="154" id="Ro1-17-55B"/>
                                 </constraints>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toplam Tutar:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7D3-zl-bcs">
@@ -3611,7 +3611,25 @@
                                     <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="20"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="salesUpdateButton:" destination="gq5-Ed-4JX" eventType="touchUpInside" id="Sh8-ax-Y2E"/>
                                     <action selector="updateButton:" destination="2N0-1H-afz" eventType="touchUpInside" id="OaE-4h-NDG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRg-2D-H25">
+                                <rect key="frame" x="327" y="-13" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="4bX-T7-5vV"/>
+                                    <constraint firstAttribute="height" constant="50" id="Xdr-T7-8gk"/>
+                                </constraints>
+                                <color key="tintColor" name="customColor2"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="xmark.app" catalog="system"/>
+                                <connections>
+                                    <action selector="cancelButton:" destination="bvM-yX-bBu" eventType="touchUpInside" id="jFr-nr-BAo"/>
+                                    <action selector="cancelButton:" destination="2N0-1H-afz" eventType="touchUpInside" id="q9e-G2-Lc0"/>
+                                    <action selector="cancelButton:" destination="Ger-8c-uNR" eventType="touchUpInside" id="qlp-Na-vrK"/>
+                                    <action selector="compCancelButton:" destination="oJF-z1-xYc" eventType="touchUpInside" id="xRT-Yl-D9j"/>
+                                    <action selector="dismissButton:" destination="gq5-Ed-4JX" eventType="touchUpInside" id="6Ff-At-jx3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -3635,9 +3653,9 @@
                             <constraint firstItem="t3K-eX-vo8" firstAttribute="leading" secondItem="m0e-4F-7Am" secondAttribute="trailing" constant="8" symbolic="YES" id="Qxb-cu-bkm"/>
                             <constraint firstItem="m0e-4F-7Am" firstAttribute="leading" secondItem="bsH-Xx-hMo" secondAttribute="leading" constant="16" id="WUP-ek-yFI"/>
                             <constraint firstItem="m0e-4F-7Am" firstAttribute="top" secondItem="Ih0-Cu-Hlo" secondAttribute="bottom" constant="42" id="XYb-gq-n3i"/>
-                            <constraint firstItem="GxL-fb-vlx" firstAttribute="top" secondItem="POq-z8-O2i" secondAttribute="bottom" id="aid-7z-S2j"/>
+                            <constraint firstItem="GxL-fb-vlx" firstAttribute="top" secondItem="POq-z8-O2i" secondAttribute="bottom" constant="8" id="aid-7z-S2j"/>
                             <constraint firstItem="5WU-9C-s4x" firstAttribute="leading" secondItem="Ih0-Cu-Hlo" secondAttribute="trailing" constant="8" symbolic="YES" id="ff4-8g-dm3"/>
-                            <constraint firstItem="TRg-2D-H25" firstAttribute="top" secondItem="twR-zm-JJF" secondAttribute="top" constant="31" id="gVg-Y5-cSi"/>
+                            <constraint firstItem="TRg-2D-H25" firstAttribute="top" secondItem="twR-zm-JJF" secondAttribute="top" constant="-13" id="gVg-Y5-cSi"/>
                             <constraint firstItem="7D3-zl-bcs" firstAttribute="top" secondItem="m0e-4F-7Am" secondAttribute="bottom" constant="42" id="iNJ-mP-EM5"/>
                             <constraint firstAttribute="bottom" secondItem="vme-Uj-JeR" secondAttribute="bottom" id="j2X-HK-PBt"/>
                             <constraint firstItem="bsH-Xx-hMo" firstAttribute="trailing" secondItem="orA-0b-mUT" secondAttribute="trailing" constant="140" id="j7T-ha-MDj"/>
@@ -3655,10 +3673,17 @@
                             <constraint firstItem="vEl-16-MDT" firstAttribute="top" secondItem="t3K-eX-vo8" secondAttribute="bottom" constant="30" id="zrD-8g-qvS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="prodName" destination="GxL-fb-vlx" id="8rM-I5-Ahn"/>
+                        <outlet property="salePrice" destination="5WU-9C-s4x" id="tfD-55-GOI"/>
+                        <outlet property="totalPrice" destination="vEl-16-MDT" id="ZNz-9F-YLo"/>
+                        <outlet property="totalStepper" destination="vqh-g4-RXk" id="vDx-4J-blb"/>
+                        <outlet property="totalStepperLabel" destination="t3K-eX-vo8" id="a3l-CL-rcc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nIG-hE-sNt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5960" y="-920"/>
+            <point key="canvasLocation" x="5948.8549618320612" y="-919.0140845070423"/>
         </scene>
     </scenes>
     <resources>
