@@ -67,8 +67,38 @@ class BuyTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Sil") { contAct, view, bool in
+            self.showDeleteAlert(for: indexPath)
+        }
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
     
     //MARK: - Helpers
+    func showDeleteAlert(for indexPath: IndexPath) {
+        let alertController = UIAlertController(title: "Seçilen Satırı Silmek Üzeresiniz", message: "Silme işlemine devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
+        alertController.addAction(cancelAction)
+        let continueAct = UIAlertAction(title: "Tamam", style: .destructive) { act in
+            DispatchQueue.main.async {
+                self.deleteCell(at: indexPath)
+            }
+        }
+        alertController.addAction(continueAct)
+        self.present(alertController, animated: true)
+    }
+    
+    func deleteCell(at indexPath: IndexPath) {
+        let buy = self.buyList[indexPath.row]
+        if let buyId = buy.buyId {
+            if let intBuyId = Int(buyId) {
+                self.buyVM.deleteCell(buyId: intBuyId)
+                self.getBuyList()
+            }
+        }
+    }
+    
     func getBuyList() {
         buyVM.getBuyList(userMail: mail!) { fetchBuyList in
             self.buyList = fetchBuyList

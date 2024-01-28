@@ -51,11 +51,19 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             DispatchQueue.main.async {
                 self.compComponent = compId
                 if let intCId = Int(self.compComponent) {
-                    let intLastCId = intCId - 1
-                    if let compString = self.compList[intLastCId].compName {
-                        self.compSelect = compString
+                    if intCId >= 2 {
+                        let intLastCId = intCId - 1
+                        if let compString = self.compList[intLastCId].compName {  // burada hata atıyor
+                            self.compSelect = compString
+                        }
+                        self.compPickerUp.selectRow(intLastCId, inComponent: 0, animated: true)
                     }
-                    self.compPickerUp.selectRow(intLastCId, inComponent: 0, animated: true)
+                    else {
+                        if let compString = self.compList[intCId].compName {  // burada hata atıyor
+                            self.compSelect = compString
+                        }
+                        self.compPickerUp.selectRow(intCId, inComponent: 0, animated: true)
+                    }
                 }
             }
         }

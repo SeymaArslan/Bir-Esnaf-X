@@ -8,6 +8,25 @@
 import Foundation
 
 class BuyVM {
+    func deleteCell(buyId: Int) {
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteBuy.php")!)
+        req.httpMethod = "POST"
+        let post = "buyId=\(buyId)"
+        req.httpBody = post.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "Error delete buy cell")
+                return
+            }
+            do {
+                if let result = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                    print(result)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
     
     func updateBuy(buyId: Int, compName: String, productName: String, price: Double, total: Double, totalPrice: Double, buyDate: String) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/updateBuy.php")!)
