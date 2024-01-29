@@ -13,6 +13,7 @@ class SaleData: Codable {
 
 class Sale: Codable {
     let saleId: String?
+    let userMail: String?
     let prodName: String?
     let salePrice: String?
     let total: String?

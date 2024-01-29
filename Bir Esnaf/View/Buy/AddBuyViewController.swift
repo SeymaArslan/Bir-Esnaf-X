@@ -94,7 +94,6 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 self.view.window?.rootViewController?.dismiss(animated: true)
             }
         }
-        
     }
     
     @objc func doneButtonClicked() {

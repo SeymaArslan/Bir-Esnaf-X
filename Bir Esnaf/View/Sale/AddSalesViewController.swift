@@ -31,6 +31,8 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         prodPicker.delegate = self
         prodPicker.dataSource = self
+        
+        createDatePicker()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,14 +40,23 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         fetchProd()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !prodList.isEmpty {
+            if let selectPicker = prodList[0].prodName {
+                prodSelect = selectPicker
+            }
+        }
+    }
+    
     //MARK: - IB Actions
     @IBAction func saveSaleButton(_ sender: Any) {
-        
+        addSale()
     }
     
     
     @IBAction func dismissButton(_ sender: Any) {
-        
+        self.view.window?.rootViewController?.dismiss(animated: true)
     }
     
     
@@ -71,6 +82,43 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     //MARK: - Helpers
+    func addSale() {
+        if let sPrice = salePrice.text, let total = total.text, let totPrice = totalPrice.text, let date = saleDateTextField.text {
+            if let doublePrice = Double(sPrice), let doubleTotal = Double(total), let doubleTPrice = Double(totPrice) {
+                print(mail!)
+                print(prodSelect)
+                print(doublePrice)
+                print(doubleTotal)
+                print(doubleTPrice)
+                print(date)
+                
+                saleVM.addSale(mail: mail!, prodName: prodSelect, salePrice: doublePrice, total: doubleTotal, totalPrice: doubleTPrice, saleDate: date)
+                self.view.window?.rootViewController?.dismiss(animated: true)
+            }
+        }
+    }
+    
+    @objc func addButtonClicked() {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.dateFormat = "dd-MM-yyyy"
+        formatter.timeStyle = .none
+        saleDateTextField.text = formatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+    }
+    
+    func createDatePicker() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: nil, action: #selector(addButtonClicked))
+        toolbar.setItems([doneButton], animated: true)
+        
+        saleDateTextField.inputAccessoryView = toolbar
+        saleDateTextField.inputView = datePicker
+        datePicker.datePickerMode = .date
+    }
+    
     func fetchProd() {
         saleVM.fetchProdList { prodData in
             self.prodList = prodData
