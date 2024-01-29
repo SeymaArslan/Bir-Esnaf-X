@@ -11,10 +11,9 @@ class UpdateSalesViewController: UIViewController {
 
     @IBOutlet weak var prodName: UIPickerView!
     @IBOutlet weak var salePrice: UITextField!
-    @IBOutlet weak var totalStepperLabel: UILabel!
-    @IBOutlet weak var totalStepper: UIStepper!
+    @IBOutlet weak var total: UITextField!
     @IBOutlet weak var totalPrice: UITextField!
-    
+    @IBOutlet weak var buyDateTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()

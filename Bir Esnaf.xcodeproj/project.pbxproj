@@ -35,6 +35,7 @@
 		1262097C2B66E12B00B4C5CA /* SalesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262097B2B66E12B00B4C5CA /* SalesTableViewController.swift */; };
 		1262097E2B66E18800B4C5CA /* AddSalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262097D2B66E18800B4C5CA /* AddSalesViewController.swift */; };
 		126209802B66E19B00B4C5CA /* UpdateSalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262097F2B66E19B00B4C5CA /* UpdateSalesViewController.swift */; };
+		129814102B6784D6000EDF11 /* SaleVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298140F2B6784D6000EDF11 /* SaleVM.swift */; };
 		12C04CD42B617EC800003515 /* Buy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C04CD32B617EC800003515 /* Buy.swift */; };
 		12C04CD62B617F7100003515 /* BuyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C04CD52B617F7100003515 /* BuyVM.swift */; };
 		12C04CD82B6180F900003515 /* AddBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C04CD72B6180F900003515 /* AddBuyViewController.swift */; };
@@ -84,6 +85,7 @@
 		1262097B2B66E12B00B4C5CA /* SalesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesTableViewController.swift; sourceTree = "<group>"; };
 		1262097D2B66E18800B4C5CA /* AddSalesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSalesViewController.swift; sourceTree = "<group>"; };
 		1262097F2B66E19B00B4C5CA /* UpdateSalesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSalesViewController.swift; sourceTree = "<group>"; };
+		1298140F2B6784D6000EDF11 /* SaleVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleVM.swift; sourceTree = "<group>"; };
 		12C04CD32B617EC800003515 /* Buy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buy.swift; sourceTree = "<group>"; };
 		12C04CD52B617F7100003515 /* BuyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyVM.swift; sourceTree = "<group>"; };
 		12C04CD72B6180F900003515 /* AddBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBuyViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				12514A662B57DFA1005406D8 /* ProvinceVM.swift */,
 				1204CA622B5EF60000EF2629 /* ProductVM.swift */,
 				12C04CD52B617F7100003515 /* BuyVM.swift */,
+				1298140F2B6784D6000EDF11 /* SaleVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				125839E72B5EA36500C33BD2 /* UpdateProductViewController.swift in Sources */,
 				1207F5B02B075398008307A4 /* Extensions.swift in Sources */,
 				12514A672B57DFA1005406D8 /* ProvinceVM.swift in Sources */,
+				129814102B6784D6000EDF11 /* SaleVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
