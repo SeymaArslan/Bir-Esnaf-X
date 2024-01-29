@@ -85,13 +85,6 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func addSale() {
         if let sPrice = salePrice.text, let total = total.text, let totPrice = totalPrice.text, let date = saleDateTextField.text {
             if let doublePrice = Double(sPrice), let doubleTotal = Double(total), let doubleTPrice = Double(totPrice) {
-                print(mail!)
-                print(prodSelect)
-                print(doublePrice)
-                print(doubleTotal)
-                print(doubleTPrice)
-                print(date)
-                
                 saleVM.addSale(mail: mail!, prodName: prodSelect, salePrice: doublePrice, total: doubleTotal, totalPrice: doubleTPrice, saleDate: date)
                 self.view.window?.rootViewController?.dismiss(animated: true)
             }

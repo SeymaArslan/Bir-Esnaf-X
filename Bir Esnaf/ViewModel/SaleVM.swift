@@ -8,6 +8,24 @@
 import Foundation
 
 class SaleVM {
+    func getSaleList(mail: String, completion: @escaping ([Sale]) -> () ) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/saleList.php")!)
+        request.httpMethod = "POST"
+        let post = "userMail=\(mail)"
+        request.httpBody = post.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "get sale list error")
+                return
+            }
+            do {
+                let response = try JSONDecoder().decode(SaleData.self, from: data!)
+                completion(response.sale ?? [Sale]())
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
     
     func addSale(mail: String, prodName: String, salePrice: Double, total: Double, totalPrice: Double, saleDate: String) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/addSale.php")!)

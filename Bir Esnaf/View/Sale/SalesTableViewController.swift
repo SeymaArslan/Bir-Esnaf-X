@@ -19,10 +19,15 @@ class SalesTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.rowHeight = 208.0
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getSaleList()
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -40,6 +45,17 @@ class SalesTableViewController: UITableViewController {
         cell.totalPrice.text = sale.totalPrice
         cell.saleDate.text = sale.saleDate
         return cell
+    }
+    
+    
+    //MARK: - Helpers
+    func getSaleList() {
+        saleVM.getSaleList(mail: mail!) { saleListData in
+            self.saleList = saleListData
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
 
