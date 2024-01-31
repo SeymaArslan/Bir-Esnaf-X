@@ -61,7 +61,7 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     }
     
     @IBAction func salesUpdateButton(_ sender: Any) {
-        
+        update()
     }
     
     @IBAction func dismissButton(_ sender: Any) {
@@ -89,6 +89,15 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     
     //MARK: - Helpers
+    func update() {
+        if let salePrice = salePrice.text, let total = total.text, let totalPrice = totalPrice.text, let buyDate = buyDateTextField.text {
+            if let doubleSPrice = Double(salePrice), let doubleTotal = Double(total), let doubleTPrice = Double(totalPrice) {
+                saleVM.updateSale(prodName: prodSelect, salePrice: doubleSPrice, total: doubleTotal, totalPrice: doubleTPrice, saleDate: buyDate)
+                self.view.window?.rootViewController?.dismiss(animated: true)
+            }
+        }
+    }
+    
     func getCompList() {
         saleVM.fetchProdList { prodData in
             self.prodList = prodData

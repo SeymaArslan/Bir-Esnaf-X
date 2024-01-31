@@ -8,6 +8,29 @@
 import Foundation
 
 class SaleVM {
+    func deleteSale(userMail: String, saleId: Int) {
+        
+    }
+    
+    func updateSale(prodId: Int, prodName: String, salePrice: Double, total: Double, totalPrice: Double, saleDate: String) {
+        var req = URLRequest(url: URL(string: "")!)
+        req.httpMethod = "POST"
+        let post = "prodId=\(prodId)&prodName=\(prodName)&salePrice=\(salePrice)&total=\(total)&totalPrice=\(totalPrice)&saleDate=\(saleDate)"
+        req.httpBody = post.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "Sale Update error")
+                return
+            }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                    print(json)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
     
     func getSaleList(mail: String, completion: @escaping ([Sale]) -> () ) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/saleList.php")!)

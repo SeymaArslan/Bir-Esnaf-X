@@ -15,11 +15,15 @@ class SalesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.rowHeight = 208.0
+    
+        self.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl = self.refreshControl
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,6 +32,20 @@ class SalesTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteRow = UIContextualAction(style: .destructive, title: "Sil") { contextualAction, view, bool in
+            
+        }
+        return UISwipeActionsConfiguration(actions: [deleteRow])
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if self.refreshControl!.isRefreshing {
+            self.getSaleList()
+            self.refreshControl!.endRefreshing()
+        }
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -63,7 +81,12 @@ class SalesTableViewController: UITableViewController {
         }
     }
     
+    
     //MARK: - Helpers
+    func deleteRow(at indexPath: IndexPath) {
+        
+    }
+    
     func getSaleList() {
         saleVM.getSaleList(mail: mail!) { saleListData in
             self.saleList = saleListData
