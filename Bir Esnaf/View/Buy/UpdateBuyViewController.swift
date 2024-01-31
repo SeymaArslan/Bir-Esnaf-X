@@ -58,12 +58,11 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                         }
                         self.compPickerUp.selectRow(intLastCId, inComponent: 0, animated: true)
                     }
-                    else {
-                        if let compString = self.compList[intCId].compName {  // burada hata atıyor
+                    else if let compString = self.compList[intCId].compName {  // burada hata atıyor
                             self.compSelect = compString
                         }
                         self.compPickerUp.selectRow(intCId, inComponent: 0, animated: true)
-                    }
+                    
                 }
             }
         }

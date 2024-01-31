@@ -8,6 +8,7 @@
 import Foundation
 
 class SaleVM {
+    
     func getSaleList(mail: String, completion: @escaping ([Sale]) -> () ) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/saleList.php")!)
         request.httpMethod = "POST"

@@ -1,0 +1,681 @@
+
+/* Class = "UILabel"; text = "Şube Kodu:"; ObjectID = "10H-C6-Cmw"; */
+"10H-C6-Cmw.text" = "Şube Kodu:";
+
+/* Class = "UILabel"; text = "Email:"; ObjectID = "1FU-E9-fZg"; */
+"1FU-E9-fZg.text" = "Email:";
+
+/* Class = "UILabel"; text = "İlçe"; ObjectID = "1UC-Zl-P9o"; */
+"1UC-Zl-P9o.text" = "İlçe";
+
+/* Class = "UIButton"; configuration.subtitle = "  İptal"; ObjectID = "2FB-4F-swx"; */
+"2FB-4F-swx.configuration.subtitle" = "  İptal";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "2FB-4F-swx"; */
+"2FB-4F-swx.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Toplam Tutar:"; ObjectID = "2Om-Gg-roe"; */
+"2Om-Gg-roe.text" = "Toplam Tutar:";
+
+/* Class = "UILabel"; text = "Ürün Adı:"; ObjectID = "3Lp-hY-RT5"; */
+"3Lp-hY-RT5.text" = "Ürün Adı:";
+
+/* Class = "UITextField"; placeholder = "Hesap No"; ObjectID = "3PZ-1t-Zcj"; */
+"3PZ-1t-Zcj.placeholder" = "Hesap No";
+
+/* Class = "UILabel"; text = "Birim Fiyatı: "; ObjectID = "3oQ-eJ-7Ds"; */
+"3oQ-eJ-7Ds.text" = "Birim Fiyatı: ";
+
+/* Class = "UILabel"; text = "İlçe"; ObjectID = "4SM-IF-z5O"; */
+"4SM-IF-z5O.text" = "İlçe";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4Tl-Eb-drX"; */
+"4Tl-Eb-drX.text" = "Label";
+
+/* Class = "UILabel"; text = "Satış Fiyatı:"; ObjectID = "4dl-YL-NpW"; */
+"4dl-YL-NpW.text" = "Satış Fiyatı:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4s5-Mi-35S"; */
+"4s5-Mi-35S.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "5Cd-Lf-PZ8"; */
+"5Cd-Lf-PZ8.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = "Güncelle"; ObjectID = "5GX-C4-c1O"; */
+"5GX-C4-c1O.configuration.title" = "Güncelle";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "5GX-C4-c1O"; */
+"5GX-C4-c1O.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "30/12/2024"; ObjectID = "5Pc-Xc-twV"; */
+"5Pc-Xc-twV.text" = "30/12/2024";
+
+/* Class = "UILabel"; text = "Hesap Tipi:"; ObjectID = "5ab-ll-rIJ"; */
+"5ab-ll-rIJ.text" = "Hesap Tipi:";
+
+/* Class = "UINavigationItem"; title = "Ayarlar"; ObjectID = "67K-Z4-gZ7"; */
+"67K-Z4-gZ7.title" = "Ayarlar";
+
+/* Class = "UILabel"; text = "Hesap Adı"; ObjectID = "6td-4F-ES8"; */
+"6td-4F-ES8.text" = "Hesap Adı";
+
+/* Class = "UITextField"; placeholder = "Firma Mail"; ObjectID = "6z8-75-umk"; */
+"6z8-75-umk.placeholder" = "Firma Mail";
+
+/* Class = "UILabel"; text = "Toplam Tutar:"; ObjectID = "7D3-zl-bcs"; */
+"7D3-zl-bcs.text" = "Toplam Tutar:";
+
+/* Class = "UINavigationItem"; title = "Ürünler"; ObjectID = "7S2-GC-L0x"; */
+"7S2-GC-L0x.title" = "Ürünler";
+
+/* Class = "UIButton"; configuration.title = "Alım İşlemleri"; ObjectID = "7W6-b2-q26"; */
+"7W6-b2-q26.configuration.title" = "Alım İşlemleri";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7W6-b2-q26"; */
+"7W6-b2-q26.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Hesap Tipi"; ObjectID = "7vS-Na-gaR"; */
+"7vS-Na-gaR.placeholder" = "Hesap Tipi";
+
+/* Class = "UILabel"; text = "5"; ObjectID = "86M-qB-cXg"; */
+"86M-qB-cXg.text" = "5";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "89O-PZ-hlv"; */
+"89O-PZ-hlv.placeholder" = "Email";
+
+/* Class = "UIButton"; configuration.title = "Kayıt olun"; ObjectID = "8Nh-2T-k5h"; */
+"8Nh-2T-k5h.configuration.title" = "Kayıt olun";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "8Nh-2T-k5h"; */
+"8Nh-2T-k5h.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Banka Adı"; ObjectID = "8Zv-9n-HbF"; */
+"8Zv-9n-HbF.text" = "Banka Adı";
+
+/* Class = "UILabel"; text = "Firma Adı"; ObjectID = "99H-tc-yM6"; */
+"99H-tc-yM6.text" = "Firma Adı";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "9Ji-m7-uls"; */
+"9Ji-m7-uls.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Adet/Kg"; ObjectID = "9Xp-Ys-gVC"; */
+"9Xp-Ys-gVC.placeholder" = "Adet/Kg";
+
+/* Class = "UILabel"; text = "Tarih:"; ObjectID = "AzD-MP-rkN"; */
+"AzD-MP-rkN.text" = "Tarih:";
+
+/* Class = "UITextField"; placeholder = "IBAN"; ObjectID = "BIF-Bk-DoF"; */
+"BIF-Bk-DoF.placeholder" = "IBAN";
+
+/* Class = "UITabBarItem"; title = "Ayarlar"; ObjectID = "BNz-Gp-UCG"; */
+"BNz-Gp-UCG.title" = "Ayarlar";
+
+/* Class = "UIButton"; configuration.title = "Kaydet"; ObjectID = "BOD-sZ-zyg"; */
+"BOD-sZ-zyg.configuration.title" = "Kaydet";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "BOD-sZ-zyg"; */
+"BOD-sZ-zyg.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Adres:"; ObjectID = "BwS-BP-3Vz"; */
+"BwS-BP-3Vz.text" = "Adres:";
+
+/* Class = "UILabel"; text = "Miktar:"; ObjectID = "CNy-Wx-9y4"; */
+"CNy-Wx-9y4.text" = "Miktar:";
+
+/* Class = "UILabel"; text = "Ürün Adı"; ObjectID = "CZg-6T-B7U"; */
+"CZg-6T-B7U.text" = "Ürün Adı";
+
+/* Class = "UILabel"; text = "Mahalle"; ObjectID = "Ch9-k5-4iW"; */
+"Ch9-k5-4iW.text" = "Mahalle";
+
+/* Class = "UIButton"; configuration.title = "İleri"; ObjectID = "CpD-8x-bzY"; */
+"CpD-8x-bzY.configuration.title" = "İleri";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "CpD-8x-bzY"; */
+"CpD-8x-bzY.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Hesap Tipi (TRY/USD vs.)"; ObjectID = "D0t-Fh-UGY"; */
+"D0t-Fh-UGY.placeholder" = "Hesap Tipi (TRY/USD vs.)";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "D6x-HR-Lnu"; */
+"D6x-HR-Lnu.text" = "Label";
+
+/* Class = "UILabel"; text = "Adres"; ObjectID = "DAN-EG-jCx"; */
+"DAN-EG-jCx.text" = "Adres";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "DSE-QA-wNh"; */
+"DSE-QA-wNh.text" = "Label";
+
+/* Class = "UILabel"; text = "Telefon"; ObjectID = "DUq-ci-hAb"; */
+"DUq-ci-hAb.text" = "Telefon";
+
+/* Class = "UILabel"; text = "Banka Adı:"; ObjectID = "Dad-2t-BeS"; */
+"Dad-2t-BeS.text" = "Banka Adı:";
+
+/* Class = "UIButton"; configuration.title = "Güncelle"; ObjectID = "FW1-qt-z90"; */
+"FW1-qt-z90.configuration.title" = "Güncelle";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "FW1-qt-z90"; */
+"FW1-qt-z90.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "Ürünler"; ObjectID = "Foq-Ft-Qp9"; */
+"Foq-Ft-Qp9.title" = "Ürünler";
+
+/* Class = "UILabel"; text = "Şube Adı"; ObjectID = "Gzn-5f-BeC"; */
+"Gzn-5f-BeC.text" = "Şube Adı";
+
+/* Class = "UILabel"; text = "Şube Adı"; ObjectID = "Hms-CK-d8i"; */
+"Hms-CK-d8i.text" = "Şube Adı";
+
+/* Class = "UITextField"; placeholder = "İlçe"; ObjectID = "I77-Y1-SqK"; */
+"I77-Y1-SqK.placeholder" = "İlçe";
+
+/* Class = "UINavigationItem"; title = "Firmalar"; ObjectID = "I9G-kc-Zjw"; */
+"I9G-kc-Zjw.title" = "Firmalar";
+
+/* Class = "UILabel"; text = "50000"; ObjectID = "IPi-mc-w20"; */
+"IPi-mc-w20.text" = "50000";
+
+/* Class = "UITextField"; placeholder = "0 ₺"; ObjectID = "IQF-DL-1jM"; */
+"IQF-DL-1jM.placeholder" = "0 ₺";
+
+/* Class = "UILabel"; text = "Satış Fiyatı:"; ObjectID = "Ih0-Cu-Hlo"; */
+"Ih0-Cu-Hlo.text" = "Satış Fiyatı:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ihj-Oe-Bvx"; */
+"Ihj-Oe-Bvx.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Banka Adı"; ObjectID = "J2F-WV-Dt1"; */
+"J2F-WV-Dt1.placeholder" = "Banka Adı";
+
+/* Class = "UITextField"; placeholder = "Ürün Adı"; ObjectID = "JCM-JQ-QZx"; */
+"JCM-JQ-QZx.placeholder" = "Ürün Adı";
+
+/* Class = "UIButton"; configuration.title = "Güncelle"; ObjectID = "JJe-rS-hbm"; */
+"JJe-rS-hbm.configuration.title" = "Güncelle";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "JJe-rS-hbm"; */
+"JJe-rS-hbm.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Şifre (Tekrar)"; ObjectID = "JfW-X2-KNw"; */
+"JfW-X2-KNw.placeholder" = "Şifre (Tekrar)";
+
+/* Class = "UITextField"; placeholder = "Ürün Adı:"; ObjectID = "Joa-73-vlt"; */
+"Joa-73-vlt.placeholder" = "Ürün Adı:";
+
+/* Class = "UITextField"; placeholder = "Hesap Adı"; ObjectID = "KzK-AT-9rx"; */
+"KzK-AT-9rx.placeholder" = "Hesap Adı";
+
+/* Class = "UIButton"; configuration.title = "Tamam"; ObjectID = "LEQ-dF-ude"; */
+"LEQ-dF-ude.configuration.title" = "Tamam";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "LEQ-dF-ude"; */
+"LEQ-dF-ude.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "IBAN"; ObjectID = "LKD-A5-rif"; */
+"LKD-A5-rif.text" = "IBAN";
+
+/* Class = "UITextField"; placeholder = "Şube Adı"; ObjectID = "LgW-Nf-OLM"; */
+"LgW-Nf-OLM.placeholder" = "Şube Adı";
+
+/* Class = "UIButton"; configuration.title = "Tamam"; ObjectID = "LmU-bq-mOo"; */
+"LmU-bq-mOo.configuration.title" = "Tamam";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "LmU-bq-mOo"; */
+"LmU-bq-mOo.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Toplam"; ObjectID = "MMg-fx-JzM"; */
+"MMg-fx-JzM.placeholder" = "Toplam";
+
+/* Class = "UILabel"; text = "Satış Fiyatı:"; ObjectID = "Mmh-Io-03V"; */
+"Mmh-Io-03V.text" = "Satış Fiyatı:";
+
+/* Class = "UITextField"; placeholder = "Şifre"; ObjectID = "N7n-yM-rx6"; */
+"N7n-yM-rx6.placeholder" = "Şifre";
+
+/* Class = "UITextField"; placeholder = "Cadde/Sokak/Bina/No"; ObjectID = "Ne2-by-7LH"; */
+"Ne2-by-7LH.placeholder" = "Cadde/Sokak/Bina/No";
+
+/* Class = "UILabel"; text = "Miktar:"; ObjectID = "Nho-vU-GXj"; */
+"Nho-vU-GXj.text" = "Miktar:";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "OL8-oc-W6Q"; */
+"OL8-oc-W6Q.text" = "Email";
+
+/* Class = "UITextField"; placeholder = "Banka Adı"; ObjectID = "OUQ-vX-9dO"; */
+"OUQ-vX-9dO.placeholder" = "Banka Adı";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Opo-01-qcf"; */
+"Opo-01-qcf.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Firmalar"; ObjectID = "Os4-2L-bjK"; */
+"Os4-2L-bjK.text" = "Firmalar";
+
+/* Class = "UILabel"; text = "30/12/2024"; ObjectID = "PBw-kh-mvg"; */
+"PBw-kh-mvg.text" = "30/12/2024";
+
+/* Class = "UILabel"; text = "Ürünler"; ObjectID = "POq-z8-O2i"; */
+"POq-z8-O2i.text" = "Ürünler";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Pl3-UO-AXo"; */
+"Pl3-UO-AXo.text" = "Label";
+
+/* Class = "UILabel"; text = "Ürün Adı"; ObjectID = "QIm-8B-Evo"; */
+"QIm-8B-Evo.text" = "Ürün Adı";
+
+/* Class = "UILabel"; text = "Adet/Kg:"; ObjectID = "Qif-RH-zkU"; */
+"Qif-RH-zkU.text" = "Adet/Kg:";
+
+/* Class = "UINavigationItem"; title = "Ürünü Güncelle"; ObjectID = "QvX-bh-kA4"; */
+"QvX-bh-kA4.title" = "Ürünü Güncelle";
+
+/* Class = "UINavigationItem"; title = "Ürün Ekle"; ObjectID = "R0x-4K-gWM"; */
+"R0x-4K-gWM.title" = "Ürün Ekle";
+
+/* Class = "UITextField"; placeholder = "0 Adet/Kg"; ObjectID = "REU-ms-NwQ"; */
+"REU-ms-NwQ.placeholder" = "0 Adet/Kg";
+
+/* Class = "UIButton"; configuration.title = "Güncelle"; ObjectID = "RHQ-qT-6kf"; */
+"RHQ-qT-6kf.configuration.title" = "Güncelle";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "RHQ-qT-6kf"; */
+"RHQ-qT-6kf.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "IBAN:"; ObjectID = "RW1-Tp-vld"; */
+"RW1-Tp-vld.text" = "IBAN:";
+
+/* Class = "UILabel"; text = "Birim Fiyat:"; ObjectID = "RfL-bo-LVV"; */
+"RfL-bo-LVV.text" = "Birim Fiyat:";
+
+/* Class = "UITextField"; placeholder = "Tarih"; ObjectID = "Rl0-oq-Mey"; */
+"Rl0-oq-Mey.placeholder" = "Tarih";
+
+/* Class = "UILabel"; text = "Miktar"; ObjectID = "Rzg-dZ-oTK"; */
+"Rzg-dZ-oTK.text" = "Miktar";
+
+/* Class = "UIButton"; configuration.title = "Çıkış Yap"; ObjectID = "SAj-hS-YVg"; */
+"SAj-hS-YVg.configuration.title" = "Çıkış Yap";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "SAj-hS-YVg"; */
+"SAj-hS-YVg.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Mahalle"; ObjectID = "T2i-7Q-h39"; */
+"T2i-7Q-h39.text" = "Mahalle";
+
+/* Class = "UILabel"; text = "65 TL"; ObjectID = "TQE-PT-FEj"; */
+"TQE-PT-FEj.text" = "65 TL";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "TRg-2D-H25"; */
+"TRg-2D-H25.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Fiyat"; ObjectID = "TdE-fx-3GT"; */
+"TdE-fx-3GT.text" = "Fiyat";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Tpt-rE-rvd"; */
+"Tpt-rE-rvd.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Firma A.Ş"; ObjectID = "Tx7-63-t4Q"; */
+"Tx7-63-t4Q.text" = "Firma A.Ş";
+
+/* Class = "UILabel"; text = "Banka Bilgileri"; ObjectID = "U2h-Gb-cZq"; */
+"U2h-Gb-cZq.text" = "Banka Bilgileri";
+
+/* Class = "UITextField"; placeholder = "Hesap No"; ObjectID = "U47-fI-B2I"; */
+"U47-fI-B2I.placeholder" = "Hesap No";
+
+/* Class = "UILabel"; text = "Tarih:"; ObjectID = "UUU-By-1mh"; */
+"UUU-By-1mh.text" = "Tarih:";
+
+/* Class = "UITextField"; placeholder = "Mahalle"; ObjectID = "VBD-gI-Gja"; */
+"VBD-gI-Gja.placeholder" = "Mahalle";
+
+/* Class = "UILabel"; text = "Şube Adı:"; ObjectID = "VPR-PS-hCT"; */
+"VPR-PS-hCT.text" = "Şube Adı:";
+
+/* Class = "UILabel"; text = "Hesap Tipi:"; ObjectID = "W3B-ud-iBe"; */
+"W3B-ud-iBe.text" = "Hesap Tipi:";
+
+/* Class = "UILabel"; text = "Toplam Maliyet:"; ObjectID = "W5R-cc-Um1"; */
+"W5R-cc-Um1.text" = "Toplam Maliyet:";
+
+/* Class = "UILabel"; text = "Miktar:"; ObjectID = "WJb-7W-tkJ"; */
+"WJb-7W-tkJ.text" = "Miktar:";
+
+/* Class = "UILabel"; text = "5.00"; ObjectID = "WUE-wu-OUm"; */
+"WUE-wu-OUm.text" = "5.00";
+
+/* Class = "UITextField"; placeholder = "Tarih"; ObjectID = "WrG-Yp-FVi"; */
+"WrG-Yp-FVi.placeholder" = "Tarih";
+
+/* Class = "UILabel"; text = "Firma Adı:"; ObjectID = "Wrl-I8-vPt"; */
+"Wrl-I8-vPt.text" = "Firma Adı:";
+
+/* Class = "UILabel"; text = "Firma Adı"; ObjectID = "WvT-GV-LdT"; */
+"WvT-GV-LdT.text" = "Firma Adı";
+
+/* Class = "UILabel"; text = "Banka Bilgileri"; ObjectID = "Xcm-3D-OFU"; */
+"Xcm-3D-OFU.text" = "Banka Bilgileri";
+
+/* Class = "UIButton"; configuration.title = "Şartlar ve Koşullar"; ObjectID = "YYR-FC-S1t"; */
+"YYR-FC-S1t.configuration.title" = "Şartlar ve Koşullar";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "YYR-FC-S1t"; */
+"YYR-FC-S1t.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Hesabımı Sil"; ObjectID = "Yhf-r3-BJx"; */
+"Yhf-r3-BJx.configuration.title" = "Hesabımı Sil";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Yhf-r3-BJx"; */
+"Yhf-r3-BJx.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Telefon:"; ObjectID = "YuQ-nd-6iS"; */
+"YuQ-nd-6iS.text" = "Telefon:";
+
+/* Class = "UILabel"; text = "Banka Bilgileri"; ObjectID = "ZPQ-yH-MbD"; */
+"ZPQ-yH-MbD.text" = "Banka Bilgileri";
+
+/* Class = "UIButton"; configuration.subtitle = "  İptal"; ObjectID = "Zbx-j0-exn"; */
+"Zbx-j0-exn.configuration.subtitle" = "  İptal";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Zbx-j0-exn"; */
+"Zbx-j0-exn.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.subtitle = "  İptal"; ObjectID = "aDy-cz-DfR"; */
+"aDy-cz-DfR.configuration.subtitle" = "  İptal";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "aDy-cz-DfR"; */
+"aDy-cz-DfR.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Cadde/Sokak/Bina/No"; ObjectID = "aFk-mW-t7K"; */
+"aFk-mW-t7K.placeholder" = "Cadde/Sokak/Bina/No";
+
+/* Class = "UITextField"; placeholder = "Ürün Adı"; ObjectID = "aQV-GI-uxI"; */
+"aQV-GI-uxI.placeholder" = "Ürün Adı";
+
+/* Class = "UILabel"; text = "Ürün Adı"; ObjectID = "b0N-1Q-ohO"; */
+"b0N-1Q-ohO.text" = "Ürün Adı";
+
+/* Class = "UIButton"; configuration.subtitle = "  İptal"; ObjectID = "bMn-Kp-RPu"; */
+"bMn-Kp-RPu.configuration.subtitle" = "  İptal";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "bMn-Kp-RPu"; */
+"bMn-Kp-RPu.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Tarih:"; ObjectID = "bOm-QX-YZi"; */
+"bOm-QX-YZi.text" = "Tarih:";
+
+/* Class = "UITextField"; placeholder = "Adet/Kg"; ObjectID = "bPv-db-O0g"; */
+"bPv-db-O0g.placeholder" = "Adet/Kg";
+
+/* Class = "UIButton"; configuration.title = "Kaydet"; ObjectID = "bfY-x0-PwX"; */
+"bfY-x0-PwX.configuration.title" = "Kaydet";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "bfY-x0-PwX"; */
+"bfY-x0-PwX.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Firma Adı"; ObjectID = "c7s-dS-ytE"; */
+"c7s-dS-ytE.placeholder" = "Firma Adı";
+
+/* Class = "UILabel"; text = "Hesap No"; ObjectID = "cEU-8e-T2x"; */
+"cEU-8e-T2x.text" = "Hesap No";
+
+/* Class = "UITextField"; placeholder = "Şube Kodu"; ObjectID = "cGs-Wu-2id"; */
+"cGs-Wu-2id.placeholder" = "Şube Kodu";
+
+/* Class = "UILabel"; text = "Toplam Tutar:"; ObjectID = "cJM-Gj-KMv"; */
+"cJM-Gj-KMv.text" = "Toplam Tutar:";
+
+/* Class = "UILabel"; text = "Miktar:"; ObjectID = "cq5-Yw-CB4"; */
+"cq5-Yw-CB4.text" = "Miktar:";
+
+/* Class = "UILabel"; text = "Ürünler"; ObjectID = "dPp-XA-c9t"; */
+"dPp-XA-c9t.text" = "Ürünler";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "egG-6s-ieL"; */
+"egG-6s-ieL.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "IBAN"; ObjectID = "esq-xC-St8"; */
+"esq-xC-St8.placeholder" = "IBAN";
+
+/* Class = "UILabel"; text = "Ürün Adı"; ObjectID = "euh-ZL-D9V"; */
+"euh-ZL-D9V.text" = "Ürün Adı";
+
+/* Class = "UILabel"; text = "Ürün Adı:"; ObjectID = "f0e-Vh-E8b"; */
+"f0e-Vh-E8b.text" = "Ürün Adı:";
+
+/* Class = "UILabel"; text = "Adres"; ObjectID = "f1d-wm-Aln"; */
+"f1d-wm-Aln.text" = "Adres";
+
+/* Class = "UITextField"; placeholder = "0 ₺"; ObjectID = "f33-vX-Alm"; */
+"f33-vX-Alm.placeholder" = "0 ₺";
+
+/* Class = "UILabel"; text = "Adet"; ObjectID = "fFf-RW-hT1"; */
+"fFf-RW-hT1.text" = "Adet";
+
+/* Class = "UIButton"; configuration.subtitle = "  İptal"; ObjectID = "fl4-9r-nez"; */
+"fl4-9r-nez.configuration.subtitle" = "  İptal";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "fl4-9r-nez"; */
+"fl4-9r-nez.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "gAI-FT-g8U"; */
+"gAI-FT-g8U.text" = "Label";
+
+/* Class = "UILabel"; text = "Fiyat:"; ObjectID = "gI7-bU-Pea"; */
+"gI7-bU-Pea.text" = "Fiyat:";
+
+/* Class = "UITextField"; placeholder = "Ürün Adı"; ObjectID = "gQP-gz-m4z"; */
+"gQP-gz-m4z.placeholder" = "Ürün Adı";
+
+/* Class = "UILabel"; text = "Cadde/Sokak/Bina/No"; ObjectID = "gtZ-jb-PhH"; */
+"gtZ-jb-PhH.text" = "Cadde/Sokak/Bina/No";
+
+/* Class = "UIButton"; configuration.title = "Kaydet"; ObjectID = "gu7-US-HPB"; */
+"gu7-US-HPB.configuration.title" = "Kaydet";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "gu7-US-HPB"; */
+"gu7-US-HPB.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "0 Adet"; ObjectID = "h3f-lq-IYc"; */
+"h3f-lq-IYc.placeholder" = "0 Adet";
+
+/* Class = "UILabel"; text = "Bir hesabınız yok mu?"; ObjectID = "hES-4t-Q9u"; */
+"hES-4t-Q9u.text" = "Bir hesabınız yok mu?";
+
+/* Class = "UILabel"; text = "Label Label Label Label Label Label Label Label Label Label Label"; ObjectID = "hZ1-DM-Fp7"; */
+"hZ1-DM-Fp7.text" = "Label Label Label Label Label Label Label Label Label Label Label";
+
+/* Class = "UILabel"; text = "IBAN"; ObjectID = "hiy-oC-iuu"; */
+"hiy-oC-iuu.text" = "IBAN";
+
+/* Class = "UITextField"; placeholder = "Mahalle"; ObjectID = "hqP-XD-OuQ"; */
+"hqP-XD-OuQ.placeholder" = "Mahalle";
+
+/* Class = "UILabel"; text = "12,99"; ObjectID = "hvT-or-8zK"; */
+"hvT-or-8zK.text" = "12,99";
+
+/* Class = "UIButton"; configuration.title = "GİRİŞ"; ObjectID = "hxx-PO-Cjh"; */
+"hxx-PO-Cjh.configuration.title" = "GİRİŞ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "hxx-PO-Cjh"; */
+"hxx-PO-Cjh.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Firma Mail"; ObjectID = "iEw-48-UOo"; */
+"iEw-48-UOo.placeholder" = "Firma Mail";
+
+/* Class = "UILabel"; text = "Telefon"; ObjectID = "iuD-xC-GiX"; */
+"iuD-xC-GiX.text" = "Telefon";
+
+/* Class = "UILabel"; text = "Toplam:"; ObjectID = "jnc-1y-qy4"; */
+"jnc-1y-qy4.text" = "Toplam:";
+
+/* Class = "UILabel"; text = "Banka Adı"; ObjectID = "js8-Tj-sLW"; */
+"js8-Tj-sLW.text" = "Banka Adı";
+
+/* Class = "UITextField"; placeholder = "İlçe"; ObjectID = "k91-6t-Mok"; */
+"k91-6t-Mok.placeholder" = "İlçe";
+
+/* Class = "UILabel"; text = "Birim Fiyatı: "; ObjectID = "kOl-vh-qcQ"; */
+"kOl-vh-qcQ.text" = "Birim Fiyatı: ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "kb9-3Z-nLT"; */
+"kb9-3Z-nLT.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Firma Adı"; ObjectID = "l2T-Nq-ksB"; */
+"l2T-Nq-ksB.placeholder" = "Firma Adı";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "l5z-KR-b1w"; */
+"l5z-KR-b1w.text" = "Label";
+
+/* Class = "UILabel"; text = "Ürün Adı"; ObjectID = "lR8-8Y-Jsr"; */
+"lR8-8Y-Jsr.text" = "Ürün Adı";
+
+/* Class = "UILabel"; text = "Miktar:"; ObjectID = "m0e-4F-7Am"; */
+"m0e-4F-7Am.text" = "Miktar:";
+
+/* Class = "UITabBarItem"; title = "Firmalar"; ObjectID = "n26-ex-scY"; */
+"n26-ex-scY.title" = "Firmalar";
+
+/* Class = "UIButton"; configuration.subtitle = "  İptal"; ObjectID = "nGV-u4-tiA"; */
+"nGV-u4-tiA.configuration.subtitle" = "  İptal";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "nGV-u4-tiA"; */
+"nGV-u4-tiA.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Hesap Adı:"; ObjectID = "nuh-Ka-HZy"; */
+"nuh-Ka-HZy.text" = "Hesap Adı:";
+
+/* Class = "UIButton"; configuration.subtitle = "  İptal"; ObjectID = "o8O-FV-SaU"; */
+"o8O-FV-SaU.configuration.subtitle" = "  İptal";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "o8O-FV-SaU"; */
+"o8O-FV-SaU.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Kaydet"; ObjectID = "oOs-Bm-8fj"; */
+"oOs-Bm-8fj.configuration.title" = "Kaydet";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "oOs-Bm-8fj"; */
+"oOs-Bm-8fj.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Toplam Maliyet:"; ObjectID = "oRD-fW-J58"; */
+"oRD-fW-J58.text" = "Toplam Maliyet:";
+
+/* Class = "UIButton"; configuration.title = "Güncelle"; ObjectID = "orA-0b-mUT"; */
+"orA-0b-mUT.configuration.title" = "Güncelle";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "orA-0b-mUT"; */
+"orA-0b-mUT.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Satış İşlemleri"; ObjectID = "pGp-3q-Isg"; */
+"pGp-3q-Isg.configuration.title" = "Satış İşlemleri";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "pGp-3q-Isg"; */
+"pGp-3q-Isg.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "İleri"; ObjectID = "puj-Ua-dZl"; */
+"puj-Ua-dZl.configuration.title" = "İleri";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "puj-Ua-dZl"; */
+"puj-Ua-dZl.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Firmalar"; ObjectID = "q5q-1g-OQZ"; */
+"q5q-1g-OQZ.text" = "Firmalar";
+
+/* Class = "UITableViewSection"; headerTitle = "Section-3"; ObjectID = "qH4-jl-H91"; */
+"qH4-jl-H91.headerTitle" = "Section-3";
+
+/* Class = "UILabel"; text = "Cadde/Sokak/Bina/No"; ObjectID = "qmI-iF-1Ad"; */
+"qmI-iF-1Ad.text" = "Cadde/Sokak/Bina/No";
+
+/* Class = "UILabel"; text = "Hesap Adı"; ObjectID = "qnZ-O3-3rc"; */
+"qnZ-O3-3rc.text" = "Hesap Adı";
+
+/* Class = "UITextField"; placeholder = "Şube Kodu"; ObjectID = "rJH-K3-YsM"; */
+"rJH-K3-YsM.placeholder" = "Şube Kodu";
+
+/* Class = "UITableViewSection"; headerTitle = "Section-1"; ObjectID = "rYg-K0-dWJ"; */
+"rYg-K0-dWJ.headerTitle" = "Section-1";
+
+/* Class = "UIButton"; configuration.subtitle = "  İptal"; ObjectID = "riM-sB-FvH"; */
+"riM-sB-FvH.configuration.subtitle" = "  İptal";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "riM-sB-FvH"; */
+"riM-sB-FvH.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Miktar:"; ObjectID = "sao-eM-zJx"; */
+"sao-eM-zJx.text" = "Miktar:";
+
+/* Class = "UITextField"; placeholder = "Toplam"; ObjectID = "sqc-Er-ZIE"; */
+"sqc-Er-ZIE.placeholder" = "Toplam";
+
+/* Class = "UILabel"; text = "Tarih:"; ObjectID = "u0y-pu-5eF"; */
+"u0y-pu-5eF.text" = "Tarih:";
+
+/* Class = "UITextField"; placeholder = "Firma Telefon"; ObjectID = "uYT-kl-pB4"; */
+"uYT-kl-pB4.placeholder" = "Firma Telefon";
+
+/* Class = "UILabel"; text = "Fiyat"; ObjectID = "upE-R6-2mB"; */
+"upE-R6-2mB.text" = "Fiyat";
+
+/* Class = "UITableViewSection"; headerTitle = "Section-2"; ObjectID = "vHV-Th-MbW"; */
+"vHV-Th-MbW.headerTitle" = "Section-2";
+
+/* Class = "UILabel"; text = "Şube Kodu:"; ObjectID = "vg7-Du-z6K"; */
+"vg7-Du-z6K.text" = "Şube Kodu:";
+
+/* Class = "UILabel"; text = "Firma Adı"; ObjectID = "vjv-g6-nxE"; */
+"vjv-g6-nxE.text" = "Firma Adı";
+
+/* Class = "UITextField"; placeholder = "Hesap Adı"; ObjectID = "w0V-dZ-fCH"; */
+"w0V-dZ-fCH.placeholder" = "Hesap Adı";
+
+/* Class = "UIButton"; configuration.title = "Arkadaşlarına Öner"; ObjectID = "w3Z-dY-Cx3"; */
+"w3Z-dY-Cx3.configuration.title" = "Arkadaşlarına Öner";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "w3Z-dY-Cx3"; */
+"w3Z-dY-Cx3.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Tarih:"; ObjectID = "w88-Y0-vlw"; */
+"w88-Y0-vlw.text" = "Tarih:";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "wFd-kw-arC"; */
+"wFd-kw-arC.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "wIQ-fc-uSO"; */
+"wIQ-fc-uSO.text" = "Email";
+
+/* Class = "UIButton"; configuration.title = "Şifremi Unuttum?"; ObjectID = "wJw-NL-0Xv"; */
+"wJw-NL-0Xv.configuration.title" = "Şifremi Unuttum?";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "wJw-NL-0Xv"; */
+"wJw-NL-0Xv.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Şube Adı"; ObjectID = "wal-px-FSk"; */
+"wal-px-FSk.placeholder" = "Şube Adı";
+
+/* Class = "UILabel"; text = "Hesap No:"; ObjectID = "x9K-Wy-MAk"; */
+"x9K-Wy-MAk.text" = "Hesap No:";
+
+/* Class = "UIButton"; configuration.title = "Tekrar Gönder"; ObjectID = "xEd-re-01c"; */
+"xEd-re-01c.configuration.title" = "Tekrar Gönder";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "xEd-re-01c"; */
+"xEd-re-01c.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "xiy-fb-baV"; */
+"xiy-fb-baV.text" = "Label";
+
+/* Class = "UILabel"; text = "Tarih:"; ObjectID = "yRR-6Q-VGi"; */
+"yRR-6Q-VGi.text" = "Tarih:";
+
+/* Class = "UITabBarItem"; title = "Alışveriş"; ObjectID = "zDz-Es-R01"; */
+"zDz-Es-R01.title" = "Alışveriş";
+
+/* Class = "UILabel"; text = "Şube Kodu:"; ObjectID = "zE0-aT-768"; */
+"zE0-aT-768.text" = "Şube Kodu:";
+
+/* Class = "UILabel"; text = "Hesap No"; ObjectID = "zQE-yt-Pdl"; */
+"zQE-yt-Pdl.text" = "Hesap No";
+
+/* Class = "UITextField"; placeholder = "Firma Telefon"; ObjectID = "zpa-Ox-zzv"; */
+"zpa-Ox-zzv.placeholder" = "Firma Telefon";

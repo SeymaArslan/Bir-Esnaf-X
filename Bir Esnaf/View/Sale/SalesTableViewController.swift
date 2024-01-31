@@ -48,6 +48,21 @@ class SalesTableViewController: UITableViewController {
     }
     
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "cellToUpdate", sender: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "cellToUpdate" {
+            guard let index = sender as? Int else { return }
+            let goToVC = segue.destination as! UpdateSalesViewController
+            print("\(saleList[index])")
+            goToVC.sale = saleList[index]
+        }
+    }
+    
     //MARK: - Helpers
     func getSaleList() {
         saleVM.getSaleList(mail: mail!) { saleListData in

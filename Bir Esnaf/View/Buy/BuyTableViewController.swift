@@ -23,6 +23,8 @@ class BuyTableViewController: UITableViewController {
         
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
+        
+//        self.navigationItem.titleView?.tintColor = UIColor(named: "customColor")    *****
     }
 
     override func viewWillAppear(_ animated: Bool) {
