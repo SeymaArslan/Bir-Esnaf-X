@@ -34,9 +34,6 @@ class AddBankViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Geldi mi province \(province)")
-        
-
     }
     
     @IBAction func saveBankButton(_ sender: Any) {

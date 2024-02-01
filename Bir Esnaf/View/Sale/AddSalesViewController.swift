@@ -9,6 +9,9 @@ import UIKit
 
 class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    var prodPrice = String()  // maaliyet
+    var prodTotal = String()  // elimizdeki toplam ürün sayısı
+    
     let mail = userDefaults.string(forKey: "userMail")
     let saleVM = SaleVM()
     
@@ -49,9 +52,19 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+    }
+    
     //MARK: - IB Actions
     @IBAction func saveSaleButton(_ sender: Any) {
         addSale()
+        if let mainVC = presentingViewController as? SalesTableViewController {
+            DispatchQueue.main.async {
+                mainVC.tableView.reloadData()
+            }
+        }
     }
     
     
@@ -74,18 +87,37 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if let pickerSelect = prodList[row].prodName {
+        if let pickerSelect = prodList[row].prodName, let pickerPrice = prodList[row].prodPrice, let pickerTotal = prodList[row].prodTotal {
             prodSelect = pickerSelect
+            prodPrice = pickerPrice
+            prodTotal = pickerTotal
+            print("prod = \(prodSelect) - Price = \(prodPrice) - total = \(prodTotal) ")
             print(prodSelect)
         }
     }
     
     
     //MARK: - Helpers
+    func countProfitAmount(prodPrice: Double, salePrice: Double, prodTotal: Double, total: Double) {
+       //  veritabanı oluşturup kaydedeceğiz
+        // totalFarkını üründen çıkaracağız
+        // price farkını ise total miktarı ile çarpıp karı bulacağız. sonra da karı aynı tabloya ekleyeceğiz.
+        // veritabanında userMail ve prodName de olacak shopping sayfasında prodName e göre veri çekeceğiz 
+        let priceDiff = salePrice - prodPrice
+        let totalDiff = prodTotal - total
+
+    }
+    
     func addSale() {
-        if let sPrice = salePrice.text, let total = total.text, let totPrice = totalPrice.text, let date = saleDateTextField.text {
+        if let userMail = mail, let sPrice = salePrice.text, let total = total.text, let totPrice = totalPrice.text, let date = saleDateTextField.text {
             if let doublePrice = Double(sPrice), let doubleTotal = Double(total), let doubleTPrice = Double(totPrice) {
-                saleVM.addSale(mail: mail!, prodName: prodSelect, salePrice: doublePrice, total: doubleTotal, totalPrice: doubleTPrice, saleDate: date)
+                
+                saleVM.addSale(mail: userMail, prodName: prodSelect, salePrice: doublePrice, total: doubleTotal, totalPrice: doubleTPrice, saleDate: date)
+                
+                if let doubleProdPrice = Double(prodPrice), let doubleProdTotal = Double(prodTotal) {
+                    countProfitAmount(prodPrice: doubleProdPrice, salePrice: doublePrice, prodTotal: doubleProdTotal, total: doubleTotal)
+                }
+                
                 self.view.window?.rootViewController?.dismiss(animated: true)
             }
         }
@@ -114,7 +146,7 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     func fetchProd() {
         saleVM.fetchProdList { prodData in
-            self.prodList = prodData
+            self.prodList = prodData  // tüm datalar geliyor artık şimdi seçilen prod un diğer verilerine ulaşacağız
             DispatchQueue.main.async {
                 self.prodPicker.reloadAllComponents()
             }

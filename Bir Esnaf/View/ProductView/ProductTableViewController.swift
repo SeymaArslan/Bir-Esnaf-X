@@ -21,7 +21,7 @@ class ProductTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.rowHeight = 108.0
+        tableView.rowHeight = 123.0
         
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
@@ -50,7 +50,9 @@ class ProductTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProdCell", for: indexPath) as! ProductTableViewCell
         cell.productName.text = prod.prodName
         cell.totalNumber.text = prod.prodTotal
-        cell.priceNumber.text = prod.prodPrice
+        if let price = prod.prodPrice {
+            cell.priceNumber.text = price + " ₺"
+        }
         return cell
     }
     

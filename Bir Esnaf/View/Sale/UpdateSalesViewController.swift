@@ -20,7 +20,7 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     let saleVM = SaleVM()
     var sale: Sale?
     
-    @IBOutlet weak var prodName: UIPickerView!
+    @IBOutlet weak var prodNamePicker: UIPickerView!
     @IBOutlet weak var salePrice: UITextField!
     @IBOutlet weak var total: UITextField!
     @IBOutlet weak var totalPrice: UITextField!
@@ -29,8 +29,8 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        prodName.delegate = self
-        prodName.dataSource = self
+        prodNamePicker.delegate = self
+        prodNamePicker.dataSource = self
         
     }
     
@@ -47,13 +47,12 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
             DispatchQueue.main.async {
                 self.selectProdComponent = prodId
                 if let intPId = Int(self.selectProdComponent) {
-                    if intPId >= 2 {
-                        let intLastPId = intPId - 1
-                        if let prodStr = self.prodList[intLastPId].prodName {
-                            self.prodSelect = prodStr
-                        }
-                        self.prodName.selectRow(intLastPId, inComponent: 0, animated: true)
+                    let intLastPId = intPId - 1
+                    if let prodStr = self.prodList[intLastPId].prodName {
+                        self.prodSelect = prodStr
                     }
+                    self.prodNamePicker.selectRow(intLastPId, inComponent: 0, animated: true)
+                    
                 }
                 
             }
@@ -103,7 +102,7 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
         saleVM.fetchProdList { prodData in
             self.prodList = prodData
             DispatchQueue.main.async {
-                self.prodName.reloadAllComponents()
+                self.prodNamePicker.reloadAllComponents()
             }
         }
     }

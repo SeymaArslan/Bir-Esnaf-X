@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -91,6 +92,13 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             if let dPrice = Double(price), let dTotal = Double(total), let dTP = Double(tPrice) {
                 print(date)
                 buyVM.addBuy(mail: userMail, compName: compSelect, productName: prodName, price: dPrice, total: dTotal, totalPrice: dTP, buyDate: date)
+                
+                ProgressHUD.showSuccess("Alış işlemi kaydedildi.")
+                if let mainVC = presentingViewController as? BuyTableViewController {
+                    DispatchQueue.main.async {
+                        mainVC.tableView.reloadData()
+                    }
+                }
                 self.view.window?.rootViewController?.dismiss(animated: true)
             }
         }
@@ -109,7 +117,7 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: nil, action: #selector(doneButtonClicked))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: nil, action: #selector(doneButtonClicked))
         toolbar.setItems([doneButton], animated: true)
         
         buyDate.inputAccessoryView = toolbar

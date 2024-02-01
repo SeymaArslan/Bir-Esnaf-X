@@ -59,8 +59,12 @@ class SalesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SalesTableViewCell
         cell.prodName.text = sale.prodName
         cell.total.text = sale.total
-        cell.salePrice.text = sale.salePrice
-        cell.totalPrice.text = sale.totalPrice
+        if let price = sale.salePrice {
+            cell.salePrice.text = price + " ₺"
+        }
+        if let tPrice = sale.totalPrice {
+            cell.totalPrice.text = tPrice + " ₺"
+        }
         cell.saleDate.text = sale.saleDate
         return cell
     }
