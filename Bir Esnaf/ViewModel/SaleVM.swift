@@ -9,13 +9,29 @@ import Foundation
 
 class SaleVM {
     func deleteSale(userMail: String, saleId: Int) {
-        
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteSale.php")!)
+        req.httpMethod = "POST"
+        let post = "userMail=\(userMail)&saleId=\(saleId)"
+        req.httpBody = post.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, res, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "Delete sale error")
+                return
+            }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                    print(json)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
     }
     
-    func updateSale(prodId: Int, prodName: String, salePrice: Double, total: Double, totalPrice: Double, saleDate: String) {
-        var req = URLRequest(url: URL(string: "")!)
+    func updateSale(saleId: Int, prodName: String, salePrice: Double, total: Double, totalPrice: Double, saleDate: String) {
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/updateSale.php")!)
         req.httpMethod = "POST"
-        let post = "prodId=\(prodId)&prodName=\(prodName)&salePrice=\(salePrice)&total=\(total)&totalPrice=\(totalPrice)&saleDate=\(saleDate)"
+        let post = "saleId=\(saleId)&prodName=\(prodName)&salePrice=\(salePrice)&total=\(total)&totalPrice=\(totalPrice)&saleDate=\(saleDate)"
         req.httpBody = post.data(using: .utf8)
         URLSession.shared.dataTask(with: req) { data, response, error in
             if error != nil {

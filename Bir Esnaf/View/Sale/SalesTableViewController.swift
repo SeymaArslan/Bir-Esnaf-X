@@ -3,7 +3,7 @@
 //  Bir Esnaf
 //
 //  Created by Seyma on 28.01.2024.
-//
+// delete commitle sonra test et daha sonra kar zarar label mysql tablo falan bak
 
 import UIKit
 
@@ -34,7 +34,7 @@ class SalesTableViewController: UITableViewController {
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteRow = UIContextualAction(style: .destructive, title: "Sil") { contextualAction, view, bool in
-            
+            self.showDeleteAlert(for: indexPath)
         }
         return UISwipeActionsConfiguration(actions: [deleteRow])
     }
@@ -83,8 +83,27 @@ class SalesTableViewController: UITableViewController {
     
     
     //MARK: - Helpers
+    func showDeleteAlert(for indexPath: IndexPath) {
+        let alertCont = UIAlertController(title: "Seçtiğiniz satırı silmek üzeresiniz", message: "Silme işlemine devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
+        let cancelAct = UIAlertAction(title: "İptal", style: .cancel)
+        alertCont.addAction(cancelAct)
+        let continueAct = UIAlertAction(title: "Tamam", style: .destructive) { action in
+            DispatchQueue.main.async {
+                self.deleteRow(at: indexPath)
+            }
+        }
+        alertCont.addAction(continueAct)
+        self.present(alertCont, animated: true)
+    }
+    
     func deleteRow(at indexPath: IndexPath) {
-        
+        let sale = self.saleList[indexPath.row]
+        if let saleId = sale.saleId {
+            if let intSId = Int(saleId) {
+                self.saleVM.deleteSale(userMail: mail!, saleId: intSId)
+                self.getSaleList()
+            }
+        }
     }
     
     func getSaleList() {

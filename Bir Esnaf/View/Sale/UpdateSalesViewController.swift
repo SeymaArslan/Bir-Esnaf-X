@@ -13,10 +13,10 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     var forSelectProdPickerList = [Product]()
     let prodVM = ProductVM()
     
-    
     var prodSelect = String()
     var prodList = [Product]()
     
+    var saleId = Int()
     let saleVM = SaleVM()
     var sale: Sale?
     
@@ -24,7 +24,7 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     @IBOutlet weak var salePrice: UITextField!
     @IBOutlet weak var total: UITextField!
     @IBOutlet weak var totalPrice: UITextField!
-    @IBOutlet weak var buyDateTextField: UITextField!
+    @IBOutlet weak var saleDateTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,7 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getSaleInformation()
         getCompList()
     }
@@ -90,9 +91,9 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     //MARK: - Helpers
     func update() {
-        if let salePrice = salePrice.text, let total = total.text, let totalPrice = totalPrice.text, let buyDate = buyDateTextField.text {
+        if let salePrice = salePrice.text, let total = total.text, let totalPrice = totalPrice.text, let buyDate = saleDateTextField.text {
             if let doubleSPrice = Double(salePrice), let doubleTotal = Double(total), let doubleTPrice = Double(totalPrice) {
-                saleVM.updateSale(prodName: prodSelect, salePrice: doubleSPrice, total: doubleTotal, totalPrice: doubleTPrice, saleDate: buyDate)
+                saleVM.updateSale(saleId: saleId, prodName: prodSelect, salePrice: doubleSPrice, total: doubleTotal, totalPrice: doubleTPrice, saleDate: buyDate)
                 self.view.window?.rootViewController?.dismiss(animated: true)
             }
         }
@@ -109,11 +110,16 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     func getSaleInformation() {
         if let s = sale {
-//            prodName.text = s.prodName
+            if let id = s.saleId {
+                if let intId = Int(id) {
+                    saleId = intId
+                }
+            }
+            
             salePrice.text = s.salePrice
             total.text = s.total
             totalPrice.text = s.totalPrice
-            buyDateTextField.text = s.saleDate
+            saleDateTextField.text = s.saleDate
             
             if let getSelectProd = s.prodName {
                 prodVM.getSelectedProdPicker(prodName: getSelectProd) { prodData in
