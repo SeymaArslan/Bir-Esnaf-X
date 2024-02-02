@@ -16,7 +16,7 @@ class Sale: Codable {
     let userMail: String?
     let prodName: String?
     let salePrice: String?
-    let total: String?
-    let totalPrice: String?
+    let saleTotal: String?
+    let saleTotalPrice: String?
     let saleDate: String?
 }

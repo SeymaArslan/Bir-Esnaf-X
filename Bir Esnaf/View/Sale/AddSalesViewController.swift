@@ -9,6 +9,7 @@ import UIKit
 
 class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    let shopVM = ShopVM()
     var prodPrice = String()  // maaliyet
     var prodTotal = String()  // elimizdeki toplam ürün sayısı
     
@@ -98,25 +99,37 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     //MARK: - Helpers
-    func countProfitAmount(prodPrice: Double, salePrice: Double, prodTotal: Double, total: Double) {
-       //  veritabanı oluşturup kaydedeceğiz
-        // totalFarkını üründen çıkaracağız
-        // price farkını ise total miktarı ile çarpıp karı bulacağız. sonra da karı aynı tabloya ekleyeceğiz.
-        // veritabanında userMail ve prodName de olacak shopping sayfasında prodName e göre veri çekeceğiz 
-        let priceDiff = salePrice - prodPrice
-        let totalDiff = prodTotal - total
+    func subtractTotal() {
+        
+    }
+    
+    func countProfitAmount(prodSelect: String, prodPrice: Double, prodTotal: Double, salePrice: Double, saleTotal: Double) {
+        let priceDifference = salePrice - prodPrice // burada prodPrice maliyet salePrice ise satış fiyatı ürün üzerinden elde edilen kar iççin
+        let totalDifference = prodTotal - saleTotal // buradaki difference ise kalan ürün miktarı güncelleme için kullanılacak ProductTableView da  ve bunu da tut
 
+        let amount = priceDifference * totalDifference // kar miktarı alışveriş tablosunda direkt kar miktarı olarak tut ayrıca saleTotal ı da tut olurda satış silinirse ki bu SalesTableViewController da oluyor tam olarak orada shopping tablosundan saleTotal kısmını çağırıp ProductTableView da aynı ürünün total ine geri ekle ayrıca satış silinirse aynı ürünün priceDifference ını 0 yap.
+        
+        /*
+         Şimdi shop veri tabanında alanlar mail, prodName, priceDifference (satış silinirse karı update yapmak için), totalDifference ı da tutacağız satış işkeminden sonra ProductTableVC de product güncellemesi için, 
+         
+         */
+        
+        if let userMail = mail {
+            shopVM.addShop(userMail: userMail, prodName: prodSelect, shopPriceDifference: priceDifference, shopTotalDifference: totalDifference)
+        }
     }
     
     func addSale() {
-        if let userMail = mail, let sPrice = salePrice.text, let total = total.text, let totPrice = totalPrice.text, let date = saleDateTextField.text {
-            if let doublePrice = Double(sPrice), let doubleTotal = Double(total), let doubleTPrice = Double(totPrice) {
+        if let userMail = mail, let salePrice = salePrice.text, let saleTotal = total.text, let totalSalePrice = totalPrice.text, let date = saleDateTextField.text {
+            if let doubleSalePrice = Double(salePrice), let doubleSaleTotal = Double(saleTotal), let doubleTotalSalePrice = Double(totalSalePrice)  {
                 
-                saleVM.addSale(mail: userMail, prodName: prodSelect, salePrice: doublePrice, total: doubleTotal, totalPrice: doubleTPrice, saleDate: date)
+                saleVM.addSale(mail: userMail, prodName: prodSelect, salePrice: doubleSalePrice, saleTotal: doubleSaleTotal, saleTotalPrice: doubleTotalSalePrice, saleDate: date)
                 
                 if let doubleProdPrice = Double(prodPrice), let doubleProdTotal = Double(prodTotal) {
-                    countProfitAmount(prodPrice: doubleProdPrice, salePrice: doublePrice, prodTotal: doubleProdTotal, total: doubleTotal)
+                    countProfitAmount(prodSelect: prodSelect, prodPrice: doubleProdPrice, prodTotal: doubleProdTotal, salePrice: doubleSalePrice, saleTotal: doubleSaleTotal)
                 }
+                
+                
                 
                 self.view.window?.rootViewController?.dismiss(animated: true)
             }

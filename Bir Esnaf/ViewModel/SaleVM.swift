@@ -28,10 +28,10 @@ class SaleVM {
         }.resume()
     }
     
-    func updateSale(saleId: Int, prodName: String, salePrice: Double, total: Double, totalPrice: Double, saleDate: String) {
+    func updateSale(saleId: Int, prodName: String, salePrice: Double, saleTotal: Double, saleTotalPrice: Double, saleDate: String) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/updateSale.php")!)
         req.httpMethod = "POST"
-        let post = "saleId=\(saleId)&prodName=\(prodName)&salePrice=\(salePrice)&total=\(total)&totalPrice=\(totalPrice)&saleDate=\(saleDate)"
+        let post = "saleId=\(saleId)&prodName=\(prodName)&salePrice=\(salePrice)&saleTotal=\(saleTotal)&saleTotalPrice=\(saleTotalPrice)&saleDate=\(saleDate)"
         req.httpBody = post.data(using: .utf8)
         URLSession.shared.dataTask(with: req) { data, response, error in
             if error != nil {
@@ -67,10 +67,10 @@ class SaleVM {
         }.resume()
     }
     
-    func addSale(mail: String, prodName: String, salePrice: Double, total: Double, totalPrice: Double, saleDate: String) {
+    func addSale(mail: String, prodName: String, salePrice: Double, saleTotal: Double, saleTotalPrice: Double, saleDate: String) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/addSale.php")!)
         req.httpMethod = "POST"
-        let post = "userMail=\(mail)&prodName=\(prodName)&salePrice=\(salePrice)&total=\(total)&totalPrice=\(totalPrice)&saleDate=\(saleDate)"
+        let post = "userMail=\(mail)&prodName=\(prodName)&salePrice=\(salePrice)&saleTotal=\(saleTotal)&saleTotalPrice=\(saleTotalPrice)&saleDate=\(saleDate)"
         req.httpBody = post.data(using: .utf8)
         URLSession.shared.dataTask(with: req) { data, response, error in
             if error != nil {

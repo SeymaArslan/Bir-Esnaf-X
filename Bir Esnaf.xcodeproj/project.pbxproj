@@ -19,6 +19,8 @@
 		1207F5BD2B078754008307A4 /* CompanyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5BC2B078754008307A4 /* CompanyTableViewCell.swift */; };
 		1207F5C02B07877D008307A4 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5BF2B07877D008307A4 /* SettingsTableViewController.swift */; };
 		1207F5C62B0790E6008307A4 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207F5C52B0790E6008307A4 /* WebService.swift */; };
+		1241F32E2B6BCCBC0031D2BA /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1241F32D2B6BCCBC0031D2BA /* Shop.swift */; };
+		1241F3302B6BCD660031D2BA /* ShopVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1241F32F2B6BCD660031D2BA /* ShopVM.swift */; };
 		12514A552B56B6D8005406D8 /* AddCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12514A542B56B6D8005406D8 /* AddCompanyViewController.swift */; };
 		12514A572B56B701005406D8 /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12514A562B56B701005406D8 /* AddAddressViewController.swift */; };
 		12514A592B56B727005406D8 /* AddBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12514A582B56B727005406D8 /* AddBankViewController.swift */; };
@@ -70,6 +72,8 @@
 		1207F5BC2B078754008307A4 /* CompanyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyTableViewCell.swift; sourceTree = "<group>"; };
 		1207F5BF2B07877D008307A4 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		1207F5C52B0790E6008307A4 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		1241F32D2B6BCCBC0031D2BA /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		1241F32F2B6BCD660031D2BA /* ShopVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopVM.swift; sourceTree = "<group>"; };
 		12514A542B56B6D8005406D8 /* AddCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyViewController.swift; sourceTree = "<group>"; };
 		12514A562B56B701005406D8 /* AddAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewController.swift; sourceTree = "<group>"; };
 		12514A582B56B727005406D8 /* AddBankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBankViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 				12514A642B57DF20005406D8 /* Province.swift */,
 				12C04CD32B617EC800003515 /* Buy.swift */,
 				126209772B66DE0900B4C5CA /* Sale.swift */,
+				1241F32D2B6BCCBC0031D2BA /* Shop.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				1204CA622B5EF60000EF2629 /* ProductVM.swift */,
 				12C04CD52B617F7100003515 /* BuyVM.swift */,
 				1298140F2B6784D6000EDF11 /* SaleVM.swift */,
+				1241F32F2B6BCD660031D2BA /* ShopVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -424,6 +430,7 @@
 				12CF380A2B069B660051F2D5 /* LoginViewController.swift in Sources */,
 				12D5F54F2B10C8A200B4F7D9 /* UserVM.swift in Sources */,
 				12C04CDE2B61813400003515 /* BuyTableViewController.swift in Sources */,
+				1241F32E2B6BCCBC0031D2BA /* Shop.swift in Sources */,
 				12CF38062B069B660051F2D5 /* AppDelegate.swift in Sources */,
 				12CF38082B069B660051F2D5 /* SceneDelegate.swift in Sources */,
 				1207F5C62B0790E6008307A4 /* WebService.swift in Sources */,
@@ -460,6 +467,7 @@
 				1207F5BB2B078730008307A4 /* CompanyTableViewController.swift in Sources */,
 				12514A652B57DF20005406D8 /* Province.swift in Sources */,
 				126209802B66E19B00B4C5CA /* UpdateSalesViewController.swift in Sources */,
+				1241F3302B6BCD660031D2BA /* ShopVM.swift in Sources */,
 				125839E72B5EA36500C33BD2 /* UpdateProductViewController.swift in Sources */,
 				1207F5B02B075398008307A4 /* Extensions.swift in Sources */,
 				12514A672B57DFA1005406D8 /* ProvinceVM.swift in Sources */,
