@@ -8,7 +8,8 @@
 import UIKit
 
 class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
+    let profVM = ProfitVM()
     let shopVM = ShopVM()
     var prodPrice = String()  // maaliyet
     var prodTotal = String()  // elimizdeki toplam ürün sayısı
@@ -104,19 +105,17 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     func countProfitAmount(prodSelect: String, prodPrice: Double, prodTotal: Double, salePrice: Double, saleTotal: Double) {
-        let priceDifference = salePrice - prodPrice // burada prodPrice maliyet salePrice ise satış fiyatı ürün üzerinden elde edilen kar iççin
-        let totalDifference = prodTotal - saleTotal // buradaki difference ise kalan ürün miktarı güncelleme için kullanılacak ProductTableView da  ve bunu da tut
+        let priceDifference = salePrice - prodPrice
+        let totalDifference = prodTotal - saleTotal
 
-        let amount = priceDifference * totalDifference // kar miktarı alışveriş tablosunda direkt kar miktarı olarak tut ayrıca saleTotal ı da tut olurda satış silinirse ki bu SalesTableViewController da oluyor tam olarak orada shopping tablosundan saleTotal kısmını çağırıp ProductTableView da aynı ürünün total ine geri ekle ayrıca satış silinirse aynı ürünün priceDifference ını 0 yap.
-        
-        /*
-         Şimdi shop veri tabanında alanlar mail, prodName, priceDifference (satış silinirse karı update yapmak için), totalDifference ı da tutacağız satış işkeminden sonra ProductTableVC de product güncellemesi için, 
-         
-         */
+        let amount = priceDifference * totalDifference
         
         if let userMail = mail {
-            shopVM.addShop(userMail: userMail, prodName: prodSelect, shopPriceDifference: priceDifference, shopTotalDifference: totalDifference)
+            shopVM.addShop(userMail: userMail, prodName: prodSelect, shopPriceDifference: priceDifference, shopTotalDifference: totalDifference) // alışveriş tabblosu
+            profVM.addProfit(userMail: userMail, prodName: prodSelect, profitAmount: amount)  // kar tablosu
         }
+        
+       
     }
     
     func addSale() {
@@ -128,8 +127,6 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 if let doubleProdPrice = Double(prodPrice), let doubleProdTotal = Double(prodTotal) {
                     countProfitAmount(prodSelect: prodSelect, prodPrice: doubleProdPrice, prodTotal: doubleProdTotal, salePrice: doubleSalePrice, saleTotal: doubleSaleTotal)
                 }
-                
-                
                 
                 self.view.window?.rootViewController?.dismiss(animated: true)
             }

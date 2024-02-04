@@ -79,7 +79,7 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     //MARK: - Helpers
     func fetchComp() {
-        buyVM.fetchCompList { compList in
+        buyVM.fetchCompList { compList in   //   ******* burada maile göre çek düzeltmeyi unutma
             self.compList = compList
             DispatchQueue.main.async {
                 self.compPicker.reloadAllComponents()

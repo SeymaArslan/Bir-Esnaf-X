@@ -7,8 +7,16 @@
 
 import UIKit
 
-class ShoppingViewController: UIViewController {
-
+class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    let profVM = ProfitVM()
+    let visible = false // eğer sale tablosu boşsa false doluysa true yapıp UI ları göstereceğiz?
+    
+    var saleSelect = String()
+    var saleList = [Sale]()
+    let mail = userDefaults.string(forKey: "userMail")
+    let saleVM = SaleVM()
+    
     @IBOutlet weak var salePicker: UIPickerView!
     @IBOutlet weak var profitAmount: UILabel!
     @IBOutlet weak var totalProfitAmount: UILabel!
@@ -19,22 +27,66 @@ class ShoppingViewController: UIViewController {
 
         profitAmount.text = "0 ₺"
         totalProfitAmount.text = "0 ₺"
+        
+        salePicker.delegate = self
+        salePicker.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchSale()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !saleList.isEmpty {
+            if let selectPicker = saleList[0].prodName {
+                saleSelect = selectPicker
+            }
+        }
+    }
     
     @IBAction func calculateButton(_ sender: Any) {
         
     }
     
-// picker da sale de ki ürünlerin adı gelecek
-    // diyelim ki kaydedilen maliyet 20 tl
-    // picker da seçilen satılan ürünün satış fiyatı 25
-    // kaç adet satıldığı bilgisini de alıp total
-    // (fark) diyeceğiz = 25 - 20
-    // toplam fark 5 * total diyeceğiz ve burada profitAmount buna eşit olacak
-    // aslında otomatik kaydedecek sale kısmında ürün satışı girildiğinde shop veri tabanında
-    // direkt insert işlemi olacak ve profitAmount alanına veri girecek sayı pozitifse Yeşil ile yazacak negatifse kırmızı
-    // ardından total Profit Amount kısmına geleceğiz burada bir buton mu koysak.. hesapla gibi..
-    // label ın yanında yer alsa ve hesaplaya basınca tetiklense :)
+    
+    //MARK: - Delegate Methods
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return saleList.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return saleList[row].prodName
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if let pickerSelect = saleList[row].prodName {
+            saleSelect = pickerSelect
+            print(saleSelect)
+        }
+    }
+    
+    
+    //MARK: - Helpers
+    func getProfit() {
+        DispatchQueue.main.async {
+            
+        }
+    }
+    
+    func fetchSale() {
+        saleVM.getSaleList(mail: mail!) { saleList in
+            self.saleList = saleList
+            DispatchQueue.main.async {
+                self.salePicker.reloadAllComponents()
+            }
+        }
+    }
+
 
 }
