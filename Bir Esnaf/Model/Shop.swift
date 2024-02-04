@@ -15,6 +15,5 @@ class Shop: Codable {
     let shopId: String?
     let userMail: String?
     let prodName: String?
-    let shopPriceDifference: String?
-    let shopTotalDifference: String?
+    let totalProfitAmount: String?
 }

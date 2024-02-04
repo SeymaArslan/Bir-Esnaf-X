@@ -9,7 +9,7 @@ import UIKit
 
 class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    let profVM = ProfitVM()
+    let productVM = ProductVM()
     let shopVM = ShopVM()
     var prodPrice = String()  // maaliyet
     var prodTotal = String()  // elimizdeki toplam ürün sayısı
@@ -100,19 +100,16 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     //MARK: - Helpers
-    func subtractTotal() {
-        
-    }
     
     func countProfitAmount(prodSelect: String, prodPrice: Double, prodTotal: Double, salePrice: Double, saleTotal: Double) {
-        let priceDifference = salePrice - prodPrice
-        let totalDifference = prodTotal - saleTotal
+        let priceDifference = salePrice - prodPrice // kar için
+        let totalRemainingProduct = prodTotal - saleTotal // Product güncelleme için
 
-        let amount = priceDifference * totalDifference
+        let amount = priceDifference * saleTotal  // satış kar
         
         if let userMail = mail {
-            shopVM.addShop(userMail: userMail, prodName: prodSelect, shopPriceDifference: priceDifference, shopTotalDifference: totalDifference) // alışveriş tabblosu
-            profVM.addProfit(userMail: userMail, prodName: prodSelect, profitAmount: amount)  // kar tablosu
+            shopVM.addShop(userMail: userMail, prodName: prodSelect, totalProfitAmount: amount)
+            productVM.productUpdateWithSales(prodName: prodSelect, prodTotal: totalRemainingProduct)
         }
         
        
@@ -156,7 +153,7 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     func fetchProd() {
         saleVM.fetchProdList { prodData in
-            self.prodList = prodData  // tüm datalar geliyor artık şimdi seçilen prod un diğer verilerine ulaşacağız
+            self.prodList = prodData
             DispatchQueue.main.async {
                 self.prodPicker.reloadAllComponents()
             }

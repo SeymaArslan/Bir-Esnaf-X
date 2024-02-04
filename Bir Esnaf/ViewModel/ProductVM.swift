@@ -9,6 +9,26 @@ import Foundation
 
 class ProductVM {
     
+    func productUpdateWithSales(prodName: String, prodTotal: Double) {
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/productUpdateWithSales.php")!)
+        req.httpMethod = "POST"
+        let postStr = "prodName=\(prodName)&prodTotal=\(prodTotal)"
+        req.httpBody = postStr.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, res, err in
+            if err != nil {
+                print(err?.localizedDescription ?? "productUpdateWithSales error")
+                return
+            }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                    print(json)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func getSelectedProdPicker(prodName: String, completion: @escaping ([Product]) -> ()) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getSelectedProdPicker.php")!)
         request.httpMethod = "POST"
