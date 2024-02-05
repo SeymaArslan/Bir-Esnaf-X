@@ -8,6 +8,9 @@
 import UIKit
 
 class SalesTableViewController: UITableViewController {
+    
+    var prodList = [Product]()
+    let prodVM = ProductVM()
 
     let mail = userDefaults.string(forKey: "userMail")
     var saleList = [Sale]()
@@ -107,6 +110,20 @@ class SalesTableViewController: UITableViewController {
                 self.saleVM.deleteSale(userMail: mail!, saleId: intSId)
                 self.getSaleList()
             }
+        }
+        if let prodName = sale.prodName, let saleTotal = sale.saleTotal {  // ************************ test et
+            if let doubleSaleTotal = Double(saleTotal) {
+                prodVM.fetchProdData(prodName: prodName) { prodData in
+                    self.prodList = prodData
+                    if let prodTotal = self.prodList.first?.prodTotal {
+                        if let doubleProdTotal = Double(prodTotal) {
+                            let updateTotal = doubleProdTotal + doubleSaleTotal
+                            self.prodVM.productUpdateWithSales(prodName: prodName, prodTotal: updateTotal)
+                        }
+                    }
+                }
+            }
+            
         }
     }
     

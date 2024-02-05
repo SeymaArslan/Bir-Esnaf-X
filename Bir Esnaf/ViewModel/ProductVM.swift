@@ -9,6 +9,25 @@ import Foundation
 
 class ProductVM {
     
+    func fetchProdData(prodName: String, completion: @escaping([Product]) -> ()) {
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/fetchProductionData.php")!)
+        req.httpMethod = "POST"
+        let postString = "prodName=\(prodName)"
+        req.httpBody = postString.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, res, err in
+            if err != nil {
+                print(err?.localizedDescription ?? "fetchProdData error")
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(ProductData.self, from: data!)
+                completion(result.product ?? [Product]())
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func productUpdateWithSales(prodName: String, prodTotal: Double) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/productUpdateWithSales.php")!)
         req.httpMethod = "POST"
