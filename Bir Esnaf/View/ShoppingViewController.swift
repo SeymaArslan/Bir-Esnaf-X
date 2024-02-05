@@ -12,6 +12,7 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
 
     let visible = false // eğer sale tablosu boşsa false doluysa true yapıp UI ları göstereceğiz?
     
+    var sumShopList = [Shop]()
     var fetchShopList = [Shop]()
     var shopSelect = String()
     var shopList = [Shop]()
@@ -48,7 +49,7 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @IBAction func calculateButton(_ sender: Any) {
-        
+        sumAllSell()
     }
     
     
@@ -75,12 +76,32 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     //MARK: - Helpers
+    func sumAllSell() {
+        shopVM.sumAllSellProd(userMail: mail!) { sumShop in
+            self.sumShopList = sumShop
+            if let string = self.sumShopList.first?.totalProfitAmount {
+                DispatchQueue.main.async {
+                    self.totalProfitAmount.text = string + " ₺"
+                }
+            }
+        }
+    }
+    
     func fetchShop() {
         shopVM.fetchShop(userMail: mail!, prodName: shopSelect) { shopData in
             self.fetchShopList = shopData
             if let str = self.fetchShopList.first?.totalProfitAmount {
-                DispatchQueue.main.async {
-                    self.profitAmount.text = str + " ₺"
+                if let intStr = Int(str) {
+                    if intStr > 0 {
+                        DispatchQueue.main.async {
+                            self.profitAmount.text = str + " ₺"
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.profitAmount.text = str + " ₺"
+                            self.profitAmount.textColor = .red
+                        }
+                    }
                 }
             }
         }

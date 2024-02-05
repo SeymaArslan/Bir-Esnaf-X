@@ -8,6 +8,24 @@
 import Foundation
 
 class ShopVM {
+    func sumAllSellProd(userMail: String, completion: @escaping([Shop]) -> ()) {
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/sumAllSellProd.php")!)
+        req.httpMethod = "POST"
+        let str = "userMail=\(userMail)"
+        req.httpBody = str.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "sumAllSellProd error")
+                return
+            }
+            do {
+                let res = try JSONDecoder().decode(ShopData.self, from: data!)
+                completion(res.shop ?? [Shop]())
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
     
     func fetchShop(userMail: String, prodName: String, completion: @escaping([Shop]) -> () ) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/fetchShop.php")!)
@@ -68,15 +86,3 @@ class ShopVM {
     }
     
 }
-
-
-/**
- 
- profitAmount fiyat farkı buradan ve totalDiff ile çarparak fiyat farkı yazılacak shoppingViewCont ta
- buradaki prodName e göre totalDiff miktarı prod tablosundaki totalden düşecek ama düştükten sonra total 0 olmalı tekrar tekrar düşmemesi için
- yani total miktarından düştükten sonra totalDiff kendi rakamı kadar düşüş yaşamalı veya kişi satışı silerse yaşamamalı o zaman düşmeyecek..
- 
- peki hep düşer mi en iyisi denemek..
- 
- 
- */
