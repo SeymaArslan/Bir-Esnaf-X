@@ -22,7 +22,7 @@ class SalesTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.rowHeight = 208.0
+        tableView.rowHeight = 166.0
     
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
