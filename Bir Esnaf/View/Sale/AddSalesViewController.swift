@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -93,14 +94,11 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             prodSelect = pickerSelect
             prodPrice = pickerPrice
             prodTotal = pickerTotal
-            print("prod = \(prodSelect) - Price = \(prodPrice) - total = \(prodTotal) ")
-            print(prodSelect)
         }
     }
     
     
     //MARK: - Helpers
-    
     func countProfitAmount(prodSelect: String, prodPrice: Double, prodTotal: Double, salePrice: Double, saleTotal: Double) {
         let priceDifference = salePrice - prodPrice // kar için
         let totalRemainingProduct = prodTotal - saleTotal // Product güncelleme için
@@ -117,15 +115,21 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     func addSale() {
         if let userMail = mail, let salePrice = salePrice.text, let saleTotal = total.text, let totalSalePrice = totalPrice.text, let date = saleDateTextField.text {
-            if let doubleSalePrice = Double(salePrice), let doubleSaleTotal = Double(saleTotal), let doubleTotalSalePrice = Double(totalSalePrice)  {
+            if let doubleSalePrice = Double(salePrice), let doubleSaleTotal = Double(saleTotal), let doubleTotalSalePrice = Double(totalSalePrice), let doubleProdTotal = Double(prodTotal)  {
                 
-                saleVM.addSale(mail: userMail, prodName: prodSelect, salePrice: doubleSalePrice, saleTotal: doubleSaleTotal, saleTotalPrice: doubleTotalSalePrice, saleDate: date)
-                
-                if let doubleProdPrice = Double(prodPrice), let doubleProdTotal = Double(prodTotal) {
-                    countProfitAmount(prodSelect: prodSelect, prodPrice: doubleProdPrice, prodTotal: doubleProdTotal, salePrice: doubleSalePrice, saleTotal: doubleSaleTotal)
+                if doubleProdTotal >= doubleSaleTotal {
+                    saleVM.addSale(mail: userMail, prodName: prodSelect, salePrice: doubleSalePrice, saleTotal: doubleSaleTotal, saleTotalPrice: doubleTotalSalePrice, saleDate: date)
+                    
+                    if let doubleProdPrice = Double(prodPrice) {
+                        countProfitAmount(prodSelect: prodSelect, prodPrice: doubleProdPrice, prodTotal: doubleProdTotal, salePrice: doubleSalePrice, saleTotal: doubleSaleTotal)
+                    }
+                    
+                    self.view.window?.rootViewController?.dismiss(animated: true)
+                } else {
+                    ProgressHUD.showError("Ürün stoğu satış için yetersiz.")
+                    self.view.window?.rootViewController?.dismiss(animated: true)
                 }
-                
-                self.view.window?.rootViewController?.dismiss(animated: true)
+               
             }
         }
     }

@@ -12,10 +12,14 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
 
     let visible = false // eğer sale tablosu boşsa false doluysa true yapıp UI ları göstereceğiz?
     
+    var saleComponent = String()
+    
     var sumShopList = [Shop]()
-    var fetchShopList = [Shop]()
+    
+    var fetchShopList = [Shop]()  // getProvList
+    
     var shopSelect = String()
-    var shopList = [Shop]()
+    var shopList = [Shop]()  // provinceList
     let mail = userDefaults.string(forKey: "userMail")
     let shopVM = ShopVM()
 
@@ -44,8 +48,24 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         if !shopList.isEmpty {
             if let selectPicker = shopList[0].prodName {
                 shopSelect = selectPicker
+                print(shopSelect)
+                fetchShop()
             }
         }
+        
+//        if let shopId = fetchShopList.first?.shopId {
+//            DispatchQueue.main.async {
+//                self.saleComponent = shopId
+//                if let intShopId = Int(self.saleComponent) {
+//                    let intLastShopId = intShopId - 1
+//                    if let shopStr = self.shopList[intLastShopId].prodName {
+//                        self.shopSelect = shopStr
+//                        print(self.shopSelect)
+//                    }
+//                    self.salePicker.selectRow(intLastShopId, inComponent: 0, animated: true)
+//                }
+//            }
+//        }
     }
     
     @IBAction func calculateButton(_ sender: Any) {
