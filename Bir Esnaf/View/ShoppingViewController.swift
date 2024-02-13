@@ -3,13 +3,13 @@
 //  Bir Esnaf
 //
 //  Created by Seyma on 1.02.2024.
-//
+//  a
 
 import UIKit
 
 class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-
+    
     let visible = false // eğer sale tablosu boşsa false doluysa true yapıp UI ları göstereceğiz?
     
     var saleComponent = String()
@@ -22,55 +22,51 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var shopList = [Shop]()  // provinceList
     let mail = userDefaults.string(forKey: "userMail")
     let shopVM = ShopVM()
-
+    
     @IBOutlet weak var salePicker: UIPickerView!
     @IBOutlet weak var profitAmount: UILabel!
     @IBOutlet weak var totalProfitAmount: UILabel!
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         profitAmount.text = "0 ₺"
         totalProfitAmount.text = "0 ₺"
         
         salePicker.delegate = self
         salePicker.dataSource = self
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         pullSales()
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if !shopList.isEmpty {
-            if let selectPicker = shopList[0].prodName {
-                shopSelect = selectPicker
-                print(shopSelect)
-                fetchShop()
+        
+        if !self.shopList.isEmpty {
+            if let shopStr = self.shopList[0].prodName {
+                self.shopSelect = shopStr
             }
         }
         
-//        if let shopId = fetchShopList.first?.shopId {
-//            DispatchQueue.main.async {
-//                self.saleComponent = shopId
-//                if let intShopId = Int(self.saleComponent) {
-//                    let intLastShopId = intShopId - 1
-//                    if let shopStr = self.shopList[intLastShopId].prodName {
-//                        self.shopSelect = shopStr
-//                        print(self.shopSelect)
-//                    }
-//                    self.salePicker.selectRow(intLastShopId, inComponent: 0, animated: true)
-//                }
-//            }
-//        }
     }
     
     @IBAction func calculateButton(_ sender: Any) {
         sumAllSell()
     }
+    
+    @IBAction func dismissButton(_ sender: Any) {
+        view.window?.rootViewController?.dismiss(animated: true)
+    }
+    
     
     
     //MARK: - Delegate Methods
@@ -89,19 +85,41 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if let pickerSelect = shopList[row].prodName {
             shopSelect = pickerSelect
-            print(shopSelect)
             fetchShop()
         }
     }
     
     
     //MARK: - Helpers
+    func fetchFirstData() {
+        if !shopList.isEmpty {
+            if let selectPicker = shopList.first?.prodName, let pickerId = shopList[0].shopId {
+                
+                self.shopSelect = selectPicker
+                print(" - - - - - - - -- - -- - -- - - -- - -- \(self.shopSelect)")
+                if let intId = Int(pickerId) {
+                    self.salePicker.selectRow(intId, inComponent: 0, animated: true)
+                }
+            }
+        }
+        
+    }
+    
     func sumAllSell() {
         shopVM.sumAllSellProd(userMail: mail!) { sumShop in
             self.sumShopList = sumShop
             if let string = self.sumShopList.first?.totalProfitAmount {
-                DispatchQueue.main.async {
-                    self.totalProfitAmount.text = string + " ₺"
+                if let intStr = Int(string) {  // test
+                    if intStr > 0 {
+                        DispatchQueue.main.async {
+                            self.totalProfitAmount.text = string + " ₺"
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.totalProfitAmount.text = string + " ₺"
+                            self.totalProfitAmount.textColor = .red
+                        }
+                    }
                 }
             }
         }
@@ -135,6 +153,6 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             }
         }
     }
-
-
+    
+    
 }

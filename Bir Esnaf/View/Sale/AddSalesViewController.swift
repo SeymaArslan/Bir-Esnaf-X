@@ -49,17 +49,15 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !prodList.isEmpty {
-            if let selectPicker = prodList[0].prodName {
+            if let selectPicker = prodList[0].prodName, let pickerPrice = prodList[0].prodPrice, let pickerTotal = prodList[0].prodTotal {
                 prodSelect = selectPicker
+                prodPrice = pickerPrice
+                prodTotal = pickerTotal
             }
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-    }
-    
+
     //MARK: - IB Actions
     @IBAction func saveSaleButton(_ sender: Any) {
         addSale()
