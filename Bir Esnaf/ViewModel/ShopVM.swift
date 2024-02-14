@@ -8,6 +8,26 @@
 import Foundation
 
 class ShopVM {
+    
+    func getFirstSaleData(userMail: String, completion: @escaping([Shop]) -> ()) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getFirstSaleData.php")!)
+        request.httpMethod = "POST"
+        let string = "userMail=\(userMail)"
+        request.httpBody = string.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "getFirstSaleData error")
+                return
+            }
+            do {
+                let res = try JSONDecoder().decode(ShopData.self, from: data!)
+                completion(res.shop ?? [Shop]())
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func sumAllSellProd(userMail: String, completion: @escaping([Shop]) -> ()) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/sumAllSellProd.php")!)
         req.httpMethod = "POST"

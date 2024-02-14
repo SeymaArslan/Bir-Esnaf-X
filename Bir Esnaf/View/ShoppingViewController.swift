@@ -9,6 +9,13 @@ import UIKit
 
 class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    //  ***
+    
+    var firstProdName: String?
+    var firstProfitAmount: String?
+
+    //   ***
+    
     
     let visible = false // eğer sale tablosu boşsa false doluysa true yapıp UI ları göstereceğiz?
     
@@ -31,12 +38,15 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        profitAmount.text = "0 ₺"
         totalProfitAmount.text = "0 ₺"
         
         salePicker.delegate = self
         salePicker.dataSource = self
         
+        if let pName = firstProdName, let amount = firstProfitAmount {
+            shopSelect = pName
+            profitAmount.text = amount
+        }
         
         
     }
@@ -45,19 +55,8 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         super.viewWillAppear(animated)
         pullSales()
         
-        
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if !self.shopList.isEmpty {
-            if let shopStr = self.shopList[0].prodName {
-                self.shopSelect = shopStr
-            }
-        }
-        
-    }
+
     
     @IBAction func calculateButton(_ sender: Any) {
         sumAllSell()
@@ -91,19 +90,6 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     //MARK: - Helpers
-    func fetchFirstData() {
-        if !shopList.isEmpty {
-            if let selectPicker = shopList.first?.prodName, let pickerId = shopList[0].shopId {
-                
-                self.shopSelect = selectPicker
-                print(" - - - - - - - -- - -- - -- - - -- - -- \(self.shopSelect)")
-                if let intId = Int(pickerId) {
-                    self.salePicker.selectRow(intId, inComponent: 0, animated: true)
-                }
-            }
-        }
-        
-    }
     
     func sumAllSell() {
         shopVM.sumAllSellProd(userMail: mail!) { sumShop in
