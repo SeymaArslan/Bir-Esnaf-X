@@ -19,4 +19,5 @@ class Sale: Codable {
     let saleTotal: String?
     let saleTotalPrice: String?
     let saleDate: String?
+    let count: String?
 }

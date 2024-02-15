@@ -9,7 +9,7 @@ import Foundation
 
 class CompanyVM {
     
-    func countCompBank(userMail: String, completion: @escaping([CompanyBank]) -> ()) {  // listeyi çek boşsa visible yapmayı dene yemezse bunu kullan yerse sil
+    func countCompBank(userMail: String, completion: @escaping([CompanyBank]) -> ()) { 
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/countCompBank.php")!)
         req.httpMethod = "POST"
         let string = "userMail=\(userMail)"

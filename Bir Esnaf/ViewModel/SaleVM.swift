@@ -8,6 +8,25 @@
 import Foundation
 
 class SaleVM {
+    func countSale(userMail: String, completion: @escaping([Sale]) -> ()) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/countSale.php")!)
+        request.httpMethod = "POST"
+        let string = "userMail=\(userMail)"
+        request.httpBody = string.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "count sale error")
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(SaleData.self, from: data!)
+                completion(result.sale ?? [Sale]())
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func deleteSale(userMail: String, saleId: Int) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteSale.php")!)
         req.httpMethod = "POST"

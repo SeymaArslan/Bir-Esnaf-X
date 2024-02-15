@@ -9,7 +9,7 @@ import Foundation
 
 class ProductVM {
     func countProduct(userMail: String, completion: @escaping([Product]) -> ()) {
-        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/countProd.php")!)
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/countProduct.php")!)
         request.httpMethod = "POST"
         let postStr = "userMail=\(userMail)"
         request.httpBody = postStr.data(using: .utf8)

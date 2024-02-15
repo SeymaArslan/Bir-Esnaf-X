@@ -10,6 +10,11 @@ import ProgressHUD
 
 class TradeViewController: UIViewController {
     
+    //MARK: - Vars for enable/disable buttons
+    var countSale: String?
+    var saleList = [Sale]()
+    let saleVM = SaleVM()
+    
     var countProd: String?
     var prodList = [Product]()
     let prodVM = ProductVM()
@@ -17,8 +22,6 @@ class TradeViewController: UIViewController {
     var countComp: String?
     var compList = [CompanyBank]()
     let compVM = CompanyVM()
-    // burada firma ve ürün tablolarına göre visible durumu olacak eğer firma (companyBank) eklenmediyse alım tablosu visible, eğer ürün (product) eklenmediyse satış tablosu visible
-    // artı satış tablosu boşsa saleResult visible
 
     // these vars and constants are for in shopVC
     var firstProfitAmount: String?
@@ -37,35 +40,39 @@ class TradeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        getCompanyCount()
+        getProdCount()
+        getSaleCount()
         getFirstSale()
-        
-        
-        getCompany()
-        
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    @IBAction func buyButtonPressed(_ sender: Any) {  // bağlantıyı ve burayuı sil
-        if self.buyButton.isEnabled == false {
-            ProgressHUD.show("Bu özelliğin aktif olması için Firma ekleyin.")
+    
+    //MARK: - Helpers
+    func getSaleCount() {
+        self.saleVM.countSale(userMail: mail!) { saleData in
+            self.saleList = saleData
+            if let count = self.saleList.first?.count {
+                self.countSale = count
+                if let intSale = Int(self.countSale!) {
+                    if intSale < 1 {   // deneme için 8 yap
+                        DispatchQueue.main.async {
+                            self.salesResultButton.isEnabled = false
+                            ProgressHUD.showError("Bu özelliğin aktif olması için Satış İşlemi girmeniz gerekmektedir.")
+                        }
+                    }
+                }
+            }
         }
     }
     
-    @IBAction func saleResultButtonPressed(_ sender: Any) {
-    }
-    
-    
-    //MARK: - Helpers
-    func getProd() {
+    func getProdCount() {
         self.prodVM.countProduct(userMail: mail!) { prodData in
             self.prodList = prodData
             if let count = self.prodList.first?.count {
                 self.countProd = count
                 if let intProd = Int(self.countProd!) {
-                    if intProd < 1 {
+                    if intProd < 1 {  // test için 4 yap
                         DispatchQueue.main.async {
                             self.saleButton.isEnabled = false
                             ProgressHUD.showError("Bu özelliğin aktif olması için Ürün ekleyin.")
@@ -76,7 +83,7 @@ class TradeViewController: UIViewController {
         }
     }
     
-    func getCompany() {
+    func getCompanyCount() {
             self.compVM.countCompBank(userMail: self.mail!) { compCount in
                 self.compList = compCount
                 if let count = self.compList.first?.count {
@@ -118,9 +125,6 @@ class TradeViewController: UIViewController {
                             if intStr > 0 {
                                 DispatchQueue.main.async {
                                     self.firstProfitAmount = str + " ₺"
-                                    if let profAmo = self.firstProfitAmount {
-                                        print("profit amount = \(profAmo)")
-                                    }
                                 }
                             }
                         }

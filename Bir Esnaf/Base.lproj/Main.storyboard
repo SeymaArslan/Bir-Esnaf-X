@@ -2763,7 +2763,7 @@
                     <tabBarItem key="tabBarItem" title="Ürünler" image="square.3.layers.3d.down.left" catalog="system" id="Foq-Ft-Qp9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="8pA-iZ-3Ak">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="customColor2"/>
@@ -2824,7 +2824,6 @@
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="buyButtonPressed:" destination="Ud3-Cn-X5y" eventType="touchUpInside" id="cJg-c9-KHx"/>
                                     <action selector="compUpdateButton:" destination="9Uc-1Y-3M4" eventType="touchUpInside" id="ere-3G-Yu9"/>
                                     <segue destination="zKf-FB-fAm" kind="show" id="Trv-NE-3xy"/>
                                 </connections>
@@ -2856,7 +2855,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="compUpdateButton:" destination="9Uc-1Y-3M4" eventType="touchUpInside" id="vNm-Tw-FEf"/>
-                                    <action selector="saleResultButtonPressed:" destination="Ud3-Cn-X5y" eventType="touchUpInside" id="QYC-D3-Hfg"/>
                                     <segue destination="ffA-Wp-WWu" kind="presentation" identifier="goToShop" modalPresentationStyle="fullScreen" id="bWS-1J-zJz"/>
                                 </connections>
                             </button>
