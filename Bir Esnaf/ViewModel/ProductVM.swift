@@ -8,6 +8,24 @@
 import Foundation
 
 class ProductVM {
+    func countProduct(userMail: String, completion: @escaping([Product]) -> ()) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/countProd.php")!)
+        request.httpMethod = "POST"
+        let postStr = "userMail=\(userMail)"
+        request.httpBody = postStr.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "count product error ")
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(ProductData.self, from: data!)
+                completion(result.product ?? [Product]())
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
     
     func fetchProdData(prodName: String, completion: @escaping([Product]) -> ()) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/fetchProductionData.php")!)

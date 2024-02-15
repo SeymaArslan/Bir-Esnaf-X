@@ -17,4 +17,5 @@ class Product: Codable {
     let prodName: String?
     let prodTotal: String?
     let prodPrice: String?
+    let count: String?
 }

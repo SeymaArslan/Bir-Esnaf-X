@@ -9,6 +9,25 @@ import Foundation
 
 class CompanyVM {
     
+    func countCompBank(userMail: String, completion: @escaping([CompanyBank]) -> ()) {  // listeyi çek boşsa visible yapmayı dene yemezse bunu kullan yerse sil
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/countCompBank.php")!)
+        req.httpMethod = "POST"
+        let string = "userMail=\(userMail)"
+        req.httpBody = string.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "count company error")
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(CompanyBankData.self, from: data!)
+                completion(result.companyBank ?? [CompanyBank]())
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func getSelectedCompPicker(compName: String, completion: @escaping ([CompanyBank]) -> () ) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getSelectedCompPicker.php")!)
         req.httpMethod = "POST"

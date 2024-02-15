@@ -6,9 +6,21 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class TradeViewController: UIViewController {
+    
+    var countProd: String?
+    var prodList = [Product]()
+    let prodVM = ProductVM()
 
+    var countComp: String?
+    var compList = [CompanyBank]()
+    let compVM = CompanyVM()
+    // burada firma ve ürün tablolarına göre visible durumu olacak eğer firma (companyBank) eklenmediyse alım tablosu visible, eğer ürün (product) eklenmediyse satış tablosu visible
+    // artı satış tablosu boşsa saleResult visible
+
+    // these vars and constants are for in shopVC
     var firstProfitAmount: String?
     var fetchShopList = [Shop]()
     var firstProdName: String?
@@ -20,14 +32,65 @@ class TradeViewController: UIViewController {
     @IBOutlet weak var salesResultButton: UIButton!
     @IBOutlet weak var saleButton: UIButton!
     
+    
+    //MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         getFirstSale()
+        
+        
+        getCompany()
+        
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    @IBAction func buyButtonPressed(_ sender: Any) {  // bağlantıyı ve burayuı sil
+        if self.buyButton.isEnabled == false {
+            ProgressHUD.show("Bu özelliğin aktif olması için Firma ekleyin.")
+        }
     }
     
-
     @IBAction func saleResultButtonPressed(_ sender: Any) {
+    }
+    
+    
+    //MARK: - Helpers
+    func getProd() {
+        self.prodVM.countProduct(userMail: mail!) { prodData in
+            self.prodList = prodData
+            if let count = self.prodList.first?.count {
+                self.countProd = count
+                if let intProd = Int(self.countProd!) {
+                    if intProd < 1 {
+                        DispatchQueue.main.async {
+                            self.saleButton.isEnabled = false
+                            ProgressHUD.showError("Bu özelliğin aktif olması için Ürün ekleyin.")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func getCompany() {
+            self.compVM.countCompBank(userMail: self.mail!) { compCount in
+                self.compList = compCount
+                if let count = self.compList.first?.count {
+                    self.countComp = count
+                    if let intcomp = Int(self.countComp!) {
+                        if intcomp < 1 {
+                            DispatchQueue.main.async {
+                                self.buyButton.isEnabled = false
+                                ProgressHUD.showError("Bu özelliğin aktif olması için Firma ekleyin.")
+                            }
+                        }
+                    }
+                }
+            }
         
     }
     
@@ -40,6 +103,7 @@ class TradeViewController: UIViewController {
             }
         }
     }
+    
     
     func getFirstSale() {
         shopVM.getFirstSaleData(userMail: mail!) { firstShopData in
@@ -62,7 +126,6 @@ class TradeViewController: UIViewController {
                         }
                     }
                 }
-                
                 
             }
         }
