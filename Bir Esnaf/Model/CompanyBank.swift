@@ -28,5 +28,5 @@ class CompanyBank: Codable {
     let bankAccountName: String?
     let bankAccountNum: String?
     let bankIban: String?
-    let count: String
+    let count: String?
 }

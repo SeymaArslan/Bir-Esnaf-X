@@ -19,6 +19,8 @@ class CompanyTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
+        tableView.rowHeight = 70.0
+        
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
         
@@ -51,7 +53,7 @@ class CompanyTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "goToCompDet", sender: indexPath.row)  // indexPath.row?
+        self.performSegue(withIdentifier: "goToCompDet", sender: indexPath.row)  
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
@@ -97,21 +99,20 @@ class CompanyTableViewController: UITableViewController {
     }
     
     
-    func getComp() {
-        compVM.getAllCompanies(userMail: mail!) { compData in
-            self.compList = compData
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToCompDet" {
             guard let indeks = sender as? Int else { return }
             let goToVC = segue.destination as! CompanyDetailViewController
             goToVC.company = compList[indeks]
+        }
+    }
+    
+    func getComp() {
+        compVM.getAllCompany(userMail: mail!) { compData in
+            self.compList = compData
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     

@@ -55,7 +55,7 @@ class TradeViewController: UIViewController {
             if let count = self.saleList.first?.count {
                 self.countSale = count
                 if let intSale = Int(self.countSale!) {
-                    if intSale < 1 {   // deneme için 8 yap
+                    if intSale < 1 {
                         DispatchQueue.main.async {
                             self.salesResultButton.isEnabled = false
                             ProgressHUD.showError("Bu özelliğin aktif olması için Satış İşlemi girmeniz gerekmektedir.")
@@ -72,7 +72,7 @@ class TradeViewController: UIViewController {
             if let count = self.prodList.first?.count {
                 self.countProd = count
                 if let intProd = Int(self.countProd!) {
-                    if intProd < 1 {  // test için 4 yap
+                    if intProd < 1 { 
                         DispatchQueue.main.async {
                             self.saleButton.isEnabled = false
                             ProgressHUD.showError("Bu özelliğin aktif olması için Ürün ekleyin.")

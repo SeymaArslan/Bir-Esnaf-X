@@ -87,19 +87,19 @@ class CompanyVM {
         }.resume()
     }
     
-    func getAllCompanies(userMail: String, completion: @escaping ([CompanyBank]) -> ()) {
-        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/companyListWithUser.php")!)
-        request.httpMethod = "POST"
-        let post = "userMail=\(userMail)"
-        request.httpBody = post.data(using: .utf8)
-        URLSession.shared.dataTask(with: request) { data, response, error in
+    func getAllCompany(userMail: String, comp: @escaping([CompanyBank]) -> ()) {
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/companyListWithUser.php")!)
+        req.httpMethod = "POST"
+        let str = "userMail=\(userMail)"
+        req.httpBody = str.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, res, error in
             if error != nil {
-                print(error?.localizedDescription ?? "Hata")
+                print(error?.localizedDescription ?? "get all company error")
                 return
             }
             do {
                 let result = try JSONDecoder().decode(CompanyBankData.self, from: data!)
-                completion(result.companyBank ?? [CompanyBank]())
+                comp(result.companyBank ?? [CompanyBank]())
             } catch {
                 print(error.localizedDescription)
             }
