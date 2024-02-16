@@ -34,6 +34,8 @@ class AddBankViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupBackgroundTap()
+        setupToolBar()
     }
     
     @IBAction func saveBankButton(_ sender: Any) {
@@ -51,7 +53,6 @@ class AddBankViewController: UIViewController {
     
     //MARK: - Helpers
     func addComp() {
-    
         if let email = mail, let bName = bankName.text, let bBranchName = branchName.text, let bCode = branchCode.text, let aType = accountType.text, let aName = accountName.text, let aNumber = accountNumber.text, let iban = ibanNumber.text {
             
             if let intAccNum = Int(aNumber) {
@@ -59,10 +60,41 @@ class AddBankViewController: UIViewController {
                 
                 ProgressHUD.showSuccess("Firma kayıt edildi.")
                 self.view.window?.rootViewController?.dismiss(animated: true)
-
             }
         }
     }
+    
+    func setupToolBar() {
+        let bar = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "Tamam", style: .plain, target: self, action: #selector(dismissKeyboard))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        bar.items = [flexSpace, flexSpace, doneButton]
+        bar.sizeToFit()
+        branchCode.inputAccessoryView = bar
+        accountNumber.inputAccessoryView = bar
+    }
 
     
+}
+
+extension AddBankViewController: UITextFieldDelegate {
+    private func setupBackgroundTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(false)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        bankName.endEditing(true)
+        branchName.endEditing(true)
+        branchCode.endEditing(true)
+        accountType.endEditing(true)
+        accountName.endEditing(true)
+        accountNumber.endEditing(true)
+        ibanNumber.endEditing(true)
+        return true
+    }
 }

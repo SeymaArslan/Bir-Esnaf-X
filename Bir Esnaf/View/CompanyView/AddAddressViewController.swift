@@ -27,6 +27,12 @@ class AddAddressViewController: UIViewController, UIPickerViewDelegate, UIPicker
 
         provincePicker.delegate = self
         provincePicker.dataSource = self
+        
+        compDistrict.delegate = self
+        compQuarter.delegate = self
+        compFullAddress.delegate = self
+        
+        setupBackgroundTap()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,4 +104,23 @@ class AddAddressViewController: UIViewController, UIPickerViewDelegate, UIPicker
         }
     }
     
+}
+
+
+extension AddAddressViewController: UITextFieldDelegate {
+    private func setupBackgroundTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(false)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        compDistrict.endEditing(true)
+        compQuarter.endEditing(true)
+        compFullAddress.endEditing(true)
+        return true
+    }
 }

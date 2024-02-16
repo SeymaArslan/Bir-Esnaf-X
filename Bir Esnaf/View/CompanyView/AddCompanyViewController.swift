@@ -8,7 +8,6 @@
 import UIKit
 
 class AddCompanyViewController: UIViewController {
-
     @IBOutlet weak var compName: UITextField!
     @IBOutlet weak var compPhone: UITextField!
     @IBOutlet weak var compMail: UITextField!
@@ -16,6 +15,12 @@ class AddCompanyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        compName.delegate = self
+        compPhone.delegate = self
+        compMail.delegate = self
+        
+        setupBackgroundTap()
+        setupToolBar()
     }
     
     @IBAction func compSaveButton(_ sender: Any) {
@@ -26,7 +31,7 @@ class AddCompanyViewController: UIViewController {
         self.view.window?.rootViewController?.dismiss(animated: true)
     }
     
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addAddress" {
             let goToAddressVC = segue.destination as! AddAddressViewController
@@ -37,6 +42,33 @@ class AddCompanyViewController: UIViewController {
             }
         }
     }
+    
+    //MARK: - Helpers
+    func setupToolBar() {
+        let bar = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "Tamam", style: .plain, target: self, action: #selector(dismissKeyboard))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        bar.items = [flexSpace, flexSpace, doneButton]
+        bar.sizeToFit()
+        compPhone.inputAccessoryView = bar
+    }
+}
 
+extension AddCompanyViewController: UITextFieldDelegate {
+
+    private func setupBackgroundTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(false)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        compName.endEditing(true)
+        compMail.endEditing(true)
+        return true
+    }
     
 }
