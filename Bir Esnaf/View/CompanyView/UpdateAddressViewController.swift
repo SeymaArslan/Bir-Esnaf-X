@@ -18,7 +18,6 @@ class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
     var provinceList = [Province]()
     var provinceSelect = String()
     let pm = ProvinceVM()
-//    var provinceId = String()
     var getProvList = [Province]()
     var provinceComponent = String()
 
@@ -33,7 +32,7 @@ class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
         cityPicker.delegate = self
         cityPicker.dataSource = self
         
-        
+        setupBackgroundTap()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,4 +129,23 @@ class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
         }
     }
     
+}
+
+
+extension UpdateAddressViewController: UITextFieldDelegate {
+    private func setupBackgroundTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(false)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        districtUpdate.endEditing(true)
+        quarterUpdate.endEditing(true)
+        fullAddressUpdate.endEditing(true)
+        return true
+    }
 }

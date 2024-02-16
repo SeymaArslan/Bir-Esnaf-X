@@ -38,6 +38,9 @@ class UpdateBankViewController: UIViewController {
         super.viewDidLoad()
         
         getCompData()
+        
+        setupBackgroundTap()
+        setupToolBar()
     }
     
     
@@ -53,7 +56,6 @@ class UpdateBankViewController: UIViewController {
     
     //MARK: - Helpers
     func updateComp() {
-//        self.completionHandler?()
         if let bName = bankName.text, let branchName = branchName.text, let branchCode = branchCode.text, let aType = accountType.text, let aName = accountName.text, let aNum = accountNumber.text, let iban = ibanNumber.text {
             if let intANum = Int(aNum) {
                 compVM.compUpdate(cbId: compId, compName: cName, compPhone: cPhone, compMail: cMail, province: province, district: district, quarter: quarter, asbn: asbn, bankName: bName, bankBranchName: branchName, bankBranchCode: branchCode, bankAccountType: aType, bankAccountName: aName, bankAccountNum: intANum, bankIban: iban)
@@ -63,7 +65,6 @@ class UpdateBankViewController: UIViewController {
             }
         }
     }
-    
     
     func getCompData() {
         if let comp = company {
@@ -81,5 +82,37 @@ class UpdateBankViewController: UIViewController {
             }
         }
     }
+}
+
+
+extension UpdateBankViewController: UITextFieldDelegate {
+    private func setupToolBar() {
+        let bar = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "Tamam", style: .plain, target: self, action: #selector(dismissKeyboard))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        bar.items = [flexSpace, flexSpace, doneButton]
+        bar.sizeToFit()
+        branchCode.inputAccessoryView = bar
+        accountNumber.inputAccessoryView = bar
+    }
     
+    private func setupBackgroundTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(false)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        bankName.endEditing(true)
+        branchName.endEditing(true)
+        branchCode.endEditing(true)
+        accountType.endEditing(true)
+        accountName.endEditing(true)
+        accountNumber.endEditing(true)
+        ibanNumber.endEditing(true)
+        return true
+    }
 }

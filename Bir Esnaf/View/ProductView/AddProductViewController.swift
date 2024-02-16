@@ -19,6 +19,8 @@ class AddProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupToolBar()
+        setupBackgroundTap()
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -36,5 +38,30 @@ class AddProductViewController: UIViewController {
             }
         }
     }
+}
+
+extension AddProductViewController: UITextFieldDelegate {
+    private func setupToolBar() {
+        let bar = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "Tamam", style: .plain, target: self, action: #selector(dismissKeyboard))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        bar.items = [flexSpace, flexSpace, doneButton]
+        bar.sizeToFit()
+        prodPrice.inputAccessoryView = bar
+        prodTotal.inputAccessoryView = bar
+    }
     
+    private func setupBackgroundTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(false)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        prodName.endEditing(true)
+        return true
+    }
 }

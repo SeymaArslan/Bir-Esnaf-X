@@ -19,6 +19,8 @@ class UpdateCompanyViewController: UIViewController {
         super.viewDidLoad()
 
         getCompDatas()
+        setupBackgroundTap()
+        setupToolBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,6 +34,7 @@ class UpdateCompanyViewController: UIViewController {
         self.view.window?.rootViewController?.dismiss(animated: true)
     }
     
+    //MARK: - Helpers
     func getCompDatas() {
         if let comp = company {
             compNameUpdate.text = comp.compName
@@ -51,6 +54,31 @@ class UpdateCompanyViewController: UIViewController {
             }
         }
     }
+}
+
+
+
+extension UpdateCompanyViewController: UITextFieldDelegate {
+    private func setupToolBar() {
+        let barItem = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "Tamam", style: .plain, target: self, action: #selector(dismissKeyboard))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        barItem.items = [flexSpace, flexSpace, doneButton]
+        compPhoneUpdate.inputAccessoryView = barItem
+    }
     
+    private func setupBackgroundTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
     
+    @objc func dismissKeyboard() {
+        view.endEditing(false)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        compNameUpdate.endEditing(true)
+        compEmailUpdate.endEditing(true)
+        return true
+    }
 }
