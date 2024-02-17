@@ -23,9 +23,9 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     //MARK: - IBOutlets
     @IBOutlet weak var compPickerUp: UIPickerView!
     @IBOutlet weak var productName: UITextField!
-    @IBOutlet weak var priceUp: UITextField!
-    @IBOutlet weak var totalUp: UITextField!
-    @IBOutlet weak var totalPriceUp: UITextField!
+    @IBOutlet weak var priceUp: UITextField!  // 00
+    @IBOutlet weak var totalUp: UITextField!  // 11
+    @IBOutlet weak var totalPriceUp: UITextField!  // 22
     @IBOutlet weak var buyDateUp: UITextField!
     
     //MARK: - Life Cycle
@@ -35,7 +35,9 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         compPickerUp.delegate = self
         compPickerUp.dataSource = self
         
-//        getBuy()
+        setupToolBar()
+        setupBackgroundTap()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,7 +133,32 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             }
         }
     }
-
-    
 }
 
+extension UpdateBuyViewController: UITextFieldDelegate {
+    private func setupToolBar() {
+        let bar = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "Tamam", style: .plain, target: self, action: #selector(dismissKeyboard))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        bar.items = [flexSpace, flexSpace, doneButton]
+        bar.sizeToFit()
+
+        priceUp.inputAccessoryView = bar
+        totalUp.inputAccessoryView = bar
+        totalPriceUp.inputAccessoryView = bar
+    }
+    
+    private func setupBackgroundTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(false)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        productName.endEditing(true)
+        return true
+    }
+}

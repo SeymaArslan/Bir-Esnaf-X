@@ -130,3 +130,31 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     }
     
 }
+
+
+extension UpdateSalesViewController: UITextFieldDelegate {
+    @objc func dismissKeyboard() {
+        view.endEditing(false)
+    }
+    
+    private func setupToolBar() {
+        let bar = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "Tamam", style: .plain, target: self, action: #selector(dismissKeyboard))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        bar.items = [flexSpace, flexSpace, doneButton]
+        bar.sizeToFit()
+        
+        salePrice.inputAccessoryView = bar
+        total.inputAccessoryView = bar
+        totalPrice.inputAccessoryView = bar
+    }
+    
+    private func setupBackgroundTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        return true
+//    }   test it
+}

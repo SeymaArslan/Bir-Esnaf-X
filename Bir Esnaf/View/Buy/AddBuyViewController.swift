@@ -32,6 +32,9 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         compPicker.dataSource = self
         
         createDatePicker()
+        
+        setupToolBar()
+        setupBackgroundTap()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,4 +128,33 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         datePicker.datePickerMode = .date
     }
     
+}
+
+
+extension AddBuyViewController: UITextFieldDelegate {
+    @objc func dismissKeyboard() {
+        view.endEditing(false)
+    }
+    
+    private func setupToolBar() {
+        let bar = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "Tamam", style: .plain, target: self, action: #selector(dismissKeyboard))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        bar.items = [flexSpace, flexSpace, doneButton]
+        bar.sizeToFit()
+        
+        price.inputAccessoryView = bar
+        total.inputAccessoryView = bar
+        totalPrice.inputAccessoryView = bar
+    }
+    
+    private func setupBackgroundTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        productName.endEditing(true)
+        return true
+    }
 }

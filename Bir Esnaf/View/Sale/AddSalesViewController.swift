@@ -39,6 +39,9 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         prodPicker.dataSource = self
         
         createDatePicker()
+        
+        setupToolBar()
+        setupBackgroundTap()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -162,4 +165,33 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
+}
+
+
+extension AddSalesViewController: UITextFieldDelegate {
+    private func setupToolBar() {
+        let bar = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "Tamam", style: .plain, target: self, action: #selector(dismissKeyboard))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        bar.items = [flexSpace, flexSpace, doneButton]
+        bar.sizeToFit()
+        
+        salePrice.inputAccessoryView = bar
+        total.inputAccessoryView = bar
+        totalPrice.inputAccessoryView = bar
+        
+    }
+    
+    private func setupBackgroundTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(false)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {  // test it 
+        return true
+    }
 }
