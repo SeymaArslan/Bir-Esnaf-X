@@ -105,7 +105,7 @@ class ProductVM {
         }.resume()
     }
     
-    func updateProd(prodId: Int, prodName: String, prodTotal: Int, prodPrice: Double) {
+    func updateProd(prodId: Int, prodName: String, prodTotal: Double, prodPrice: Double) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/updateProduct.php")!)
         request.httpMethod = "POST"
         let post = "prodId=\(prodId)&prodName=\(prodName)&prodTotal=\(prodTotal)&prodPrice=\(prodPrice)"
@@ -144,14 +144,14 @@ class ProductVM {
         }.resume()
     }
     
-    func insertProd(userMail: String, prodName: String, prodTotal: Int, prodPrice: Double) {
+    func insertProd(userMail: String, prodName: String, prodTotal: Double, prodPrice: Double) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/addProduct.php")!)
         request.httpMethod = "POST"
         let post = "userMail=\(userMail)&prodName=\(prodName)&prodTotal=\(prodTotal)&prodPrice=\(prodPrice)"
         request.httpBody = post.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
-                print(error?.localizedDescription ?? "" )
+                print(error!)
                 return
             } 
             do {
@@ -159,7 +159,7 @@ class ProductVM {
                     print(json)
                 }
             } catch {
-                print(error.localizedDescription)
+                print(error)
             }
         }.resume()
     }

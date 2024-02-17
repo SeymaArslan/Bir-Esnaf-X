@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class AddProductViewController: UIViewController {
 
@@ -26,19 +27,29 @@ class AddProductViewController: UIViewController {
     @IBAction func cancelButton(_ sender: Any) {
         self.view.window?.rootViewController?.dismiss(animated: true)
     }
-    
-    
-    
 
     @IBAction func saveProd(_ sender: Any) {
-        if let userMail = mail ,let pName = prodName.text, let pPrice = prodPrice.text, let pTotal = prodTotal.text {
-            if let doublePrice = Double(pPrice), let intTotal = Int(pTotal) {
-                prodVM.insertProd(userMail: userMail, prodName: pName, prodTotal: intTotal, prodPrice: doublePrice)
+        addProd()
+    }
+    
+    func addProd() {
+        var price = prodPrice.text
+        price = price?.replacingOccurrences(of: ",", with: ".")
+        
+        var total = prodPrice.text
+        total = total?.replacingOccurrences(of: ",", with: ".")
+        
+        if let pName = prodName.text, let pPrice = price, let pTotal = total {
+            if let doublePrice = Double(pPrice), let doubleTotal = Double(pTotal) {
+                prodVM.insertProd(userMail: mail!, prodName: pName, prodTotal: doubleTotal, prodPrice: doublePrice)
+                ProgressHUD.showSuccess("Ürün başarılı bir şekilde eklendi.")
                 self.view.window?.rootViewController?.dismiss(animated: true)
             }
         }
     }
 }
+
+
 
 extension AddProductViewController: UITextFieldDelegate {
     private func setupToolBar() {
@@ -64,4 +75,5 @@ extension AddProductViewController: UITextFieldDelegate {
         prodName.endEditing(true)
         return true
     }
+    
 }

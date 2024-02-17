@@ -23,6 +23,9 @@ class UpdateProductViewController: UIViewController {
         super.viewDidLoad()
         
         getProd()
+        
+        setupToolBar()
+        setupBackgroundTap()
     }
     
     @IBAction func updateProduction(_ sender: Any) {
@@ -51,8 +54,8 @@ class UpdateProductViewController: UIViewController {
     
     func updateProd() {
         if let pName = prodNameUp.text, let pPrice = prodPriceUp.text, let pTotal = prodTotalUp.text {
-            if let doublePrice = Double(pPrice), let intTotal = Int(pTotal) {
-                prodVM.updateProd(prodId: prodId, prodName: pName, prodTotal: intTotal, prodPrice: doublePrice)
+            if let doublePrice = Double(pPrice), let doubTotal = Double(pTotal) {
+                prodVM.updateProd(prodId: prodId, prodName: pName, prodTotal: doubTotal, prodPrice: doublePrice)
                 ProgressHUD.showSuccess("Ürün güncellendi.")
                 self.view.window?.rootViewController?.dismiss(animated: true)
             }

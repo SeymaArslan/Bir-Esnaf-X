@@ -90,7 +90,8 @@ class BuyVM {
         request.httpBody = post.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
-                print(error?.localizedDescription ?? "Buy insert error")
+                print(error!)
+//                print(error?.localizedDescription ?? "Buy insert error")
                 return
             }
             do {
@@ -98,7 +99,8 @@ class BuyVM {
                     print(json)
                 }
             } catch {
-                print(error.localizedDescription)
+//                print(error.localizedDescription)
+                print(error)
             }
         }.resume()
     }
