@@ -38,6 +38,8 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "customColor2")
+        
         totalProfitAmount.text = "0 ₺"
         
         salePicker.delegate = self
@@ -47,6 +49,7 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             shopSelect = pName
             profitAmount.text = amount
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

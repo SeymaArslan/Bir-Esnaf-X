@@ -16,6 +16,8 @@ class BuyTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureLeftBarButton()
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -79,6 +81,15 @@ class BuyTableViewController: UITableViewController {
     
     
     //MARK: - Helpers
+    @objc func backButtonPressed() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func configureLeftBarButton() {
+        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(self.backButtonPressed))]
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "customColor2")
+    }
+    
     func showDeleteAlert(for indexPath: IndexPath) {
         let alertController = UIAlertController(title: "Seçilen Satırı Silmek Üzeresiniz", message: "Silme işlemine devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "İptal", style: .cancel)

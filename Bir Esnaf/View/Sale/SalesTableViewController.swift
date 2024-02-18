@@ -19,6 +19,8 @@ class SalesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureLeftBarButton()
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -90,6 +92,15 @@ class SalesTableViewController: UITableViewController {
     
     
     //MARK: - Helpers
+    @objc func backButtonPressed() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func configureLeftBarButton() {
+        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(self.backButtonPressed))]
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "customColor2")
+    }
+    
     func showDeleteAlert(for indexPath: IndexPath) {
         let alertCont = UIAlertController(title: "Seçtiğiniz satırı silmek üzeresiniz", message: "Silme işlemine devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
         let cancelAct = UIAlertAction(title: "İptal", style: .cancel)
