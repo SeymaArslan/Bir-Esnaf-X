@@ -115,7 +115,14 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     func addSale() {
-        if let userMail = mail, let salePrice = salePrice.text, let saleTotal = total.text, let totalSalePrice = totalPrice.text, let date = saleDateTextField.text {
+        var sPriceRep = salePrice.text
+        sPriceRep = sPriceRep?.replacingOccurrences(of: ",", with: ".")
+        var totalRep = total.text
+        totalRep = totalRep?.replacingOccurrences(of: ",", with: ".")
+        var totalPriceRep = totalPrice.text
+        totalPriceRep = totalPriceRep?.replacingOccurrences(of: ",", with: ".")
+        
+        if let userMail = mail, let salePrice = sPriceRep, let saleTotal = totalRep, let totalSalePrice = totalPriceRep, let date = saleDateTextField.text {
             if let doubleSalePrice = Double(salePrice), let doubleSaleTotal = Double(saleTotal), let doubleTotalSalePrice = Double(totalSalePrice), let doubleProdTotal = Double(prodTotal)  {
                 
                 if doubleProdTotal >= doubleSaleTotal {
@@ -190,8 +197,5 @@ extension AddSalesViewController: UITextFieldDelegate {
     @objc func dismissKeyboard() {
         view.endEditing(false)
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {  // test it 
-        return true
-    }
+
 }

@@ -19,12 +19,11 @@ class BuyTableViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.rowHeight = 234.0  // 234
+        tableView.rowHeight = 234.0
         
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
         
-//        self.navigationItem.titleView?.tintColor = UIColor(named: "customColor")    *****
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -36,12 +35,10 @@ class BuyTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return buyList.count
     }
 

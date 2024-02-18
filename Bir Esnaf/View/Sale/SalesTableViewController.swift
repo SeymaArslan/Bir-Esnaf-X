@@ -127,6 +127,7 @@ class SalesTableViewController: UITableViewController {
         }
     }
     
+    
     func getSaleList() {
         saleVM.getSaleList(mail: mail!) { saleListData in
             self.saleList = saleListData
@@ -135,6 +136,4 @@ class SalesTableViewController: UITableViewController {
             }
         }
     }
-    
-
 }

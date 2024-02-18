@@ -39,6 +39,12 @@ class UpdateBankViewController: UIViewController {
         
         getCompData()
         
+        bankName.delegate = self
+        branchName.delegate = self
+        accountType.delegate = self
+        accountName.delegate = self
+        ibanNumber.delegate = self
+        
         setupBackgroundTap()
         setupToolBar()
     }
@@ -108,10 +114,8 @@ extension UpdateBankViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         bankName.endEditing(true)
         branchName.endEditing(true)
-        branchCode.endEditing(true)
         accountType.endEditing(true)
         accountName.endEditing(true)
-        accountNumber.endEditing(true)
         ibanNumber.endEditing(true)
         return true
     }

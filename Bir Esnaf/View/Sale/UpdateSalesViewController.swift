@@ -90,7 +90,13 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     //MARK: - Helpers
     func update() {
-        if let salePrice = salePrice.text, let total = total.text, let totalPrice = totalPrice.text, let buyDate = saleDateTextField.text {
+        var priceRep = salePrice.text
+        priceRep = priceRep?.replacingOccurrences(of: ",", with: ".")
+        var totalRep = total.text
+        totalRep = totalRep?.replacingOccurrences(of: ",", with: ".")
+        var totalPriceRep = totalPrice.text
+        totalPriceRep = totalPriceRep?.replacingOccurrences(of: ",", with: ".")
+        if let salePrice = priceRep, let total = totalRep, let totalPrice = totalPriceRep, let buyDate = saleDateTextField.text {
             if let doubleSPrice = Double(salePrice), let doubleTotal = Double(total), let doubleTPrice = Double(totalPrice) {
                 saleVM.updateSale(saleId: saleId, prodName: prodSelect, salePrice: doubleSPrice, saleTotal: doubleTotal, saleTotalPrice: doubleTPrice, saleDate: buyDate)
                 self.view.window?.rootViewController?.dismiss(animated: true)
@@ -153,8 +159,4 @@ extension UpdateSalesViewController: UITextFieldDelegate {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
-    
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        return true
-//    }   test it
 }

@@ -19,6 +19,8 @@ pod 'YPImagePicker'
 pod 'ProgressHUD'
 pod 'SKPhotoBrowser'
 
+pod 'IQKeyboardManagerSwift'
+
 end
 
 post_install do |installer|

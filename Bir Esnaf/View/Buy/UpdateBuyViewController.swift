@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -35,9 +36,10 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         compPickerUp.delegate = self
         compPickerUp.dataSource = self
         
+        productName.delegate = self
+        
         setupToolBar()
         setupBackgroundTap()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,9 +128,16 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     func update() {
-        if let pName = productName.text, let price = priceUp.text, let total = totalUp.text, let tPrice = totalPriceUp.text, let date = buyDateUp.text {
+        var priceRep = priceUp.text
+        priceRep = priceRep?.replacingOccurrences(of: ",", with: ".")
+        var totalRep = totalUp.text
+        totalRep = totalRep?.replacingOccurrences(of: ",", with: ".")
+        var totalPriceRep = totalPriceUp.text
+        totalPriceRep = totalPriceRep?.replacingOccurrences(of: ",", with: ".")
+        if let pName = productName.text, let price = priceRep, let total = totalRep, let tPrice = totalPriceRep, let date = buyDateUp.text {
             if let doublePrice = Double(price), let doubleTotal = Double(total), let doubleTPrice = Double(tPrice) {
                 buyVM.updateBuy(buyId: buyId, compName: compSelect, productName: pName, price: doublePrice, total: doubleTotal, totalPrice: doubleTPrice, buyDate: date)
+                ProgressHUD.showSuccess("Satın alma bilgisi güncellendi.")
                 self.view.window?.rootViewController?.dismiss(animated: true)
             }
         }

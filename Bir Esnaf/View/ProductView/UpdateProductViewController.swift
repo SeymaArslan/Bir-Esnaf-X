@@ -18,11 +18,12 @@ class UpdateProductViewController: UIViewController {
     @IBOutlet weak var prodPriceUp: UITextField!
     @IBOutlet weak var prodTotalUp: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getProd()
+        
+        prodNameUp.delegate = self
         
         setupToolBar()
         setupBackgroundTap()
@@ -30,7 +31,6 @@ class UpdateProductViewController: UIViewController {
     
     @IBAction func updateProduction(_ sender: Any) {
         updateProd()
-        
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -53,7 +53,11 @@ class UpdateProductViewController: UIViewController {
     }
     
     func updateProd() {
-        if let pName = prodNameUp.text, let pPrice = prodPriceUp.text, let pTotal = prodTotalUp.text {
+        var priceUpdate = prodPriceUp.text
+        priceUpdate = priceUpdate?.replacingOccurrences(of: ",", with: ".")
+        var totalUpdate = prodTotalUp.text
+        totalUpdate = totalUpdate?.replacingOccurrences(of: ",", with: ".")
+        if let pName = prodNameUp.text, let pPrice = priceUpdate, let pTotal = totalUpdate {
             if let doublePrice = Double(pPrice), let doubTotal = Double(pTotal) {
                 prodVM.updateProd(prodId: prodId, prodName: pName, prodTotal: doubTotal, prodPrice: doublePrice)
                 ProgressHUD.showSuccess("Ürün güncellendi.")

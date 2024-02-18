@@ -20,6 +20,8 @@ class AddProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        prodName.delegate = self
+        
         setupToolBar()
         setupBackgroundTap()
     }
@@ -75,5 +77,6 @@ extension AddProductViewController: UITextFieldDelegate {
         prodName.endEditing(true)
         return true
     }
+
     
 }

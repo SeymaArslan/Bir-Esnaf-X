@@ -32,6 +32,10 @@ class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
         cityPicker.delegate = self
         cityPicker.dataSource = self
         
+        districtUpdate.delegate = self
+        quarterUpdate.delegate = self
+        fullAddressUpdate.delegate = self
+    
         setupBackgroundTap()
     }
     
@@ -39,7 +43,6 @@ class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
         super.viewWillAppear(animated)
         getCompany()
         getProvince()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {

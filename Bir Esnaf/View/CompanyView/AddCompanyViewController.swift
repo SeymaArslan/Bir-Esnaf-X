@@ -16,7 +16,6 @@ class AddCompanyViewController: UIViewController {
         super.viewDidLoad()
 
         compName.delegate = self
-        compPhone.delegate = self
         compMail.delegate = self
         
         setupBackgroundTap()

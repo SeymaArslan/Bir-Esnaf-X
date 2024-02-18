@@ -19,6 +19,10 @@ class UpdateCompanyViewController: UIViewController {
         super.viewDidLoad()
 
         getCompDatas()
+        
+        compNameUpdate.delegate = self
+        compEmailUpdate.delegate = self
+        
         setupBackgroundTap()
         setupToolBar()
     }

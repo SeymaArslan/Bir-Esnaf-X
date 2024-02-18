@@ -31,6 +31,8 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         compPicker.delegate = self
         compPicker.dataSource = self
         
+        productName.delegate = self
+        
         createDatePicker()
         
         setupToolBar()
@@ -91,7 +93,14 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     func addBuy(){
-        if let userMail = mail, let prodName = productName.text, let price = price.text, let total = total.text, let tPrice = totalPrice.text, let date = buyDate.text {
+        var priceRep = price.text
+        priceRep = priceRep?.replacingOccurrences(of: ",", with: ".")
+        var totalRep = total.text
+        totalRep = totalRep?.replacingOccurrences(of: ",", with: ".")
+        var totalPriceRep = totalPrice.text
+        totalPriceRep = totalPriceRep?.replacingOccurrences(of: ",", with: ".")
+        
+        if let userMail = mail, let prodName = productName.text, let price = priceRep, let total = totalRep, let tPrice = totalPriceRep, let date = buyDate.text {
             if let dPrice = Double(price), let dTotal = Double(total), let dTP = Double(tPrice) {
                 print(date)
                 buyVM.addBuy(mail: userMail, compName: compSelect, productName: prodName, price: dPrice, total: dTotal, totalPrice: dTP, buyDate: date)
