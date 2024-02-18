@@ -47,14 +47,12 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             shopSelect = pName
             profitAmount.text = amount
         }
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        pullSales()
         
+        pullSales()
     }
 
     
@@ -95,10 +93,11 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         shopVM.sumAllSellProd(userMail: mail!) { sumShop in
             self.sumShopList = sumShop
             if let string = self.sumShopList.first?.totalProfitAmount {
-                if let intStr = Int(string) {  // test
-                    if intStr > 0 {
+                if let doubleStr = Double(string) {  // test
+                    if doubleStr > 0 {
                         DispatchQueue.main.async {
                             self.totalProfitAmount.text = string + " ₺"
+                            self.profitAmount.textColor = UIColor(named: "customColor")
                         }
                     } else {
                         DispatchQueue.main.async {
@@ -115,10 +114,12 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         shopVM.fetchShop(userMail: mail!, prodName: shopSelect) { shopData in
             self.fetchShopList = shopData
             if let str = self.fetchShopList.first?.totalProfitAmount {
-                if let intStr = Int(str) {
-                    if intStr > 0 {
+                print("GEldi mi \(str)")
+                if let doubleStr = Double(str) {
+                    if doubleStr > 0 {
                         DispatchQueue.main.async {
                             self.profitAmount.text = str + " ₺"
+                            self.profitAmount.textColor = UIColor(named: "customColor")
                         }
                     } else {
                         DispatchQueue.main.async {

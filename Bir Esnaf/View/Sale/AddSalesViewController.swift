@@ -155,9 +155,9 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: nil, action: #selector(addButtonClicked))
+        let doneButton = UIBarButtonItem(title: "Ekle", style: .plain, target: nil, action: #selector(addButtonClicked))
         toolbar.setItems([doneButton], animated: true)
-        
+                     
         saleDateTextField.inputAccessoryView = toolbar
         saleDateTextField.inputView = datePicker
         datePicker.datePickerMode = .date

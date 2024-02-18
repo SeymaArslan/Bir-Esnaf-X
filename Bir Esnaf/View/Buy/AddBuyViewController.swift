@@ -28,6 +28,9 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        price.addTarget(self, action: #selector(calculate), for: .editingChanged)
+        total.addTarget(self, action: #selector(calculate), for: .editingChanged)
+        
         compPicker.delegate = self
         compPicker.dataSource = self
         
@@ -52,7 +55,6 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 compSelect = selectPicker
             }
         }
-        
     }
     
     @IBAction func saveBuy(_ sender: Any) {
@@ -83,6 +85,15 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     //MARK: - Helpers
+    @objc func calculate() {
+        guard let price = Double(price.text ?? "Olmadı"), let total = Double(total.text ?? "Olmadı") else {
+            totalPrice.text = "0"
+            return
+        }
+        let result = price * total
+        totalPrice.text = "\(result)"
+    }
+    
     func fetchComp() {
         buyVM.fetchCompList { compList in   //   ******* burada maile göre çek düzeltmeyi unutma
             self.compList = compList
@@ -129,7 +140,7 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: nil, action: #selector(doneButtonClicked))
+        let doneButton = UIBarButtonItem(title: "Ekle", style: .plain, target: nil, action: #selector(doneButtonClicked))
         toolbar.setItems([doneButton], animated: true)
         
         buyDate.inputAccessoryView = toolbar
@@ -166,4 +177,5 @@ extension AddBuyViewController: UITextFieldDelegate {
         productName.endEditing(true)
         return true
     }
+
 }
