@@ -46,10 +46,10 @@ class ProductVM {
         }.resume()
     }
     
-    func productUpdateWithSales(prodName: String, prodTotal: Double) {
+    func productUpdateWithSales(userMail: String, prodName: String, prodTotal: Double) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/productUpdateWithSales.php")!)
         req.httpMethod = "POST"
-        let postStr = "prodName=\(prodName)&prodTotal=\(prodTotal)"
+        let postStr = "userMail=\(userMail)&prodName=\(prodName)&prodTotal=\(prodTotal)"
         req.httpBody = postStr.data(using: .utf8)
         URLSession.shared.dataTask(with: req) { data, res, err in
             if err != nil {
@@ -85,10 +85,10 @@ class ProductVM {
         }.resume()
     }
     
-    func deleteProd(prodId: Int) {
+    func deleteProd(userMail: String, prodId: Int) {
         var api = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteProduct.php")!)
         api.httpMethod = "POST"
-        let postStr = "prodId=\(prodId)"
+        let postStr = "userMail=\(userMail)&prodId=\(prodId)"
         api.httpBody = postStr.data(using: .utf8)
         URLSession.shared.dataTask(with: api) { data, response, error in
             if error != nil {
@@ -105,10 +105,10 @@ class ProductVM {
         }.resume()
     }
     
-    func updateProd(prodId: Int, prodName: String, prodTotal: Double, prodPrice: Double) {
+    func updateProd(userMail: String, prodId: Int, prodName: String, prodTotal: Double, prodPrice: Double) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/updateProduct.php")!)
         request.httpMethod = "POST"
-        let post = "prodId=\(prodId)&prodName=\(prodName)&prodTotal=\(prodTotal)&prodPrice=\(prodPrice)"
+        let post = "userMail=\(userMail)&prodId=\(prodId)&prodName=\(prodName)&prodTotal=\(prodTotal)&prodPrice=\(prodPrice)"
         request.httpBody = post.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {

@@ -92,7 +92,7 @@ class CompanyTableViewController: UITableViewController {
         let comp = self.compList[indexPath.row]
         if let cId = comp.cbId {
             if let intCId = Int(cId) {
-                self.compVM.deleteCompany(cbId: intCId)
+                self.compVM.deleteCompany(userMail: mail!, cbId: intCId)
                 self.getComp()
             }
         }

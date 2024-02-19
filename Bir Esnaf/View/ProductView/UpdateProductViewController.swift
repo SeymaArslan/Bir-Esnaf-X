@@ -10,6 +10,7 @@ import ProgressHUD
 
 class UpdateProductViewController: UIViewController {
     
+    let mail = userDefaults.string(forKey: "userMail")
     let prodVM = ProductVM()
     var prodId = Int()
     var product: Product?
@@ -59,7 +60,7 @@ class UpdateProductViewController: UIViewController {
         totalUpdate = totalUpdate?.replacingOccurrences(of: ",", with: ".")
         if let pName = prodNameUp.text, let pPrice = priceUpdate, let pTotal = totalUpdate {
             if let doublePrice = Double(pPrice), let doubTotal = Double(pTotal) {
-                prodVM.updateProd(prodId: prodId, prodName: pName, prodTotal: doubTotal, prodPrice: doublePrice)
+                prodVM.updateProd(userMail: mail!, prodId: prodId, prodName: pName, prodTotal: doubTotal, prodPrice: doublePrice)
                 ProgressHUD.showSuccess("Ürün güncellendi.")
                 self.view.window?.rootViewController?.dismiss(animated: true)
             }

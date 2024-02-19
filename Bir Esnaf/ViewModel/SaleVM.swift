@@ -8,6 +8,26 @@
 import Foundation
 
 class SaleVM {
+    func oldSaleUpdate(userMail: String, prodName: String, prodTotal: Double) {
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/oldSaleUpdate.php")!)
+        req.httpMethod = "POST"
+        let strPost = "userMail=\(userMail)&prodName=\(prodName)&prodTotal=\(prodTotal)"
+        req.httpBody = strPost.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, response, error in
+            if error != nil {
+                print(error!)
+                return
+            }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any] {
+                    print(json)
+                }
+            } catch {
+                print(error)
+            }
+        }.resume()
+    }
+    
     func countSale(userMail: String, completion: @escaping([Sale]) -> ()) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/countSale.php")!)
         request.httpMethod = "POST"
@@ -47,10 +67,10 @@ class SaleVM {
         }.resume()
     }
     
-    func updateSale(saleId: Int, prodName: String, salePrice: Double, saleTotal: Double, saleTotalPrice: Double, saleDate: String) {
+    func updateSale(userMail: String, saleId: Int, prodName: String, salePrice: Double, saleTotal: Double, saleTotalPrice: Double, saleDate: String) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/updateSale.php")!)
         req.httpMethod = "POST"
-        let post = "saleId=\(saleId)&prodName=\(prodName)&salePrice=\(salePrice)&saleTotal=\(saleTotal)&saleTotalPrice=\(saleTotalPrice)&saleDate=\(saleDate)"
+        let post = "userMail=\(userMail)&saleId=\(saleId)&prodName=\(prodName)&salePrice=\(salePrice)&saleTotal=\(saleTotal)&saleTotalPrice=\(saleTotalPrice)&saleDate=\(saleDate)"
         req.httpBody = post.data(using: .utf8)
         URLSession.shared.dataTask(with: req) { data, response, error in
             if error != nil {

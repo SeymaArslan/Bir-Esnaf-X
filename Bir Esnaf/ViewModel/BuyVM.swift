@@ -8,10 +8,10 @@
 import Foundation
 
 class BuyVM {
-    func deleteCell(buyId: Int) {
+    func deleteCell(userMail: String, buyId: Int) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteBuy.php")!)
         req.httpMethod = "POST"
-        let post = "buyId=\(buyId)"
+        let post = "userMail=\(userMail)&buyId=\(buyId)"
         req.httpBody = post.data(using: .utf8)
         URLSession.shared.dataTask(with: req) { data, response, error in
             if error != nil {
@@ -28,10 +28,10 @@ class BuyVM {
         }.resume()
     }
     
-    func updateBuy(buyId: Int, compName: String, productName: String, price: Double, total: Double, totalPrice: Double, buyDate: String) {
+    func updateBuy(userMail: String, buyId: Int, compName: String, productName: String, price: Double, total: Double, totalPrice: Double, buyDate: String) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/updateBuy.php")!)
         request.httpMethod = "POST"
-        let post = "buyId=\(buyId)&compName=\(compName)&productName=\(productName)&price=\(price)&total=\(total)&totalPrice=\(totalPrice)&buyDate=\(buyDate)"
+        let post = "userMail=\(userMail)&buyId=\(buyId)&compName=\(compName)&productName=\(productName)&price=\(price)&total=\(total)&totalPrice=\(totalPrice)&buyDate=\(buyDate)"
         request.httpBody = post.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {

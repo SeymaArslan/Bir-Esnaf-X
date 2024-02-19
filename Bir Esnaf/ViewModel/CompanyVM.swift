@@ -47,10 +47,10 @@ class CompanyVM {
         }.resume()
     }
     
-    func compUpdate(cbId: Int, compName: String, compPhone: String, compMail: String, province: String, district: String, quarter: String, asbn: String, bankName: String, bankBranchName: String, bankBranchCode: String, bankAccountType: String, bankAccountName: String, bankAccountNum: Int, bankIban: String) {
+    func compUpdate(userMail: String, cbId: Int, compName: String, compPhone: String, compMail: String, province: String, district: String, quarter: String, asbn: String, bankName: String, bankBranchName: String, bankBranchCode: String, bankAccountType: String, bankAccountName: String, bankAccountNum: Int, bankIban: String) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/updateComp.php")!)
         request.httpMethod = "POST"
-        let postString = "cbId=\(cbId)&compName=\(compName)&compPhone=\(compPhone)&compMail=\(compMail)&province=\(province)&district=\(district)&quarter=\(quarter)&asbn=\(asbn)&bankName=\(bankName)&bankBranchName=\(bankBranchName)&bankBranchCode=\(bankBranchCode)&bankAccountType=\(bankAccountType)&bankAccountName=\(bankAccountName)&bankAccountNum=\(bankAccountNum)&bankIban=\(bankIban)"
+        let postString = "userMail=\(userMail)&cbId=\(cbId)&compName=\(compName)&compPhone=\(compPhone)&compMail=\(compMail)&province=\(province)&district=\(district)&quarter=\(quarter)&asbn=\(asbn)&bankName=\(bankName)&bankBranchName=\(bankBranchName)&bankBranchCode=\(bankBranchCode)&bankAccountType=\(bankAccountType)&bankAccountName=\(bankAccountName)&bankAccountNum=\(bankAccountNum)&bankIban=\(bankIban)"
         request.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
@@ -67,10 +67,10 @@ class CompanyVM {
         }.resume()
     }
     
-    func deleteCompany(cbId: Int) {
+    func deleteCompany(userMail: String, cbId: Int) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteComp.php")!)
         request.httpMethod = "POST"
-        let postString = "cbId=\(cbId)"
+        let postString = "userMail=\(userMail)&cbId=\(cbId)"
         request.httpBody = postString.data(using: .utf8)
         URLSession.shared.dataTask(with: request) { data, respone, error in
             if error != nil || data == nil {

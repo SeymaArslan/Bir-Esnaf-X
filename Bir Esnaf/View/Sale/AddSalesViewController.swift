@@ -108,7 +108,7 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         if let userMail = mail {
             shopVM.addShop(userMail: userMail, prodName: prodSelect, totalProfitAmount: amount)
-            productVM.productUpdateWithSales(prodName: prodSelect, prodTotal: totalRemainingProduct)
+            productVM.productUpdateWithSales(userMail: mail!,prodName: prodSelect, prodTotal: totalRemainingProduct)
         }
         
        

@@ -9,6 +9,12 @@ import UIKit
 
 class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    var getOldTotal = Double()
+    var oldProduct = String()
+    var oldTotal = Double()
+    
+    let mail = userDefaults.string(forKey: "userMail")
+    
     var selectProdComponent = String()
     var forSelectProdPickerList = [Product]()
     let prodVM = ProductVM()
@@ -43,6 +49,9 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        
+        // burayı bi elden geçir id ye göre değil count' a göre olmalı çünkü ürün silinebilir ki bu alım alanında da olabilir artı alışverişte de
+        
         if let prodId = forSelectProdPickerList.first?.prodId {
             DispatchQueue.main.async {
                 self.selectProdComponent = prodId
@@ -52,16 +61,19 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
                         self.prodSelect = prodStr
                     }
                     self.prodNamePicker.selectRow(intLastPId, inComponent: 0, animated: true)
-                    
                 }
                 
             }
         }
         
+        self.prodNamePicker.selectRow(1, inComponent: 0, animated: true)  // buradaki 1 -> 0 1. satırı getiriyor istediğim ise index'e göre değil toplam eleman sayısına göre çekmekse ki adını aldım diyelim Tabak id si 6 tablodaki toplam eleman sayısı ise 2 ise aslında yapmam gereken eleman sayısını almak ardından
+        
+        
+        
     }
     
     @IBAction func salesUpdateButton(_ sender: Any) {
-        update()
+        updateSales()
     }
     
     @IBAction func dismissButton(_ sender: Any) {
@@ -89,16 +101,28 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     
     //MARK: - Helpers
-    func update() {
+    
+    func updateOldProd() {
+        let total = oldTotal + getOldTotal
+        saleVM.oldSaleUpdate(userMail: mail!, prodName: oldProduct, prodTotal: total)
+        print("oldProd = \(oldProduct) ve prodTotal = \(oldTotal)")
+        print("Oldu muuuuu buradaki total geri eklenmiş olmalı..")
+    }
+    
+    func updateSales() {
         var priceRep = salePrice.text
         priceRep = priceRep?.replacingOccurrences(of: ",", with: ".")
         var totalRep = total.text
         totalRep = totalRep?.replacingOccurrences(of: ",", with: ".")
         var totalPriceRep = totalPrice.text
         totalPriceRep = totalPriceRep?.replacingOccurrences(of: ",", with: ".")
+        
         if let salePrice = priceRep, let total = totalRep, let totalPrice = totalPriceRep, let buyDate = saleDateTextField.text {
             if let doubleSPrice = Double(salePrice), let doubleTotal = Double(total), let doubleTPrice = Double(totalPrice) {
-                saleVM.updateSale(saleId: saleId, prodName: prodSelect, salePrice: doubleSPrice, saleTotal: doubleTotal, saleTotalPrice: doubleTPrice, saleDate: buyDate)
+                saleVM.updateSale(userMail: mail!, saleId: saleId, prodName: prodSelect, salePrice: doubleSPrice, saleTotal: doubleTotal, saleTotalPrice: doubleTPrice, saleDate: buyDate)
+                
+                updateOldProd()
+                
                 self.view.window?.rootViewController?.dismiss(animated: true)
             }
         }
@@ -107,6 +131,12 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     func getCompList() {
         saleVM.fetchProdList { prodData in
             self.prodList = prodData
+            if let getTotal = self.prodList.first?.prodTotal {
+                if let doubleGetTotal = Double(getTotal) {
+                    self.getOldTotal = doubleGetTotal
+                    print("Geliyor mu o an ki total miktarı? = \(self.getOldTotal)")  // geldi
+                }
+            }
             DispatchQueue.main.async {
                 self.prodNamePicker.reloadAllComponents()
             }
@@ -115,9 +145,13 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     func getSaleInformation() {
         if let s = sale {
-            if let id = s.saleId {
+            if let id = s.saleId, let oldProd = s.prodName, let oldTot = s.saleTotal {
                 if let intId = Int(id) {
                     saleId = intId
+                }
+                oldProduct = oldProd
+                if let doubleOldTot = Double(oldTot) {
+                    oldTotal = doubleOldTot
                 }
             }
             
@@ -126,15 +160,20 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
             totalPrice.text = s.saleTotalPrice
             saleDateTextField.text = s.saleDate
             
+          
+            
             if let getSelectProd = s.prodName {
                 prodVM.getSelectedProdPicker(prodName: getSelectProd) { prodData in
                     self.forSelectProdPickerList = prodData
+//                    if let row = forSelectProdPickerList.first(where: { $0 == oldProduct }) {
+//                        prodNamePicker.selectRow(row, inComponent: 0, animated: true)
+//                    }
                 }
             }
-            
         }
     }
     
+
 }
 
 

@@ -95,7 +95,7 @@ class ProductTableViewController: UITableViewController {
         let prod = self.prodList[indexPath.row]
         if let prodId = prod.prodId {
             if let intPId = Int(prodId) {
-                self.prodVM.deleteProd(prodId: intPId)
+                self.prodVM.deleteProd(userMail: mail!, prodId: intPId)
                 self.getProdList()
             }
         }

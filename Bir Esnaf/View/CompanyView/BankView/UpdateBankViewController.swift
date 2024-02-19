@@ -10,8 +10,7 @@ import ProgressHUD
 
 class UpdateBankViewController: UIViewController {
     
-//    public var completionHandler:(()->Void)?
-    
+    let mail = userDefaults.string(forKey: "userMail")
     let compVM = CompanyVM()
     
     var cName = String()
@@ -64,7 +63,7 @@ class UpdateBankViewController: UIViewController {
     func updateComp() {
         if let bName = bankName.text, let branchName = branchName.text, let branchCode = branchCode.text, let aType = accountType.text, let aName = accountName.text, let aNum = accountNumber.text, let iban = ibanNumber.text {
             if let intANum = Int(aNum) {
-                compVM.compUpdate(cbId: compId, compName: cName, compPhone: cPhone, compMail: cMail, province: province, district: district, quarter: quarter, asbn: asbn, bankName: bName, bankBranchName: branchName, bankBranchCode: branchCode, bankAccountType: aType, bankAccountName: aName, bankAccountNum: intANum, bankIban: iban)
+                compVM.compUpdate(userMail: mail!, cbId: compId, compName: cName, compPhone: cPhone, compMail: cMail, province: province, district: district, quarter: quarter, asbn: asbn, bankName: bName, bankBranchName: branchName, bankBranchCode: branchCode, bankAccountType: aType, bankAccountName: aName, bankAccountNum: intANum, bankIban: iban)
                 
                 ProgressHUD.showSuccess("Firma bilgileri güncellendi.")
                 self.view.window?.rootViewController?.dismiss(animated: true)

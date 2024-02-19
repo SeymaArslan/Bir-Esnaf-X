@@ -129,7 +129,7 @@ class SalesTableViewController: UITableViewController {
                     if let prodTotal = self.prodList.first?.prodTotal {
                         if let doubleProdTotal = Double(prodTotal) {
                             let updateTotal = doubleProdTotal + doubleSaleTotal
-                            self.prodVM.productUpdateWithSales(prodName: prodName, prodTotal: updateTotal)
+                            self.prodVM.productUpdateWithSales(userMail: self.mail! ,prodName: prodName, prodTotal: updateTotal)
                         }
                     }
                 }

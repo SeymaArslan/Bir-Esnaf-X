@@ -11,6 +11,8 @@ import ProgressHUD
 class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     //MARK: - Variable
+    let mail = userDefaults.string(forKey: "userMail")
+    
     var buy: Buy?
     let buyVM = BuyVM()
     var buyId = Int()
@@ -136,7 +138,7 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         totalPriceRep = totalPriceRep?.replacingOccurrences(of: ",", with: ".")
         if let pName = productName.text, let price = priceRep, let total = totalRep, let tPrice = totalPriceRep, let date = buyDateUp.text {
             if let doublePrice = Double(price), let doubleTotal = Double(total), let doubleTPrice = Double(tPrice) {
-                buyVM.updateBuy(buyId: buyId, compName: compSelect, productName: pName, price: doublePrice, total: doubleTotal, totalPrice: doubleTPrice, buyDate: date)
+                buyVM.updateBuy(userMail: mail!, buyId: buyId, compName: compSelect, productName: pName, price: doublePrice, total: doubleTotal, totalPrice: doubleTPrice, buyDate: date)
                 ProgressHUD.showSuccess("Satın alma bilgisi güncellendi.")
                 self.view.window?.rootViewController?.dismiss(animated: true)
             }
