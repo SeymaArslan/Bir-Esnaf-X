@@ -11,7 +11,11 @@ class ProductData: Codable {
     let product: [Product]?
 }
 
-class Product: Codable {
+class Product: Codable, Equatable {
+    static func == (lhs: Product, rhs: Product) -> Bool {
+        return lhs.prodName == rhs.prodName
+    }
+    
     let prodId: String?
     let userMail: String?
     let prodName: String?

@@ -8,7 +8,7 @@
 import UIKit
 
 class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-
+    
     var getOldTotal = Double()
     var oldProduct = String()
     var oldTotal = Double()
@@ -44,31 +44,6 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
         super.viewWillAppear(animated)
         getSaleInformation()
         getCompList()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        
-        // burayı bi elden geçir id ye göre değil count' a göre olmalı çünkü ürün silinebilir ki bu alım alanında da olabilir artı alışverişte de
-        
-        if let prodId = forSelectProdPickerList.first?.prodId {
-            DispatchQueue.main.async {
-                self.selectProdComponent = prodId
-                if let intPId = Int(self.selectProdComponent) {
-                    let intLastPId = intPId - 1
-                    if let prodStr = self.prodList[intLastPId].prodName {
-                        self.prodSelect = prodStr
-                    }
-                    self.prodNamePicker.selectRow(intLastPId, inComponent: 0, animated: true)
-                }
-                
-            }
-        }
-        
-        self.prodNamePicker.selectRow(1, inComponent: 0, animated: true)  // buradaki 1 -> 0 1. satırı getiriyor istediğim ise index'e göre değil toplam eleman sayısına göre çekmekse ki adını aldım diyelim Tabak id si 6 tablodaki toplam eleman sayısı ise 2 ise aslında yapmam gereken eleman sayısını almak ardından
-        
-        
         
     }
     
@@ -139,6 +114,11 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
             }
             DispatchQueue.main.async {
                 self.prodNamePicker.reloadAllComponents()
+                
+                // Varsayılan olarak seçili ürünü belirle
+                if let selectedIndex = self.prodList.firstIndex(where: { $0.prodName == self.prodSelect }) {
+                    self.prodNamePicker.selectRow(selectedIndex, inComponent: 0, animated: false)
+                }
             }
         }
     }
@@ -160,20 +140,37 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
             totalPrice.text = s.saleTotalPrice
             saleDateTextField.text = s.saleDate
             
-          
             
             if let getSelectProd = s.prodName {
+                prodSelect = getSelectProd // Varsayılan olarak seçili ürünü belirle
                 prodVM.getSelectedProdPicker(prodName: getSelectProd) { prodData in
                     self.forSelectProdPickerList = prodData
-//                    if let row = forSelectProdPickerList.first(where: { $0 == oldProduct }) {
-//                        prodNamePicker.selectRow(row, inComponent: 0, animated: true)
-//                    }
+                    if let selected = self.forSelectProdPickerList.first?.prodName {
+                        self.selectProdComponent = selected // seçilmiş ve güncellenmek istenen veriyi aldım
+                        DispatchQueue.main.async {
+                            self.prodNamePicker.reloadAllComponents() // Veri kaynağını güncelle
+                        }
+                    }
                 }
             }
+            
+            
+            //            if let getSelectProd = s.prodName {
+            //                prodVM.getSelectedProdPicker(prodName: getSelectProd) { prodData in
+            //                    self.forSelectProdPickerList = prodData
+            //                    if let selected = self.forSelectProdPickerList.first?.prodName {
+            //                        self.selectProdComponent = selected // seçilmiş ve güncellenmek istenen veriyi aldım
+            //                        DispatchQueue.main.async {
+            //                            self.prodNamePicker.reloadAllComponents() // Veri kaynağını güncelle
+            //                        }
+            //                    }
+            //                   
+            //                }
+            //            }
         }
     }
     
-
+    
 }
 
 
