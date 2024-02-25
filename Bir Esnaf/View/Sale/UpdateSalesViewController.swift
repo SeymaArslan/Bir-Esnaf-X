@@ -43,7 +43,7 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getSaleInformation()
-        getCompList()
+        getProdList()
         
     }
     
@@ -103,13 +103,12 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
         }
     }
     
-    func getCompList() {
+    func getProdList() {
         saleVM.fetchProdList { prodData in
             self.prodList = prodData
             if let getTotal = self.prodList.first?.prodTotal {
                 if let doubleGetTotal = Double(getTotal) {
                     self.getOldTotal = doubleGetTotal
-                    print("Geliyor mu o an ki total miktarı? = \(self.getOldTotal)")  // geldi
                 }
             }
             DispatchQueue.main.async {
@@ -154,19 +153,6 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
                 }
             }
             
-            
-            //            if let getSelectProd = s.prodName {
-            //                prodVM.getSelectedProdPicker(prodName: getSelectProd) { prodData in
-            //                    self.forSelectProdPickerList = prodData
-            //                    if let selected = self.forSelectProdPickerList.first?.prodName {
-            //                        self.selectProdComponent = selected // seçilmiş ve güncellenmek istenen veriyi aldım
-            //                        DispatchQueue.main.async {
-            //                            self.prodNamePicker.reloadAllComponents() // Veri kaynağını güncelle
-            //                        }
-            //                    }
-            //                   
-            //                }
-            //            }
         }
     }
     

@@ -8,14 +8,10 @@
 import UIKit
 
 class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    //  ***
-    
-    var firstProdName: String?
-    var firstProfitAmount: String?
 
-    //   ***
-    
+    var firstShopList: Shop?
+//    var firstProdName: String?
+//    var firstProfitAmount: String?
     
     let visible = false // eğer sale tablosu boşsa false doluysa true yapıp UI ları göstereceğiz?
     
@@ -45,16 +41,12 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         salePicker.delegate = self
         salePicker.dataSource = self
         
-        if let pName = firstProdName, let amount = firstProfitAmount {
-            shopSelect = pName
-            profitAmount.text = amount
-        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        getFirstShop()
         pullSales()
     }
 
@@ -91,6 +83,18 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     //MARK: - Helpers
+    func getFirstShop() {
+        if let firstShop = firstShopList {
+            if let selectedName = firstShop.prodName, let selectedTotal = firstShop.totalProfitAmount {
+                shopSelect = selectedName
+                DispatchQueue.main.async {
+                    self.salePicker.reloadAllComponents()
+                    self.profitAmount.text = selectedTotal
+                }
+                
+            }
+        }
+    }
     
     func sumAllSell() {
         shopVM.sumAllSellProd(userMail: mail!) { sumShop in
@@ -140,6 +144,9 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             self.shopList = shopList
             DispatchQueue.main.async {
                 self.salePicker.reloadAllComponents()
+                if let selectedIndex = self.shopList.firstIndex(where: { $0.prodName == self.shopSelect}) {
+                    self.salePicker.selectRow(selectedIndex, inComponent: 0, animated: true)
+                }
             }
         }
     }

@@ -11,6 +11,8 @@ import ProgressHUD
 class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     //MARK: - Variable
+    
+    var selectCompComponent = String()
     let mail = userDefaults.string(forKey: "userMail")
     
     var buy: Buy?
@@ -50,25 +52,6 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         getBuy()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let compId = getPickerCompList.first?.cbId {
-            DispatchQueue.main.async {
-                self.compComponent = compId
-                if let intCId = Int(self.compComponent) {
-                    let intLastCId = intCId - 1
-                    if let compString = self.compList[intLastCId].compName {
-                        self.compSelect = compString
-                    }
-                    self.compPickerUp.selectRow(intLastCId, inComponent: 0, animated: true)
-                    
-                }
-            }
-        }
-    }
-    
-    
     //MARK: - IBActions
     @IBAction func updateButton(_ sender: Any) {
         update()
@@ -105,6 +88,9 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             self.compList = compData
             DispatchQueue.main.async {
                 self.compPickerUp.reloadAllComponents()
+                if let selectedIndex = self.compList.firstIndex(where: { $0.compName == self.compSelect}) {
+                    self.compPickerUp.selectRow(selectedIndex, inComponent: 0, animated: true)
+                }
             }
         }
     }
@@ -122,8 +108,15 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                 }
             }
             if let getComp = buyData.compName {
-                compVM.getSelectedCompPicker(compName: getComp) { [self] compData in
+                compSelect = getComp
+                compVM.getSelectedCompPicker(compName: getComp) { compData in
                     self.getPickerCompList = compData
+                    if let selected = self.getPickerCompList.first?.compName {
+                        self.selectCompComponent = selected
+                        DispatchQueue.main.async {
+                            self.compPickerUp.reloadAllComponents()
+                        }
+                    }
                 }
             }
         }

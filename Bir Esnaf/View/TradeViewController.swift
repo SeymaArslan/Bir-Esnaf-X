@@ -104,10 +104,7 @@ class TradeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToShop" {
             let goToVC = segue.destination as! ShoppingViewController
-            if let pName = firstProdName, let amount = firstProfitAmount {
-                goToVC.firstProdName = pName
-                goToVC.firstProfitAmount = amount
-            }
+            goToVC.firstShopList = firstShopList.first
         }
     }
     
@@ -115,23 +112,11 @@ class TradeViewController: UIViewController {
     func getFirstSale() {
         shopVM.getFirstSaleData(userMail: mail!) { firstShopData in
             self.firstShopList = firstShopData
-            if let pname = firstShopData.first?.prodName {
-                self.firstProdName = pname
-                
-                self.shopVM.fetchShop(userMail: self.mail!, prodName: self.firstProdName!) { shopData in
-                    self.fetchShopList = shopData
-                    if let str = self.fetchShopList.first?.totalProfitAmount {
-                        if let intStr = Int(str) {
-                            if intStr > 0 {
-                                DispatchQueue.main.async {
-                                    self.firstProfitAmount = str + " ₺"
-                                }
-                            }
-                        }
-                    }
-                }
+            
+            if let pna = firstShopData.first?.prodName, let pt = firstShopData.first?.totalProfitAmount {
                 
             }
+
         }
     }
     
