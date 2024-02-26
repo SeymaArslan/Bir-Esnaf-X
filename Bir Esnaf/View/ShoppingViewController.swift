@@ -104,7 +104,7 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                     if doubleStr > 0 {
                         DispatchQueue.main.async {
                             self.totalProfitAmount.text = string + " ₺"
-                            self.profitAmount.textColor = UIColor(named: "customColor")
+                            self.totalProfitAmount.textColor = UIColor(named: "customColor")
                         }
                     } else {
                         DispatchQueue.main.async {

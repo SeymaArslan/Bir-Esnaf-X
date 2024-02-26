@@ -11,8 +11,8 @@ class BuyTableViewCell: UITableViewCell {
 
     @IBOutlet weak var compName: UILabel!
     @IBOutlet weak var productName: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!  // uçtu
+    @IBOutlet weak var totalLabel: UILabel!  // uçtu
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     

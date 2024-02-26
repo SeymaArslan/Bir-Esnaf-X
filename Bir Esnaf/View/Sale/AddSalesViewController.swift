@@ -9,7 +9,8 @@ import UIKit
 import ProgressHUD
 
 class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    
+
+    var prodId = String()
     let productVM = ProductVM()
     let shopVM = ShopVM()
     var prodPrice = String()  // maaliyet
@@ -91,10 +92,11 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if let pickerSelect = prodList[row].prodName, let pickerPrice = prodList[row].prodPrice, let pickerTotal = prodList[row].prodTotal {
+        if let pickerSelect = prodList[row].prodName, let pickerPrice = prodList[row].prodPrice, let pickerTotal = prodList[row].prodTotal, let pId = prodList[row].prodId {
             prodSelect = pickerSelect
             prodPrice = pickerPrice
             prodTotal = pickerTotal
+            prodId = pId
         }
     }
     
@@ -102,16 +104,29 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     //MARK: - Helpers
     func countProfitAmount(prodSelect: String, prodPrice: Double, prodTotal: Double, salePrice: Double, saleTotal: Double) {
         let priceDifference = salePrice - prodPrice // kar için
-        let totalRemainingProduct = prodTotal - saleTotal // Product güncelleme için
+        let totalRemainingProduct = prodTotal - saleTotal // Product güncelleme için prodTotal toplam ürün miktarı saleTotal satılan
 
         let amount = priceDifference * saleTotal  // satış kar
         
-        if let userMail = mail {
-            shopVM.addShop(userMail: userMail, prodName: prodSelect, totalProfitAmount: amount)
-            productVM.productUpdateWithSales(userMail: mail!,prodName: prodSelect, prodTotal: totalRemainingProduct)
+        if totalRemainingProduct >= 0 {
+            if let userMail = mail {
+                shopVM.addShop(userMail: userMail, prodName: prodSelect, totalProfitAmount: amount)
+                productVM.productUpdateWithSales(userMail: mail!,prodName: prodSelect, prodTotal: totalRemainingProduct)
+            }
+        } else if totalRemainingProduct == 0 {
+            ProgressHUD.show("Satılan \(prodSelect) ürününün stoğu tükendi.")
+            let alertCont = UIAlertController(title: "Satılan \(prodSelect) ürününün stoğu tükendi. Ürünler listenizden silinsin mi?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
+            let cancelAct = UIAlertAction(title: "İptal", style: .cancel)
+            alertCont.addAction(cancelAct)
+            let okAct = UIAlertAction(title: "Tamam", style: .destructive) { [self] action in
+                if let intPId = Int(prodId) {
+                    self.productVM.deleteProd(userMail: mail!, prodId: intPId)
+                    // test et
+                }
+            }
+            
         }
-        
-       
+
     }
     
     func addSale() {
