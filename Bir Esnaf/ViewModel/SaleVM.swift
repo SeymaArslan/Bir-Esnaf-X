@@ -8,6 +8,25 @@
 import Foundation
 
 class SaleVM {
+    func getFirstSaleInCompany(userMail: String, completion: @escaping([Product]) -> ()) {
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getFirstSaleDataInShop.php")!)
+        req.httpMethod = "POST"
+        let strPost = "userMail=\(userMail)"
+        req.httpBody = strPost.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "getFirstSaleInCompany error")
+                return
+            }
+            do {
+                let res = try JSONDecoder().decode(ProductData.self, from: data!)
+                completion(res.product ?? [Product]())
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func oldSaleUpdate(userMail: String, prodName: String, prodTotal: Double) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/oldSaleUpdate.php")!)
         req.httpMethod = "POST"

@@ -9,6 +9,8 @@ import UIKit
 
 class SalesTableViewController: UITableViewController {
     
+    var firstProductData = [Product]()
+    
     var prodList = [Product]()
     let prodVM = ProductVM()
 
@@ -36,6 +38,11 @@ class SalesTableViewController: UITableViewController {
         getSaleList()
     }
 
+    @IBAction func addSaleButton(_ sender: Any) {
+        
+    }
+    
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteRow = UIContextualAction(style: .destructive, title: "Sil") { contextualAction, view, bool in
@@ -145,6 +152,12 @@ class SalesTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+        }
+    }
+    
+    func getFirstProd() {
+        saleVM.getFirstSaleInCompany(userMail: mail!) { firstProdData in
+            self.firstProductData = firstProdData
         }
     }
 }

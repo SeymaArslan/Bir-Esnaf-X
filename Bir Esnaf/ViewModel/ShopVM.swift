@@ -10,7 +10,7 @@ import Foundation
 class ShopVM {
     
     func getFirstSaleData(userMail: String, completion: @escaping([Shop]) -> ()) {
-        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getFirstSaleData.php")!)
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getFirstSaleDataInShop.php")!)
         request.httpMethod = "POST"
         let string = "userMail=\(userMail)"
         request.httpBody = string.data(using: .utf8)

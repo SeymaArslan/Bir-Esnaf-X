@@ -21,7 +21,7 @@ class BuyTableViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.rowHeight = 234.0
+        tableView.rowHeight = 151.0
         
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
@@ -49,10 +49,6 @@ class BuyTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "buyCell", for: indexPath) as! BuyTableViewCell
         cell.compName.text = buy.compName
         cell.productName.text = buy.productName
-        if let price = buy.price {
-            cell.priceLabel.text = price + " ₺"
-        }
-        cell.totalLabel.text = buy.total
         if let tPrice = buy.totalPrice {
             cell.totalPriceLabel.text = tPrice + " ₺"
         }

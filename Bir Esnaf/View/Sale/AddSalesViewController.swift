@@ -36,6 +36,9 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        salePrice.addTarget(self, action: #selector(calculate), for: .editingChanged)
+        total.addTarget(self, action: #selector(calculate), for: .editingChanged)
+        
         prodPicker.delegate = self
         prodPicker.dataSource = self
         
@@ -102,6 +105,15 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     //MARK: - Helpers
+    @objc func calculate() {
+        guard let price = Double(salePrice.text ?? "Yok"), let total = Double(total.text ?? "Yok") else {
+            totalPrice.text = "0"
+            return
+        }
+        let result = price * total
+        totalPrice.text = "\(result)"
+    }
+    
     func countProfitAmount(prodSelect: String, prodPrice: Double, prodTotal: Double, salePrice: Double, saleTotal: Double) {
         let priceDifference = salePrice - prodPrice // kar için
         let totalRemainingProduct = prodTotal - saleTotal // Product güncelleme için prodTotal toplam ürün miktarı saleTotal satılan

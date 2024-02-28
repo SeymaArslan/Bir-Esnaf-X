@@ -40,7 +40,6 @@ class TradeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         getCompanyCount()
         getProdCount()
         getSaleCount()
@@ -98,7 +97,6 @@ class TradeViewController: UIViewController {
                     }
                 }
             }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -108,15 +106,9 @@ class TradeViewController: UIViewController {
         }
     }
     
-    
     func getFirstSale() {
         shopVM.getFirstSaleData(userMail: mail!) { firstShopData in
             self.firstShopList = firstShopData
-            
-            if let pna = firstShopData.first?.prodName, let pt = firstShopData.first?.totalProfitAmount {
-                
-            }
-
         }
     }
     
