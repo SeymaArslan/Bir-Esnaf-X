@@ -44,6 +44,10 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         pullSales()
     }
 
+    @IBAction func clearAllList(_ sender: Any) {
+        shopVM.clearAllListInShop(userMail: mail!)
+        view.window?.rootViewController?.dismiss(animated: true)
+    }
     
     @IBAction func calculateButton(_ sender: Any) {
         sumAllSell()

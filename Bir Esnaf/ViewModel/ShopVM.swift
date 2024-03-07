@@ -8,6 +8,25 @@
 import Foundation
 
 class ShopVM {
+    func clearAllListInShop(userMail: String) {
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/clearAllListInShop.php")!)
+        req.httpMethod = "POST"
+        let postString = "userMail=\(userMail)"
+        req.httpBody = postString.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "Error clear list in Shop")
+                return
+            }
+            do {
+                if let result = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                    print(result)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
     
     func getFirstSaleData(userMail: String, completion: @escaping([Shop]) -> ()) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getFirstSaleDataInShop.php")!)
