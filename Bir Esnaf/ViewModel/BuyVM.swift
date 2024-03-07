@@ -8,6 +8,25 @@
 import Foundation
 
 class BuyVM {
+    func countBuy(userMail: String, completion: @escaping([Buy]) -> ()) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/countBuy.php")!)
+        request.httpMethod = "POST"
+        let string = "userMail=\(userMail)"
+        request.httpBody = string.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "count sale error")
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(BuyData.self, from: data!)
+                completion(result.buy ?? [Buy]())
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func deleteCell(userMail: String, buyId: Int) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteBuy.php")!)
         req.httpMethod = "POST"

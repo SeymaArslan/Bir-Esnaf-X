@@ -11,6 +11,12 @@ import ProgressHUD
 class TradeViewController: UIViewController {
     
     //MARK: - Vars for enable/disable buttons
+    var saleCount: Int?
+    
+    var countBuy: String?
+    var buyList = [Buy]()
+    let buyVM = BuyVM()
+    
     var countSale: String?
     var saleList = [Sale]()
     let saleVM = SaleVM()
@@ -54,6 +60,7 @@ class TradeViewController: UIViewController {
             if let count = self.saleList.first?.count {
                 self.countSale = count
                 if let intSale = Int(self.countSale!) {
+                    self.saleCount = intSale
                     if intSale < 1 {
                         DispatchQueue.main.async {
                             self.salesResultButton.isEnabled = false
@@ -71,10 +78,14 @@ class TradeViewController: UIViewController {
             if let count = self.prodList.first?.count {
                 self.countProd = count
                 if let intProd = Int(self.countProd!) {
-                    if intProd < 1 { 
-                        DispatchQueue.main.async {
-                            self.saleButton.isEnabled = false
-                            ProgressHUD.showError("Bu özelliğin aktif olması için Ürün ekleyin.")
+                    // yine burada sayma işlemi yaptıracağoz sale tablosuna
+                    self.getSaleCount()  // test etttt
+                    if self.saleCount! < 1 {
+                        if intProd < 1 {
+                            DispatchQueue.main.async {
+                                self.saleButton.isEnabled = false
+                                ProgressHUD.showError("Bu özelliğin aktif olması için Ürün ekleyin.")
+                            }
                         }
                     }
                 }
@@ -88,10 +99,21 @@ class TradeViewController: UIViewController {
                 if let count = self.compList.first?.count {
                     self.countComp = count
                     if let intcomp = Int(self.countComp!) {
-                        if intcomp < 1 {
-                            DispatchQueue.main.async {
-                                self.buyButton.isEnabled = false
-                                ProgressHUD.showError("Bu özelliğin aktif olması için Firma ekleyin.")
+                        // burada buy tablosu saydır ve sonucu al eğer < 1 den burası çalışsın fakat eğer değilse burası çalışmasın
+                        self.buyVM.countBuy(userMail: self.mail!) { buyCount in  // test eeeett
+                            self.buyList = buyCount
+                            if let cbuy = self.buyList.first?.count {
+                                self.countBuy = cbuy
+                                if let intBuy = Int(self.countBuy!) {
+                                    if intBuy < 1 {
+                                        if intcomp < 1 {
+                                            DispatchQueue.main.async {
+                                                self.buyButton.isEnabled = false
+                                                ProgressHUD.showError("Bu özelliğin aktif olması için Firma ekleyin.")
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

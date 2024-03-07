@@ -9,7 +9,7 @@ import UIKit
 import ProgressHUD
 
 class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
     var prodId = String()
     let productVM = ProductVM()
     let shopVM = ShopVM()

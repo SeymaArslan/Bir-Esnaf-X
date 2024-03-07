@@ -20,4 +20,5 @@ class Buy: Codable {
     let total: String?
     let totalPrice: String?
     let buyDate: String?
+    let count: String?
 }

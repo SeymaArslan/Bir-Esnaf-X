@@ -10,10 +10,6 @@ import UIKit
 class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     var firstShopList: Shop?
-//    var firstProdName: String?
-//    var firstProfitAmount: String?
-    
-    let visible = false // eğer sale tablosu boşsa false doluysa true yapıp UI ları göstereceğiz?
     
     var saleComponent = String()
     
@@ -33,8 +29,6 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "customColor2")
         
         totalProfitAmount.text = "0 ₺"
         
@@ -100,7 +94,7 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         shopVM.sumAllSellProd(userMail: mail!) { sumShop in
             self.sumShopList = sumShop
             if let string = self.sumShopList.first?.totalProfitAmount {
-                if let doubleStr = Double(string) {  // test
+                if let doubleStr = Double(string) { 
                     if doubleStr > 0 {
                         DispatchQueue.main.async {
                             self.totalProfitAmount.text = string + " ₺"
@@ -121,7 +115,6 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         shopVM.fetchShop(userMail: mail!, prodName: shopSelect) { shopData in
             self.fetchShopList = shopData
             if let str = self.fetchShopList.first?.totalProfitAmount {
-                print("GEldi mi \(str)")
                 if let doubleStr = Double(str) {
                     if doubleStr > 0 {
                         DispatchQueue.main.async {

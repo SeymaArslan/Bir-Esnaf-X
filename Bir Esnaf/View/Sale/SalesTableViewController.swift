@@ -39,7 +39,9 @@ class SalesTableViewController: UITableViewController {
     }
 
     @IBAction func addSaleButton(_ sender: Any) {
+        // burada tıklama ile veri transferi yapacağız.
         
+        // goToAddSale
     }
     
     
@@ -95,6 +97,7 @@ class SalesTableViewController: UITableViewController {
             print("\(saleList[index])")
             goToVC.sale = saleList[index]
         }
+
     }
     
     
@@ -155,9 +158,9 @@ class SalesTableViewController: UITableViewController {
         }
     }
     
-    func getFirstProd() {
-        saleVM.getFirstSaleInCompany(userMail: mail!) { firstProdData in
-            self.firstProductData = firstProdData
-        }
-    }
+//    func getFirstProd() {
+//        saleVM.getFirstSaleInCompany(userMail: mail!) { firstProdData in
+//            self.firstProductData = firstProdData
+//        }
+//    }
 }
