@@ -16,4 +16,5 @@ class Shop: Codable {
     let userMail: String?
     let prodName: String?
     let totalProfitAmount: String?
+    let count: String?
 }

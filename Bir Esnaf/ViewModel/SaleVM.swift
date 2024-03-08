@@ -8,6 +8,45 @@
 import Foundation
 
 class SaleVM {
+    func deleteFromSaleWhenProductsIsDeleted(userMail: String, prodName: String) {
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteFromSaleWhenProductsIsDeleted.php")!)
+        req.httpMethod = "POST"
+        let post = "userMail=\(userMail)&prodName=\(prodName)"
+        req.httpBody = post.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, res, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "Delete sale error")
+                return
+            }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                    print(json)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
+    func productSaleControl(userMail: String, prodName: String, completion: @escaping([Sale]) -> ()) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/productSalesControl.php")!)
+        request.httpMethod = "POST"
+        let string = "userMail=\(userMail)&prodName=\(prodName)"
+        request.httpBody = string.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "count sale error")
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(SaleData.self, from: data!)
+                completion(result.sale ?? [Sale]())
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func getFirstSaleInCompany(userMail: String, completion: @escaping([Product]) -> ()) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/getFirstSaleDataInShop.php")!)
         req.httpMethod = "POST"

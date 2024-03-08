@@ -8,6 +8,45 @@
 import Foundation
 
 class ShopVM {
+    func deleteFromShopWhenProductsIsDeleted(userMail: String, prodName: String) {
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteFromShopWhenProductsIsDeleted.php")!)
+        req.httpMethod = "POST"
+        let post = "userMail=\(userMail)&prodName=\(prodName)"
+        req.httpBody = post.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, res, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "Delete sale error")
+                return
+            }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                    print(json)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
+    func productShopControl(userMail: String, prodName: String, completion: @escaping([Shop]) -> ()) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/productShopControl.php")!)
+        request.httpMethod = "POST"
+        let string = "userMail=\(userMail)&prodName=\(prodName)"
+        request.httpBody = string.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "count shop error")
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(ShopData.self, from: data!)
+                completion(result.shop ?? [Shop]())
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func clearAllListInShop(userMail: String) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/clearAllListInShop.php")!)
         req.httpMethod = "POST"
