@@ -9,6 +9,9 @@ import UIKit
 
 class CompanyTableViewController: UITableViewController {
     
+    var buyListCount = [Buy]()
+    let buyVM = BuyVM()
+    
     var compList = [CompanyBank]()
     let mail = userDefaults.string(forKey: "userMail")
     let compVM = CompanyVM()
@@ -81,6 +84,7 @@ class CompanyTableViewController: UITableViewController {
         let okAct = UIAlertAction(title: "Tamam", style: .destructive) { action in
             DispatchQueue.main.async {
                 self.deleteComp(at: indexPath)
+                self.companyBuyControl(at: indexPath)         //   TEST 
             }
         }
         alertController.addAction(okAct)
@@ -98,6 +102,30 @@ class CompanyTableViewController: UITableViewController {
         }
     }
     
+    func showDeleteWarningForBuy(for comp: String) {      //   TEST
+        let alertController = UIAlertController(title: "Sildiğiniz firma 'Alım İşlemleri' listesinde de mevcut. Silinen firmanın bütün alım kayıtlarını silmek ister misiniz?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
+        alertController.addAction(cancelAction)
+        let okeyAction = UIAlertAction(title: "Tamam", style: .destructive) { action in
+            // burada silme
+            self.buyVM.deleteFromBuyWhenCompIsDeleted(userMail: self.mail!, compName: comp)
+        }
+        alertController.addAction(okeyAction)
+        self.present(alertController, animated: true)
+    }
+    
+    func companyBuyControl(at indexPath: IndexPath) {      //   TEST
+        let comp = compList[indexPath.row]
+        if let compName = comp.compName {
+            buyVM.companyBuyControl(userMail: mail!, compName: compName) { buyCount in
+                let count = buyCount.count
+                print("Buy count geldi mi? \(count)")
+                if count > 0 {
+                    self.showDeleteWarningForBuy(for: compName)
+                }
+            }
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToCompDet" {

@@ -109,7 +109,7 @@ class ProductTableViewController: UITableViewController {
     }
     
     func showDeleteWarningForSale(for prod: String) {      // TEST ET
-        let alertController = UIAlertController(title: "Sildiğiniz ürün 'Satış İşlemleri' listesinde de mevcut. Bu listeden de silmek ister misiniz?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Sildiğiniz ürün 'Satış İşlemleri' listesinde de mevcut. Silinen ürünün bütün satış kayıtlarını silmek ister misiniz?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
         alertController.addAction(cancelAction)
         let okeyAction = UIAlertAction(title: "Tamam", style: .destructive) { action in
@@ -123,7 +123,7 @@ class ProductTableViewController: UITableViewController {
         let prod = self.prodList[indexPath.row]
         if let prodName = prod.prodName {
             saleVM.productSaleControl(userMail: mail!, prodName: prodName) { saleCount in
-                self.saleListCount = saleCount
+               // self.saleListCount = saleCount
                 let saleC = saleCount.count
                 print("Sale Count geldi mi? \(saleC)") // geliyor
                 if saleC > 0 {

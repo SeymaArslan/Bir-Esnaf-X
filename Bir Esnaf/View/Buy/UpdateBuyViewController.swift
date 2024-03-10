@@ -76,6 +76,9 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if compList[row].compName == nil {
+            
+        }
         if let pickerSelect = compList[row].compName {
             compSelect = pickerSelect
         }

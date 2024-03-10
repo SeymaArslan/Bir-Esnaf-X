@@ -133,10 +133,12 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             let okAct = UIAlertAction(title: "Tamam", style: .destructive) { [self] action in
                 if let intPId = Int(prodId) {
                     self.productVM.deleteProd(userMail: mail!, prodId: intPId)
-                    // test et
+                    ProgressHUD.showSuccess("\(prodSelect) listenizden başarılı bir şekilde silindi.")
+                    //  TEST ET
                 }
             }
-            
+            alertCont.addAction(okAct)
+            self.present(alertCont, animated: true)
         }
 
     }

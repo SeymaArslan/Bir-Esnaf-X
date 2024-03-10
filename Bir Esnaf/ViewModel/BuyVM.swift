@@ -8,6 +8,45 @@
 import Foundation
 
 class BuyVM {
+    func deleteFromBuyWhenCompIsDeleted(userMail: String, compName: String) {
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteFromBuyWhenCompIsDeleted.php")!)
+        req.httpMethod = "POST"
+        let post = "userMail=\(userMail)&compName=\(compName)"
+        req.httpBody = post.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, res, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "Delete buy error")
+                return
+            }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                    print(json)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
+    func companyBuyControl(userMail: String, compName: String, completion: @escaping([Buy]) -> ()) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/companyBuyControl.php")!)
+        request.httpMethod = "POST"
+        let string = "userMail=\(userMail)&compName=\(compName)"
+        request.httpBody = string.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "count sale error")
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(BuyData.self, from: data!)
+                completion(result.buy ?? [Buy]())
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func countBuy(userMail: String, completion: @escaping([Buy]) -> ()) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/countBuy.php")!)
         request.httpMethod = "POST"
