@@ -9,7 +9,7 @@ import Foundation
 
 class SaleVM {
     func deleteFromSaleWhenProductsIsDeleted(userMail: String, prodName: String) {
-        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteFromSaleWhenProductsIsDeleted.php")!)
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteFromSaleWhenProductIsDeleted.php")!)
         req.httpMethod = "POST"
         let post = "userMail=\(userMail)&prodName=\(prodName)"
         req.httpBody = post.data(using: .utf8)

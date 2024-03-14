@@ -11,7 +11,6 @@ import ProgressHUD
 class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     //MARK: - Variable
-    
     var selectCompComponent = String()
     let mail = userDefaults.string(forKey: "userMail")
     
@@ -28,9 +27,9 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     //MARK: - IBOutlets
     @IBOutlet weak var compPickerUp: UIPickerView!
     @IBOutlet weak var productName: UITextField!
-    @IBOutlet weak var priceUp: UITextField!  // 00
-    @IBOutlet weak var totalUp: UITextField!  // 11
-    @IBOutlet weak var totalPriceUp: UITextField!  // 22
+    @IBOutlet weak var priceUp: UITextField!
+    @IBOutlet weak var totalUp: UITextField!
+    @IBOutlet weak var totalPriceUp: UITextField!
     @IBOutlet weak var buyDateUp: UITextField!
     
     //MARK: - Life Cycle
@@ -76,9 +75,6 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if compList[row].compName == nil {
-            
-        }
         if let pickerSelect = compList[row].compName {
             compSelect = pickerSelect
         }
@@ -86,6 +82,12 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     
     //MARK: - Helpers
+    func updatePickerStatus(enabled: Bool) {
+        compPickerUp.isUserInteractionEnabled = enabled
+        compPickerUp.alpha = enabled ? 1.0 : 0.5
+    }
+    
+    
     func getCompList() {
         buyVM.fetchCompList { compData in
             self.compList = compData
@@ -94,9 +96,12 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                 if let selectedIndex = self.compList.firstIndex(where: { $0.compName == self.compSelect}) {
                     self.compPickerUp.selectRow(selectedIndex, inComponent: 0, animated: true)
                 }
+                let compNameExists = self.compList.contains(where: { $0.compName == self.compSelect })
+                self.updatePickerStatus(enabled: compNameExists)
             }
         }
     }
+    
     
     func getBuy() {
         if let buyData = buy {

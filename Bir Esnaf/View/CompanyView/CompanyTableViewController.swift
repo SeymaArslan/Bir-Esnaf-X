@@ -9,19 +9,20 @@ import UIKit
 
 class CompanyTableViewController: UITableViewController {
     
+    var compDelete = String()
     var buyListCount = [Buy]()
     let buyVM = BuyVM()
     
     var compList = [CompanyBank]()
     let mail = userDefaults.string(forKey: "userMail")
     let compVM = CompanyVM()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-
+        
         tableView.rowHeight = 70.0
         
         self.refreshControl = UIRefreshControl()
@@ -31,10 +32,10 @@ class CompanyTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-     
+        
         getComp()
     }
-
+    
     @IBAction func goToCompAdd(_ sender: Any) {
     }
     
@@ -43,11 +44,11 @@ class CompanyTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return compList.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let comp = compList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CompanyTableViewCell
@@ -56,10 +57,10 @@ class CompanyTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "goToCompDet", sender: indexPath.row)  
+        self.performSegue(withIdentifier: "goToCompDet", sender: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let deleteAct = UIContextualAction(style: .destructive, title: "Sil") { contextualAction, view, boolValue in
@@ -67,7 +68,7 @@ class CompanyTableViewController: UITableViewController {
         }
         return UISwipeActionsConfiguration(actions: [deleteAct])
     }
-  
+    
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if self.refreshControl!.isRefreshing {
             self.getComp()
@@ -84,13 +85,13 @@ class CompanyTableViewController: UITableViewController {
         let okAct = UIAlertAction(title: "Tamam", style: .destructive) { action in
             DispatchQueue.main.async {
                 self.deleteComp(at: indexPath)
-                self.companyBuyControl(at: indexPath)         //   TEST 
+                self.companyBuyControl(at: indexPath)
             }
         }
         alertController.addAction(okAct)
         self.present(alertController, animated: true)
     }
-
+    
     
     func deleteComp(at indexPath: IndexPath) {
         let comp = self.compList[indexPath.row]
@@ -107,8 +108,9 @@ class CompanyTableViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
         alertController.addAction(cancelAction)
         let okeyAction = UIAlertAction(title: "Tamam", style: .destructive) { action in
-            // burada silme
+            print("Show delete for buy da compname geliyor mu ? \(comp)")
             self.buyVM.deleteFromBuyWhenCompIsDeleted(userMail: self.mail!, compName: comp)
+            
         }
         alertController.addAction(okeyAction)
         self.present(alertController, animated: true)
@@ -117,11 +119,14 @@ class CompanyTableViewController: UITableViewController {
     func companyBuyControl(at indexPath: IndexPath) {      //   TEST
         let comp = compList[indexPath.row]
         if let compName = comp.compName {
+            compDelete = compName    // burası silinir mi?
             buyVM.companyBuyControl(userMail: mail!, compName: compName) { buyCount in
                 let count = buyCount.count
                 print("Buy count geldi mi? \(count)")
                 if count > 0 {
-                    self.showDeleteWarningForBuy(for: compName)
+                    DispatchQueue.main.async {
+                        self.showDeleteWarningForBuy(for: self.compDelete)  // burası tamam
+                    }
                 }
             }
         }

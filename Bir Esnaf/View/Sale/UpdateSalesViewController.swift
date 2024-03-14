@@ -76,7 +76,6 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     
     //MARK: - Helpers
-    
     func updateOldProd() {
         let total = oldTotal + getOldTotal
         saleVM.oldSaleUpdate(userMail: mail!, prodName: oldProduct, prodTotal: total)
@@ -103,6 +102,13 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
         }
     }
     
+    
+    func updatePickerStatus(enabled: Bool) { // TEST                            TEST                           TEST                         TEST
+        prodNamePicker.isUserInteractionEnabled = enabled
+        prodNamePicker.alpha = enabled ? 1.0 : 0.5
+    }
+    
+    
     func getProdList() {
         saleVM.fetchProdList { prodData in
             self.prodList = prodData
@@ -113,11 +119,11 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
             }
             DispatchQueue.main.async {
                 self.prodNamePicker.reloadAllComponents()
-                
-                // Varsayılan olarak seçili ürünü belirle
                 if let selectedIndex = self.prodList.firstIndex(where: { $0.prodName == self.prodSelect }) {
                     self.prodNamePicker.selectRow(selectedIndex, inComponent: 0, animated: false)
                 }
+                let prodNameExists = self.prodList.contains(where: {$0.prodName == self.prodSelect} ) // TEST                            TEST                           TEST                         TEST
+                self.updatePickerStatus(enabled: prodNameExists)
             }
         }
     }

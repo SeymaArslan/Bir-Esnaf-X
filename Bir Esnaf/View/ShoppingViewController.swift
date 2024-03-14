@@ -9,12 +9,11 @@ import UIKit
 
 class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    let saleVM = SaleVM()
+    
     var firstShopList: Shop?
-    
     var saleComponent = String()
-    
     var sumShopList = [Shop]()
-    
     var fetchShopList = [Shop]()  // getProvList
     
     var shopSelect = String()
@@ -45,7 +44,7 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
 
     @IBAction func clearAllList(_ sender: Any) {
-        shopVM.clearAllListInShop(userMail: mail!)
+        clearShopAndSaleList()
         view.window?.rootViewController?.dismiss(animated: true)
     }
     
@@ -81,6 +80,21 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     //MARK: - Helpers
+    func clearShopAndSaleList() { // TEST                            TEST                           TEST                         TEST
+        let alertController = UIAlertController(title: "Satış sonuçları listesini temizlemek üzeresiniz.", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
+        let cancelAct = UIAlertAction(title: "İptal", style: .cancel)
+        alertController.addAction(cancelAct)
+        let okAct = UIAlertAction(title: "Tamam", style: .destructive) { action in
+            DispatchQueue.main.async {
+                self.shopVM.clearAllListInShop(userMail: self.mail!)
+                self.profitAmount.text = "0 ₺"   // TEST                            TEST                           TEST                         TEST
+                // delete all sale
+            }
+        }
+        alertController.addAction(okAct)
+        self.present(alertController, animated: true)
+    }
+    
     func getFirstShop() {
         if let firstShop = firstShopList {
             if let selectedName = firstShop.prodName, let selectedTotal = firstShop.totalProfitAmount {

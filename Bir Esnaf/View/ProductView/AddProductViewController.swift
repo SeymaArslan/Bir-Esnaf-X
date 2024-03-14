@@ -38,7 +38,7 @@ class AddProductViewController: UIViewController {
         var price = prodPrice.text
         price = price?.replacingOccurrences(of: ",", with: ".")
         
-        var total = prodPrice.text
+        var total = prodTotal.text
         total = total?.replacingOccurrences(of: ",", with: ".")
         
         if let pName = prodName.text, let pPrice = price, let pTotal = total {

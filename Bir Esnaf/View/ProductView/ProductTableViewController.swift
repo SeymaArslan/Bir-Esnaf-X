@@ -9,6 +9,8 @@ import UIKit
 
 class ProductTableViewController: UITableViewController {
 
+    var prodDelete = String()
+    
     var shopListCount = [Shop]()
     let shopVM = ShopVM()
     var saleListCount = [Sale]()
@@ -97,7 +99,7 @@ class ProductTableViewController: UITableViewController {
         self.present(alertController, animated: true)
     }
     
-    func showDeleteWarningForShop(for prod: String) {      // TEST ET
+    func showDeleteWarningForShop(for prod: String) {
         let alertController = UIAlertController(title: "Sildiğiniz ürün 'Satış Sonuçları' listesinde de mevcut. Bu listeden de silmek ister misiniz?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
         alertController.addAction(cancelAction)
@@ -108,12 +110,28 @@ class ProductTableViewController: UITableViewController {
         self.present(alertController, animated: true)
     }
     
-    func showDeleteWarningForSale(for prod: String) {      // TEST ET
+    func showDeleteWarningForSale(for prod: String) {
         let alertController = UIAlertController(title: "Sildiğiniz ürün 'Satış İşlemleri' listesinde de mevcut. Silinen ürünün bütün satış kayıtlarını silmek ister misiniz?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
         alertController.addAction(cancelAction)
         let okeyAction = UIAlertAction(title: "Tamam", style: .destructive) { action in
+            
+            print("Show delete te sale delete için prod geliyor mu \(prod)")
             self.saleVM.deleteFromSaleWhenProductsIsDeleted(userMail: self.mail!, prodName: prod)
+            
+            // TEST                            TEST                           TEST                         TEST
+//            shopVM.productShopControl(userMail: mail!, prodName: prod) { shopCount in
+//                self.shopListCount = shopCount
+//                let shopC = self.shopListCount.count
+//                print("Shop count geldi mi? \(shopC)") // geliyor
+//                if shopC > 0 {
+//                    DispatchQueue.main.async {
+//                        self.showDeleteWarningForShop(for: prod)
+//                    }
+//                }
+//            }
+            
+            
         }
         alertController.addAction(okeyAction)
         self.present(alertController, animated: true)
@@ -122,22 +140,17 @@ class ProductTableViewController: UITableViewController {
     func productSalesControl(at indexPath: IndexPath) {
         let prod = self.prodList[indexPath.row]
         if let prodName = prod.prodName {
-            saleVM.productSaleControl(userMail: mail!, prodName: prodName) { saleCount in
-               // self.saleListCount = saleCount
+            prodDelete = prodName
+            saleVM.productSaleControl(userMail: mail!, prodName: prodDelete) { saleCount in
                 let saleC = saleCount.count
                 print("Sale Count geldi mi? \(saleC)") // geliyor
                 if saleC > 0 {
-                    self.showDeleteWarningForSale(for: prodName)
+                    DispatchQueue.main.async {
+                        self.showDeleteWarningForSale(for: self.prodDelete)
+                    }
                 }
             }
-            shopVM.productShopControl(userMail: mail!, prodName: prodName) { shopCount in
-                self.shopListCount = shopCount
-                let shopC = self.shopListCount.count
-                print("Shop count geldi mi? \(shopC)") // geliyor
-                if shopC > 0 {
-                    self.showDeleteWarningForShop(for: prodName)
-                }
-            }
+            
         }
     }
     

@@ -11,7 +11,12 @@ import ProgressHUD
 
 class LoginViewController: UIViewController {
     
-//    var userMysql: UserMysql?
+    var imageView: UIImageView = {   // for launchScreen
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+        imageView.image = UIImage(named: "logo2")
+        return imageView
+    }()
+    
     var compTableVC = CompanyTableViewController()
     let userVM = UserVM()
 
@@ -39,13 +44,38 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(imageView)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.performSegue(withIdentifier: "launchToLogin" , sender: self) 
+//            self.performSegue(withIdentifier: "launchToMain", sender: self)
+        }
+        
         updateUIFor(login: true)
         setupTextFieldDelegates()
         setupBackgroundTap()
 
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        imageView.center = view.center
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.animation()
+        }
+    }
+    
+    
+    func animation() {
+        UIView.animate(withDuration: 1) {
+            let size = self.view.frame.size.width * 2
+            let xposition = size - self.view.frame.width
+            let yposition = self.view.frame.height - size
+            self.imageView.frame = CGRect(x: (xposition/2), y: yposition/2, width: size, height: size)
+            self.imageView.alpha = 0
+        }
+    }
 
-    var isLogin: Bool = true
+    var  isLogin: Bool = true
 
     //MARK: - Button Actions
     @IBAction func loginButtonPressed(_ sender: Any) {

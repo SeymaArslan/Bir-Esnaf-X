@@ -1,16 +1,30 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "1x"
     },
     {
-      "filename" : "Bir Esnaf (17).png",
-      "idiom" : "universal",
+      "filename" : "2.jpg",
+      "idiom" : "iphone",
+      "resizing" : {
+        "cap-insets" : {
+          "bottom" : 250,
+          "left" : 249,
+          "right" : 250,
+          "top" : 249
+        },
+        "center" : {
+          "height" : 1,
+          "mode" : "tile",
+          "width" : 1
+        },
+        "mode" : "9-part"
+      },
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "3x"
     }
   ],
