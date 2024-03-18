@@ -92,7 +92,7 @@ class ProductVM {
         api.httpBody = postStr.data(using: .utf8)
         URLSession.shared.dataTask(with: api) { data, response, error in
             if error != nil {
-                print(error?.localizedDescription ?? "Delete Error")
+                print(error!)
                 return
             }
             do {

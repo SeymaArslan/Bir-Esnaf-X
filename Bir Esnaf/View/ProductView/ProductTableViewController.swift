@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class ProductTableViewController: UITableViewController {
-
+    var saleC = Int()
     var prodDelete = String()
     
     var shopListCount = [Shop]()
@@ -32,6 +33,11 @@ class ProductTableViewController: UITableViewController {
         
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
+        
+        getProdList()  
+        getProdCount()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,36 +96,31 @@ class ProductTableViewController: UITableViewController {
         let cancelAct = UIAlertAction(title: "İptal", style: .cancel)
         alertController.addAction(cancelAct)
         let okAct = UIAlertAction(title: "Tamam", style: .destructive) { action in
-            DispatchQueue.main.async {
+
                 self.deleteProduct(at: indexPath)
-                self.productSalesControl(at: indexPath)
-            }
+//              self.productSalesControl(at: indexPath)
+                self.getProdList()
+
         }
         alertController.addAction(okAct)
         self.present(alertController, animated: true)
     }
+
     
-    func showDeleteWarningForShop(for prod: String) {
-        let alertController = UIAlertController(title: "Sildiğiniz ürün 'Satış Sonuçları' listesinde de mevcut. Bu listeden de silmek ister misiniz?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
-        alertController.addAction(cancelAction)
-        let okeyAction = UIAlertAction(title: "Tamam", style: .destructive) { action in
-            self.shopVM.deleteFromShopWhenProductsIsDeleted(userMail: self.mail!, prodName: prod)
-        }
-        alertController.addAction(okeyAction)
-        self.present(alertController, animated: true)
-    }
     
-    func showDeleteWarningForSale(for prod: String) {
-        let alertController = UIAlertController(title: "Sildiğiniz ürün 'Satış İşlemleri' listesinde de mevcut. Silinen ürünün bütün satış kayıtlarını silmek ister misiniz?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
-        alertController.addAction(cancelAction)
-        let okeyAction = UIAlertAction(title: "Tamam", style: .destructive) { action in
-            
-            print("Show delete te sale delete için prod geliyor mu \(prod)")
-            self.saleVM.deleteFromSaleWhenProductsIsDeleted(userMail: self.mail!, prodName: prod)
-            
-            // TEST                            TEST                           TEST                         TEST
+//    func showDeleteWarningForShop(for prod: String) {
+//        let alertController = UIAlertController(title: "Sildiğiniz ürün 'Satış Sonuçları' listesinde de mevcut. Bu listeden de silmek ister misiniz?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
+//        let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
+//        alertController.addAction(cancelAction)
+//        let okeyAction = UIAlertAction(title: "Tamam", style: .destructive) { action in
+//            self.shopVM.deleteFromShopWhenProductsIsDeleted(userMail: self.mail!, prodName: prod)
+//        }
+//        alertController.addAction(okeyAction)
+//        self.present(alertController, animated: true)
+//    }
+    
+    
+    // TEST                            TEST                           TEST                         TEST
 //            shopVM.productShopControl(userMail: mail!, prodName: prod) { shopCount in
 //                self.shopListCount = shopCount
 //                let shopC = self.shopListCount.count
@@ -130,36 +131,47 @@ class ProductTableViewController: UITableViewController {
 //                    }
 //                }
 //            }
-            
-            
-        }
-        alertController.addAction(okeyAction)
-        self.present(alertController, animated: true)
-    }
     
-    func productSalesControl(at indexPath: IndexPath) {
-        let prod = self.prodList[indexPath.row]
-        if let prodName = prod.prodName {
-            prodDelete = prodName
-            saleVM.productSaleControl(userMail: mail!, prodName: prodDelete) { saleCount in
-                let saleC = saleCount.count
-                print("Sale Count geldi mi? \(saleC)") // geliyor
-                if saleC > 0 {
-                    DispatchQueue.main.async {
-                        self.showDeleteWarningForSale(for: self.prodDelete)
-                    }
-                }
-            }
-            
-        }
-    }
+    
+//    func showDeleteWarningForSale(for prod: String) {
+//        let alertController = UIAlertController(title: "Sildiğiniz ürün 'Satış İşlemleri' listesinde de mevcut. Silinen ürünün bütün satış kayıtlarını silmek ister misiniz?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
+//        let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
+//        alertController.addAction(cancelAction)
+//        let okeyAction = UIAlertAction(title: "Tamam", style: .destructive) { action in
+//            
+//            print("Show delete te sale delete için prod geliyor mu \(prod)")
+//            self.saleVM.deleteFromSaleWhenProductsIsDeleted(userMail: self.mail!, prodName: prod)
+//
+//        }
+//        alertController.addAction(okeyAction)
+//        self.present(alertController, animated: true)
+//    }
+    
+//    func productSalesControl(at indexPath: IndexPath) {   //    burada sayma yaptır dönen değere göre silmeyi çağır?
+//        let prod = self.prodList[indexPath.row]
+//        if let prodName = prod.prodName {
+//            prodDelete = prodName
+//            print("Dilinen ürün adı \(prodDelete)")
+//            saleVM.productSaleControl(userMail: mail!, prodName: prodDelete) { saleCount in
+//                self.saleC = saleCount.count
+//                print("Sale Count geldi mi? \(self.saleC)") // geliyor    olmadığı halde 1 geldi?
+////                if self.saleC < 1 {
+////                    DispatchQueue.main.async {
+////                        self.showDeleteWarningForSale(for: self.prodDelete)
+////                        self.getProdList()
+////                    }
+////                }
+//            }
+//            
+//        }
+//    }
     
     func deleteProduct(at indexPath: IndexPath) {
         let prod = self.prodList[indexPath.row]
         if let prodId = prod.prodId {
             if let intPId = Int(prodId) {
                 self.prodVM.deleteProd(userMail: mail!, prodId: intPId)
-                self.getProdList()
+                getProdList()
             }
         }
     }
@@ -177,6 +189,21 @@ class ProductTableViewController: UITableViewController {
             self.prodList = prodData
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func getProdCount() {
+        self.prodVM.countProduct(userMail: mail!) { prodData in
+            self.prodList = prodData
+            if let count = self.prodList.first?.count {
+                print("prod sayısı geldi mi ? \(count)")
+                if let intProd = Int(count) {
+                    if intProd == 0 {
+                        ProgressHUD.showSuccess("+ ile Ürün ekleyerek uygulamayı kullanmaya başlayın.")
+                    }
+                    
+                }
             }
         }
     }

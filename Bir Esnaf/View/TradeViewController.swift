@@ -11,6 +11,9 @@ import ProgressHUD
 class TradeViewController: UIViewController {
     
     //MARK: - Vars for enable/disable buttons
+    var shopCount: Int?
+    var countShop: String?
+    var shopList = [Shop]()
     var saleCount: Int?
     
     var countBuy: String?
@@ -46,14 +49,49 @@ class TradeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getFirstSale()
+
         getCompanyCount()
         getProdCount()
         getSaleCount()
+        //getShopCount()
+        
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getFirstSale()
+        getShopCount()
     }
     
+    @IBAction func salesResultButtonPressed(_ sender: Any) {
+
+    }
     
     //MARK: - Helpers
+    func getShopCount() {    // clear List button pressed
+        self.shopVM.countShop(userMail: mail!) { shopData in
+            self.shopList = shopData
+            if let count = self.shopList.first?.count {
+                self.countShop = count
+                if let intShopCount = Int(self.countShop!) {
+                    self.shopCount = intShopCount
+                    if intShopCount < 1 {
+                        DispatchQueue.main.async {
+                            self.salesResultButton.isEnabled = false
+                            ProgressHUD.showError("'Satış Sonuçlarını Gör' özelliğinin aktif olması için Satış İşlemi girmeniz gerekmektedir.")
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.salesResultButton.isEnabled = true
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+    
     func getSaleCount() {
         self.saleVM.countSale(userMail: mail!) { saleData in
             self.saleList = saleData
@@ -64,7 +102,11 @@ class TradeViewController: UIViewController {
                     if intSale < 1 {
                         DispatchQueue.main.async {
                             self.salesResultButton.isEnabled = false
-                            ProgressHUD.showError("Bu özelliğin aktif olması için Satış İşlemi girmeniz gerekmektedir.")
+                            ProgressHUD.showError("'Satış Sonuçlarını Gör' özelliğinin aktif olması için Satış İşlemi girmeniz gerekmektedir Test.")   // düzelt
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.salesResultButton.isEnabled = true
                         }
                     }
                 }
@@ -81,7 +123,7 @@ class TradeViewController: UIViewController {
                     if intProd < 1 {
                         DispatchQueue.main.async {
                             self.saleButton.isEnabled = false
-                            ProgressHUD.showError("Bu özelliğin aktif olması için Ürün ekleyin.")
+                            ProgressHUD.showError("'Satış İşlemleri' özelliğinin aktif olması için Ürün ekleyin.")
                         }
                     }
                     
@@ -99,7 +141,7 @@ class TradeViewController: UIViewController {
                     if intcomp < 1 {
                         DispatchQueue.main.async {
                             self.buyButton.isEnabled = false
-                            ProgressHUD.showError("Bu özelliğin aktif olması için Firma ekleyin.")
+                            ProgressHUD.showError("'Alım İşlemleri' özelliğin aktif olması için Firma ekleyin.")
                         }
                     }
                 }

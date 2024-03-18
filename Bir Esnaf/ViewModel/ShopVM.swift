@@ -8,6 +8,25 @@
 import Foundation
 
 class ShopVM {
+    func countShop(userMail: String, completion: @escaping([Shop]) -> ()) {
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/countShop.php")!)
+        request.httpMethod = "POST"
+        let string = "userMail=\(userMail)"
+        request.httpBody = string.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "count sale error")
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(ShopData.self, from: data!)
+                completion(result.shop ?? [Shop]())
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func deleteFromShopWhenProductsIsDeleted(userMail: String, prodName: String) {
         var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteFromShopWhenProductsIsDeleted.php")!)
         req.httpMethod = "POST"

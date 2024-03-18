@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo2" translatesAutoresizingMaskIntoConstraints="NO" id="Lsr-jA-HS0">
-                                <rect key="frame" x="96" y="326" width="200" height="200"/>
+                                <rect key="frame" x="96" y="298" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="MJy-K5-ID0"/>
                                     <constraint firstAttribute="height" constant="200" id="bql-R9-0co"/>
@@ -29,7 +29,7 @@
                         <constraints>
                             <constraint firstItem="Lsr-jA-HS0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="96" id="1TA-dM-zJ4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Lsr-jA-HS0" secondAttribute="trailing" constant="97" id="IZ1-NE-hcb"/>
-                            <constraint firstItem="Lsr-jA-HS0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="267" id="NVH-sG-hUh"/>
+                            <constraint firstItem="Lsr-jA-HS0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="239" id="NVH-sG-hUh"/>
                         </constraints>
                     </view>
                 </viewController>

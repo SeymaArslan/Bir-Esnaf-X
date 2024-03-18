@@ -112,7 +112,7 @@ class SaleVM {
         req.httpBody = post.data(using: .utf8)
         URLSession.shared.dataTask(with: req) { data, res, error in
             if error != nil {
-                print(error?.localizedDescription ?? "Delete sale error")
+                print(error!)
                 return
             }
             do {

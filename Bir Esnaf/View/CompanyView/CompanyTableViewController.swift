@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class CompanyTableViewController: UITableViewController {
     
@@ -27,6 +28,11 @@ class CompanyTableViewController: UITableViewController {
         
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
+        
+        
+        if self.compList.first?.cbId == "0" {   // yemedi comp sayacağız
+            ProgressHUD.showSuccess("+ ile Firma ekleyerek uygulamayı kullanmaya başlayın.")
+        }
         
     }
     
@@ -85,7 +91,7 @@ class CompanyTableViewController: UITableViewController {
         let okAct = UIAlertAction(title: "Tamam", style: .destructive) { action in
             DispatchQueue.main.async {
                 self.deleteComp(at: indexPath)
-                self.companyBuyControl(at: indexPath)
+//                self.companyBuyControl(at: indexPath)
             }
         }
         alertController.addAction(okAct)
@@ -103,34 +109,34 @@ class CompanyTableViewController: UITableViewController {
         }
     }
     
-    func showDeleteWarningForBuy(for comp: String) {      //   TEST
-        let alertController = UIAlertController(title: "Sildiğiniz firma 'Alım İşlemleri' listesinde de mevcut. Silinen firmanın bütün alım kayıtlarını silmek ister misiniz?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
-        alertController.addAction(cancelAction)
-        let okeyAction = UIAlertAction(title: "Tamam", style: .destructive) { action in
-            print("Show delete for buy da compname geliyor mu ? \(comp)")
-            self.buyVM.deleteFromBuyWhenCompIsDeleted(userMail: self.mail!, compName: comp)
-            
-        }
-        alertController.addAction(okeyAction)
-        self.present(alertController, animated: true)
-    }
+//    func showDeleteWarningForBuy(for comp: String) {      //   TEST
+//        let alertController = UIAlertController(title: "Sildiğiniz firma 'Alım İşlemleri' listesinde de mevcut. Silinen firmanın bütün alım kayıtlarını silmek ister misiniz?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
+//        let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
+//        alertController.addAction(cancelAction)
+//        let okeyAction = UIAlertAction(title: "Tamam", style: .destructive) { action in
+//            print("Show delete for buy da compname geliyor mu ? \(comp)")
+//            self.buyVM.deleteFromBuyWhenCompIsDeleted(userMail: self.mail!, compName: comp)
+//            
+//        }
+//        alertController.addAction(okeyAction)
+//        self.present(alertController, animated: true)
+//    }
     
-    func companyBuyControl(at indexPath: IndexPath) {      //   TEST
-        let comp = compList[indexPath.row]
-        if let compName = comp.compName {
-            compDelete = compName    // burası silinir mi?
-            buyVM.companyBuyControl(userMail: mail!, compName: compName) { buyCount in
-                let count = buyCount.count
-                print("Buy count geldi mi? \(count)")
-                if count > 0 {
-                    DispatchQueue.main.async {
-                        self.showDeleteWarningForBuy(for: self.compDelete)  // burası tamam
-                    }
-                }
-            }
-        }
-    }
+//    func companyBuyControl(at indexPath: IndexPath) {      //   TEST
+//        let comp = compList[indexPath.row]
+//        if let compName = comp.compName {
+//            compDelete = compName    // burası silinir mi?
+//            buyVM.companyBuyControl(userMail: mail!, compName: compName) { buyCount in
+//                let count = buyCount.count
+//                print("Buy count geldi mi? \(count)")
+//                if count > 0 {
+//                    DispatchQueue.main.async {
+//                        self.showDeleteWarningForBuy(for: self.compDelete)  // burası tamam
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToCompDet" {
@@ -143,6 +149,7 @@ class CompanyTableViewController: UITableViewController {
     func getComp() {
         compVM.getAllCompany(userMail: mail!) { compData in
             self.compList = compData
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }

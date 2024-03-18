@@ -45,7 +45,6 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
 
     @IBAction func clearAllList(_ sender: Any) {
         clearShopAndSaleList()
-        view.window?.rootViewController?.dismiss(animated: true)
     }
     
     @IBAction func calculateButton(_ sender: Any) {
@@ -80,19 +79,20 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     //MARK: - Helpers
-    func clearShopAndSaleList() { // TEST                            TEST                           TEST                         TEST
+    func clearShopAndSaleList() {
         let alertController = UIAlertController(title: "Satış sonuçları listesini temizlemek üzeresiniz.", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
         let cancelAct = UIAlertAction(title: "İptal", style: .cancel)
         alertController.addAction(cancelAct)
         let okAct = UIAlertAction(title: "Tamam", style: .destructive) { action in
             DispatchQueue.main.async {
                 self.shopVM.clearAllListInShop(userMail: self.mail!)
-                self.profitAmount.text = "0 ₺"   // TEST                            TEST                           TEST                         TEST
-                // delete all sale
+                self.profitAmount.text = "0 ₺"
+                self.view.window?.rootViewController?.dismiss(animated: true)
             }
         }
         alertController.addAction(okAct)
         self.present(alertController, animated: true)
+        
     }
     
     func getFirstShop() {
@@ -101,7 +101,14 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 shopSelect = selectedName
                 DispatchQueue.main.async {
                     self.salePicker.reloadAllComponents()
-                    self.profitAmount.text = selectedTotal
+                    self.profitAmount.text = selectedTotal + " ₺"
+                    if let intSelectedTotal = Int(selectedTotal) {
+                        if intSelectedTotal < 0 {
+                            self.profitAmount.textColor = .red
+                        } else {
+                            self.profitAmount.textColor = UIColor(named: "customColor")
+                        }
+                    }
                 }
                 
             }
@@ -139,7 +146,7 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                             self.profitAmount.text = str + " ₺"
                             self.profitAmount.textColor = UIColor(named: "customColor")
                         }
-                    } else {
+                    } else if doubleStr < 0 {
                         DispatchQueue.main.async {
                             self.profitAmount.text = str + " ₺"
                             self.profitAmount.textColor = .red

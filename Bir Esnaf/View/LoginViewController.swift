@@ -10,13 +10,7 @@ import FirebaseFirestore
 import ProgressHUD
 
 class LoginViewController: UIViewController {
-    
-    var imageView: UIImageView = {   // for launchScreen
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-        imageView.image = UIImage(named: "logo2")
-        return imageView
-    }()
-    
+
     var compTableVC = CompanyTableViewController()
     let userVM = UserVM()
 
@@ -43,37 +37,13 @@ class LoginViewController: UIViewController {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.addSubview(imageView)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.performSegue(withIdentifier: "launchToLogin" , sender: self) 
-//            self.performSegue(withIdentifier: "launchToMain", sender: self)
-        }
-        
+
         updateUIFor(login: true)
         setupTextFieldDelegates()
         setupBackgroundTap()
 
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        imageView.center = view.center
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.animation()
-        }
-    }
-    
-    
-    func animation() {
-        UIView.animate(withDuration: 1) {
-            let size = self.view.frame.size.width * 2
-            let xposition = size - self.view.frame.width
-            let yposition = self.view.frame.height - size
-            self.imageView.frame = CGRect(x: (xposition/2), y: yposition/2, width: size, height: size)
-            self.imageView.alpha = 0
-        }
-    }
 
     var  isLogin: Bool = true
 
@@ -83,28 +53,23 @@ class LoginViewController: UIViewController {
             isLogin ? loginUser() : registerUser()   // login or register func
             
         } else {
-            ProgressHUD.showError("All fields are required")
-            //print("Tüm alanları doldurun.")
+            ProgressHUD.showError("Tüm alanları doldurun.")
         }
     }
     
     @IBAction func forgotPasswordButtonPressed(_ sender: Any) {
         if isDataInputedFor(type: "password") {
-            // reset password
             resetPassword()
         } else {
-            // PogressHUD.showFiled("Email is required.")
             ProgressHUD.showError("Email adresi gerekli")
         }
     }
     
     @IBAction func resendEmailButtonPressed(_ sender: Any) {
         if isDataInputedFor(type: "password") {
-            // resend verification email
             resendVerificationEmail()
         } else {
-            // PogressHUD.showFiled("Email is required.")
-            ProgressHUD.showError("Email adresi gerekli")
+            ProgressHUD.showError("Email adresiniz gerekmektedir.")
         }
     }
 
@@ -178,10 +143,7 @@ class LoginViewController: UIViewController {
         FirebaseUserListener.shared.loginUserWithEmail(email: emailTextField.text!, password: passwordTextField.text!) { error, isEmailVerified in
             if error == nil {
                 if isEmailVerified {
-                    // go to app
                     self.goToApp()
-                   // print("User has logged in with email ", User.currentUser?.email)
-                    
                 } else {
                     ProgressHUD.showError("Lütfen emailinizi doğrulayın.")
                     self.resendEmailButtonOutlet.isHidden = false
