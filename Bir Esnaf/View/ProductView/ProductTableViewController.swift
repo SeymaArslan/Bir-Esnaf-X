@@ -40,13 +40,6 @@ class ProductTableViewController: UITableViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        getProdList()
-    }
-    
-    
     
     // MARK: - Table view data source    
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -98,8 +91,8 @@ class ProductTableViewController: UITableViewController {
         let okAct = UIAlertAction(title: "Tamam", style: .destructive) { action in
 
                 self.deleteProduct(at: indexPath)
-//              self.productSalesControl(at: indexPath)
-                self.getProdList()
+                // productSalesControl(at indexPath: IndexPath)
+                
 
         }
         alertController.addAction(okAct)
@@ -171,7 +164,11 @@ class ProductTableViewController: UITableViewController {
         if let prodId = prod.prodId {
             if let intPId = Int(prodId) {
                 self.prodVM.deleteProd(userMail: mail!, prodId: intPId)
-                getProdList()
+                self.prodList.remove(at: indexPath.row)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
             }
         }
     }

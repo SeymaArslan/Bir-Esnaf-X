@@ -78,6 +78,7 @@
       "size" : "64x64"
     },
     {
+      "filename" : "birbir.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "3x",

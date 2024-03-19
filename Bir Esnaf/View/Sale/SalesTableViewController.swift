@@ -129,7 +129,10 @@ class SalesTableViewController: UITableViewController {
         if let saleId = sale.saleId {
             if let intSId = Int(saleId) {
                 self.saleVM.deleteSale(userMail: mail!, saleId: intSId)
-                self.getSaleList()
+                self.saleList.remove(at: indexPath.row)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
         if let prodName = sale.prodName, let saleTotal = sale.saleTotal {  // ************************ test et

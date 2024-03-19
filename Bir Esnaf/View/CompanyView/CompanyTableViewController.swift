@@ -28,20 +28,11 @@ class CompanyTableViewController: UITableViewController {
         
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
-        
-        
-        if self.compList.first?.cbId == "0" {   // yemedi comp sayacağız
-            ProgressHUD.showSuccess("+ ile Firma ekleyerek uygulamayı kullanmaya başlayın.")
-        }
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+            
         getComp()
+        getCompanyCount()
     }
-    
+
     @IBAction func goToCompAdd(_ sender: Any) {
     }
     
@@ -104,7 +95,10 @@ class CompanyTableViewController: UITableViewController {
         if let cId = comp.cbId {
             if let intCId = Int(cId) {
                 self.compVM.deleteCompany(userMail: mail!, cbId: intCId)
-                self.getComp()
+                self.compList.remove(at: indexPath.row)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -152,6 +146,19 @@ class CompanyTableViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func getCompanyCount() {
+        self.compVM.countCompBank(userMail: self.mail!) { compCount in
+            self.compList = compCount
+            if let count = self.compList.first?.count {
+                if let intcomp = Int(count) {
+                    if intcomp == 0 {
+                        ProgressHUD.showSuccess("+ ile Firma ekleyerek uygulamayı kullanmaya başlayın.")
+                    }
+                }
             }
         }
     }

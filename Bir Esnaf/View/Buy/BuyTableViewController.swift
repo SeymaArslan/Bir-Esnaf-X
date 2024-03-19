@@ -104,7 +104,10 @@ class BuyTableViewController: UITableViewController {
         if let buyId = buy.buyId {
             if let intBuyId = Int(buyId) {
                 self.buyVM.deleteCell(userMail: mail!, buyId: intBuyId)
-                self.getBuyList()
+                self.buyList.remove(at: indexPath.row)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
