@@ -7,6 +7,7 @@
 
 import UIKit
 import ProgressHUD
+import FirebaseAuth
 
 class CompanyTableViewController: UITableViewController {
     
@@ -15,7 +16,6 @@ class CompanyTableViewController: UITableViewController {
     let buyVM = BuyVM()
     
     var compList = [CompanyBank]()
-    let mail = userDefaults.string(forKey: "userMail")
     let compVM = CompanyVM()
     
     override func viewDidLoad() {
@@ -28,11 +28,11 @@ class CompanyTableViewController: UITableViewController {
         
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
-            
+        
         getComp()
         getCompanyCount()
     }
-
+    
     @IBAction func goToCompAdd(_ sender: Any) {
     }
     
@@ -82,7 +82,6 @@ class CompanyTableViewController: UITableViewController {
         let okAct = UIAlertAction(title: "Tamam", style: .destructive) { action in
             DispatchQueue.main.async {
                 self.deleteComp(at: indexPath)
-//                self.companyBuyControl(at: indexPath)
             }
         }
         alertController.addAction(okAct)
@@ -94,43 +93,17 @@ class CompanyTableViewController: UITableViewController {
         let comp = self.compList[indexPath.row]
         if let cId = comp.cbId {
             if let intCId = Int(cId) {
-                self.compVM.deleteCompany(userMail: mail!, cbId: intCId)
-                self.compList.remove(at: indexPath.row)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                if let currentUser = Auth.auth().currentUser {
+                    let uid = currentUser.uid
+                    self.compVM.deleteCompany(userMail: uid, cbId: intCId)
+                    self.compList.remove(at: indexPath.row)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 }
             }
         }
     }
-    
-//    func showDeleteWarningForBuy(for comp: String) {      //   TEST
-//        let alertController = UIAlertController(title: "Sildiğiniz firma 'Alım İşlemleri' listesinde de mevcut. Silinen firmanın bütün alım kayıtlarını silmek ister misiniz?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
-//        let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
-//        alertController.addAction(cancelAction)
-//        let okeyAction = UIAlertAction(title: "Tamam", style: .destructive) { action in
-//            print("Show delete for buy da compname geliyor mu ? \(comp)")
-//            self.buyVM.deleteFromBuyWhenCompIsDeleted(userMail: self.mail!, compName: comp)
-//            
-//        }
-//        alertController.addAction(okeyAction)
-//        self.present(alertController, animated: true)
-//    }
-    
-//    func companyBuyControl(at indexPath: IndexPath) {      //   TEST
-//        let comp = compList[indexPath.row]
-//        if let compName = comp.compName {
-//            compDelete = compName    // burası silinir mi?
-//            buyVM.companyBuyControl(userMail: mail!, compName: compName) { buyCount in
-//                let count = buyCount.count
-//                print("Buy count geldi mi? \(count)")
-//                if count > 0 {
-//                    DispatchQueue.main.async {
-//                        self.showDeleteWarningForBuy(for: self.compDelete)  // burası tamam
-//                    }
-//                }
-//            }
-//        }
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToCompDet" {
@@ -141,22 +114,31 @@ class CompanyTableViewController: UITableViewController {
     }
     
     func getComp() {
-        compVM.getAllCompany(userMail: mail!) { compData in
-            self.compList = compData
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            compVM.getAllCompany(userMail: uid) { compData in
+                self.compList = compData
+                if let dn = self.compList.first?.compName {
+                    print(dn)
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
     
     func getCompanyCount() {
-        self.compVM.countCompBank(userMail: self.mail!) { compCount in
-            self.compList = compCount
-            if let count = self.compList.first?.count {
-                if let intcomp = Int(count) {
-                    if intcomp == 0 {
-                        ProgressHUD.showSuccess("+ ile Firma ekleyerek uygulamayı kullanmaya başlayın.")
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            self.compVM.countCompBank(userMail: uid) { compCount in
+                self.compList = compCount
+                if let count = self.compList.first?.count {
+                    if let intcomp = Int(count) {
+                        if intcomp == 0 {
+                            ProgressHUD.showSuccess("+ ile Firma ekleyerek uygulamayı kullanmaya başlayın.")
+                        }
                     }
                 }
             }

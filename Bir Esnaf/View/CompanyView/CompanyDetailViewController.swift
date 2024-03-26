@@ -8,9 +8,9 @@
 import UIKit
 
 class CompanyDetailViewController: UIViewController {
-
+    
     var company: CompanyBank?
-
+    
     @IBOutlet weak var compName: UILabel!
     @IBOutlet weak var compPhone: UILabel!
     @IBOutlet weak var compEmail: UILabel!
@@ -25,7 +25,7 @@ class CompanyDetailViewController: UIViewController {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,5 +67,5 @@ class CompanyDetailViewController: UIViewController {
             goToVC.company = company
         }
     }
-
+    
 }

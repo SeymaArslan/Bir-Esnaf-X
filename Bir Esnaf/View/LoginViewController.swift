@@ -10,10 +10,10 @@ import FirebaseFirestore
 import ProgressHUD
 
 class LoginViewController: UIViewController {
-
+    
     var compTableVC = CompanyTableViewController()
     let userVM = UserVM()
-
+    
     //MARK: - Outlets
     // Labels
     @IBOutlet weak var emailLabelOutlet: UILabel!
@@ -37,16 +37,16 @@ class LoginViewController: UIViewController {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         updateUIFor(login: true)
         setupTextFieldDelegates()
         setupBackgroundTap()
-
+        
     }
     
-
+    
     var  isLogin: Bool = true
-
+    
     //MARK: - Button Actions
     @IBAction func loginButtonPressed(_ sender: Any) {
         if isDataInputedFor(type: isLogin ? "login" : "register") {
@@ -72,14 +72,14 @@ class LoginViewController: UIViewController {
             ProgressHUD.showError("Email adresiniz gerekmektedir.")
         }
     }
-
+    
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
         updateUIFor(login: sender.titleLabel?.text == "Giriş yapın")
         isLogin.toggle()
     }
     
- 
+    
     
     //MARK: - Setup
     private func setupTextFieldDelegates() {

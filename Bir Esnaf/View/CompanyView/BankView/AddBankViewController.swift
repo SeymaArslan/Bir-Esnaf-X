@@ -7,9 +7,10 @@
 
 import UIKit
 import ProgressHUD
+import FirebaseAuth
 
 class AddBankViewController: UIViewController {
-
+    
     var cName = String()
     var cPhone = String()
     var cMail = String()
@@ -19,8 +20,6 @@ class AddBankViewController: UIViewController {
     var asbn = String()
     
     let compVM = CompanyVM()
-    let mail = userDefaults.string(forKey: "userMail")
-    
     
     @IBOutlet weak var bankName: UITextField!
     @IBOutlet weak var branchName: UITextField!
@@ -59,17 +58,20 @@ class AddBankViewController: UIViewController {
     
     //MARK: - Helpers
     func addComp() {
-        if let email = mail, let bName = bankName.text, let bBranchName = branchName.text, let bCode = branchCode.text, let aType = accountType.text, let aName = accountName.text, let aNumber = accountNumber.text, let iban = ibanNumber.text {
+        if let bName = bankName.text, let bBranchName = branchName.text, let bCode = branchCode.text, let aType = accountType.text, let aName = accountName.text, let aNumber = accountNumber.text, let iban = ibanNumber.text {
             
             if let intAccNum = Int(aNumber) {
-                compVM.companyInsert(userMail: email, compName: cName, compPhone: cPhone, compMail: cMail, province: province, district: district, quarter: quarter, asbn: asbn, bankName: bName, bankBranchName: bBranchName, bankBranchCode: bCode, bankAccountType: aType, bankAccountName: aName, bankAccountNum: intAccNum, bankIban: iban)
-                
-                ProgressHUD.showSuccess("Firma kayıt edildi.")
-                self.view.window?.rootViewController?.dismiss(animated: true)
+                if let currentUser = Auth.auth().currentUser {
+                    let uid = currentUser.uid
+                    compVM.companyInsert(userMail: uid, compName: cName, compPhone: cPhone, compMail: cMail, province: province, district: district, quarter: quarter, asbn: asbn, bankName: bName, bankBranchName: bBranchName, bankBranchCode: bCode, bankAccountType: aType, bankAccountName: aName, bankAccountNum: intAccNum, bankIban: iban)
+                    
+                    ProgressHUD.showSuccess("Firma kayıt edildi.")
+                    self.view.window?.rootViewController?.dismiss(animated: true)
+                }
             }
         }
     }
-
+    
     
 }
 

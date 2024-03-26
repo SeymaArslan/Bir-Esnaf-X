@@ -6,16 +6,16 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class BuyTableViewController: UITableViewController {
-
-    let mail = userDefaults.string(forKey: "userMail")
+    
     var buyList = [Buy]()
     let buyVM = BuyVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureLeftBarButton()
         
         tableView.dataSource = self
@@ -27,7 +27,7 @@ class BuyTableViewController: UITableViewController {
         self.tableView.refreshControl = self.refreshControl
         
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getBuyList()
@@ -39,11 +39,11 @@ class BuyTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return buyList.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let buy = buyList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "buyCell", for: indexPath) as! BuyTableViewCell
@@ -103,20 +103,26 @@ class BuyTableViewController: UITableViewController {
         let buy = self.buyList[indexPath.row]
         if let buyId = buy.buyId {
             if let intBuyId = Int(buyId) {
-                self.buyVM.deleteCell(userMail: mail!, buyId: intBuyId)
-                self.buyList.remove(at: indexPath.row)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                if let currentUser = Auth.auth().currentUser {
+                    let uid = currentUser.uid
+                    self.buyVM.deleteCell(userMail: uid, buyId: intBuyId)
+                    self.buyList.remove(at: indexPath.row)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 }
             }
         }
     }
     
     func getBuyList() {
-        buyVM.getBuyList(userMail: mail!) { fetchBuyList in
-            self.buyList = fetchBuyList
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            buyVM.getBuyList(userMail: uid) { fetchBuyList in
+                self.buyList = fetchBuyList
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -129,5 +135,5 @@ class BuyTableViewController: UITableViewController {
         }
         
     }
-
+    
 }

@@ -12,7 +12,7 @@ import FirebaseAuth
 
 struct User: Codable, Equatable {
     var id = ""
-//    var userName: String
+    //    var userName: String
     var email: String
     
     static var currentId: String {
@@ -33,7 +33,7 @@ struct User: Codable, Equatable {
         }
         return nil
     }
-
+    
     static func == (lhs: User, rhs: User) -> Bool {
         lhs.id == rhs.id
     }

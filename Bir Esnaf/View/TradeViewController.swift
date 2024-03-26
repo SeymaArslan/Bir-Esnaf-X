@@ -7,6 +7,7 @@
 
 import UIKit
 import ProgressHUD
+import FirebaseAuth
 
 class TradeViewController: UIViewController {
     
@@ -37,7 +38,6 @@ class TradeViewController: UIViewController {
     var fetchShopList = [Shop]()
     var firstProdName: String?
     var firstShopList = [Shop]()
-    let mail = userDefaults.string(forKey: "userMail")
     let shopVM = ShopVM()
     
     @IBOutlet weak var buyButton: UIButton!
@@ -50,14 +50,14 @@ class TradeViewController: UIViewController {
         super.viewDidLoad()
         
         getFirstSale()
-
+        
         getCompanyCount()
         getProdCount()
         getSaleCount()
         //getShopCount()
         
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getFirstSale()
@@ -65,89 +65,103 @@ class TradeViewController: UIViewController {
     }
     
     @IBAction func salesResultButtonPressed(_ sender: Any) {
-
+        
     }
     
     //MARK: - Helpers
     func getShopCount() {    // clear List button pressed
-        self.shopVM.countShop(userMail: mail!) { shopData in
-            self.shopList = shopData
-            if let count = self.shopList.first?.count {
-                self.countShop = count
-                if let intShopCount = Int(self.countShop!) {
-                    self.shopCount = intShopCount
-                    if intShopCount < 1 {
-                        DispatchQueue.main.async {
-                            self.salesResultButton.isEnabled = false
-                            ProgressHUD.showError("'Satış Sonuçlarını Gör' özelliğinin aktif olması için Satış İşlemi girmeniz gerekmektedir.")
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.salesResultButton.isEnabled = true
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            self.shopVM.countShop(userMail: uid) { shopData in
+                self.shopList = shopData
+                if let count = self.shopList.first?.count {
+                    self.countShop = count
+                    if let intShopCount = Int(self.countShop!) {
+                        self.shopCount = intShopCount
+                        if intShopCount < 1 {
+                            DispatchQueue.main.async {
+                                self.salesResultButton.isEnabled = false
+                                ProgressHUD.showError("'Satış Sonuçlarını Gör' özelliğinin aktif olması için Satış İşlemi girmeniz gerekmektedir.")
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                self.salesResultButton.isEnabled = true
+                            }
                         }
                     }
                 }
-                
             }
         }
     }
     
     func getSaleCount() {
-        self.saleVM.countSale(userMail: mail!) { saleData in
-            self.saleList = saleData
-            if let count = self.saleList.first?.count {
-                self.countSale = count
-                if let intSale = Int(self.countSale!) {
-                    self.saleCount = intSale
-                    if intSale < 1 {
-                        DispatchQueue.main.async {
-                            self.salesResultButton.isEnabled = false
-                            ProgressHUD.showError("'Satış Sonuçlarını Gör' özelliğinin aktif olması için Satış İşlemi girmeniz gerekmektedir Test.")   // düzelt
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.salesResultButton.isEnabled = true
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            self.saleVM.countSale(userMail: uid) { saleData in
+                self.saleList = saleData
+                if let count = self.saleList.first?.count {
+                    self.countSale = count
+                    if let intSale = Int(self.countSale!) {
+                        self.saleCount = intSale
+                        if intSale < 1 {
+                            DispatchQueue.main.async {
+                                self.salesResultButton.isEnabled = false
+                                ProgressHUD.showError("'Satış Sonuçlarını Gör' özelliğinin aktif olması için Satış İşlemi girmeniz gerekmektedir Test.")   // düzelt
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                self.salesResultButton.isEnabled = true
+                            }
                         }
                     }
                 }
             }
         }
     }
+    
     
     func getProdCount() {
-        self.prodVM.countProduct(userMail: mail!) { prodData in
-            self.prodList = prodData
-            if let count = self.prodList.first?.count {
-                self.countProd = count
-                if let intProd = Int(self.countProd!) {
-                    if intProd < 1 {
-                        DispatchQueue.main.async {
-                            self.saleButton.isEnabled = false
-                            ProgressHUD.showError("'Satış İşlemleri' özelliğinin aktif olması için Ürün ekleyin.")
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            self.prodVM.countProduct(userMail: uid) { prodData in
+                self.prodList = prodData
+                if let count = self.prodList.first?.count {
+                    self.countProd = count
+                    if let intProd = Int(self.countProd!) {
+                        if intProd < 1 {
+                            DispatchQueue.main.async {
+                                self.saleButton.isEnabled = false
+                                ProgressHUD.showError("'Satış İşlemleri' özelliğinin aktif olması için Ürün ekleyin.")
+                            }
                         }
+                        
                     }
-                    
                 }
             }
         }
     }
     
+    
     func getCompanyCount() {
-        self.compVM.countCompBank(userMail: self.mail!) { compCount in
-            self.compList = compCount
-            if let count = self.compList.first?.count {
-                self.countComp = count
-                if let intcomp = Int(self.countComp!) {
-                    if intcomp < 1 {
-                        DispatchQueue.main.async {
-                            self.buyButton.isEnabled = false
-                            ProgressHUD.showError("'Alım İşlemleri' özelliğin aktif olması için Firma ekleyin.")
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            self.compVM.countCompBank(userMail: uid) { compCount in
+                self.compList = compCount
+                if let count = self.compList.first?.count {
+                    self.countComp = count
+                    if let intcomp = Int(self.countComp!) {
+                        if intcomp < 1 {
+                            DispatchQueue.main.async {
+                                self.buyButton.isEnabled = false
+                                ProgressHUD.showError("'Alım İşlemleri' özelliğin aktif olması için Firma ekleyin.")
+                            }
                         }
                     }
                 }
             }
         }
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToShop" {
@@ -156,9 +170,13 @@ class TradeViewController: UIViewController {
         }
     }
     
+    
     func getFirstSale() {
-        shopVM.getFirstSaleData(userMail: mail!) { firstShopData in
-            self.firstShopList = firstShopData
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            shopVM.getFirstSaleData(userMail: uid) { firstShopData in
+                self.firstShopList = firstShopData
+            }
         }
     }
     

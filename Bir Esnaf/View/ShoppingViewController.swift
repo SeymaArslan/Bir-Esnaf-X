@@ -6,9 +6,10 @@
 //  a
 
 import UIKit
+import FirebaseAuth
 
 class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
     let saleVM = SaleVM()
     
     var firstShopList: Shop?
@@ -18,13 +19,12 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     var shopSelect = String()
     var shopList = [Shop]()  // provinceList
-    let mail = userDefaults.string(forKey: "userMail")
     let shopVM = ShopVM()
     
     @IBOutlet weak var salePicker: UIPickerView!
     @IBOutlet weak var profitAmount: UILabel!
     @IBOutlet weak var totalProfitAmount: UILabel!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         getFirstShop()
         pullSales()
     }
-
+    
     @IBAction func clearAllList(_ sender: Any) {
         clearShopAndSaleList()
     }
@@ -52,7 +52,7 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @IBAction func dismissButton(_ sender: Any) {
-        view.window?.rootViewController?.dismiss(animated: true)
+        self.view.window?.rootViewController?.dismiss(animated: true)
     }
     
     
@@ -80,14 +80,19 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     //MARK: - Helpers
     func clearShopAndSaleList() {
-        let alertController = UIAlertController(title: "Satış sonuçları listesini temizlemek üzeresiniz.", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Satış sonuçları listesini temizlemek üzeresiniz, satışı yapılan tüm ürünlerin sonuçları silinecektir.", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
         let cancelAct = UIAlertAction(title: "İptal", style: .cancel)
         alertController.addAction(cancelAct)
         let okAct = UIAlertAction(title: "Tamam", style: .destructive) { action in
             DispatchQueue.main.async {
-                self.shopVM.clearAllListInShop(userMail: self.mail!)
-                self.profitAmount.text = "0 ₺"
-                self.view.window?.rootViewController?.dismiss(animated: true)
+                
+                if let currentUser = Auth.auth().currentUser {
+                    let uid = currentUser.uid
+                    self.shopVM.clearAllListInShop(userMail: uid)
+                    self.profitAmount.text = "0 ₺"
+                    self.view.window?.rootViewController?.dismiss(animated: true)
+                }
+
             }
         }
         alertController.addAction(okAct)
@@ -116,19 +121,22 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     func sumAllSell() {
-        shopVM.sumAllSellProd(userMail: mail!) { sumShop in
-            self.sumShopList = sumShop
-            if let string = self.sumShopList.first?.totalProfitAmount {
-                if let doubleStr = Double(string) { 
-                    if doubleStr > 0 {
-                        DispatchQueue.main.async {
-                            self.totalProfitAmount.text = string + " ₺"
-                            self.totalProfitAmount.textColor = UIColor(named: "customColor")
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.totalProfitAmount.text = string + " ₺"
-                            self.totalProfitAmount.textColor = .red
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            shopVM.sumAllSellProd(userMail: uid) { sumShop in
+                self.sumShopList = sumShop
+                if let string = self.sumShopList.first?.totalProfitAmount {
+                    if let doubleStr = Double(string) {
+                        if doubleStr > 0 {
+                            DispatchQueue.main.async {
+                                self.totalProfitAmount.text = string + " ₺"
+                                self.totalProfitAmount.textColor = UIColor(named: "customColor")
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                self.totalProfitAmount.text = string + " ₺"
+                                self.totalProfitAmount.textColor = .red
+                            }
                         }
                     }
                 }
@@ -136,20 +144,24 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
+    
     func fetchShop() {
-        shopVM.fetchShop(userMail: mail!, prodName: shopSelect) { shopData in
-            self.fetchShopList = shopData
-            if let str = self.fetchShopList.first?.totalProfitAmount {
-                if let doubleStr = Double(str) {
-                    if doubleStr > 0 {
-                        DispatchQueue.main.async {
-                            self.profitAmount.text = str + " ₺"
-                            self.profitAmount.textColor = UIColor(named: "customColor")
-                        }
-                    } else if doubleStr < 0 {
-                        DispatchQueue.main.async {
-                            self.profitAmount.text = str + " ₺"
-                            self.profitAmount.textColor = .red
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            shopVM.fetchShop(userMail: uid, prodName: shopSelect) { shopData in
+                self.fetchShopList = shopData
+                if let str = self.fetchShopList.first?.totalProfitAmount {
+                    if let doubleStr = Double(str) {
+                        if doubleStr > 0 {
+                            DispatchQueue.main.async {
+                                self.profitAmount.text = str + " ₺"
+                                self.profitAmount.textColor = UIColor(named: "customColor")
+                            }
+                        } else if doubleStr < 0 {
+                            DispatchQueue.main.async {
+                                self.profitAmount.text = str + " ₺"
+                                self.profitAmount.textColor = .red
+                            }
                         }
                     }
                 }
@@ -158,12 +170,15 @@ class ShoppingViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     func pullSales() {
-        shopVM.pullSalesForPickerView(userMail: mail!) { shopList in
-            self.shopList = shopList
-            DispatchQueue.main.async {
-                self.salePicker.reloadAllComponents()
-                if let selectedIndex = self.shopList.firstIndex(where: { $0.prodName == self.shopSelect}) {
-                    self.salePicker.selectRow(selectedIndex, inComponent: 0, animated: true)
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            shopVM.pullSalesForPickerView(userMail: uid) { shopList in
+                self.shopList = shopList
+                DispatchQueue.main.async {
+                    self.salePicker.reloadAllComponents()
+                    if let selectedIndex = self.shopList.firstIndex(where: { $0.prodName == self.shopSelect}) {
+                        self.salePicker.selectRow(selectedIndex, inComponent: 0, animated: true)
+                    }
                 }
             }
         }

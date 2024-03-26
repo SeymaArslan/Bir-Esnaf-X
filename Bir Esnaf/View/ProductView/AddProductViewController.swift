@@ -7,11 +7,11 @@
 
 import UIKit
 import ProgressHUD
+import FirebaseAuth
 
 class AddProductViewController: UIViewController {
-
+    
     let prodVM = ProductVM()
-    let mail = userDefaults.string(forKey: "userMail")
     
     @IBOutlet weak var prodName: UITextField!
     @IBOutlet weak var prodPrice: UITextField!
@@ -19,7 +19,7 @@ class AddProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         prodName.delegate = self
         
         setupToolBar()
@@ -29,7 +29,7 @@ class AddProductViewController: UIViewController {
     @IBAction func cancelButton(_ sender: Any) {
         self.view.window?.rootViewController?.dismiss(animated: true)
     }
-
+    
     @IBAction func saveProd(_ sender: Any) {
         addProd()
     }
@@ -43,9 +43,12 @@ class AddProductViewController: UIViewController {
         
         if let pName = prodName.text, let pPrice = price, let pTotal = total {
             if let doublePrice = Double(pPrice), let doubleTotal = Double(pTotal) {
-                prodVM.insertProd(userMail: mail!, prodName: pName, prodTotal: doubleTotal, prodPrice: doublePrice)
-                ProgressHUD.showSuccess("Ürün başarılı bir şekilde eklendi.")
-                self.view.window?.rootViewController?.dismiss(animated: true)
+                if let currentUser = Auth.auth().currentUser {
+                    let uid = currentUser.uid
+                    prodVM.insertProd(userMail: uid, prodName: pName, prodTotal: doubleTotal, prodPrice: doublePrice)
+                    ProgressHUD.showSuccess("Ürün başarılı bir şekilde eklendi.")
+                    self.view.window?.rootViewController?.dismiss(animated: true)
+                }
             }
         }
     }
@@ -77,6 +80,6 @@ extension AddProductViewController: UITextFieldDelegate {
         prodName.endEditing(true)
         return true
     }
-
+    
     
 }

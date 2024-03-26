@@ -7,10 +7,10 @@
 
 import UIKit
 import ProgressHUD
+import FirebaseAuth
 
 class UpdateProductViewController: UIViewController {
     
-    let mail = userDefaults.string(forKey: "userMail")
     let prodVM = ProductVM()
     var prodId = Int()
     var product: Product?
@@ -60,9 +60,12 @@ class UpdateProductViewController: UIViewController {
         totalUpdate = totalUpdate?.replacingOccurrences(of: ",", with: ".")
         if let pName = prodNameUp.text, let pPrice = priceUpdate, let pTotal = totalUpdate {
             if let doublePrice = Double(pPrice), let doubTotal = Double(pTotal) {
-                prodVM.updateProd(userMail: mail!, prodId: prodId, prodName: pName, prodTotal: doubTotal, prodPrice: doublePrice)
-                ProgressHUD.showSuccess("Ürün güncellendi.")
-                self.view.window?.rootViewController?.dismiss(animated: true)
+                if let currentUser = Auth.auth().currentUser {
+                    let uid = currentUser.uid
+                    prodVM.updateProd(userMail: uid, prodId: prodId, prodName: pName, prodTotal: doubTotal, prodPrice: doublePrice)
+                    ProgressHUD.showSuccess("Ürün güncellendi.")
+                    self.view.window?.rootViewController?.dismiss(animated: true)
+                }
             }
         }
     }

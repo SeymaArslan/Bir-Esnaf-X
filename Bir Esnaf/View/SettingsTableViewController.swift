@@ -9,11 +9,11 @@ import UIKit
 import ProgressHUD
 
 class SettingsTableViewController: UITableViewController {
-
+    
     //MARK: - Life Cylces
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.tableFooterView = UIView()
     }
     
@@ -50,7 +50,7 @@ class SettingsTableViewController: UITableViewController {
             UIActivity.ActivityType.saveToCameraRoll,
             UIActivity.ActivityType.addToReadingList
         ]
-    
+        
         if UIDevice.current.userInterfaceIdiom == .pad {
             if avc.responds(to: #selector(getter: UIViewController.popoverPresentationController)) {
                 avc.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
@@ -69,6 +69,7 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func logOutButton(_ sender: Any) {
         FirebaseUserListener.shared.logOutCurrentUser { error in
             if error == nil {
+                UserDefaults.standard.removeObject(forKey: "userMail")
                 let loginView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "loginView")
                 DispatchQueue.main.async {
                     loginView.modalPresentationStyle = .fullScreen
@@ -92,6 +93,7 @@ class SettingsTableViewController: UITableViewController {
                         loginView.modalPresentationStyle = .fullScreen
                         self.present(loginView, animated: true, completion: nil)
                     }
+                    //                    self.deleteAllDataWithMail(for: self.mail!)
                 }
             }
             if var user = User.currentUser {
@@ -114,13 +116,18 @@ class SettingsTableViewController: UITableViewController {
         
     }
     
-    
+    //    
+    //    func deleteAllDataWithMail(for mail: String) {
+    //        userVM.deleteAllData(userMail: mail)
+    //    }
+    //    
+    //    
     //MARK: - UpdateUI
     private func showUserInfo() {
         if let user = User.currentUser {
             // burada yenileyeceğimiz şeyleri koyacağız işine yaramazsa sil geç. Ki bence kişi hesabı silerse login kayıt sayfasına yönlendirebiliriz.
         }
     }
-
+    
     
 }

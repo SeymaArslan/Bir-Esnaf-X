@@ -8,7 +8,7 @@
 import UIKit
 
 class UpdateCompanyViewController: UIViewController {
-
+    
     var company: CompanyBank?
     
     @IBOutlet weak var compNameUpdate: UITextField!
@@ -17,7 +17,7 @@ class UpdateCompanyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         getCompDatas()
         
         compNameUpdate.delegate = self
@@ -46,7 +46,7 @@ class UpdateCompanyViewController: UIViewController {
             compEmailUpdate.text = comp.compMail
         }
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addressUpdate" {
             let goToVc = segue.destination as! UpdateAddressViewController

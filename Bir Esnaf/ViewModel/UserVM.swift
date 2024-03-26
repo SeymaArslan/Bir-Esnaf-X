@@ -8,6 +8,25 @@
 import Foundation
 
 class UserVM {
+    func deleteAllData(userMail: String) {
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/deleteAllDataWithUser.php")!)
+        req.httpMethod = "POST"
+        let postStr = "userMail=\(userMail)"
+        req.httpBody = postStr.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, response, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "Delete all data error")
+                return
+            }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                    print(json)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
     
     func userAdd(userMail: String) {
         var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/insertUser.php")!)
@@ -46,7 +65,7 @@ class UserVM {
                 print(error.localizedDescription)
             }
         }.resume()
-
+        
     }
     
 }

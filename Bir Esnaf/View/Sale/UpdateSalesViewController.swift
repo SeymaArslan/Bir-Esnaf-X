@@ -6,14 +6,13 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var getOldTotal = Double()
     var oldProduct = String()
     var oldTotal = Double()
-    
-    let mail = userDefaults.string(forKey: "userMail")
     
     var selectProdComponent = String()
     var forSelectProdPickerList = [Product]()
@@ -78,9 +77,10 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     //MARK: - Helpers
     func updateOldProd() {
         let total = oldTotal + getOldTotal
-        saleVM.oldSaleUpdate(userMail: mail!, prodName: oldProduct, prodTotal: total)
-        print("oldProd = \(oldProduct) ve prodTotal = \(oldTotal)")
-        print("Oldu muuuuu buradaki total geri eklenmiş olmalı..")
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            saleVM.oldSaleUpdate(userMail: uid, prodName: oldProduct, prodTotal: total)
+        }
     }
     
     func updateSales() {
@@ -93,11 +93,14 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
         
         if let salePrice = priceRep, let total = totalRep, let totalPrice = totalPriceRep, let buyDate = saleDateTextField.text {
             if let doubleSPrice = Double(salePrice), let doubleTotal = Double(total), let doubleTPrice = Double(totalPrice) {
-                saleVM.updateSale(userMail: mail!, saleId: saleId, prodName: prodSelect, salePrice: doubleSPrice, saleTotal: doubleTotal, saleTotalPrice: doubleTPrice, saleDate: buyDate)
-                
-                updateOldProd()
-                
-                self.view.window?.rootViewController?.dismiss(animated: true)
+                if let currentUser = Auth.auth().currentUser {
+                    let uid = currentUser.uid
+                    saleVM.updateSale(userMail: uid, saleId: saleId, prodName: prodSelect, salePrice: doubleSPrice, saleTotal: doubleTotal, saleTotalPrice: doubleTPrice, saleDate: buyDate)
+                    
+                    updateOldProd()
+                    self.view.window?.rootViewController?.dismiss(animated: true)
+                }
+
             }
         }
     }

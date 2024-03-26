@@ -20,7 +20,7 @@ class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
     let pm = ProvinceVM()
     var getProvList = [Province]()
     var provinceComponent = String()
-
+    
     @IBOutlet weak var cityPicker: UIPickerView!
     @IBOutlet weak var districtUpdate: UITextField!
     @IBOutlet weak var quarterUpdate: UITextField!
@@ -28,14 +28,14 @@ class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         cityPicker.delegate = self
         cityPicker.dataSource = self
         
         districtUpdate.delegate = self
         quarterUpdate.delegate = self
         fullAddressUpdate.delegate = self
-    
+        
         setupBackgroundTap()
     }
     
@@ -61,13 +61,12 @@ class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
             }
         }
     }
-
+    
     
     @IBAction func bankUpdateButton(_ sender: Any) {
-        
     }
     
-
+    
     @IBAction func cancelButton(_ sender: Any) {
         self.view.window?.rootViewController?.dismiss(animated: true)
     }
@@ -80,7 +79,7 @@ class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return provinceList.count
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return provinceList[row].province
     }
@@ -117,7 +116,7 @@ class UpdateAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
             if let getProv = comp.province {
                 pm.getSelectedProvince(province: getProv) { [self] provData in
                     self.getProvList = provData
-
+                    
                 }
             }
         }

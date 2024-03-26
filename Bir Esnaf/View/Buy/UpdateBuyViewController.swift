@@ -7,12 +7,12 @@
 
 import UIKit
 import ProgressHUD
+import FirebaseAuth
 
 class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
     //MARK: - Variable
     var selectCompComponent = String()
-    let mail = userDefaults.string(forKey: "userMail")
     
     var buy: Buy?
     let buyVM = BuyVM()
@@ -139,9 +139,13 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         totalPriceRep = totalPriceRep?.replacingOccurrences(of: ",", with: ".")
         if let pName = productName.text, let price = priceRep, let total = totalRep, let tPrice = totalPriceRep, let date = buyDateUp.text {
             if let doublePrice = Double(price), let doubleTotal = Double(total), let doubleTPrice = Double(tPrice) {
-                buyVM.updateBuy(userMail: mail!, buyId: buyId, compName: compSelect, productName: pName, price: doublePrice, total: doubleTotal, totalPrice: doubleTPrice, buyDate: date)
-                ProgressHUD.showSuccess("Satın alma bilgisi güncellendi.")
-                self.view.window?.rootViewController?.dismiss(animated: true)
+                
+                if let currentUser = Auth.auth().currentUser {
+                    let uid = currentUser.uid
+                    buyVM.updateBuy(userMail: uid, buyId: buyId, compName: compSelect, productName: pName, price: doublePrice, total: doubleTotal, totalPrice: doubleTPrice, buyDate: date)
+                    ProgressHUD.showSuccess("Satın alma bilgisi güncellendi.")
+                    self.view.window?.rootViewController?.dismiss(animated: true)
+                }
             }
         }
     }
@@ -154,7 +158,7 @@ extension UpdateBuyViewController: UITextFieldDelegate {
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         bar.items = [flexSpace, flexSpace, doneButton]
         bar.sizeToFit()
-
+        
         priceUp.inputAccessoryView = bar
         totalUp.inputAccessoryView = bar
         totalPriceUp.inputAccessoryView = bar

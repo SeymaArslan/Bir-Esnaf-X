@@ -8,7 +8,7 @@
 import UIKit
 
 class BuyTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var compName: UILabel!
     @IBOutlet weak var productName: UILabel! 
     @IBOutlet weak var totalPriceLabel: UILabel!
@@ -19,11 +19,11 @@ class BuyTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

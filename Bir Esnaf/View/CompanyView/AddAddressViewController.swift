@@ -8,7 +8,7 @@
 import UIKit
 
 class AddAddressViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
     var cName = String()
     var cPhone = String()
     var cMail = String()
@@ -24,7 +24,7 @@ class AddAddressViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         provincePicker.delegate = self
         provincePicker.dataSource = self
         
@@ -66,7 +66,7 @@ class AddAddressViewController: UIViewController, UIPickerViewDelegate, UIPicker
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return provinceList.count
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return provinceList[row].province
     }

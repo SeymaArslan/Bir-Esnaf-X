@@ -7,10 +7,10 @@
 
 import UIKit
 import ProgressHUD
+import FirebaseAuth
 
 class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
-    let mail = userDefaults.string(forKey: "userMail")
+    
     let buyVM = BuyVM()
     var compSelect = String()
     var compList = [CompanyBank]()
@@ -27,7 +27,7 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         price.addTarget(self, action: #selector(calculate), for: .editingChanged)
         total.addTarget(self, action: #selector(calculate), for: .editingChanged)
         
@@ -45,7 +45,7 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchComp()
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -111,18 +111,21 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         var totalPriceRep = totalPrice.text
         totalPriceRep = totalPriceRep?.replacingOccurrences(of: ",", with: ".")
         
-        if let userMail = mail, let prodName = productName.text, let price = priceRep, let total = totalRep, let tPrice = totalPriceRep, let date = buyDate.text {
+        if let prodName = productName.text, let price = priceRep, let total = totalRep, let tPrice = totalPriceRep, let date = buyDate.text {
             if let dPrice = Double(price), let dTotal = Double(total), let dTP = Double(tPrice) {
-                print(date)
-                buyVM.addBuy(mail: userMail, compName: compSelect, productName: prodName, price: dPrice, total: dTotal, totalPrice: dTP, buyDate: date)
                 
-                ProgressHUD.showSuccess("Alış işlemi kaydedildi.")
-                if let mainVC = presentingViewController as? BuyTableViewController {
-                    DispatchQueue.main.async {
-                        mainVC.tableView.reloadData()
+                if let currentUser = Auth.auth().currentUser {
+                    let uid = currentUser.uid
+                    buyVM.addBuy(mail: uid, compName: compSelect, productName: prodName, price: dPrice, total: dTotal, totalPrice: dTP, buyDate: date)
+                    
+                    ProgressHUD.showSuccess("Alış işlemi kaydedildi.")
+                    if let mainVC = presentingViewController as? BuyTableViewController {
+                        DispatchQueue.main.async {
+                            mainVC.tableView.reloadData()
+                        }
                     }
+                    self.view.window?.rootViewController?.dismiss(animated: true)
                 }
-                self.view.window?.rootViewController?.dismiss(animated: true)
             }
         }
     }
@@ -177,5 +180,5 @@ extension AddBuyViewController: UITextFieldDelegate {
         productName.endEditing(true)
         return true
     }
-
+    
 }

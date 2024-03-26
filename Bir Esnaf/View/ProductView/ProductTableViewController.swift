@@ -7,8 +7,10 @@
 
 import UIKit
 import ProgressHUD
+import FirebaseAuth
 
 class ProductTableViewController: UITableViewController {
+    
     var saleC = Int()
     var prodDelete = String()
     
@@ -17,7 +19,6 @@ class ProductTableViewController: UITableViewController {
     var saleListCount = [Sale]()
     let saleVM = SaleVM()
     
-    let mail = userDefaults.string(forKey: "userMail")
     var prodList = [Product]()
     let prodVM = ProductVM()
     
@@ -25,7 +26,7 @@ class ProductTableViewController: UITableViewController {
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -34,10 +35,8 @@ class ProductTableViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
         
-        getProdList()  
+        getProdList()
         getProdCount()
-        
-        
     }
     
     
@@ -50,7 +49,7 @@ class ProductTableViewController: UITableViewController {
         return prodList.count
     }
     
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let prod = prodList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProdCell", for: indexPath) as! ProductTableViewCell
@@ -62,12 +61,12 @@ class ProductTableViewController: UITableViewController {
         return cell
     }
     
-  
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "goToUpdateProd", sender: indexPath.row) 
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAct = UIContextualAction(style: .destructive, title: "Sil") { contextualAction, view, boolValue in
             self.showDeleteWarning(for: indexPath)
@@ -89,81 +88,22 @@ class ProductTableViewController: UITableViewController {
         let cancelAct = UIAlertAction(title: "İptal", style: .cancel)
         alertController.addAction(cancelAct)
         let okAct = UIAlertAction(title: "Tamam", style: .destructive) { action in
-
-                self.deleteProduct(at: indexPath)
-                // productSalesControl(at indexPath: IndexPath)
-                
-
+            self.deleteProduct(at: indexPath)
         }
         alertController.addAction(okAct)
         self.present(alertController, animated: true)
     }
-
     
-    
-//    func showDeleteWarningForShop(for prod: String) {
-//        let alertController = UIAlertController(title: "Sildiğiniz ürün 'Satış Sonuçları' listesinde de mevcut. Bu listeden de silmek ister misiniz?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
-//        let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
-//        alertController.addAction(cancelAction)
-//        let okeyAction = UIAlertAction(title: "Tamam", style: .destructive) { action in
-//            self.shopVM.deleteFromShopWhenProductsIsDeleted(userMail: self.mail!, prodName: prod)
-//        }
-//        alertController.addAction(okeyAction)
-//        self.present(alertController, animated: true)
-//    }
-    
-    
-    // TEST                            TEST                           TEST                         TEST
-//            shopVM.productShopControl(userMail: mail!, prodName: prod) { shopCount in
-//                self.shopListCount = shopCount
-//                let shopC = self.shopListCount.count
-//                print("Shop count geldi mi? \(shopC)") // geliyor
-//                if shopC > 0 {
-//                    DispatchQueue.main.async {
-//                        self.showDeleteWarningForShop(for: prod)
-//                    }
-//                }
-//            }
-    
-    
-//    func showDeleteWarningForSale(for prod: String) {
-//        let alertController = UIAlertController(title: "Sildiğiniz ürün 'Satış İşlemleri' listesinde de mevcut. Silinen ürünün bütün satış kayıtlarını silmek ister misiniz?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
-//        let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
-//        alertController.addAction(cancelAction)
-//        let okeyAction = UIAlertAction(title: "Tamam", style: .destructive) { action in
-//            
-//            print("Show delete te sale delete için prod geliyor mu \(prod)")
-//            self.saleVM.deleteFromSaleWhenProductsIsDeleted(userMail: self.mail!, prodName: prod)
-//
-//        }
-//        alertController.addAction(okeyAction)
-//        self.present(alertController, animated: true)
-//    }
-    
-//    func productSalesControl(at indexPath: IndexPath) {   //    burada sayma yaptır dönen değere göre silmeyi çağır?
-//        let prod = self.prodList[indexPath.row]
-//        if let prodName = prod.prodName {
-//            prodDelete = prodName
-//            print("Dilinen ürün adı \(prodDelete)")
-//            saleVM.productSaleControl(userMail: mail!, prodName: prodDelete) { saleCount in
-//                self.saleC = saleCount.count
-//                print("Sale Count geldi mi? \(self.saleC)") // geliyor    olmadığı halde 1 geldi?
-////                if self.saleC < 1 {
-////                    DispatchQueue.main.async {
-////                        self.showDeleteWarningForSale(for: self.prodDelete)
-////                        self.getProdList()
-////                    }
-////                }
-//            }
-//            
-//        }
-//    }
     
     func deleteProduct(at indexPath: IndexPath) {
         let prod = self.prodList[indexPath.row]
         if let prodId = prod.prodId {
             if let intPId = Int(prodId) {
-                self.prodVM.deleteProd(userMail: mail!, prodId: intPId)
+                if let currentUser = Auth.auth().currentUser {
+                    let uid = currentUser.uid
+                    self.prodVM.deleteProd(userMail: uid, prodId: intPId)
+                }
+                
                 self.prodList.remove(at: indexPath.row)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -173,6 +113,7 @@ class ProductTableViewController: UITableViewController {
         }
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToUpdateProd" {
             guard let indeks = sender as? Int else { return }
@@ -181,28 +122,39 @@ class ProductTableViewController: UITableViewController {
         }
     }
     
-    func getProdList() {
-        prodVM.getAllProd(userMail: mail!) { prodData in
-            self.prodList = prodData
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
     
-    func getProdCount() {
-        self.prodVM.countProduct(userMail: mail!) { prodData in
-            self.prodList = prodData
-            if let count = self.prodList.first?.count {
-                print("prod sayısı geldi mi ? \(count)")
-                if let intProd = Int(count) {
-                    if intProd == 0 {
-                        ProgressHUD.showSuccess("+ ile Ürün ekleyerek uygulamayı kullanmaya başlayın.")
-                    }
-                    
+    func getProdList() {
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            prodVM.getAllProd(userMail: uid) { compData in
+                self.prodList = compData
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
                 }
             }
         }
     }
+    
+    
+    func getProdCount() {
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            self.prodVM.countProduct(userMail: uid) { prodData in
+                self.prodList = prodData
+                if let count = self.prodList.first?.count {
+                    print("prod sayısı geldi mi ? \(count)")
+                    if let intProd = Int(count) {
+                        if intProd == 0 {
+                            ProgressHUD.showSuccess("+ ile Ürün ekleyerek uygulamayı kullanmaya başlayın.")
+                        }
+                        
+                    }
+                }
+            }
+        }
 
+        
+        
+    }
+    
 }

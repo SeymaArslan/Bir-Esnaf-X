@@ -6,6 +6,7 @@
 // delete commitle sonra test et daha sonra kar zarar label mysql tablo falan bak
 
 import UIKit
+import FirebaseAuth
 
 class SalesTableViewController: UITableViewController {
     
@@ -13,8 +14,7 @@ class SalesTableViewController: UITableViewController {
     
     var prodList = [Product]()
     let prodVM = ProductVM()
-
-    let mail = userDefaults.string(forKey: "userMail")
+    
     var saleList = [Sale]()
     let saleVM = SaleVM()
     
@@ -27,7 +27,7 @@ class SalesTableViewController: UITableViewController {
         tableView.dataSource = self
         
         tableView.rowHeight = 166.0
-    
+        
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
         
@@ -37,7 +37,7 @@ class SalesTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         getSaleList()
     }
-
+    
     @IBAction func addSaleButton(_ sender: Any) {
         // burada tıklama ile veri transferi yapacağız.
         
@@ -63,11 +63,11 @@ class SalesTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return saleList.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sale = saleList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SalesTableViewCell
@@ -97,7 +97,7 @@ class SalesTableViewController: UITableViewController {
             print("\(saleList[index])")
             goToVC.sale = saleList[index]
         }
-
+        
     }
     
     
@@ -128,10 +128,13 @@ class SalesTableViewController: UITableViewController {
         let sale = self.saleList[indexPath.row]
         if let saleId = sale.saleId {
             if let intSId = Int(saleId) {
-                self.saleVM.deleteSale(userMail: mail!, saleId: intSId)
-                self.saleList.remove(at: indexPath.row)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                if let currentUser = Auth.auth().currentUser {
+                    let uid = currentUser.uid
+                    self.saleVM.deleteSale(userMail: uid, saleId: intSId)
+                    self.saleList.remove(at: indexPath.row)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 }
             }
         }
@@ -142,7 +145,11 @@ class SalesTableViewController: UITableViewController {
                     if let prodTotal = self.prodList.first?.prodTotal {
                         if let doubleProdTotal = Double(prodTotal) {
                             let updateTotal = doubleProdTotal + doubleSaleTotal
-                            self.prodVM.productUpdateWithSales(userMail: self.mail! ,prodName: prodName, prodTotal: updateTotal)
+                            
+                            if let currentUser = Auth.auth().currentUser {
+                                let uid = currentUser.uid
+                                self.prodVM.productUpdateWithSales(userMail: uid, prodName: prodName, prodTotal: updateTotal)
+                            }
                         }
                     }
                 }
@@ -153,17 +160,20 @@ class SalesTableViewController: UITableViewController {
     
     
     func getSaleList() {
-        saleVM.getSaleList(mail: mail!) { saleListData in
-            self.saleList = saleListData
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            saleVM.getSaleList(mail: uid) { saleListData in
+                self.saleList = saleListData
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
     
-//    func getFirstProd() {
-//        saleVM.getFirstSaleInCompany(userMail: mail!) { firstProdData in
-//            self.firstProductData = firstProdData
-//        }
-//    }
+    //    func getFirstProd() {
+    //        saleVM.getFirstSaleInCompany(userMail: mail!) { firstProdData in
+    //            self.firstProductData = firstProdData
+    //        }
+    //    }
 }

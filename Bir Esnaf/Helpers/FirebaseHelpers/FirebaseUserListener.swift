@@ -19,7 +19,6 @@ class FirebaseUserListener {
     //MARK: - Login
     func loginUserWithEmail(email: String, password: String, completion: @escaping(_ error: Error?, _ isEmailVerified: Bool) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { authDataResult, error in
-            
             if error == nil && authDataResult!.user.isEmailVerified {
                 FirebaseUserListener.shared.downloadUserFromFirebase(userId: authDataResult!.user.uid, email: email)
                 completion(error, true)
@@ -48,8 +47,11 @@ class FirebaseUserListener {
                 }
             }
         }
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            userVM.userAdd(userMail: uid)
+        }
         
-        userVM.userAdd(userMail: email)
         
     }
     
@@ -73,8 +75,8 @@ class FirebaseUserListener {
         do {
             try Auth.auth().signOut()
             
-            userDefaults.removeObject(forKey: kcurrentUser)
-            userDefaults.synchronize() // nesnemizi kaldırdıktan sonra senkronize ederek güvenliğini sağlamak istiyoruz.
+//            userDefaults.removeObject(forKey: kcurrentUser)
+//            userDefaults.synchronize() // nesnemizi kaldırdıktan sonra senkronize ederek güvenliğini sağlamak istiyoruz.
             
             completion(nil)
         } catch let error as NSError {

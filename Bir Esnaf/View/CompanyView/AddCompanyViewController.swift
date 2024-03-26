@@ -8,13 +8,14 @@
 import UIKit
 
 class AddCompanyViewController: UIViewController {
+    
     @IBOutlet weak var compName: UITextField!
     @IBOutlet weak var compPhone: UITextField!
     @IBOutlet weak var compMail: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         compName.delegate = self
         compMail.delegate = self
         
@@ -23,14 +24,14 @@ class AddCompanyViewController: UIViewController {
     }
     
     @IBAction func compSaveButton(_ sender: Any) {
-
+        
     }
     
     @IBAction func compCancelButton(_ sender: Any) {
         self.view.window?.rootViewController?.dismiss(animated: true)
     }
     
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addAddress" {
             let goToAddressVC = segue.destination as! AddAddressViewController
