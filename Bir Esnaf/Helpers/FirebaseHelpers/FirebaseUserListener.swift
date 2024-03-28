@@ -12,7 +12,6 @@ import FirebaseFirestore
 
 class FirebaseUserListener {
     static let shared = FirebaseUserListener()
-    let userVM = UserVM()
     
     private init() {  }
     
@@ -44,15 +43,10 @@ class FirebaseUserListener {
                     saveUserLocally(user)
                     self.saveUserToFirestore(user)
                     saveUserMailLocally(user.email)
+                    
                 }
             }
         }
-        if let currentUser = Auth.auth().currentUser {
-            let uid = currentUser.uid
-            userVM.userAdd(userMail: uid)
-        }
-        
-        
     }
     
     //MARK: - Resend Link Methods
@@ -75,8 +69,8 @@ class FirebaseUserListener {
         do {
             try Auth.auth().signOut()
             
-//            userDefaults.removeObject(forKey: kcurrentUser)
-//            userDefaults.synchronize() // nesnemizi kaldırdıktan sonra senkronize ederek güvenliğini sağlamak istiyoruz.
+            userDefaults.removeObject(forKey: kcurrentUser)
+            userDefaults.synchronize() // nesnemizi kaldırdıktan sonra senkronize ederek güvenliğini sağlamak istiyoruz.
             
             completion(nil)
         } catch let error as NSError {
@@ -129,7 +123,7 @@ class FirebaseUserListener {
                 return
             }
             let result = Result {
-                try? document.data(as: User.self) // kullanıcı nesnesi oluşturmaya çalış dedik.
+                try? document.data(as: User.self)
             }
             switch result {
             case .success(let userObject):

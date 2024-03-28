@@ -83,6 +83,7 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
         }
     }
     
+    
     func updateSales() {
         var priceRep = salePrice.text
         priceRep = priceRep?.replacingOccurrences(of: ",", with: ".")
@@ -106,30 +107,34 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
     }
     
     
-    func updatePickerStatus(enabled: Bool) { // TEST                            TEST                           TEST                         TEST
+    func updatePickerStatus(enabled: Bool) {
         prodNamePicker.isUserInteractionEnabled = enabled
         prodNamePicker.alpha = enabled ? 1.0 : 0.5
     }
     
     
     func getProdList() {
-        saleVM.fetchProdList { prodData in
-            self.prodList = prodData
-            if let getTotal = self.prodList.first?.prodTotal {
-                if let doubleGetTotal = Double(getTotal) {
-                    self.getOldTotal = doubleGetTotal
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            saleVM.fetchProdList(userMail: uid) { prodData in
+                self.prodList = prodData
+                if let getTotal = self.prodList.first?.prodTotal {
+                    if let doubleGetTotal = Double(getTotal) {
+                        self.getOldTotal = doubleGetTotal
+                    }
                 }
-            }
-            DispatchQueue.main.async {
-                self.prodNamePicker.reloadAllComponents()
-                if let selectedIndex = self.prodList.firstIndex(where: { $0.prodName == self.prodSelect }) {
-                    self.prodNamePicker.selectRow(selectedIndex, inComponent: 0, animated: false)
+                DispatchQueue.main.async {
+                    self.prodNamePicker.reloadAllComponents()
+                    if let selectedIndex = self.prodList.firstIndex(where: { $0.prodName == self.prodSelect }) {
+                        self.prodNamePicker.selectRow(selectedIndex, inComponent: 0, animated: false)
+                    }
+                    let prodNameExists = self.prodList.contains(where: {$0.prodName == self.prodSelect} ) // TEST
+                    self.updatePickerStatus(enabled: prodNameExists)
                 }
-                let prodNameExists = self.prodList.contains(where: {$0.prodName == self.prodSelect} ) // TEST                            TEST                           TEST                         TEST
-                self.updatePickerStatus(enabled: prodNameExists)
             }
         }
     }
+    
     
     func getSaleInformation() {
         if let s = sale {
@@ -142,12 +147,10 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
                     oldTotal = doubleOldTot
                 }
             }
-            
             salePrice.text = s.salePrice
             total.text = s.saleTotal
             totalPrice.text = s.saleTotalPrice
             saleDateTextField.text = s.saleDate
-            
             
             if let getSelectProd = s.prodName {
                 prodSelect = getSelectProd // Varsayılan olarak seçili ürünü belirle
@@ -161,11 +164,8 @@ class UpdateSalesViewController: UIViewController, UIPickerViewDataSource, UIPic
                     }
                 }
             }
-            
         }
     }
-    
-    
 }
 
 

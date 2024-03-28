@@ -19,6 +19,7 @@ class ProductTableViewController: UITableViewController {
     var saleListCount = [Sale]()
     let saleVM = SaleVM()
     
+    var prodListCount = [Product]()
     var prodList = [Product]()
     let prodVM = ProductVM()
     
@@ -40,7 +41,7 @@ class ProductTableViewController: UITableViewController {
     }
     
     
-    // MARK: - Table view data source    
+    // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -51,6 +52,10 @@ class ProductTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.row < prodList.count else {
+            return UITableViewCell()
+        }
+        
         let prod = prodList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProdCell", for: indexPath) as! ProductTableViewCell
         cell.productName.text = prod.prodName
@@ -63,7 +68,7 @@ class ProductTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "goToUpdateProd", sender: indexPath.row) 
+        self.performSegue(withIdentifier: "goToUpdateProd", sender: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -83,6 +88,37 @@ class ProductTableViewController: UITableViewController {
     
     
     //MARK: - Helpers
+    func outOfStock(at id: String, name: String) {
+        let alertCont = UIAlertController(title: "Satılan \(name) ürününün stoğu tükendi. Ürünler listenizden silinsin mi?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
+        let cancelAct = UIAlertAction(title: "İptal", style: .cancel)
+        alertCont.addAction(cancelAct)
+        let okAct = UIAlertAction(title: "Tamam", style: .destructive) { action in
+            if let intPId = Int(id) {
+                print("Silinecek ürün id si = \(intPId)")
+                if let currentUser = Auth.auth().currentUser {
+                    let uid = currentUser.uid
+                    self.prodVM.deleteProd(userMail: uid, prodId: intPId)
+                    ProgressHUD.showSuccess("\(name) listenizden başarılı bir şekilde silindi.")
+                }
+            }
+        }
+        alertCont.addAction(okAct)
+        self.present(alertCont, animated: true)
+    }
+    
+    
+    func totalControl() {
+        for prod in self.prodList {
+            if let totalOver = prod.prodTotal, let intTotalOver = Int(totalOver), intTotalOver == 0 {
+                if let id = prod.prodId, let name = prod.prodName {
+                    print("Ürün adı = \(name), id = \(id)")
+                    self.outOfStock(at: id, name: name)
+                }
+            }
+        }
+    }
+    
+    
     func showDeleteWarning(for indexPath: IndexPath) {
         let alertController = UIAlertController(title: "Ürünü Silmek Üzeresiniz", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
         let cancelAct = UIAlertAction(title: "İptal", style: .cancel)
@@ -103,12 +139,10 @@ class ProductTableViewController: UITableViewController {
                     let uid = currentUser.uid
                     self.prodVM.deleteProd(userMail: uid, prodId: intPId)
                 }
-                
                 self.prodList.remove(at: indexPath.row)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                
             }
         }
     }
@@ -126,11 +160,13 @@ class ProductTableViewController: UITableViewController {
     func getProdList() {
         if let currentUser = Auth.auth().currentUser {
             let uid = currentUser.uid
-            prodVM.getAllProd(userMail: uid) { compData in
-                self.prodList = compData
+            prodVM.getAllProd(userMail: uid) { prodData in
+                self.prodList = prodData
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.totalControl()
                 }
+                
             }
         }
     }
@@ -139,22 +175,16 @@ class ProductTableViewController: UITableViewController {
     func getProdCount() {
         if let currentUser = Auth.auth().currentUser {
             let uid = currentUser.uid
-            self.prodVM.countProduct(userMail: uid) { prodData in
-                self.prodList = prodData
-                if let count = self.prodList.first?.count {
-                    print("prod sayısı geldi mi ? \(count)")
+            self.prodVM.countProduct(userMail: uid) { prodCount in
+                self.prodListCount = prodCount
+                if let count = self.prodListCount.first?.count {
                     if let intProd = Int(count) {
                         if intProd == 0 {
                             ProgressHUD.showSuccess("+ ile Ürün ekleyerek uygulamayı kullanmaya başlayın.")
                         }
-                        
                     }
                 }
             }
         }
-
-        
-        
     }
-    
 }

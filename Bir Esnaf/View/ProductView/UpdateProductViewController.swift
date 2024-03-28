@@ -35,7 +35,7 @@ class UpdateProductViewController: UIViewController {
     }
     
     @IBAction func cancelButton(_ sender: Any) {
-        self.view.window?.rootViewController?.dismiss(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     
@@ -64,7 +64,7 @@ class UpdateProductViewController: UIViewController {
                     let uid = currentUser.uid
                     prodVM.updateProd(userMail: uid, prodId: prodId, prodName: pName, prodTotal: doubTotal, prodPrice: doublePrice)
                     ProgressHUD.showSuccess("Ürün güncellendi.")
-                    self.view.window?.rootViewController?.dismiss(animated: true)
+                    dismiss(animated: true, completion: nil)
                 }
             }
         }

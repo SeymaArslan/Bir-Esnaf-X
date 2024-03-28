@@ -69,6 +69,9 @@ class SalesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.row < saleList.count else {
+            return UITableViewCell()
+        }
         let sale = saleList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SalesTableViewCell
         cell.prodName.text = sale.prodName
@@ -138,14 +141,13 @@ class SalesTableViewController: UITableViewController {
                 }
             }
         }
-        if let prodName = sale.prodName, let saleTotal = sale.saleTotal {  // ************************ test et
+        if let prodName = sale.prodName, let saleTotal = sale.saleTotal {
             if let doubleSaleTotal = Double(saleTotal) {
                 prodVM.fetchProdData(prodName: prodName) { prodData in
                     self.prodList = prodData
                     if let prodTotal = self.prodList.first?.prodTotal {
                         if let doubleProdTotal = Double(prodTotal) {
                             let updateTotal = doubleProdTotal + doubleSaleTotal
-                            
                             if let currentUser = Auth.auth().currentUser {
                                 let uid = currentUser.uid
                                 self.prodVM.productUpdateWithSales(userMail: uid, prodName: prodName, prodTotal: updateTotal)
@@ -170,10 +172,4 @@ class SalesTableViewController: UITableViewController {
             }
         }
     }
-    
-    //    func getFirstProd() {
-    //        saleVM.getFirstSaleInCompany(userMail: mail!) { firstProdData in
-    //            self.firstProductData = firstProdData
-    //        }
-    //    }
 }

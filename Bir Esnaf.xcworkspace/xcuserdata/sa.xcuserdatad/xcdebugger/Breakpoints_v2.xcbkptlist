@@ -126,25 +126,9 @@
             filePath = "Bir Esnaf/View/Buy/AddBuyViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "addBuy()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E187A619-243A-499D-8CCC-38024DF9AB3E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bir Esnaf/View/Buy/AddBuyViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "fetchComp()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -190,58 +174,10 @@
             filePath = "Bir Esnaf/View/ProductView/ProductTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6C58E7D6-5BDE-4CF2-8745-998AB4C0F217"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bir Esnaf/View/ProductView/ProductTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "getProdList()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6C58E7D6-5BDE-4CF2-8745-998AB4C0F217 - 3405eb9ac6dcd0ba"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Bir_Esnaf.ProductTableViewController.getProdList() -&gt; ()"
-                  moduleName = "Bir Esnaf"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sa/Desktop/SwiftDers/project/Bir-Esnaf-X/Bir%20Esnaf/View/ProductView/ProductTableViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "131"
-                  endingLineNumber = "131"
-                  offsetFromSymbolStart = "228">
-               </Location>
-               <Location
-                  uuid = "6C58E7D6-5BDE-4CF2-8745-998AB4C0F217 - 97ae099946f7fa11"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;Bir_Esnaf.Product&gt;) -&gt; () in Bir_Esnaf.ProductTableViewController.getProdList() -&gt; ()"
-                  moduleName = "Bir Esnaf"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sa/Desktop/SwiftDers/project/Bir-Esnaf-X/Bir%20Esnaf/View/ProductView/ProductTableViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "132"
-                  endingLineNumber = "132"
-                  offsetFromSymbolStart = "172">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

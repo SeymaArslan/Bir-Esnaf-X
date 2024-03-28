@@ -184,9 +184,12 @@ class SaleVM {
         }.resume()
     }
     
-    func fetchProdList(comp: @escaping([Product]) -> ()) {
-        let url = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/fetchProdListForSale.php")!)
-        URLSession.shared.dataTask(with: url) { data, response, error in
+    func fetchProdList(userMail: String, comp: @escaping([Product]) -> ()) {  // bunun web servisi düzenle
+        var request = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/fetchProdListForSale.php")!)
+        request.httpMethod = "POST"
+        let str = "userMail=\(userMail)"
+        request.httpBody = str.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
                 print(error?.localizedDescription ?? "")
                 return

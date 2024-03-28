@@ -140,6 +140,11 @@ class ProductVM {
                 completion(result.product ?? [Product]())
             } catch {
                 print(error.localizedDescription)
+//                if let err = error as? URLError, err.code == URLError.Code.notConnectedToInternet {
+//                    print("---------> İnternet YOK")
+//                } else {
+//                    print("---------> İnternet VAR")
+//                }
             }
         }.resume()
     }

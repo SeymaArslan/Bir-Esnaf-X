@@ -45,6 +45,9 @@ class BuyTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.row < buyList.count else {
+            return UITableViewCell()
+        }
         let buy = buyList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "buyCell", for: indexPath) as! BuyTableViewCell
         cell.compName.text = buy.compName

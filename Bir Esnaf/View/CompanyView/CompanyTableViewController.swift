@@ -47,6 +47,10 @@ class CompanyTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.row < compList.count else {
+            return UITableViewCell()
+        }
+        
         let comp = compList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CompanyTableViewCell
         cell.companyNameLabel.text = comp.compName

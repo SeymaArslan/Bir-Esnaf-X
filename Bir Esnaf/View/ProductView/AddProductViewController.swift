@@ -26,13 +26,16 @@ class AddProductViewController: UIViewController {
         setupBackgroundTap()
     }
     
+    
     @IBAction func cancelButton(_ sender: Any) {
-        self.view.window?.rootViewController?.dismiss(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
+    
     
     @IBAction func saveProd(_ sender: Any) {
         addProd()
     }
+    
     
     func addProd() {
         var price = prodPrice.text
@@ -47,7 +50,7 @@ class AddProductViewController: UIViewController {
                     let uid = currentUser.uid
                     prodVM.insertProd(userMail: uid, prodName: pName, prodTotal: doubleTotal, prodPrice: doublePrice)
                     ProgressHUD.showSuccess("Ürün başarılı bir şekilde eklendi.")
-                    self.view.window?.rootViewController?.dismiss(animated: true)
+                    dismiss(animated: true, completion: nil)
                 }
             }
         }
@@ -80,6 +83,4 @@ extension AddProductViewController: UITextFieldDelegate {
         prodName.endEditing(true)
         return true
     }
-    
-    
 }

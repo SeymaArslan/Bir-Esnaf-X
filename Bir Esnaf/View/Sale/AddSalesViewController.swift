@@ -114,44 +114,28 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         totalPrice.text = "\(result)"
     }
     
+    
     func countProfitAmount(prodSelect: String, prodPrice: Double, prodTotal: Double, salePrice: Double, saleTotal: Double) {
         let priceDifference = salePrice - prodPrice // kar için
         let totalRemainingProduct = prodTotal - saleTotal // Product güncelleme için prodTotal toplam ürün miktarı saleTotal satılan
-        
         let amount = priceDifference * saleTotal  // satış kar
-        
         if totalRemainingProduct > 0 {
-            
             if let currentUser = Auth.auth().currentUser {
                 let uid = currentUser.uid
                 shopVM.addShop(userMail: uid, prodName: prodSelect, totalProfitAmount: amount)
                 productVM.productUpdateWithSales(userMail: uid, prodName: prodSelect, prodTotal: totalRemainingProduct)
-                
-                
             }
-
         }
-        
         if totalRemainingProduct == 0 {
            ProgressHUD.showSuccess("Satılan \(prodSelect) ürününün stoğu tükendi.")
-           let alertCont = UIAlertController(title: "Satılan \(prodSelect) ürününün stoğu tükendi. Ürünler listenizden silinsin mi?", message: "Devam etmek için Tamam'a tıklayın.", preferredStyle: .alert)
-           let cancelAct = UIAlertAction(title: "İptal", style: .cancel)
-           alertCont.addAction(cancelAct)
-           let okAct = UIAlertAction(title: "Tamam", style: .destructive) { [self] action in
-               if let intPId = Int(prodId) {
-                   if let currentUser = Auth.auth().currentUser {
-                       let uid = currentUser.uid
-                       self.productVM.deleteProd(userMail: uid, prodId: intPId)
-                       ProgressHUD.showSuccess("\(prodSelect) listenizden başarılı bir şekilde silindi.")
-                       //  TEST ET
-                   }
-               }
-           }
-           alertCont.addAction(okAct)
-           self.present(alertCont, animated: true)
+            if let currentUser = Auth.auth().currentUser {
+                let uid = currentUser.uid
+                shopVM.addShop(userMail: uid, prodName: prodSelect, totalProfitAmount: amount)
+                productVM.productUpdateWithSales(userMail: uid, prodName: prodSelect, prodTotal: totalRemainingProduct)
+            }
        }
-        
     }
+    
     
     func addSale() {
         var sPriceRep = salePrice.text
@@ -162,15 +146,14 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         totalPriceRep = totalPriceRep?.replacingOccurrences(of: ",", with: ".")
         
         if let salePrice = sPriceRep, let saleTotal = totalRep, let totalSalePrice = totalPriceRep, let date = saleDateTextField.text {
-            if let doubleSalePrice = Double(salePrice), let doubleSaleTotal = Double(saleTotal), let doubleTotalSalePrice = Double(totalSalePrice), let doubleProdTotal = Double(prodTotal)  {
+            if let doubleSalePrice = Double(salePrice), let doubleSaleTotal = Double(saleTotal), let doubleTotalSalePrice = Double(totalSalePrice), let doubleProdTotal = Double(prodTotal), let doubleProdPrice = Double(prodPrice) {
                 if doubleProdTotal >= doubleSaleTotal {
                     if let currentUser = Auth.auth().currentUser {
                         let uid = currentUser.uid
                         saleVM.addSale(mail: uid, prodName: prodSelect, salePrice: doubleSalePrice, saleTotal: doubleSaleTotal, saleTotalPrice: doubleTotalSalePrice, saleDate: date)
-                    
-                        if let doubleProdPrice = Double(prodPrice) {
-                            countProfitAmount(prodSelect: prodSelect, prodPrice: doubleProdPrice, prodTotal: doubleProdTotal, salePrice: doubleSalePrice, saleTotal: doubleSaleTotal)
-                        }
+
+                        countProfitAmount(prodSelect: prodSelect, prodPrice: doubleProdPrice, prodTotal: doubleProdTotal, salePrice: doubleSalePrice, saleTotal: doubleSaleTotal)
+                        self.view.window?.rootViewController?.dismiss(animated: true)
                     }
                 } else {     // burası ....
                     ProgressHUD.showError("Ürün stoğu satış için yetersiz.")
@@ -181,6 +164,7 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
+    
     @objc func addButtonClicked() {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -189,6 +173,7 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         saleDateTextField.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
+    
     
     func createDatePicker() {
         let toolbar = UIToolbar()
@@ -202,15 +187,18 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         datePicker.datePickerMode = .date
     }
     
+    
     func fetchProd() {
-        saleVM.fetchProdList { prodData in
-            self.prodList = prodData
-            DispatchQueue.main.async {
-                self.prodPicker.reloadAllComponents()
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            saleVM.fetchProdList(userMail: uid) { prodData in
+                self.prodList = prodData
+                DispatchQueue.main.async {
+                    self.prodPicker.reloadAllComponents()
+                }
             }
         }
     }
-    
 }
 
 
@@ -227,14 +215,11 @@ extension AddSalesViewController: UITextFieldDelegate {
         totalPrice.inputAccessoryView = bar
         
     }
-    
     private func setupBackgroundTap() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
-    
     @objc func dismissKeyboard() {
         view.endEditing(false)
     }
-    
 }

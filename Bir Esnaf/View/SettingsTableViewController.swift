@@ -7,8 +7,10 @@
 
 import UIKit
 import ProgressHUD
+import FirebaseAuth
 
 class SettingsTableViewController: UITableViewController {
+    let userVM = UserVM()
     
     //MARK: - Life Cylces
     override func viewDidLoad() {
@@ -19,7 +21,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        showUserInfo() // refresh our page
+//        showUserInfo() // refresh our page
     }
     
     
@@ -87,13 +89,16 @@ class SettingsTableViewController: UITableViewController {
         let okAct = UIAlertAction(title: "Tamam", style: .destructive) { action in
             FirebaseUserListener.shared.deleteAccountCurrentUser { error in
                 if error == nil {
+                    if let currentUser = Auth.auth().currentUser {
+                        let uid = currentUser.uid
+                        self.userVM.deleteAllData(userMail: uid)
+                    }
                     ProgressHUD.showSuccess("Hesabınız Silindi.")
                     let loginView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "loginView")
                     DispatchQueue.main.async {
                         loginView.modalPresentationStyle = .fullScreen
                         self.present(loginView, animated: true, completion: nil)
                     }
-                    //                    self.deleteAllDataWithMail(for: self.mail!)
                 }
             }
             if var user = User.currentUser {
@@ -115,19 +120,14 @@ class SettingsTableViewController: UITableViewController {
         self.present(alertController, animated: true)
         
     }
-    
-    //    
-    //    func deleteAllDataWithMail(for mail: String) {
-    //        userVM.deleteAllData(userMail: mail)
-    //    }
-    //    
-    //    
+        
+        
     //MARK: - UpdateUI
-    private func showUserInfo() {
-        if let user = User.currentUser {
-            // burada yenileyeceğimiz şeyleri koyacağız işine yaramazsa sil geç. Ki bence kişi hesabı silerse login kayıt sayfasına yönlendirebiliriz.
-        }
-    }
+//    private func showUserInfo() {
+//        if let user = User.currentUser {
+//            // burada yenileyeceğimiz şeyleri koyacağız işine yaramazsa sil geç. Ki bence kişi hesabı silerse login kayıt sayfasına yönlendirebiliriz.
+//        }
+//    }
     
     
 }

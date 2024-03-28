@@ -89,15 +89,18 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     
     func getCompList() {
-        buyVM.fetchCompList { compData in
-            self.compList = compData
-            DispatchQueue.main.async {
-                self.compPickerUp.reloadAllComponents()
-                if let selectedIndex = self.compList.firstIndex(where: { $0.compName == self.compSelect}) {
-                    self.compPickerUp.selectRow(selectedIndex, inComponent: 0, animated: true)
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            buyVM.fetchCompList(userMail: uid) { compData in
+                self.compList = compData
+                DispatchQueue.main.async {
+                    self.compPickerUp.reloadAllComponents()
+                    if let selectedIndex = self.compList.firstIndex(where: { $0.compName == self.compSelect}) {
+                        self.compPickerUp.selectRow(selectedIndex, inComponent: 0, animated: true)
+                    }
+                    let compNameExists = self.compList.contains(where: { $0.compName == self.compSelect })
+                    self.updatePickerStatus(enabled: compNameExists)
                 }
-                let compNameExists = self.compList.contains(where: { $0.compName == self.compSelect })
-                self.updatePickerStatus(enabled: compNameExists)
             }
         }
     }

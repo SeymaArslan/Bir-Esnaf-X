@@ -125,9 +125,12 @@ class BuyVM {
         }.resume()
     }
     
-    func fetchCompList(completion: @escaping ([CompanyBank]) -> () ){
-        let url = URL(string: "https://lionelo.tech/birEsnaf/fetchCompListForBuy.php")!
-        URLSession.shared.dataTask(with: url) { data, response, error in
+    func fetchCompList(userMail: String, completion: @escaping ([CompanyBank]) -> () ){  // bunun web servisi düzenle
+        var req = URLRequest(url: URL(string: "https://lionelo.tech/birEsnaf/fetchCompListForBuy.php")!)
+        req.httpMethod = "POST"
+        let str = "userMail=\(userMail)"
+        req.httpBody = str.data(using: .utf8)
+        URLSession.shared.dataTask(with: req) { data, response, error in
             if error != nil {
                 print(error?.localizedDescription ?? "")
                 return

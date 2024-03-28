@@ -95,10 +95,13 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     func fetchComp() {
-        buyVM.fetchCompList { compList in
-            self.compList = compList
-            DispatchQueue.main.async {
-                self.compPicker.reloadAllComponents()
+        if let currentUser = Auth.auth().currentUser {
+            let uid = currentUser.uid
+            buyVM.fetchCompList(userMail: uid) { compList in
+                self.compList = compList
+                DispatchQueue.main.async {
+                    self.compPicker.reloadAllComponents()
+                }
             }
         }
     }

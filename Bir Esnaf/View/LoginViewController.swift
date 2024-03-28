@@ -8,11 +8,11 @@
 import UIKit
 import FirebaseFirestore
 import ProgressHUD
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
-    
-    var compTableVC = CompanyTableViewController()
     let userVM = UserVM()
+    var compTableVC = CompanyTableViewController()
     
     //MARK: - Outlets
     // Labels
@@ -43,7 +43,6 @@ class LoginViewController: UIViewController {
         setupBackgroundTap()
         
     }
-    
     
     var  isLogin: Bool = true
     
@@ -114,6 +113,7 @@ class LoginViewController: UIViewController {
         }
     }
     
+    
     private func updatePlaceholderLabels(textField: UITextField) {
         switch textField {
         case emailTextField:
@@ -124,8 +124,7 @@ class LoginViewController: UIViewController {
             repeatPasswordLabelOutlet.text = textField.hasText ? "Şifre (Tekrar)" : ""
         }
     }
-    
-    
+
     
     //MARK: - Helpers
     private func isDataInputedFor(type: String) -> Bool {
@@ -138,6 +137,7 @@ class LoginViewController: UIViewController {
             return emailTextField.text != ""
         }
     }
+    
     
     private func loginUser() {
         FirebaseUserListener.shared.loginUserWithEmail(email: emailTextField.text!, password: passwordTextField.text!) { error, isEmailVerified in
@@ -155,11 +155,16 @@ class LoginViewController: UIViewController {
         }
     }
     
+    
     private func registerUser() {
         if passwordTextField.text! == repeatPasswordTextField.text! {
             FirebaseUserListener.shared.registerUserWith(email: emailTextField.text!, password: passwordTextField.text!) { error in
                 if error == nil {
                     ProgressHUD.showSuccess("Doğrulama için email adresinize gidin.")
+                    if let currentUser = Auth.auth().currentUser {
+                        let uid = currentUser.uid
+                        self.userVM.userAdd(userMail: uid)
+                    }
                     self.resendEmailButtonOutlet.isHidden = false
                 } else {
                     ProgressHUD.showError(error!.localizedDescription)
@@ -170,6 +175,7 @@ class LoginViewController: UIViewController {
         }
     }
     
+    
     private func resetPassword() {
         FirebaseUserListener.shared.resetPasswordFor(email: emailTextField.text!) { error in
             if error == nil {
@@ -179,6 +185,7 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
     
     private func resendVerificationEmail() {
         FirebaseUserListener.shared.resendVerificationEmail(email: emailTextField.text!) { error in
@@ -199,6 +206,4 @@ class LoginViewController: UIViewController {
         mainView.modalPresentationStyle = .fullScreen
         self.present(mainView, animated: true, completion: nil)
     }
-    
 }
-
