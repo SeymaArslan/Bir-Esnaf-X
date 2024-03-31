@@ -57,7 +57,7 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     @IBAction func cancelButton(_ sender: Any) {
-        self.view.window?.rootViewController?.dismiss(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     
@@ -147,7 +147,7 @@ class UpdateBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                     let uid = currentUser.uid
                     buyVM.updateBuy(userMail: uid, buyId: buyId, compName: compSelect, productName: pName, price: doublePrice, total: doubleTotal, totalPrice: doubleTPrice, buyDate: date)
                     ProgressHUD.showSuccess("Satın alma bilgisi güncellendi.")
-                    self.view.window?.rootViewController?.dismiss(animated: true)
+                    dismiss(animated: true, completion: nil)
                 }
             }
         }

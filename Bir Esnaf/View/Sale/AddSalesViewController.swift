@@ -153,11 +153,11 @@ class AddSalesViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                         saleVM.addSale(mail: uid, prodName: prodSelect, salePrice: doubleSalePrice, saleTotal: doubleSaleTotal, saleTotalPrice: doubleTotalSalePrice, saleDate: date)
 
                         countProfitAmount(prodSelect: prodSelect, prodPrice: doubleProdPrice, prodTotal: doubleProdTotal, salePrice: doubleSalePrice, saleTotal: doubleSaleTotal)
-                        self.view.window?.rootViewController?.dismiss(animated: true)
+                        dismiss(animated: true, completion: nil)
                     }
                 } else {     // burası ....
                     ProgressHUD.showError("Ürün stoğu satış için yetersiz.")
-                    self.view.window?.rootViewController?.dismiss(animated: true)
+                    dismiss(animated: true, completion: nil)
                 }
                 
             }

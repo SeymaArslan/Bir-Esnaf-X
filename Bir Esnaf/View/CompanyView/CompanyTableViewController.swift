@@ -34,6 +34,7 @@ class CompanyTableViewController: UITableViewController {
     }
     
     @IBAction func goToCompAdd(_ sender: Any) {
+
     }
     
     

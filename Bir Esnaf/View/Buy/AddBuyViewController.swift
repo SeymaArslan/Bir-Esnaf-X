@@ -62,7 +62,7 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     @IBAction func cancelButton(_ sender: Any) {
-        self.view.window?.rootViewController?.dismiss(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -127,7 +127,7 @@ class AddBuyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                             mainVC.tableView.reloadData()
                         }
                     }
-                    self.view.window?.rootViewController?.dismiss(animated: true)
+                    dismiss(animated: true, completion: nil)
                 }
             }
         }

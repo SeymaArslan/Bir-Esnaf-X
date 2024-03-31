@@ -40,7 +40,7 @@ class CompanyDetailViewController: UIViewController {
     }
     
     @IBAction func cancelButton(_ sender: Any) {
-        self.view.window?.rootViewController?.dismiss(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     //MARK: - Helpers

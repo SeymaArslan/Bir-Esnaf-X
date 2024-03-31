@@ -8,16 +8,13 @@
 import UIKit
 
 class AddCompanyViewController: UIViewController {
-    
-//    @IBOutlet weak var scrollView: UIScrollView!
+
     @IBOutlet weak var compName: UITextField!
     @IBOutlet weak var compPhone: UITextField!
     @IBOutlet weak var compMail: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        scrollView.contentSize = CGSize(width: self.view.frame.width, height: 1000)
         
         compName.delegate = self
         compMail.delegate = self
